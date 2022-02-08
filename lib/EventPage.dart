@@ -1,7 +1,3 @@
-import 'package:final_app/Branch/Civil.dart';
-import 'package:final_app/Branch/Electrical.dart';
-import 'package:final_app/Branch/Information_Technology.dart';
-import 'package:final_app/Branch/Mechanical.dart';
 import 'package:final_app/Photo_Gallery/Engineers_day.dart';
 import 'package:final_app/Photo_Gallery/Independence_day.dart';
 import 'package:final_app/Photo_Gallery/Sports.dart';
@@ -9,7 +5,6 @@ import 'package:final_app/Photo_Gallery/Teachers_day.dart';
 import 'package:final_app/Photo_Gallery/Techfest.dart';
 import 'package:final_app/Photo_Gallery/Visits.dart';
 import 'package:flutter/material.dart';
-import 'Branch/Computer.dart';
 
 
 class EventPage extends StatelessWidget {
