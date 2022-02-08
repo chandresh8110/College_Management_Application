@@ -15,13 +15,13 @@ class SHomePage extends StatefulWidget {
 class _SHomePageState extends State<SHomePage> {
 
   final urlImages1 = [
-    'images/SVG/Campus1.svg',
-    'images/SVG/Campus2.svg',
-    'images/SVG/Campus3.svg',
-    'images/SVG/Campus4.svg',
-    'images/SVG/Campus5.svg',
-    'images/SVG/Campus6.svg',
-    'images/SVG/Campus7.svg',
+    // 'images/SVG/Campus1.svg',
+    // 'images/SVG/Campus2.svg',
+    // 'images/SVG/Campus3.svg',
+    // 'images/SVG/Campus4.svg',
+    // 'images/SVG/Campus5.svg',
+    // 'images/SVG/Campus6.svg',
+    // 'images/SVG/Campus7.svg',
   ];
 
   @override

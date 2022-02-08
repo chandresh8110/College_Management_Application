@@ -22,15 +22,33 @@ class Computer extends StatelessWidget {
               floating: true,
             ),
             SliverToBoxAdapter(
-              child: Flexible(
-                flex: 1,
-                child: Container(
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 10, right: 10, top: 10),
-                    child: Text('         Computer Engineering is a branch of engineering that integrates several fields of computer science and electronic engineering, required to develop computer hardware & software.',
-                      textAlign: TextAlign.justify,
+              child: Container(
+                //color: Colors.red,
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 10, right: 10, top: 10),
+                  child: Text('         Computer Engineering is a branch of engineering that integrates several fields of computer science and electronic engineering, required to develop computer hardware & software.',
+                    textAlign: TextAlign.justify,
+                    style: TextStyle(
+                     // color: Colors.red,
+                      fontSize: 20,
+                      //fontWeight: FontWeight.bold,
+                      //decoration: TextDecoration.underline,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            SliverToBoxAdapter(
+              child: Container(
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 10, right: 10, top: 10),
+                  child: Center(
+                    child: Text('OUR VISION',
                       style: TextStyle(
+                        color: Colors.red,
                         fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        decoration: TextDecoration.underline,
                       ),
                     ),
                   ),
@@ -39,38 +57,16 @@ class Computer extends StatelessWidget {
             ),
             SliverToBoxAdapter(
               child: Container(
-                height: 40,
-                //color: Colors.blue,
-                padding: const EdgeInsets.only(left: 10, right: 10),
-                //color: Colors.redAccent,
-                child: Center(
-                  child: Text('OUR VISION',
-                  textAlign: TextAlign.justify,
-                    style: TextStyle(
-                      color: Colors.red,
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      decoration: TextDecoration.underline,
-                    ),
-                  ),
-                ),
-              ),
-            ),
-            SliverToBoxAdapter(
-              child: Flexible(
-                flex: 1,
-                child: Container(
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 10, right: 10,top: 10),
-                    child: Text('         To study and innovate in the emerging era of computer science to engage broadly with the evolving needs of the society we live in by providing value-based education.',
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 10, right: 10,top: 10),
+                  child: Text('         To study and innovate in the emerging era of computer science to engage broadly with the evolving needs of the society we live in by providing value-based education.',
                     textAlign: TextAlign.justify,
-                      style: TextStyle(
-                        fontSize: 20,
-                      ),
+                    style: TextStyle(
+                      fontSize: 20,
                     ),
                   ),
                 ),
-              ),
+             ),
             ),
             SliverToBoxAdapter(
               child: Container(
@@ -92,16 +88,14 @@ class Computer extends StatelessWidget {
               ),
             ),
             SliverToBoxAdapter(
-              child: Flexible(
-                flex: 1,
-                child: Container(
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 10, right: 10),
-                    child: Text('         The program’s key mission is to contribute to nation & society by advancing the fields of computer engineering through teaching & research advances, thus enhancing student awareness through immersive training, national & international participation, and experiential learning.',
-                      textAlign: TextAlign.justify,
-                      style: TextStyle(
-                        fontSize: 20,
-                      ),
+              child: Container(
+                //height: MediaQuery.of(context).size.height * 25/100,
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 10, right: 10),
+                  child: Text('         The program’s key mission is to contribute to nation & society by advancing the fields of computer engineering through teaching & research advances, thus enhancing student awareness through immersive training, national & international participation, and experiential learning.',
+                    textAlign: TextAlign.justify,
+                    style: TextStyle(
+                      fontSize: 20,
                     ),
                   ),
                 ),
