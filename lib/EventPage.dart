@@ -123,7 +123,7 @@ class EventPage extends StatelessWidget {
                   //color: Colors.greenAccent,
                   decoration: BoxDecoration(
                     image: DecorationImage(
-                      image: AssetImage('images/visit.png'),
+                      image: AssetImage('images/Visit.png'),
                     ),
                   ),
                 ),

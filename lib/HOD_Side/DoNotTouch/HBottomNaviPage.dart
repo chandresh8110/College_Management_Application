@@ -1,22 +1,27 @@
-import 'package:final_app/BranchPage.dart';
-import 'package:final_app/Faculty%20Side/Faculty_Dart/FacultyHomePage.dart';
-import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
-import 'package:final_app/ChatRoom.dart';
-import 'package:final_app/EventPage.dart';
-import 'package:final_app/PlacementPage.dart';
+import 'package:final_app/HOD_Side/HOD%20Dart/HODHomePage.dart';
+import 'package:flutter/material.dart';
+import '../../BranchPage.dart';
+import '../../ChatRoom.dart';
+import '../../EventPage.dart';
+import '../../PlacementPage.dart';
 
-class FBottomNaviPage extends StatefulWidget {
-  const FBottomNaviPage({Key? key}) : super(key: key);
+
+
+
+
+class HBottomNaviPage extends StatefulWidget {
+  const HBottomNaviPage({Key? key}) : super(key: key);
 
   @override
-  _FBottomNaviPageState createState() => _FBottomNaviPageState();
+  _HBottomNaviPageState createState() => _HBottomNaviPageState();
 }
 
-class _FBottomNaviPageState extends State<FBottomNaviPage> {
+class _HBottomNaviPageState extends State<HBottomNaviPage> {
+
   int index = 0;
   final screen = [
-    FHomePage(),
+    HHomePage(),
     EventPage(),
     BranchPage(),
     PlacementPage(),

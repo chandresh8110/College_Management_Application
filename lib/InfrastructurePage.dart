@@ -42,7 +42,7 @@ class Infrastructure extends StatelessWidget {
               SliverToBoxAdapter(
                 child:  Container(
                   //color:Colors.greenAccent,
-                  height: 470,
+                  // height: 470,
                   padding: const EdgeInsets.only(left: 5, right: 5),
                   child: Text('➡️ The students are encouraged to think out of the box & come out with feasible innovative ideas to solve practical real-life problems. For that, AIET emphasizes the incubation centre to blend passions with the support, structure & resources to address challenging problems with innovative ideas. Top of it, students can enhance their skills of discussion, debate & amp; experiment along with research & development.'
                     '\n\n➡️ The centre is equipped with all modern amenities & an aesthetic work environment. The working space has workstations built for start-up teams equipped with electricity, internet, phone line connections & projector screens to make each workstation a productivity hub.',
@@ -103,7 +103,7 @@ class Infrastructure extends StatelessWidget {
               SliverToBoxAdapter(
                 child:  Container(
                   //color:Colors.greenAccent,
-                  height: 190,
+                  // height: 190,
                   padding: const EdgeInsets.only(left: 5, right: 5),
                   child: Text('➡️ For security and added comfort, AIET provides the bus facility for student transportation. The college has its own fleet of buses connecting the campus with covering various routes of Ahmedabad city which is beneficial for the students as well as staff members with nominal fares of transportation.',
                     textAlign: TextAlign.justify,
@@ -163,7 +163,7 @@ class Infrastructure extends StatelessWidget {
               SliverToBoxAdapter(
                 child:  Container(
                   //color:Colors.greenAccent,
-                  height: 145,
+                  // height: 145,
                   padding: const EdgeInsets.only(left: 5, right: 5),
                   child:Text('➡️ Institute cares for student’s health & AIET emphasizes on healthy & hygienic food, for students as well as staff members. The campus provides a larger area for students to access the cafeteria at the same time.',
                     textAlign: TextAlign.justify,
@@ -223,7 +223,7 @@ class Infrastructure extends StatelessWidget {
               SliverToBoxAdapter(
                 child:  Container(
                   //color:Colors.greenAccent,
-                  height: 280,
+                  // height: 280,
                   padding: const EdgeInsets.only(left: 5, right: 5),
                   child:Text('➡️ AIET Library has nearly 10,000 books. The Library collection includes a large number of reference books, text book collection meant to cater the need for the students in their study & research. The spacious reading area lends a calm & comfortable atmosphere for students & faculty members to pursue excellence in academics.'
                       '\n\n➡️The library is equipped with all modern facilities.',
@@ -284,7 +284,7 @@ class Infrastructure extends StatelessWidget {
               SliverToBoxAdapter(
                 child: Container(
                   //color:Colors.greenAccent,
-                  height: 100,
+                  // height: 100,
                   padding: const EdgeInsets.only(left: 5, right: 5),
                   child: Text('➡️ ‘Safety First’ & ‘Safety Always’.'
                       '\n\n➡️Due care has been taken for the health of the students.',
@@ -345,7 +345,7 @@ class Infrastructure extends StatelessWidget {
               SliverToBoxAdapter(
                 child:  Container(
                   //color:Colors.greenAccent,
-                  height: 150,
+                  // height: 150,
                   padding: const EdgeInsets.only(left: 5, right: 5),
                   child:Text('➡️AIET has a wide auditorium with more than 500 seating capacity, and fitted with open address framework & projection facilities. It is used for organizing training courses, symposium, gatherings, workshops & other expert projects.',
                     textAlign: TextAlign.justify,
@@ -405,7 +405,7 @@ class Infrastructure extends StatelessWidget {
               SliverToBoxAdapter(
                 child:  Container(
                   //color:Colors.greenAccent,
-                  height: 285,
+                  // height: 285,
                   padding: const EdgeInsets.only(left: 5, right: 5),
                   child: Text('➡️In this advanced technical era, the internet is the basic need & is a powerful medium for students to connect to the world. As per need, AIET has provided a high speed 40Mbps Wi-Fi environment which is available 24×7 in the campus premises. In order to avail local server with e-library & other important software laboratories, students can access all the above lab contents from any place in the campus as well as access local server with e-library.',
                     textAlign: TextAlign.justify,
@@ -435,7 +435,7 @@ class Infrastructure extends StatelessWidget {
               SliverToBoxAdapter(
                 child:  Container(
                   //color:Colors.greenAccent,
-                  height: 80,
+                  // height: 80,
                   padding: const EdgeInsets.only(left: 5, right: 5),
                   child: Text('➡️AIET also provides hostel facility which is located near college campus for migrated students.',
                       textAlign: TextAlign.justify,

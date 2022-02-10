@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:final_app/ChatRoom.dart';
 import 'package:final_app/EventPage.dart';
-import 'package:final_app/MainPage.dart';
 import 'package:final_app/PlacementPage.dart';
 
 class SBottomNaviPage extends StatefulWidget {

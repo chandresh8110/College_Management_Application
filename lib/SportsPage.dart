@@ -29,7 +29,7 @@ class SportPage extends StatelessWidget {
             SliverToBoxAdapter(
               child:  Container(
                 //color:Colors.greenAccent,
-                height: 520,
+                // height: 520,
                 padding: const EdgeInsets.only(left: 5, right: 5),
                 child: Text('       The institute provides abundant facilities for the students to get accustomed with the varied sports activities.'
                     '\n\n       Our students are talented & are laurelled by many renowned institutes.To support our view, at AIET we have lush green sports ground where various sports activities & events take place. '
@@ -108,5 +108,4 @@ final List<String> networkNames =[
 'https://drive.google.com/uc?export=view&id=1C-Pa5_50J4EmIe9ZIWnPBh6tjFHR7DZH',
 'https://drive.google.com/uc?export=view&id=1HSxGkMQSG98G4i8vebotYYOb4W-VS0gi',
 'https://drive.google.com/uc?export=view&id=1qvdqsA1fGci_Ia6OehEWZhZ-DarRusvW',
-
 ];

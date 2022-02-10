@@ -1,0 +1,228 @@
+import 'dart:convert';
+import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+
+
+
+
+
+class Add_Faculty extends StatefulWidget {
+  const Add_Faculty({Key? key}) : super(key: key);
+
+  @override
+  _Add_FacultyState createState() => _Add_FacultyState();
+}
+
+class _Add_FacultyState extends State<Add_Faculty> {
+
+  TextEditingController fnamecontroller = TextEditingController();
+  TextEditingController mnamecontroller = TextEditingController();
+  TextEditingController lnamecontroller = TextEditingController();
+  TextEditingController mnocontroller = TextEditingController();
+  TextEditingController emailcontroller = TextEditingController();
+  TextEditingController addresscontroller = TextEditingController();
+
+
+  String branchValue = 'Computer';
+
+  late bool error, sending, success;
+  late String msg;
+  String table = 'faculty';
+
+  String phpurl = "http://192.168.2.37/registration/write.php";
+
+  @override
+  void initState() {
+    error = false;
+    sending = false;
+    success = false;
+    msg = "";
+    super.initState();
+  }
+
+  Future<void> sendData() async {
+
+    var res = await http.post(Uri.parse(phpurl), body: {
+      "table": table,
+      "fac_branch": branchValue,
+      "fac_fname": fnamecontroller.text,
+      "fac_mname": mnamecontroller.text,
+      "fac_lname": lnamecontroller.text,
+      "fac_mno": mnocontroller.text,
+      "fac_email": emailcontroller.text,
+      "fac_addr": addresscontroller.text,
+    }); //sending post request with header data
+
+    if (res.statusCode == 200) {
+      print(res.body); //print raw response on console
+      var data = json.decode(res.body); //decoding json to array
+      if(data["error"]){
+        setState(() { //refresh the UI when error is recieved from server
+          sending = false;
+          error = true;
+          msg = data["message"]; //error message from server
+        });
+      }else{
+
+        fnamecontroller.text = '';
+        mnamecontroller.text = '';
+        lnamecontroller.text = '';
+        mnocontroller.text = '';
+        emailcontroller.text = '';
+        addresscontroller.text = '';
+
+
+        //after write success, make fields empty
+
+        setState(() {
+          sending = false;
+          success = true; //mark success and refresh UI with setState
+        });
+      }
+
+    }else{
+      //there is error
+      setState(() {
+        error = true;
+        msg = "Error during sendign data.";
+        sending = false;
+        //mark error and refresh UI with setState
+      });
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      // appBar: AppBar(
+      //     title:Text("Write Data PHP & MySQL"),
+      //     backgroundColor:Colors.redAccent
+      // ), //appbar
+
+      body: SingleChildScrollView( //enable scrolling, when keyboard appears,
+        // hight becomes small, so prevent overflow
+          child:Container(
+              padding: EdgeInsets.all(20),
+              child: Column(
+                children: <Widget>[
+                  Container(
+                    child:Text(error?msg:"Enter Fauclty's Information",
+                    style: TextStyle(
+                      fontSize: 20,
+                      ),
+                    ),
+                    //if there is error then sho msg, other wise show text message
+                  ),
+                  Container(
+                      child: TextField(
+                        controller: fnamecontroller,
+                        decoration: InputDecoration(
+                          labelText:"First Name:",
+                          hintText:"Enter Faculty's First Name",
+                        ),
+                      )
+                  ),
+                  Container(
+                      child: TextField(
+                        controller: mnamecontroller,
+                        decoration: InputDecoration(
+                          labelText:"Middle Name:",
+                          hintText:"Enter Faculty's Middle Name",
+                        ),
+                      )
+                  ),
+                  Container(
+                      child: TextField(
+                        controller: lnamecontroller,
+                        decoration: InputDecoration(
+                          labelText:"Last Name:",
+                          hintText:"Enter Faculty's Last Name",
+                        ),
+                      )
+                  ),
+                  Container(
+                    child: DropdownButton<String>(
+                      value: branchValue,
+                      isExpanded: true,
+                      icon: const Icon(Icons.arrow_drop_down_circle_outlined),
+                      elevation: 16,
+                      // style: const TextStyle(color: Colors.deepPurple),
+                      underline: Container(
+                        height: 0.1,
+                        // color: Colors.deepPurpleAccent,
+                      ),
+                      onChanged: (String? newValue) {
+                        setState(() {
+                          branchValue = newValue!;
+                        });
+                      },
+                      items: <String>['Computer','It','Electrical','Mechanical','Civil','AI_DS']
+                          .map<DropdownMenuItem<String>>((String value) {
+                        return DropdownMenuItem<String>(
+                          value: value,
+                          child: Text(value),
+                        );
+                      }).toList(),
+                    ),
+                  ),
+                  Container(
+                      child: TextField(
+                        controller: mnocontroller,
+                        decoration: InputDecoration(
+                          labelText:"Mobile No:",
+                          hintText:"Enter Faculty's Mobile No.",
+                        ),
+                      )
+                  ), //text input for class
+                  Container(
+                      child: TextField(
+                        controller: emailcontroller,
+                        decoration: InputDecoration(
+                          labelText:"Email Id:",
+                          hintText:"Enter Faculty's Email Id",
+                        ),
+                      )
+                  ),
+                  Container(
+                      child: TextField(
+                        // expands: true,
+                        // minLines: 2,
+                        // maxLines: 4,
+                        controller: addresscontroller,
+                        decoration: InputDecoration(
+                          labelText:"Address:",
+                          hintText:"Enter Faculty's Address",
+                        ),
+                      )
+                  ),
+                  Container(
+                      margin: EdgeInsets.only(top:20),
+                      child:SizedBox(
+                          width: double.infinity,
+                          child:MaterialButton(
+                            onPressed:(){ //if button is pressed, setstate sending = true, so that we can show "sending..."
+                              setState(() {
+                                sending = true;
+                              });
+                              sendData();
+                            },
+                            child: Text(
+                              sending?"Sending...":"SEND DATA",
+                              //if sending == true then show "Sending" else show "SEND DATA";
+                            ),
+                            color: Colors.blue,
+                            colorBrightness: Brightness.dark,
+                            //background of button is darker color, so set brightness to dark
+                          )
+                      )
+                  ),
+                  Container(
+                    child:Text(success?"Write Success":"send data"),
+                    //is there is success then show "Write Success" else show "send data"
+                  ),
+                ],)
+          )
+      ),
+    );
+  }
+}

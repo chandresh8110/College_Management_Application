@@ -27,7 +27,7 @@ class IndustrialVisit extends StatelessWidget {
             SliverToBoxAdapter(
               child:  Container(
                 //color:Colors.greenAccent,
-                height: 430,
+                // height: 430,
                 padding: const EdgeInsets.only(left: 5, right: 5),
                 child: Text('       Apollo Institute of Engineering and Technology provides industrial Exposure to every students in each year to explore technical fields and understand basic industrial practical knowledge.'
                     '\n\n\n ⭐ Industries have been Visited : -'
