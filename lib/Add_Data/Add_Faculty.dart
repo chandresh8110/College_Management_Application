@@ -15,12 +15,16 @@ class Add_Faculty extends StatefulWidget {
 
 class _Add_FacultyState extends State<Add_Faculty> {
 
+  TextEditingController idcontroller = TextEditingController();
   TextEditingController fnamecontroller = TextEditingController();
   TextEditingController mnamecontroller = TextEditingController();
   TextEditingController lnamecontroller = TextEditingController();
   TextEditingController mnocontroller = TextEditingController();
-  TextEditingController emailcontroller = TextEditingController();
   TextEditingController addresscontroller = TextEditingController();
+  TextEditingController emailcontroller = TextEditingController();
+  TextEditingController gnamecontroller = TextEditingController();
+  TextEditingController gmnocontroller = TextEditingController();
+  TextEditingController gemailcontroller = TextEditingController();
 
 
   String branchValue = 'Computer';
@@ -29,7 +33,7 @@ class _Add_FacultyState extends State<Add_Faculty> {
   late String msg;
   String table = 'faculty';
 
-  String phpurl = "http://192.168.2.37/registration/write.php";
+  String phpurl = "http://192.168.2.46/clg/extralogintesting.php";
 
   @override
   void initState() {
@@ -44,32 +48,41 @@ class _Add_FacultyState extends State<Add_Faculty> {
 
     var res = await http.post(Uri.parse(phpurl), body: {
       "table": table,
-      "fac_branch": branchValue,
-      "fac_fname": fnamecontroller.text,
-      "fac_mname": mnamecontroller.text,
-      "fac_lname": lnamecontroller.text,
-      "fac_mno": mnocontroller.text,
-      "fac_email": emailcontroller.text,
-      "fac_addr": addresscontroller.text,
+      "branch": branchValue,
+      "id": idcontroller.text,
+      "fname": fnamecontroller.text,
+      "mname": mnamecontroller.text,
+      "lname": lnamecontroller.text,
+      "mno": mnocontroller.text,
+      "email": emailcontroller.text,
+      "addr": addresscontroller.text,
+      "gname":gnamecontroller.text,
+      "gmno":gmnocontroller.text,
+      "gemail":gemailcontroller.text,
     }); //sending post request with header data
 
     if (res.statusCode == 200) {
       print(res.body); //print raw response on console
       var data = json.decode(res.body); //decoding json to array
-      if(data["error"]){
+      if(data ["error"]){
         setState(() { //refresh the UI when error is recieved from server
           sending = false;
           error = true;
-          msg = data["message"]; //error message from server
+          msg = (data ["message"]); //error message from server
         });
       }else{
 
+
+        idcontroller.text = '';
         fnamecontroller.text = '';
         mnamecontroller.text = '';
         lnamecontroller.text = '';
         mnocontroller.text = '';
         emailcontroller.text = '';
         addresscontroller.text = '';
+        gnamecontroller.text = '';
+        gmnocontroller.text = '';
+        gemailcontroller.text = '';
 
 
         //after write success, make fields empty
@@ -112,6 +125,15 @@ class _Add_FacultyState extends State<Add_Faculty> {
                       ),
                     ),
                     //if there is error then sho msg, other wise show text message
+                  ),
+                  Container(
+                      child: TextField(
+                        controller: idcontroller,
+                        decoration: InputDecoration(
+                          labelText:"Enrollment No:",
+                          hintText:"Enter Student's Enrollment No.",
+                        ),
+                      )
                   ),
                   Container(
                       child: TextField(
@@ -192,6 +214,33 @@ class _Add_FacultyState extends State<Add_Faculty> {
                         decoration: InputDecoration(
                           labelText:"Address:",
                           hintText:"Enter Faculty's Address",
+                        ),
+                      )
+                  ),
+                  Container(
+                      child: TextField(
+                        controller: gnamecontroller,
+                        decoration: InputDecoration(
+                          labelText:"Parents/Guardian's Name:",
+                          hintText:"Enter Parents/Guardian's Name",
+                        ),
+                      )
+                  ),
+                  Container(
+                      child: TextField(
+                        controller: gmnocontroller,
+                        decoration: InputDecoration(
+                          labelText:"Parents/Guardian's Mobile No:",
+                          hintText:"Enter Parents/Guardian's Mobile No",
+                        ),
+                      )
+                  ),
+                  Container(
+                      child: TextField(
+                        controller: gemailcontroller,
+                        decoration: InputDecoration(
+                          labelText:"Parents/Guardian's Email Id:",
+                          hintText:"Enter Parents/Guardian's Email Id",
                         ),
                       )
                   ),

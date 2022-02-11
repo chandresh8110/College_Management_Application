@@ -15,6 +15,7 @@ class Add_Student extends StatefulWidget {
 
 class _Add_StudentState extends State<Add_Student> {
 
+  TextEditingController idcontroller = TextEditingController();
   TextEditingController fnamecontroller = TextEditingController();
   TextEditingController mnamecontroller = TextEditingController();
   TextEditingController lnamecontroller = TextEditingController();
@@ -25,6 +26,9 @@ class _Add_StudentState extends State<Add_Student> {
   TextEditingController gnamecontroller = TextEditingController();
   TextEditingController gmnocontroller = TextEditingController();
   TextEditingController gemailcontroller = TextEditingController();
+  // TextEditingController semcontroller = TextEditingController();
+  // TextEditingController branchcontroller = TextEditingController();
+  // TextEditingController batchcontroller = TextEditingController();
 
   String semValue = 'Sem 1';
   String branchValue = 'Computer';
@@ -35,7 +39,7 @@ class _Add_StudentState extends State<Add_Student> {
   late String msg;
   String table = 'student';
 
-  String phpurl = "http://192.168.2.37/registration/write.php";
+  String phpurl = "http://192.168.2.46/clg/extralogintesting.php";
 
   @override
   void initState() {
@@ -52,30 +56,35 @@ class _Add_StudentState extends State<Add_Student> {
       "table": table,
       "sem": semValue,
       "branch": branchValue,
-      "stu_lab": labValue,
-      "stu_fname": fnamecontroller.text,
-      "stu_mname": mnamecontroller.text,
-      "stu_lname": lnamecontroller.text,
-      "stu_mno": mnocontroller.text,
-      "stu_email": emailcontroller.text,
-      "stu_addr": addresscontroller.text,
-      "stu_gname": gnamecontroller.text,
-      "stu_gmno": gmnocontroller.text,
-      "stu_fname": fnamecontroller.text,
-      "stu_gemail": gemailcontroller.text,
+      "lab": labValue,
+      "id": idcontroller.text,
+      "fname": fnamecontroller.text,
+      "mname": mnamecontroller.text,
+      "lname": lnamecontroller.text,
+      "jyear": joiningcontroller.text,
+      "mno": mnocontroller.text,
+      "email": emailcontroller.text,
+      "addr": addresscontroller.text,
+      "gname": gnamecontroller.text,
+      "gmno": gmnocontroller.text,
+      "gemail": gemailcontroller.text,
+      // "sem": semcontroller.text,
+      // "branch": branchcontroller.text,
+      // "lab": batchcontroller.text
     }); //sending post request with header data
 
     if (res.statusCode == 200) {
       print(res.body); //print raw response on console
       var data = json.decode(res.body); //decoding json to array
-      if(data["error"]){
+      if(data ["error"]){
         setState(() { //refresh the UI when error is recieved from server
           sending = false;
           error = true;
-          msg = data["message"]; //error message from server
+          msg = (data ["message"]); //error message from server
         });
       }else{
 
+          idcontroller.text = '';
           fnamecontroller.text = '';
           mnamecontroller.text = '';
           lnamecontroller.text = '';
@@ -86,6 +95,13 @@ class _Add_StudentState extends State<Add_Student> {
           gmnocontroller.text = '';
           fnamecontroller.text = '';
           gemailcontroller.text = '';
+          joiningcontroller.text = '';
+          // semValue = '';
+          // branchValue = '';
+          // labValue = '';
+          // semcontroller.text = '';
+          // branchcontroller.text = '';
+          // batchcontroller.text = '';
 
         //after write success, make fields empty
 
@@ -130,6 +146,15 @@ class _Add_StudentState extends State<Add_Student> {
                   ),
                   Container(
                       child: TextField(
+                        controller: idcontroller,
+                        decoration: InputDecoration(
+                          labelText:"Enrollment No:",
+                          hintText:"Enter Student's Enrollment No.",
+                        ),
+                      )
+                  ),
+                  Container(
+                      child: TextField(
                         controller: fnamecontroller,
                         decoration: InputDecoration(
                           labelText:"First Name:",
@@ -164,6 +189,36 @@ class _Add_StudentState extends State<Add_Student> {
                         ),
                       )
                   ),
+
+
+                  // Container(
+                  //     child: TextField(
+                  //       controller: semcontroller,
+                  //       decoration: InputDecoration(
+                  //         labelText:"Sem:",
+                  //         hintText:"Ex: Sem 1",
+                  //       ),
+                  //     )
+                  // ),
+                  // Container(
+                  //     child: TextField(
+                  //       controller: branchcontroller,
+                  //       decoration: InputDecoration(
+                  //         labelText:"Branch:",
+                  //         hintText:"Ex: Computer",
+                  //       ),
+                  //     )
+                  // ),
+                  // Container(
+                  //     child: TextField(
+                  //       controller: batchcontroller,
+                  //       decoration: InputDecoration(
+                  //         labelText:"Batch:",
+                  //         hintText:"Ex: Batch A",
+                  //       ),
+                  //     )
+                  // ),
+
                   Container(
                     child: DropdownButton<String>(
                       value: semValue,
