@@ -1,5 +1,5 @@
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:final_app/HOD_Side/HOD_Slider/HMenuWidget.dart';
+import 'package:final_app/Developer_Team/Developer_slider/DMenuWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -8,14 +8,14 @@ import 'package:flutter_svg/svg.dart';
 
 
 
-class HHomePage extends StatefulWidget {
-  const HHomePage({Key? key}) : super(key: key);
+class DHomePage extends StatefulWidget {
+  const DHomePage({Key? key}) : super(key: key);
 
   @override
-  _HHomePageState createState() => _HHomePageState();
+  _DHomePageState createState() => _DHomePageState();
 }
 
-class _HHomePageState extends State<HHomePage> {
+class _DHomePageState extends State<DHomePage> {
 
   final urlImages1 = [
     // 'images/SVG/Campus1.svg',
@@ -36,8 +36,8 @@ class _HHomePageState extends State<HHomePage> {
               backgroundColor: Colors.blue,
               floating: true,
               //pinned: true,
-              title: Text('HODHomePage'),
-              leading: HMenuWidget(),
+              title: Text('DeveloperHomePage'),
+              leading: DMenuWidget(),
             ),
             SliverToBoxAdapter(
               child: Container(

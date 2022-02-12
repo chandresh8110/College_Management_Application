@@ -50,7 +50,7 @@ class HMenuPage extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.only(top: 15, left: 10),
-            child: Text('Hello Users!',
+            child: Text('Hello HOD!',
               style: TextStyle(
                 fontSize: 30,
               ),

@@ -1,23 +1,22 @@
-import 'package:final_app/Add_Data/Add_Student.dart';
 import 'package:flutter/material.dart';
-import 'FMenuItem.dart';
+import 'DMenuItem.dart';
 
 
 
 
-class FMenuItems {
-  static const HomePage = FMenuItem('Home', Icons.home);
-  static const Add = FMenuItem('Add', Icons.person_add_outlined);
-  static const BranchPage = FMenuItem('Branch', Icons.celebration);
-  static const FacilitiesPage = FMenuItem('Facilities', Icons.view_comfortable);
-  static const ContactUsPage = FMenuItem('Contact_Us', Icons.phone);
-  static const DeveloperPage = FMenuItem('App_Developer', Icons.developer_board_outlined);
+class DMenuItems {
+  static const HomePage = DMenuItem('Home', Icons.home);
+  static const Developer_Add_Data = DMenuItem('Add', Icons.person_add_outlined);
+  static const BranchPage = DMenuItem('Branch', Icons.celebration);
+  static const FacilitiesPage = DMenuItem('Facilities', Icons.view_comfortable);
+  static const ContactUsPage = DMenuItem('Contact_Us', Icons.phone);
+  static const DeveloperPage = DMenuItem('App_Developer', Icons.developer_board_outlined);
 
 
 
-  static const all = <FMenuItem>[
+  static const all = <DMenuItem>[
     HomePage,
-    Add,
+    Developer_Add_Data,
     BranchPage,
     FacilitiesPage,
     ContactUsPage,
@@ -26,11 +25,11 @@ class FMenuItems {
 
 }
 
-class FMenuPage extends StatelessWidget {
-  final FMenuItem currentItem;
-  final ValueChanged<FMenuItem> onSelectedItem;
+class DMenuPage extends StatelessWidget {
+  final DMenuItem currentItem;
+  final ValueChanged<DMenuItem> onSelectedItem;
 
-  const FMenuPage({Key? key,required this.currentItem,required this.onSelectedItem}) : super(key: key);
+  const DMenuPage({Key? key,required this.currentItem,required this.onSelectedItem}) : super(key: key);
 
   @override
   Widget build(BuildContext context) => Scaffold(
@@ -48,7 +47,7 @@ class FMenuPage extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.only(top: 15, left: 10),
-            child: Text('Hello Faculty!',
+            child: Text('Hello Developer!',
               style: TextStyle(
                 fontSize: 30,
               ),
@@ -58,14 +57,14 @@ class FMenuPage extends StatelessWidget {
           Padding(
               padding: EdgeInsets.only(top: 50)
           ),
-          ...FMenuItems.all.map(buildMenuItem).toList(),
+          ...DMenuItems.all.map(buildMenuItem).toList(),
           Spacer(flex: 2),
         ],
       ),
     ),
   );
 
-  Widget buildMenuItem(FMenuItem item) => ListTileTheme(
+  Widget buildMenuItem(DMenuItem item) => ListTileTheme(
     //selectedColor: Colors.white,
     child: ListTile(
       //selectedTileColor: Colors.black26,

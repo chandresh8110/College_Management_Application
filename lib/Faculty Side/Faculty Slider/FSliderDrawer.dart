@@ -1,5 +1,6 @@
 import 'package:final_app/Add_Data/Add_Student.dart';
 import 'package:final_app/Faculty%20Side/DoNotTouch/FBottomNaviPage.dart';
+import 'package:final_app/Faculty%20Side/Faculty_Dart/Faculty_Add_Data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import '../../BranchPage.dart';
@@ -60,8 +61,8 @@ class _FSliderDrawerState extends State<FSliderDrawer> {
     switch (currentItem) {
       case FMenuItems.HomePage:
         return FBottomNaviPage();
-      case FMenuItems.Add_Student:
-        return Add_Student();
+      case FMenuItems.Add:
+        return Faculty_Add_Data();
       case FMenuItems.BranchPage:
         return BranchPage();
       case FMenuItems.FacilitiesPage:

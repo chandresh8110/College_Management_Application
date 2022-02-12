@@ -1,7 +1,8 @@
 import 'package:final_app/Add_Data/Add_Course.dart';
 import 'package:final_app/Add_Data/Add_Faculty.dart';
+import 'package:final_app/Add_Data/Add_HOD.dart';
 import 'package:final_app/Add_Data/Add_Student.dart';
-import 'package:final_app/HOD_Side/HOD_Slider/HMenuWidget.dart';
+import 'package:final_app/Developer_Team/Developer_slider/DMenuWidget.dart';
 import 'package:flutter/material.dart';
 
 
@@ -9,19 +10,19 @@ import 'package:flutter/material.dart';
 
 
 
-class HOD_Add_Data extends StatefulWidget {
-  const HOD_Add_Data({Key? key}) : super(key: key);
+class Developer_Add_Data extends StatefulWidget {
+  const Developer_Add_Data({Key? key}) : super(key: key);
 
   @override
-  _HOD_Add_DataState createState() => _HOD_Add_DataState();
+  _Developer_Add_DataState createState() => _Developer_Add_DataState();
 }
 
-class _HOD_Add_DataState extends State<HOD_Add_Data> {
+class _Developer_Add_DataState extends State<Developer_Add_Data> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: DefaultTabController(
-        length: 3,
+        length: 4,
         child: NestedScrollView(
           headerSliverBuilder: (context, value) {
             return [
@@ -30,12 +31,13 @@ class _HOD_Add_DataState extends State<HOD_Add_Data> {
                 floating: true,
                 pinned: true,
                 title: Text('Add_Data'),
-                leading: HMenuWidget(),
+                leading: DMenuWidget(),
                 bottom: TabBar(
                   tabs: [
                     Tab(text: 'Add_Student'),
                     Tab(text: 'Add_Faculty'),
-                    Tab(text: 'Add_Course',)
+                    Tab(text: 'Add_HOD',),
+                    Tab(text: 'Add_Course',),
                   ],
                 ),
               ),
@@ -45,6 +47,7 @@ class _HOD_Add_DataState extends State<HOD_Add_Data> {
             children: [
               Add_Student(),
               Add_Faculty(),
+              Add_HOD(),
               Add_Course(),
             ],
           ),
