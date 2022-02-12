@@ -122,7 +122,7 @@ class DeveloperPage extends StatelessWidget {
                   child: Container(
                     alignment: Alignment.center,
                     padding: _edgeInsertsForIndex(index),
-                    child: Image.network(
+                    child: Image.asset(
                       networkNames[index % networkNames.length],
                     ),
                   ),
@@ -156,9 +156,9 @@ EdgeInsets _edgeInsertsForIndex(int index) {
 // }
 
 final List <String> networkNames = [
-  'https://bit.ly/3ABtnQ3',
-  'https://bit.ly/3qZDtXM',
-  'https://bit.ly/3r3ikw8',
-  'https://bit.ly/3qXblVf',
+  'images/Developer_Team/Brijesh.png',
+  'images/Developer_Team/Chandresh.png',
+  'images/Developer_Team/Hardik.png',
+  'images/Developer_Team/Ashmin.png',
 
 ];
