@@ -40,7 +40,7 @@ class _Add_HODState extends State<Add_HOD> {
   TextEditingController gemailcontroller = TextEditingController();
 
 
-  String branchValue = 'Computer';
+  String? branchValue;
 
   late bool error, sending, success;
   late String msg;
@@ -61,7 +61,7 @@ class _Add_HODState extends State<Add_HOD> {
     final phpurl = Uri.parse("http://103.141.241.97/test/insert_data.php");
     var request = http.MultipartRequest('POST', phpurl);
     request.fields['table'] = table;
-    request.fields['branch'] = branchValue;
+    request.fields['branch'] = branchValue!;
     request.fields['id'] = idcontroller.text;
     request.fields['fname'] = fnamecontroller.text;
     request.fields['mname'] = mnamecontroller.text;
@@ -230,42 +230,31 @@ class _Add_HODState extends State<Add_HOD> {
                         },
                       ),
                     ),
-                    Row(
-                      children: [
-                        Container(
-                          child: Text('Select Branch:        ',
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 15,
-                            ),
-                          ),
+                    Container(
+                      child: DropdownButton<String>(
+                        hint: Text('Select Branch'),
+                        value: branchValue,
+                        isExpanded: true,
+                        icon: const Icon(Icons.arrow_drop_down_circle_outlined),
+                        elevation: 16,
+                        // style: const TextStyle(color: Colors.deepPurple),
+                        underline: Container(
+                          height: 0.1,
+                          // color: Colors.deepPurpleAccent,
                         ),
-                        Container(
-                          child: DropdownButton<String>(
-                            value: branchValue,
-                            // isExpanded: true,
-                            icon: const Icon(Icons.arrow_drop_down_circle_outlined),
-                            elevation: 16,
-                            // style: const TextStyle(color: Colors.deepPurple),
-                            underline: Container(
-                              height: 0.1,
-                              // color: Colors.deepPurpleAccent,
-                            ),
-                            onChanged: (String? newValue) {
-                              setState(() {
-                                branchValue = newValue!;
-                              });
-                            },
-                            items: <String>['Computer','It','Electrical','Mechanical','Civil','AI_DS']
-                                .map<DropdownMenuItem<String>>((String value) {
-                              return DropdownMenuItem<String>(
-                                value: value,
-                                child: Text(value),
-                              );
-                            }).toList(),
-                          ),
-                        ),
-                      ],
+                        onChanged: (String? newValue) {
+                          setState(() {
+                            branchValue = newValue!;
+                          });
+                        },
+                        items: <String>['Computer','It','Electrical','Mechanical','Civil','AI_DS']
+                            .map<DropdownMenuItem<String>>((String value) {
+                          return DropdownMenuItem<String>(
+                            value: value,
+                            child: Text(value),
+                          );
+                        }).toList(),
+                      ),
                     ),
                     Container(
                       child: TextFormField(
@@ -380,7 +369,7 @@ class _Add_HODState extends State<Add_HOD> {
                     Row(
                       children: [
                         Container(
-                          child: Text("Faculty's Image:        ",
+                          child: Text("HOD's Image:        ",
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 20,

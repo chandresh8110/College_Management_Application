@@ -1,4 +1,4 @@
-import 'package:final_app/Add_Data/Add_Notice.dart';
+import 'package:final_app/Notice/Add_Notice.dart';
 import 'package:final_app/Faculty%20Side/DoNotTouch/FBottomNaviPage.dart';
 import 'package:final_app/Faculty%20Side/Faculty_Dart/Faculty_Add_Data.dart';
 import 'package:flutter/material.dart';

@@ -36,9 +36,9 @@ class _Add_StudentState extends State<Add_Student> {
   // TextEditingController branchcontroller = TextEditingController();
   // TextEditingController batchcontroller = TextEditingController();
 
-  String semValue = 'Sem 1';
-  String branchValue = 'Computer';
-  String labValue = 'A Batch';
+  String? semValue ;
+  String? branchValue ;
+  String? labValue ;
 
 
   late bool error, sending, success;
@@ -68,9 +68,9 @@ class _Add_StudentState extends State<Add_Student> {
     final phpurl = Uri.parse("http://103.141.241.97/test/insert_data.php");
     var request = http.MultipartRequest('POST', phpurl);
     request.fields['table'] = table;
-    request.fields['sem'] = semValue;
-    request.fields['branch'] = branchValue;
-    request.fields['lab'] = labValue;
+    request.fields['sem'] = semValue!;
+    request.fields['branch'] = branchValue!;
+    request.fields['lab'] = labValue!;
     request.fields['id'] = idcontroller.text;
     request.fields['fname'] = fnamecontroller.text;
     request.fields['mname'] = mnamecontroller.text;
@@ -255,116 +255,83 @@ class _Add_StudentState extends State<Add_Student> {
                           },
                         ),
                     ),
-                    Row(
-                      children: [
-                        Container(
-                          child: Text('Select Sem:        ',
-                          style: TextStyle(
-                            fontWeight: FontWeight.w600,
-                            fontSize: 15,
-                             ),
-                          ),
+                    Container(
+                      child: DropdownButton<String>(
+                        hint: Text('Select Sem'),
+                        value: semValue,
+                        isExpanded: true,
+                        icon: const Icon(Icons.arrow_drop_down),
+                        elevation: 16,
+                        // style: const TextStyle(color: Colors.deepPurple),
+                        underline: Container(
+                          height: 0.1,
+                          // color: Colors.deepPurpleAccent,
                         ),
-                        Container(
-                          child: DropdownButton<String>(
-                            value: semValue,
-                            // isExpanded: true,
-                            icon: const Icon(Icons.arrow_drop_down),
-                            elevation: 16,
-                            // style: const TextStyle(color: Colors.deepPurple),
-                            underline: Container(
-                              height: 0.1,
-                              // color: Colors.deepPurpleAccent,
-                            ),
-                            onChanged: (String? newValue) {
-                              setState(() {
-                                semValue = newValue!;
-                              });
-                            },
-                            items: <String>['Sem 1','Sem 2','Sem 3','Sem 4','Sem 5','Sem 6','Sem 7','Sem 8']
-                                .map<DropdownMenuItem<String>>((String value){
-                              return DropdownMenuItem<String>(
-                                value: value,
-                                child: Text(value),
-                              );
-                            }).toList(),
-                          ),
-                        ),
-                      ],
+                        onChanged: (String? newValue) {
+                          setState(() {
+                            semValue = newValue!;
+                          });
+                        },
+                        items: <String>['Sem 1','Sem 2','Sem 3','Sem 4','Sem 5','Sem 6','Sem 7','Sem 8']
+                            .map<DropdownMenuItem<String>>((String value){
+                          return DropdownMenuItem<String>(
+                            value: value,
+                            child: Text(value),
+                          );
+                        }).toList(),
+                      ),
                     ),
-                    Row(
-                      children: [
-                        Container(
-                          child: Text('Select Branch:        ',
-                            style: TextStyle(
-                              fontWeight: FontWeight.w600,
-                              fontSize: 15,
-                            ),
-                          ),
+                    Container(
+                      child: DropdownButton<String>(
+                        hint: Text('Select Branch'),
+                        value: branchValue,
+                        isExpanded: true,
+                        icon: const Icon(Icons.arrow_drop_down),
+                        elevation: 16,
+                        // style: const TextStyle(color: Colors.deepPurple),
+                        underline: Container(
+                          height: 0.1,
+                          // color: Colors.deepPurpleAccent,
                         ),
-                        Container(
-                          child: DropdownButton<String>(
-                            value: branchValue,
-                            // isExpanded: true,
-                            icon: const Icon(Icons.arrow_drop_down),
-                            elevation: 16,
-                            // style: const TextStyle(color: Colors.deepPurple),
-                            underline: Container(
-                              height: 0.1,
-                              // color: Colors.deepPurpleAccent,
-                            ),
-                            onChanged: (String? newValue) {
-                              setState(() {
-                                branchValue = newValue!;
-                              });
-                            },
-                            items: <String>['Computer','It','Electrical','Mechanical','Civil','AI_DS']
-                                .map<DropdownMenuItem<String>>((String value){
-                              return DropdownMenuItem<String>(
-                                value: value,
-                                child: Text(value),
-                              );
-                            }).toList(),
-                          ),
-                        ),
-                      ],
+                        onChanged: (String? newValue) {
+                          setState(() {
+                            branchValue = newValue!;
+                          });
+                        },
+                        items: <String>['Computer','It','Electrical','Mechanical','Civil','AI_DS']
+                            .map<DropdownMenuItem<String>>((String value){
+                          return DropdownMenuItem<String>(
+                            value: value,
+                            child: Text(value),
+                          );
+                        }).toList(),
+                      ),
                     ),
-                    Row(
-                      children: [
-                        Container(
-                          child: Text('Select Batch:        ',
-                            style: TextStyle(
-                              fontWeight: FontWeight.w600,
-                              fontSize: 15,
-                            ),
-                          ),
+                    Container(
+                      child: DropdownButton<String>(
+                        hint: Text('Select Batch'),
+                        value: labValue,
+                        isExpanded: true,
+                        icon: const Icon(Icons.arrow_drop_down),
+                        elevation: 16,
+                        // style: const TextStyle(color: Colors.deepPurple),
+                        underline: Container(
+                          height: 0.1,
+                          // color: Colors.deepPurpleAccent,
                         ),
-                        Container(
-                          child: DropdownButton<String>(
-                            value: labValue,
-                            // isExpanded: true,
-                            icon: const Icon(Icons.arrow_drop_down),
-                            elevation: 16,
-                            // style: const TextStyle(color: Colors.deepPurple),
-                            underline: Container(
-                              height: 0.1,
-                              // color: Colors.deepPurpleAccent,
-                            ),
-                            onChanged: (String? newValue) {
-                              setState(() {
-                                labValue = newValue!;
-                              });
-                            },
-                            items: <String>['A Batch', 'B Batch','C Batch']
-                                .map<DropdownMenuItem<String>>((String value){
-                              return DropdownMenuItem<String>(
-                                value: value,
-                                child: Text(value),
-                              );
-                            }).toList(),
-                          ),
-                        ),
-                      ],
+                        onChanged: (String? newValue) {
+                          setState(() {
+                            labValue = newValue!;
+                          });
+                        },
+                        items: <String>['A Batch', 'B Batch','C Batch']
+                            .map<DropdownMenuItem<String>>((String value){
+                          return DropdownMenuItem<String>(
+                            value: value,
+                            child: Text(value),
+                          );
+                        }).toList(),
+                      ),
                     ),
                     Container(
                         child: TextFormField(
@@ -449,7 +416,7 @@ class _Add_StudentState extends State<Add_Student> {
                           validator: (value){
                             if(value!.isNotEmpty && value.length > 10){
                               return 'Bigger then Mobile No';
-                            }else if(value.length < 12 && value.isNotEmpty){
+                            }else if(value.length < 10 && value.isNotEmpty){
                               return 'Shorter then Mobile No';
                             }else if (value.isEmpty){
                               return 'required';

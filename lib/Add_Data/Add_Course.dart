@@ -18,8 +18,8 @@ class _Add_CourseState extends State<Add_Course> {
   TextEditingController idcontroller = TextEditingController();
   TextEditingController namecontroller = TextEditingController();
 
-  String semValue = 'Sem 1';
-  String branchValue = 'Computer';
+  String? semValue;
+  String? branchValue;
 
 
 
@@ -117,6 +117,7 @@ class _Add_CourseState extends State<Add_Course> {
                   ),
                  Container(
                     child: DropdownButton<String>(
+                      hint: Text('Select Sem'),
                       value: semValue,
                       isExpanded: true,
                       icon: const Icon(Icons.arrow_drop_down_circle_outlined),
@@ -142,6 +143,7 @@ class _Add_CourseState extends State<Add_Course> {
                   ),
                   Container(
                     child: DropdownButton<String>(
+                      hint: Text('Select Branch'),
                       value: branchValue,
                       isExpanded: true,
                       icon: const Icon(Icons.arrow_drop_down_circle_outlined),

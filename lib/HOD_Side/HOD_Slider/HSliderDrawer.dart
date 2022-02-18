@@ -1,4 +1,4 @@
-import 'package:final_app/Add_Data/Add_Notice.dart';
+import 'package:final_app/Notice/Add_Notice.dart';
 import 'package:final_app/HOD_Side/DoNotTouch/HBottomNaviPage.dart';
 import 'package:final_app/HOD_Side/HOD%20Dart/HOD_Add_Data.dart';
 import 'package:flutter/material.dart';
