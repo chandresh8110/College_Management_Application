@@ -155,7 +155,7 @@ class _Add_HODState extends State<Add_HOD> {
                 child: Column(
                   children: <Widget>[
                     Container(
-                      child:Text(error?msg:"Enter Fauclty's Information",
+                      child:Text(error?msg:"Enter HOD 's Information",
                         style: TextStyle(
                           fontSize: 20,
                         ),
@@ -166,8 +166,8 @@ class _Add_HODState extends State<Add_HOD> {
                       child: TextFormField(
                         controller: idcontroller,
                         decoration: InputDecoration(
-                          labelText:"Faculty No:",
-                          hintText:"Enter Faculty's No.",
+                          labelText:"HOD No:",
+                          hintText:"Enter HOD's No.",
                         ),
                         validator: (value){
                           if(value!.isNotEmpty && value.length > 7){
@@ -187,7 +187,7 @@ class _Add_HODState extends State<Add_HOD> {
                         controller: fnamecontroller,
                         decoration: InputDecoration(
                           labelText:"First Name:",
-                          hintText:"Enter Faculty's First Name",
+                          hintText:"Enter HOD's First Name",
                         ),
                         validator: (value){
                           if(value!.isEmpty){
@@ -203,7 +203,7 @@ class _Add_HODState extends State<Add_HOD> {
                         controller: mnamecontroller,
                         decoration: InputDecoration(
                           labelText:"Middle Name:",
-                          hintText:"Enter Faculty's Middle Name",
+                          hintText:"Enter HOD's Middle Name",
                         ),
                         validator: (value){
                           if(value!.isEmpty){
@@ -219,7 +219,7 @@ class _Add_HODState extends State<Add_HOD> {
                         controller: lnamecontroller,
                         decoration: InputDecoration(
                           labelText:"Last Name:",
-                          hintText:"Enter Faculty's Last Name",
+                          hintText:"Enter HOD's Last Name",
                         ),
                         validator: (value){
                           if(value!.isEmpty){
@@ -272,7 +272,7 @@ class _Add_HODState extends State<Add_HOD> {
                         controller: mnocontroller,
                         decoration: InputDecoration(
                           labelText:"Mobile No:",
-                          hintText:"Enter Faculty's Mobile No.",
+                          hintText:"Enter HOD's Mobile No.",
                         ),
                         validator: (value){
                           if(value!.isNotEmpty && value.length > 10){
@@ -292,7 +292,7 @@ class _Add_HODState extends State<Add_HOD> {
                         controller: emailcontroller,
                         decoration: InputDecoration(
                           labelText:"Email Id:",
-                          hintText:"Enter Faculty's Email Id",
+                          hintText:"Enter HOD's Email Id",
                         ),
                         validator: (value){
                           if(value!.isEmpty){
@@ -311,7 +311,7 @@ class _Add_HODState extends State<Add_HOD> {
                         controller: addresscontroller,
                         decoration: InputDecoration(
                           labelText:"Address:",
-                          hintText:"Enter Faculty's Address",
+                          hintText:"Enter HOD's Address",
                         ),
                         validator: (value){
                           if(value!.isEmpty){

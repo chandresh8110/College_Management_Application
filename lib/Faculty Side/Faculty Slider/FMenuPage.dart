@@ -8,6 +8,7 @@ import 'FMenuItem.dart';
 class FMenuItems {
   static const HomePage = FMenuItem('Home', Icons.home);
   static const Add = FMenuItem('Add', Icons.person_add_outlined);
+  static const Add_Notice = FMenuItem('Add Notice', Icons.add_box_outlined);
   static const BranchPage = FMenuItem('Branch', Icons.celebration);
   static const FacilitiesPage = FMenuItem('Facilities', Icons.view_comfortable);
   static const ContactUsPage = FMenuItem('Contact_Us', Icons.phone);
@@ -18,6 +19,7 @@ class FMenuItems {
   static const all = <FMenuItem>[
     HomePage,
     Add,
+    Add_Notice,
     BranchPage,
     FacilitiesPage,
     ContactUsPage,

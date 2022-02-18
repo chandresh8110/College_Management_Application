@@ -1,3 +1,4 @@
+import 'package:final_app/Add_Data/Add_Notice.dart';
 import 'package:final_app/HOD_Side/DoNotTouch/HBottomNaviPage.dart';
 import 'package:final_app/HOD_Side/HOD%20Dart/HOD_Add_Data.dart';
 import 'package:flutter/material.dart';
@@ -52,6 +53,8 @@ class _HSliderDrawerState extends State<HSliderDrawer> {
         return HBottomNaviPage();
       case HMenuItems.HOD_Add_Data:
         return HOD_Add_Data();
+      case HMenuItems.Add_Notice:
+        return Add_Notice();
       case HMenuItems.BranchPage:
         return BranchPage();
       case HMenuItems.FacilitiesPage:

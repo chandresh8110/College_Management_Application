@@ -1,5 +1,3 @@
-import 'package:final_app/HOD_Side/HOD%20Dart/HOD_Add_Data.dart';
-import 'package:final_app/Student%20Side/Student_Slider/SMenuItem.dart';
 import 'package:flutter/material.dart';
 
 import 'HMenuItem.dart';
@@ -10,6 +8,7 @@ import 'HMenuItem.dart';
 class HMenuItems {
   static const HomePage = HMenuItem('Home', Icons.home);
   static const HOD_Add_Data = HMenuItem('Add', Icons.person_add_outlined);
+  static const Add_Notice = HMenuItem('Add Notice', Icons.person_add_outlined);
   static const BranchPage = HMenuItem('Branch', Icons.celebration);
   static const FacilitiesPage = HMenuItem('Facilities', Icons.view_comfortable);
   static const ContactUsPage = HMenuItem('Contact_Us', Icons.phone);
@@ -20,6 +19,7 @@ class HMenuItems {
   static const all = <HMenuItem>[
     HomePage,
     HOD_Add_Data,
+    Add_Notice,
     BranchPage,
     FacilitiesPage,
     ContactUsPage,

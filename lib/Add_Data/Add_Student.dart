@@ -1,7 +1,5 @@
 import 'dart:convert';
 import 'dart:io';
-import 'package:dio/dio.dart';
-import 'package:file_picker/file_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -64,46 +62,6 @@ class _Add_StudentState extends State<Add_Student> {
     msg = "";
     super.initState();
   }
-
-  // selectFile() async{
-  //   FilePickerResult? result = await FilePicker.platform.pickFiles(
-  //     allowMultiple: false,
-  //     type: FileType.image,
-  //   );
-  //
-  //   if (result != null){
-  //     selectedfile = File(result.files.single.path!);
-  //   }
-  //
-  //   setState(() {});
-  // }
-  //
-  // uploadFile() async{
-  //   String uploadurl = "http://192.168.2.42/clg/insert_data_2.php";
-  //   FormData formdata = FormData.fromMap({
-  //     "file": await MultipartFile.fromFile(
-  //         selectedfile!.path,
-  //         filename:selectedfile!.path
-  //     ),
-  //   });
-  //
-  //   var response = await dio.getUri(Uri.parse(phpurl),
-  //   // data: formdata,
-  //   //   onSendProgress: (int sent, int total) {
-  //   //     String percentage = (sent/total*100).toStringAsFixed(2);
-  //   //     setState(() {
-  //   //       progress = "$sent" " Bytes of " "$total Bytes - " +  percentage + " % uploaded";
-  //   //       //update the progress
-  //   //     });
-  //   //   },
-  //   );
-  //   if(response.statusCode == 200){
-  //     print(response.toString());
-  //   }else{
-  //     print("Error during connection to server.");
-  //   }
-  // }
-
 
 
   Future sendData() async {

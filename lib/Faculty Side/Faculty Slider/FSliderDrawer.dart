@@ -1,4 +1,4 @@
-import 'package:final_app/Add_Data/Add_Student.dart';
+import 'package:final_app/Add_Data/Add_Notice.dart';
 import 'package:final_app/Faculty%20Side/DoNotTouch/FBottomNaviPage.dart';
 import 'package:final_app/Faculty%20Side/Faculty_Dart/Faculty_Add_Data.dart';
 import 'package:flutter/material.dart';
@@ -63,6 +63,8 @@ class _FSliderDrawerState extends State<FSliderDrawer> {
         return FBottomNaviPage();
       case FMenuItems.Add:
         return Faculty_Add_Data();
+      case FMenuItems.Add_Notice:
+        return Add_Notice();
       case FMenuItems.BranchPage:
         return BranchPage();
       case FMenuItems.FacilitiesPage:
@@ -71,10 +73,6 @@ class _FSliderDrawerState extends State<FSliderDrawer> {
         return ContactUsPage();
       case FMenuItems.DeveloperPage:
         return DeveloperPage();
-      // case FMenuItems.AccountPage:
-      //   return AccountPage();
-    // case MenuItems.SHomePage:
-    //   return SHomePage();
     }
   }
 }
