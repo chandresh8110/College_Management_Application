@@ -22,7 +22,7 @@ class _AccountPageState extends State<AccountPage> {
   TextEditingController usernamecontroller = TextEditingController();
   TextEditingController passwordcontroller = TextEditingController();
 
-  String dropdownValue = 'Student';
+  String? dropdownValue;
   String? table;
 
   Future login() async{

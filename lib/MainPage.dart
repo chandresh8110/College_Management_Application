@@ -17,14 +17,13 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> {
 
   final urlImages1 = [
-    'images/SVG/Campus1.svg',
-    'images/SVG/Campus2.svg',
-    'images/SVG/Campus3.svg',
-    'images/SVG/Campus4.svg',
-    'images/SVG/Campus5.svg',
-    'images/SVG/Campus6.svg',
-    'images/SVG/Campus7.svg',
-
+    'http://103.141.241.97/Images/Campus1.svg',
+    'http://103.141.241.97/Images/Campus2.svg',
+    'http://103.141.241.97/Images/Campus3.svg',
+    'http://103.141.241.97/Images/Campus4.svg',
+    'http://103.141.241.97/Images/Campus5.svg',
+    'http://103.141.241.97/Images/Campus6.svg',
+    'http://103.141.241.97/Images/Campus7.svg',
   ];
 
   // late List<User> users;

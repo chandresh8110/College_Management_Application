@@ -7,6 +7,7 @@ import 'DMenuItem.dart';
 class DMenuItems {
   static const HomePage = DMenuItem('Home', Icons.home);
   static const Developer_Add_Data = DMenuItem('Add', Icons.person_add_outlined);
+  static const Notice = DMenuItem('Notice', Icons.mark_email_unread_outlined);
   static const BranchPage = DMenuItem('Branch', Icons.celebration);
   static const FacilitiesPage = DMenuItem('Facilities', Icons.view_comfortable);
   static const ContactUsPage = DMenuItem('Contact_Us', Icons.phone);
@@ -17,6 +18,7 @@ class DMenuItems {
   static const all = <DMenuItem>[
     HomePage,
     Developer_Add_Data,
+    Notice,
     BranchPage,
     FacilitiesPage,
     ContactUsPage,

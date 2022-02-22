@@ -91,7 +91,7 @@ class _PhotoDetailsState extends State<PhotoDetails>
             aspectRatio: 1,
             child: ClipRRect(
               borderRadius: BorderRadius.circular(30),
-              child: SvgPicture.asset(widget.imagePath,
+              child: SvgPicture.network(widget.imagePath,
                fit: BoxFit.contain,
               ),
             ),

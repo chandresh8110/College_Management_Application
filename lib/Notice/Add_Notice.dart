@@ -2,12 +2,7 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:path/path.dart';
-
-
-
-
 
 class Add_Notice extends StatefulWidget {
   const Add_Notice({Key? key}) : super(key: key);
@@ -17,7 +12,6 @@ class Add_Notice extends StatefulWidget {
 }
 
 class _Add_NoticeState extends State<Add_Notice> {
-
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   File? selectedfile;
@@ -53,7 +47,7 @@ class _Add_NoticeState extends State<Add_Notice> {
       selectedfile = File(result.files.single.path!);
     }
 
-    setState((){}); //update the UI so that file name is shown
+    setState(() {}); //update the UI so that file name is shown
   }
 
   uploadFile() async {
@@ -64,31 +58,35 @@ class _Add_NoticeState extends State<Add_Notice> {
 
     FormData formdata = FormData.fromMap({
       "table": table,
-      "sem" : semValue,
-      "branch" : branchValue,
+      "sem": semValue,
+      "branch": branchValue,
       "id": idcontroller.text,
-      "title" : titlecontroller.text,
-      "file": await MultipartFile.fromFile(
-          selectedfile!.path,
+      "title": titlecontroller.text,
+      "file": await MultipartFile.fromFile(selectedfile!.path,
           filename: basename(selectedfile!.path)
-        //show only filename from path
-      ),
+          //show only filename from path
+          ),
     });
 
-    response = await dio.post(uploadurl,
+    response = await dio.post(
+      uploadurl,
       data: formdata,
       onSendProgress: (int sent, int total) {
-        String percentage = (sent/total*100).toStringAsFixed(2);
+        String percentage = (sent / total * 100).toStringAsFixed(2);
         setState(() {
-          progress = "$sent" + " Bytes of " "$total Bytes - " +  percentage + " % uploaded";
+          progress = "$sent" +
+              " Bytes of " "$total Bytes - " +
+              percentage +
+              " % uploaded";
           //update the progress
         });
-      },);
+      },
+    );
 
-    if(response!.statusCode == 200){
+    if (response!.statusCode == 200) {
       print(response.toString());
       //print response from server
-    }else{
+    } else {
       print("Error during connection to server.");
     }
   }
@@ -96,13 +94,17 @@ class _Add_NoticeState extends State<Add_Notice> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text('Add_Notice'),
+        backgroundColor: Colors.blue,
+      ),
       body: SingleChildScrollView(
         child: Form(
           key: _formKey,
           child: Container(
               alignment: Alignment.center,
               padding: const EdgeInsets.all(40),
-              child:Column(
+              child: Column(
                 children: <Widget>[
                   Container(
                     child: TextFormField(
@@ -111,10 +113,10 @@ class _Add_NoticeState extends State<Add_Notice> {
                         labelText: "Notice Id",
                         hintText: "Notice Id",
                       ),
-                      validator: (value){
-                        if(value!.isEmpty){
+                      validator: (value) {
+                        if (value!.isEmpty) {
                           return 'required';
-                        }else if(value.isNotEmpty){
+                        } else if (value.isNotEmpty) {
                           return null;
                         }
                       },
@@ -127,10 +129,10 @@ class _Add_NoticeState extends State<Add_Notice> {
                         labelText: "Title / Subject",
                         hintText: "About Notice",
                       ),
-                      validator: (value){
-                        if(value!.isEmpty){
+                      validator: (value) {
+                        if (value!.isEmpty) {
                           return 'required';
-                        }else if(value.isNotEmpty){
+                        } else if (value.isNotEmpty) {
                           return null;
                         }
                       },
@@ -139,7 +141,8 @@ class _Add_NoticeState extends State<Add_Notice> {
                   Row(
                     children: [
                       Container(
-                        child: const Text('Select Sem:        ',
+                        child: const Text(
+                          'Select Sem:        ',
                           style: TextStyle(
                             fontWeight: FontWeight.w600,
                             fontSize: 15,
@@ -162,8 +165,17 @@ class _Add_NoticeState extends State<Add_Notice> {
                               semValue = newValue!;
                             });
                           },
-                          items: <String>['All','Sem 1','Sem 2','Sem 3','Sem 4','Sem 5','Sem 6','Sem 7','Sem 8']
-                              .map<DropdownMenuItem<String>>((String value){
+                          items: <String>[
+                            'All',
+                            'Sem 1',
+                            'Sem 2',
+                            'Sem 3',
+                            'Sem 4',
+                            'Sem 5',
+                            'Sem 6',
+                            'Sem 7',
+                            'Sem 8'
+                          ].map<DropdownMenuItem<String>>((String value) {
                             return DropdownMenuItem<String>(
                               value: value,
                               child: Text(value),
@@ -176,7 +188,8 @@ class _Add_NoticeState extends State<Add_Notice> {
                   Row(
                     children: [
                       Container(
-                        child: const Text('Select Branch:        ',
+                        child: const Text(
+                          'Select Branch:        ',
                           style: TextStyle(
                             fontWeight: FontWeight.w600,
                             fontSize: 15,
@@ -199,8 +212,15 @@ class _Add_NoticeState extends State<Add_Notice> {
                               branchValue = newValue!;
                             });
                           },
-                          items: <String>['General','Computer','It','Electrical','Mechanical','Civil','AI_DS']
-                              .map<DropdownMenuItem<String>>((String value){
+                          items: <String>[
+                            'General',
+                            'Computer',
+                            'It',
+                            'Electrical',
+                            'Mechanical',
+                            'Civil',
+                            'AI_DS'
+                          ].map<DropdownMenuItem<String>>((String value) {
                             return DropdownMenuItem<String>(
                               value: value,
                               child: Text(value),
@@ -216,54 +236,54 @@ class _Add_NoticeState extends State<Add_Notice> {
                   Container(
                     margin: const EdgeInsets.all(10),
                     //show file name here
-                    child:progress == null?
-                    const Text("Progress: 0%"):
-                    Text(basename("Progress: $progress"),
-                      textAlign: TextAlign.center,
-                      style: const TextStyle(fontSize: 18),),
+                    child: progress == null
+                        ? const Text("Progress: 0%")
+                        : Text(
+                            basename("Progress: $progress"),
+                            textAlign: TextAlign.center,
+                            style: const TextStyle(fontSize: 18),
+                          ),
                     //show progress status here
                   ),
 
                   Container(
                     margin: const EdgeInsets.all(10),
                     //show file name here
-                    child:selectedfile == null?
-                    const Text("Choose File"):
-                    Text(basename(selectedfile!.path)),
+                    child: selectedfile == null
+                        ? const Text("Choose File")
+                        : Text(basename(selectedfile!.path)),
                     //basename is from path package, to get filename from path
                     //check if file is selected, if yes then show file name
                   ),
 
                   Container(
-                      child:RaisedButton.icon(
-                        onPressed: (){
+                      child: RaisedButton.icon(
+                        onPressed: () {
                           selectFile();
                         },
                         icon: const Icon(Icons.folder_open),
                         label: const Text("CHOOSE FILE"),
                         color: Colors.redAccent,
                         colorBrightness: Brightness.dark,
-                      )
-                  ),
+                  )),
 
                   //if selectedfile is null then show empty container
                   //if file is selected then show upload button
-                  selectedfile == null?
-                  Container():
-                  Container(
-                      child:RaisedButton.icon(
-                        onPressed: (){
-                          uploadFile();
-                        },
-                        icon: const Icon(Icons.folder_open),
-                        label: const Text("UPLOAD FILE"),
-                        color: Colors.redAccent,
-                        colorBrightness: Brightness.dark,
-                      )
-                  )
+                  selectedfile == null
+                      ? Container()
+                      : Container(
+                          child: RaisedButton.icon(
+                          onPressed: () {
+                            uploadFile();
+                            Navigator.of(context).pop();
+                          },
+                            icon: const Icon(Icons.folder_open),
+                            label: const Text("UPLOAD FILE"),
+                            color: Colors.redAccent,
+                            colorBrightness: Brightness.dark,
+                        ))
                 ],
-              )
-          ),
+              )),
         ),
       ),
     );

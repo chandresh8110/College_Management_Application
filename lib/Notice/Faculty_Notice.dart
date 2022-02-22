@@ -1,19 +1,20 @@
 import 'dart:async';
 import 'dart:convert';
-import 'package:final_app/Student%20Side/Student_Slider/SMenuWidget.dart';
+import 'package:final_app/Faculty%20Side/Faculty%20Slider/FMenuWidget.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'Add_Notice.dart';
 import 'pdfview.dart';
 
-class Notice_View_Student extends StatefulWidget {
-  const Notice_View_Student({Key? key}) : super(key: key);
+class Faculty_Notice extends StatefulWidget {
+  const Faculty_Notice({Key? key}) : super(key: key);
 
   @override
-  _Notice_View_StudentState createState() => _Notice_View_StudentState();
+  _Faculty_NoticeState createState() => _Faculty_NoticeState();
 }
 
-class _Notice_View_StudentState extends State<Notice_View_Student> {
+class _Faculty_NoticeState extends State<Faculty_Notice> {
   Timer? timer;
   bool loading = true;
   List? pdfList;
@@ -53,7 +54,7 @@ class _Notice_View_StudentState extends State<Notice_View_Student> {
         appBar: AppBar(
           title: const Text('Notice'),
           backgroundColor: Colors.blue,
-          leading: SMenuWidget(),
+          leading: FMenuWidget(),
         ),
         body: loading
             ? const Center(
@@ -80,6 +81,17 @@ class _Notice_View_StudentState extends State<Notice_View_Student> {
                       label: Text(pdfList![index]["notice_sub"]),
                     ),
                   );
-                }));
+                }),
+        floatingActionButton: FloatingActionButton(
+          child: Icon(Icons.add),
+          backgroundColor: Colors.blue,
+          onPressed: () {
+            setState(() {
+              Navigator.of(context).push(
+                MaterialPageRoute(builder: (context) => Add_Notice()),
+              );
+            });
+          },
+        ));
   }
 }

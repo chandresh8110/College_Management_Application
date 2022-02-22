@@ -1,5 +1,4 @@
 import 'package:final_app/FacilitiesPage.dart';
-import 'package:final_app/Student%20Side/Student%20Dart/StudentHomePage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import '../AccountPage.dart';
@@ -59,8 +58,6 @@ class _SliderState extends State<SliderDrawer> {
        return DeveloperPage();
      case MenuItems.AccountPage:
        return AccountPage();
-     // case MenuItems.SHomePage:
-     //   return SHomePage();
    }
  }
 

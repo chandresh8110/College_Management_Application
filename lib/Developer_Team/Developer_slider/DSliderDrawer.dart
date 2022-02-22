@@ -1,5 +1,6 @@
 import 'package:final_app/Developer_Team/Developer_Dart/Developer_Add_Data.dart';
 import 'package:final_app/Developer_Team/DoNotTouch/DBottomNaviPage.dart';
+import 'package:final_app/Notice/Developer_Notice.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import '../../BranchPage.dart';
@@ -52,6 +53,8 @@ class _DSliderDrawerState extends State<DSliderDrawer> {
         return DBottomNaviPage();
       case DMenuItems.Developer_Add_Data:
         return Developer_Add_Data();
+      case DMenuItems.Notice:
+        return Developer_Notice();
       case DMenuItems.BranchPage:
         return BranchPage();
       case DMenuItems.FacilitiesPage:
