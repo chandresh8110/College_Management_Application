@@ -1,6 +1,4 @@
 import 'package:final_app/SplashScreen.dart';
-import 'package:final_app/Student%20Side/Student_Slider/SSliderDrawer.dart';
-import 'package:final_app/slider/SliderDrawer.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'MyThemes.dart';

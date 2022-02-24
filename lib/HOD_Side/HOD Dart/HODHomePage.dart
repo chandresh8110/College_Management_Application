@@ -209,7 +209,7 @@ class _HHomePageState extends State<HHomePage> {
       Container(
         margin: EdgeInsets.symmetric(horizontal: 5),
         color: Colors.grey,
-        child: SvgPicture.asset(
+        child: SvgPicture.network(
           urlImage,
           fit: BoxFit.cover,
         ),

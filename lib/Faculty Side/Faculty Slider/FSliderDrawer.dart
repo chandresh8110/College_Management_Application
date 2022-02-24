@@ -18,7 +18,9 @@ import 'FMenuPage.dart';
 
 
 class FSliderDrawer extends StatefulWidget {
-  const FSliderDrawer({Key? key}) : super(key: key);
+  const FSliderDrawer({Key? key, required this.username}) : super(key: key);
+
+  final String username;
 
   @override
   _FSliderDrawerState createState() => _FSliderDrawerState();
@@ -48,7 +50,7 @@ class _FSliderDrawerState extends State<FSliderDrawer> {
                   onSelectedItem: (item) {
                     setState(() => currentItem = item);
                     ZoomDrawer.of(context)!.close();
-                  },
+                  }, username: widget.username,
                 ),
           ),
           mainScreen: getScreen(),

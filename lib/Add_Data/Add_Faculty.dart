@@ -45,6 +45,13 @@ class _Add_FacultyState extends State<Add_Faculty> {
     });
   }
 
+  Future pickImage() async{
+    final pickedImage = await _picker.pickImage(source: ImageSource.camera);
+    setState(() {
+      _image = File(pickedImage!.path);
+    });
+  }
+
   @override
   void initState() {
     error = false;
@@ -365,20 +372,41 @@ class _Add_FacultyState extends State<Add_Faculty> {
                     Row(
                       children: [
                         Container(
-                          child: Text("Faculty's Image:        ",
+                          child: Text("Image:",
                             style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 20,
+                              fontWeight: FontWeight.w600,
+                              fontSize: 15,
                             ),
                           ),
                         ),
-                        Container(
-                          child: ElevatedButton.icon(
-                            onPressed: (){
-                              choiceImage();
-                            },
-                            icon: Icon(Icons.folder_open),
-                            label: Text('Pick photo'),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 10),
+                          child: Container(
+                            child: ElevatedButton.icon(
+                              style: ElevatedButton.styleFrom(
+                                  primary: Colors.orangeAccent
+                              ),
+                              onPressed: (){
+                                choiceImage();
+                              },
+                              icon: Icon(Icons.image),
+                              label: Text('GALLERY'),
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 5),
+                          child: Container(
+                            child: ElevatedButton.icon(
+                              style: ElevatedButton.styleFrom(
+                                  primary: Colors.orangeAccent
+                              ),
+                              onPressed: (){
+                                pickImage();
+                              },
+                              icon: Icon(Icons.camera_alt_outlined),
+                              label: Text('CAMERA'),
+                            ),
                           ),
                         ),
                       ],

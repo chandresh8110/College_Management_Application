@@ -208,7 +208,7 @@ class _FHomePageState extends State<FHomePage> {
       Container(
         margin: EdgeInsets.symmetric(horizontal: 5),
         color: Colors.grey,
-        child: SvgPicture.asset(
+        child: SvgPicture.network(
           urlImage,
           fit: BoxFit.cover,
         ),

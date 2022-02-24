@@ -14,7 +14,9 @@ import 'DMenuPage.dart';
 
 
 class DSliderDrawer extends StatefulWidget {
-  const DSliderDrawer({Key? key}) : super(key: key);
+  const DSliderDrawer({Key? key, required this.username}) : super(key: key);
+
+  final String username;
 
   @override
   _DSliderDrawerState createState() => _DSliderDrawerState();
@@ -39,7 +41,7 @@ class _DSliderDrawerState extends State<DSliderDrawer> {
             onSelectedItem :(item){
               setState(() => currentItem = item);
               ZoomDrawer.of(context)!.close();
-            },
+            }, username: widget.username,
           ),
         ),
         mainScreen: getScreen(),

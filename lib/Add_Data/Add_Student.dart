@@ -54,6 +54,13 @@ class _Add_StudentState extends State<Add_Student> {
     });
   }
 
+  Future pickImage() async{
+    final pickedImage = await _picker.pickImage(source: ImageSource.camera);
+    setState(() {
+      _image = File(pickedImage!.path);
+    });
+  }
+
   @override
   void initState() {
     error = false;
@@ -158,7 +165,7 @@ class _Add_StudentState extends State<Add_Student> {
                 child: Column(
                   children: <Widget>[
                     Container(
-                      child:Text(error?msg:"Enter Student Information",
+                      child:Text(error?msg:"Enter Student's Information",
                       style: TextStyle(
                         fontSize: 20,
                       ),
@@ -448,20 +455,41 @@ class _Add_StudentState extends State<Add_Student> {
                     Row(
                       children: [
                         Container(
-                          child: Text("Student's Image:    ",
+                          child: Text("Image:",
                           style: TextStyle(
                             fontSize: 15,
                             fontWeight: FontWeight.w600,
                           ),
                           ),
                         ),
-                        Container(
-                          child: ElevatedButton.icon(
-                            onPressed: (){
-                              choiceImage();
-                            },
-                            icon: Icon(Icons.image),
-                            label: Text('Pick Image'),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 5),
+                          child: Container(
+                            child: ElevatedButton.icon(
+                              style: ElevatedButton.styleFrom(
+                                primary: Colors.orangeAccent
+                              ),
+                              onPressed: (){
+                                choiceImage();
+                              },
+                              icon: Icon(Icons.image),
+                              label: Text('GALLERY'),
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 10),
+                          child: Container(
+                            child: ElevatedButton.icon(
+                              style: ElevatedButton.styleFrom(
+                                  primary: Colors.orangeAccent
+                              ),
+                              onPressed: (){
+                                pickImage();
+                              },
+                              icon: Icon(Icons.camera_alt_outlined),
+                              label: Text('CAMERA'),
+                            ),
                           ),
                         ),
                       ],
@@ -502,60 +530,6 @@ class _Add_StudentState extends State<Add_Student> {
                       child:Text(success?"Write Success":"send data"),
                       //is there is success then show "Write Success" else show "send data"
                     ),
-                    // Container(
-                    //   child: ElevatedButton.icon(
-                    //       onPressed:(){
-                    //         Navigator.of(context).push(
-                    //             MaterialPageRoute(
-                    //                 builder: (context) => CustomFilePicker()),
-                    //         );
-                    //       },
-                    //       icon:Icon(Icons.folder_open),
-                    //       label: Text('Upload Image'),
-                    //     style: ElevatedButton.styleFrom(
-                    //       primary: Colors.blue,
-                    //       minimumSize: Size(300,40),
-                    //     ),
-                    //   ),
-                    // ),
-                    // Container(
-                    //   margin: EdgeInsets.all(10),
-                    //   //show file name here
-                    //   child:progress == null?
-                    //   Text("Progress: 0%"):
-                    //   Text("Progress: $progress",
-                    //     textAlign: TextAlign.center,
-                    //     style: TextStyle(fontSize: 18),
-                    //   ),
-                    //   //show progress status here
-                    // ),
-                    // Container(
-                    //   margin: EdgeInsets.all(10),
-                    //   //show file name here
-                    //   child:selectedfile == null?
-                    //   Text("Choose File"):
-                    //   Text(selectedfile!.path),
-                    //   //basename is from path package, to get filename from path
-                    //   //check if file is selected, if yes then show file name
-                    // ),
-                    // Container(
-                    //   child: ElevatedButton.icon(
-                    //       onPressed:(){
-                    //         selectFile();
-                    //       },
-                    //       icon:Icon(Icons.folder_open),
-                    //       label: Text('Choose Image')),
-                    // ),
-                    // selectedfile == null?
-                    // Container():
-                    // Container(
-                    //   child: ElevatedButton.icon(
-                    //       onPressed: (){
-                    //         uploadFile();
-                    //       },
-                    //       icon: Icon(Icons.folder_open),
-                    //       label: Text('Upload Image')),
-                    // ),
                   ],
                 ),
             ),

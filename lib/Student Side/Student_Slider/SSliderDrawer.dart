@@ -1,3 +1,4 @@
+import 'package:final_app/Profile/profile_page.dart';
 import 'package:final_app/Student%20Side/DoNotTouch/SBottomNaviPage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
@@ -12,7 +13,9 @@ import 'SMenuPage.dart';
 
 
 class SSliderDrawer extends StatefulWidget {
-  const SSliderDrawer({Key? key}) : super(key: key);
+  const SSliderDrawer({Key? key, required this.username}) : super(key: key);
+
+  final String username;
 
   @override
   _SSliderDrawerState createState() => _SSliderDrawerState();
@@ -37,7 +40,7 @@ class _SSliderDrawerState extends State<SSliderDrawer> {
             onSelectedItem :(item){
               setState(() => currentItem = item);
               ZoomDrawer.of(context)!.close();
-            },
+            }, username: widget.username,
           ),
         ),
         mainScreen: getScreen(),
@@ -57,6 +60,8 @@ class _SSliderDrawerState extends State<SSliderDrawer> {
         return ContactUsPage();
       case SMenuItems.DeveloperPage:
         return DeveloperPage();
+      case SMenuItems.Profile_page:
+        return Profile_page(username: widget.username);
     }
   }
 

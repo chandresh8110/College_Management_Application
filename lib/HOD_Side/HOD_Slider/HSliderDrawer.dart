@@ -14,7 +14,9 @@ import 'HMenuPage.dart';
 
 
 class HSliderDrawer extends StatefulWidget {
-  const HSliderDrawer({Key? key}) : super(key: key);
+  const HSliderDrawer({Key? key, required this.username}) : super(key: key);
+
+  final String username;
 
   @override
   _HSliderDrawerState createState() => _HSliderDrawerState();
@@ -39,7 +41,7 @@ class _HSliderDrawerState extends State<HSliderDrawer> {
             onSelectedItem :(item){
               setState(() => currentItem = item);
               ZoomDrawer.of(context)!.close();
-            },
+            }, username: widget.username,
           ),
         ),
         mainScreen: getScreen(),

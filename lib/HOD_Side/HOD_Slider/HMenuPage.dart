@@ -29,10 +29,12 @@ class HMenuItems {
 }
 
 class HMenuPage extends StatelessWidget {
+  const HMenuPage({Key? key,required this.currentItem,required this.onSelectedItem, required this.username}) : super(key: key);
   final HMenuItem currentItem;
   final ValueChanged<HMenuItem> onSelectedItem;
+  final String username;
 
-  const HMenuPage({Key? key,required this.currentItem,required this.onSelectedItem}) : super(key: key);
+
 
   @override
   Widget build(BuildContext context) => Scaffold(
@@ -50,9 +52,9 @@ class HMenuPage extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.only(top: 15, left: 10),
-            child: Text('Hello HOD!',
+            child: Text('Hello ' + username + ' !',
               style: TextStyle(
-                fontSize: 30,
+                fontSize: 25,
               ),
             ),
           ),

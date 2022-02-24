@@ -7,9 +7,6 @@ import 'Faculty Side/Faculty Slider/FSliderDrawer.dart';
 import 'HOD_Side/HOD_Slider/HSliderDrawer.dart';
 import 'slider/MenuWidget.dart';
 
-
-
-
 class AccountPage extends StatefulWidget {
   const AccountPage({Key? key}) : super(key: key);
 
@@ -18,30 +15,57 @@ class AccountPage extends StatefulWidget {
 }
 
 class _AccountPageState extends State<AccountPage> {
-
   TextEditingController usernamecontroller = TextEditingController();
   TextEditingController passwordcontroller = TextEditingController();
 
   String? dropdownValue;
   String? table;
 
-  Future login() async{
-    var url= "http://103.141.241.97/test/test.php";
-    var response = await http.post(Uri.parse(url),body:{
-      "table" : dropdownValue,
-      "username" : usernamecontroller.text,
-      "password" : passwordcontroller.text,
+  Future login() async {
+    var url = "http://103.141.241.97/test/test.php";
+    var response = await http.post(Uri.parse(url), body: {
+      "table": dropdownValue,
+      "username": usernamecontroller.text,
+      "password": passwordcontroller.text,
     });
 
     var data = json.decode(response.body);
     if (data == "Student") {
-      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>SSliderDrawer(),),);
-    } else if(data == "Faculty") {
-      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>FSliderDrawer(),),);
-    } else if(data == "HOD"){
-      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>HSliderDrawer(),),);
-    }else if(data == "Developer"){
-      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>DSliderDrawer(),),);
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => SSliderDrawer(
+            username: usernamecontroller.text,
+          ),
+        ),
+      );
+    } else if (data == "Faculty") {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => FSliderDrawer(
+            username: usernamecontroller.text,
+          ),
+        ),
+      );
+    } else if (data == "HOD") {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => HSliderDrawer(
+            username: usernamecontroller.text,
+          ),
+        ),
+      );
+    } else if (data == "Developer") {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => DSliderDrawer(
+            username: usernamecontroller.text,
+          ),
+        ),
+      );
     }
   }
 
@@ -61,20 +85,22 @@ class _AccountPageState extends State<AccountPage> {
                 padding: const EdgeInsets.only(top: 30),
                 child: CircleAvatar(
                   radius: 80,
-                  backgroundImage: NetworkImage('https://image3.mouthshut.com/images/imagesp/925888452s.jpg'),
+                  backgroundImage: NetworkImage(
+                      'https://image3.mouthshut.com/images/imagesp/925888452s.jpg'),
                 ),
               ),
             ),
             SliverToBoxAdapter(
               child: Padding(
-                padding: const EdgeInsets.only(top: 10,right: 20,left: 60,bottom: 10),
+                padding: const EdgeInsets.only(
+                    top: 10, right: 20, left: 60, bottom: 10),
                 child: Container(
                   padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(12),
-                    border: Border.all(color: Colors.blueGrey,width: 2),
+                    border: Border.all(color: Colors.blueGrey, width: 2),
                   ),
-                  child:DropdownButton<String>(
+                  child: DropdownButton<String>(
                     value: dropdownValue,
                     hint: Text("Select Role"),
                     icon: const Icon(Icons.arrow_drop_down_circle_outlined),
@@ -103,7 +129,8 @@ class _AccountPageState extends State<AccountPage> {
             ),
             SliverToBoxAdapter(
               child: Padding(
-                padding: const EdgeInsets.only(top: 0, bottom: 0,right: 10, left: 10),
+                padding: const EdgeInsets.only(
+                    top: 0, bottom: 0, right: 10, left: 10),
                 child: Container(
                   padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                   child: TextField(
@@ -121,7 +148,8 @@ class _AccountPageState extends State<AccountPage> {
             ),
             SliverToBoxAdapter(
               child: Padding(
-                padding: const EdgeInsets.only(top: 0, bottom: 0,right: 10,left: 10),
+                padding: const EdgeInsets.only(
+                    top: 0, bottom: 0, right: 10, left: 10),
                 child: Container(
                   padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                   child: TextFormField(
@@ -139,12 +167,13 @@ class _AccountPageState extends State<AccountPage> {
             ),
             SliverToBoxAdapter(
               child: Padding(
-                padding: const EdgeInsets.only(top: 10, bottom: 10,right: 20,left: 20),
+                padding: const EdgeInsets.only(
+                    top: 10, bottom: 10, right: 20, left: 20),
                 child: Container(
                   color: Colors.blue,
                   child: MaterialButton(
                       child: const Text('Login'),
-                      onPressed: (){
+                      onPressed: () {
                         login();
                       }),
                 ),
