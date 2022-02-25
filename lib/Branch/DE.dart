@@ -1,7 +1,7 @@
 import 'package:final_app/Branch/Dcomputer.dart';
 import 'package:final_app/Branch/Dmechanical.dart';
 import 'package:flutter/material.dart';
-import 'Branch/Dcivil.dart';
+import 'Dcivil.dart';
 
 
 class DE extends StatelessWidget {

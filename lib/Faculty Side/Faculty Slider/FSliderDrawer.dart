@@ -4,10 +4,10 @@ import 'package:final_app/Faculty%20Side/Faculty_Dart/Faculty_Add_Data.dart';
 import 'package:final_app/Notice/Faculty_Notice.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
-import '../../BranchPage.dart';
-import '../../Contact_us.dart';
-import '../../Developed_By.dart';
-import '../../FacilitiesPage.dart';
+import '../../Branch/BranchPage.dart';
+import '../../General Side/Contact_us.dart';
+import '../../General Side/Developed_By.dart';
+import '../../General Side/FacilitiesPage.dart';
 import 'FMenuItem.dart';
 import 'FMenuPage.dart';
 

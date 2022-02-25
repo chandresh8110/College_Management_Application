@@ -1,19 +1,16 @@
-import 'package:final_app/Industrial_visit.dart';
-import 'package:final_app/InfrastructurePage.dart';
-import 'package:final_app/SportsPage.dart';
 import 'package:flutter/material.dart';
-import 'slider/MenuWidget.dart';
+import 'BE.dart';
+import 'DE.dart';
+import '../slider/MenuWidget.dart';
 
-
-
-class FacilitiesPage extends StatelessWidget {
-  const FacilitiesPage({Key? key}) : super(key: key);
+class BranchPage extends StatelessWidget {
+  const BranchPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: DefaultTabController(
-        length: 3,
+        length: 2,
         child: NestedScrollView(
           headerSliverBuilder: (context, value) {
             return [
@@ -21,13 +18,12 @@ class FacilitiesPage extends StatelessWidget {
                 backgroundColor: Colors.blue,
                 floating: true,
                 pinned: true,
-                title: Text('Facilities'),
+                title: Text('BranchPage'),
                 leading: MenuWidget(),
                 bottom: TabBar(
                   tabs: [
-                    Tab(text: 'Infrastructure'),
-                    Tab(text: 'Industrial_visit'),
-                    Tab(text: 'Sports'),
+                    Tab(text: 'Bachelor of Engineering'),
+                    Tab(text: 'Diploma Engineering'),
                   ],
                 ),
               ),
@@ -35,9 +31,8 @@ class FacilitiesPage extends StatelessWidget {
           },
           body: TabBarView(
             children: [
-              Infrastructure(),
-              IndustrialVisit(),
-              SportPage(),
+              BE(),
+              DE(),
             ],
           ),
         ),

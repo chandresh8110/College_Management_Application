@@ -3,10 +3,10 @@ import 'package:final_app/Developer_Team/DoNotTouch/DBottomNaviPage.dart';
 import 'package:final_app/Notice/Developer_Notice.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
-import '../../BranchPage.dart';
-import '../../Contact_us.dart';
-import '../../Developed_By.dart';
-import '../../FacilitiesPage.dart';
+import '../../Branch/BranchPage.dart';
+import '../../General Side/Contact_us.dart';
+import '../../General Side/Developed_By.dart';
+import '../../General Side/FacilitiesPage.dart';
 import 'DMenuItem.dart';
 import 'DMenuPage.dart';
 

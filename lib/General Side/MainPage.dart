@@ -2,7 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 //import 'package:photo_view/photo_view.dart';
-import 'slider/MenuWidget.dart';
+import '../slider/MenuWidget.dart';
 
 
 

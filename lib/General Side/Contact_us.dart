@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'slider/MenuWidget.dart';
+import '../slider/MenuWidget.dart';
 
 class ContactUsPage extends StatelessWidget {
   const ContactUsPage({Key? key}) : super(key: key);

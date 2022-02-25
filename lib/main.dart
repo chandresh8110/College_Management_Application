@@ -1,7 +1,7 @@
-import 'package:final_app/SplashScreen.dart';
+import 'package:final_app/General%20Side/SplashScreen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'MyThemes.dart';
+import 'General Side/MyThemes.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();

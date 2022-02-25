@@ -1,8 +1,8 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
-import 'package:final_app/ChatRoom.dart';
-import 'package:final_app/EventPage.dart';
-import 'package:final_app/MainPage.dart';
-import 'package:final_app/PlacementPage.dart';
+import 'package:final_app/General%20Side/ChatRoom.dart';
+import 'package:final_app/General%20Side/EventPage.dart';
+import 'package:final_app/General%20Side/MainPage.dart';
+import 'package:final_app/General%20Side/PlacementPage.dart';
 import 'package:flutter/material.dart';
 
 class BottomNaviPage extends StatefulWidget {

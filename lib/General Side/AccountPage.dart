@@ -2,10 +2,10 @@ import 'dart:convert';
 import 'package:final_app/Student%20Side/Student_Slider/SSliderDrawer.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'Developer_Team/Developer_slider/DSliderDrawer.dart';
-import 'Faculty Side/Faculty Slider/FSliderDrawer.dart';
-import 'HOD_Side/HOD_Slider/HSliderDrawer.dart';
-import 'slider/MenuWidget.dart';
+import '../Developer_Team/Developer_slider/DSliderDrawer.dart';
+import '../Faculty Side/Faculty Slider/FSliderDrawer.dart';
+import '../HOD_Side/HOD_Slider/HSliderDrawer.dart';
+import '../slider/MenuWidget.dart';
 
 class AccountPage extends StatefulWidget {
   const AccountPage({Key? key}) : super(key: key);

@@ -3,7 +3,7 @@ import 'package:final_app/HOD_Side/HOD_Slider/HSliderDrawer.dart';
 import 'package:final_app/Student%20Side/Student_Slider/SSliderDrawer.dart';
 import 'package:flutter/material.dart';
 
-import 'slider/SliderDrawer.dart';
+import '../slider/SliderDrawer.dart';
 
 
 class SplashScreen extends StatefulWidget {

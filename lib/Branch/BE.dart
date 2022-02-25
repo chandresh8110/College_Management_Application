@@ -4,7 +4,7 @@ import 'package:final_app/Branch/Electrical.dart';
 import 'package:final_app/Branch/Information_Technology.dart';
 import 'package:final_app/Branch/Mechanical.dart';
 import 'package:flutter/material.dart';
-import 'Branch/Computer.dart';
+import 'Computer.dart';
 
 
 class BE extends StatelessWidget {

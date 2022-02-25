@@ -3,10 +3,10 @@ import 'package:final_app/HOD_Side/HOD%20Dart/HOD_Add_Data.dart';
 import 'package:final_app/Notice/HOD_Notice.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
-import '../../BranchPage.dart';
-import '../../Contact_us.dart';
-import '../../Developed_By.dart';
-import '../../FacilitiesPage.dart';
+import '../../Branch/BranchPage.dart';
+import '../../General Side/Contact_us.dart';
+import '../../General Side/Developed_By.dart';
+import '../../General Side/FacilitiesPage.dart';
 import 'HMenuItem.dart';
 import 'HMenuPage.dart';
 

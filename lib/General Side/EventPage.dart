@@ -173,7 +173,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 //import 'package:cloud_firestore/cloud_firestore.dart';
 //import 'package:transparent_image/transparent_image.dart';
 import 'GallaryPage.dart';
-import 'slider/MenuWidget.dart';
+import '../slider/MenuWidget.dart';
 //import 'package:cached_network_image/cached_network_image.dart';
 
 

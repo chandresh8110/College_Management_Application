@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'GallaryPage.dart';
+import '../General Side/GallaryPage.dart';
 
 
 

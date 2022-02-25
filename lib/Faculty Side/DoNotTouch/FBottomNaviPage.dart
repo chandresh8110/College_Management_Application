@@ -1,10 +1,10 @@
-import 'package:final_app/BranchPage.dart';
+import 'package:final_app/Branch/BranchPage.dart';
 import 'package:final_app/Faculty%20Side/Faculty_Dart/FacultyHomePage.dart';
 import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
-import 'package:final_app/ChatRoom.dart';
-import 'package:final_app/EventPage.dart';
-import 'package:final_app/PlacementPage.dart';
+import 'package:final_app/General%20Side/ChatRoom.dart';
+import 'package:final_app/General%20Side/EventPage.dart';
+import 'package:final_app/General%20Side/PlacementPage.dart';
 
 class FBottomNaviPage extends StatefulWidget {
   const FBottomNaviPage({Key? key}) : super(key: key);

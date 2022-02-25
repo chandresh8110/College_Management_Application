@@ -1,10 +1,10 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:final_app/HOD_Side/HOD%20Dart/HODHomePage.dart';
 import 'package:flutter/material.dart';
-import '../../BranchPage.dart';
-import '../../ChatRoom.dart';
-import '../../EventPage.dart';
-import '../../PlacementPage.dart';
+import '../../Branch/BranchPage.dart';
+import '../../General Side/ChatRoom.dart';
+import '../../General Side/EventPage.dart';
+import '../../General Side/PlacementPage.dart';
 
 
 
