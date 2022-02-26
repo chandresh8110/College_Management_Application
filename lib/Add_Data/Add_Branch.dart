@@ -1,46 +1,26 @@
 import 'dart:convert';
-import 'package:flutter/foundation.dart';
+
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
-class Add_Course extends StatefulWidget {
-  const Add_Course({Key? key}) : super(key: key);
+class Add_Branch extends StatefulWidget {
+  const Add_Branch({Key? key}) : super(key: key);
 
   @override
-  _Add_CourseState createState() => _Add_CourseState();
+  _Add_BranchState createState() => _Add_BranchState();
 }
 
-class _Add_CourseState extends State<Add_Course> {
+class _Add_BranchState extends State<Add_Branch> {
+
   TextEditingController idcontroller = TextEditingController();
   TextEditingController namecontroller = TextEditingController();
-  TextEditingController yearcontroller = TextEditingController();
-
-  String? semValue;
-  String? selectedBranch;
-  List? BranchitemList;
 
   late bool error, sending, success;
   late String msg;
-  String table = 'course';
-
-  String phpurl = "http://103.141.241.97/test/insert_data.php";
-
-  Future getdata() async {
-    var url = "http://103.141.241.97/test/getbranch.php";
-    final response = await http.get(Uri.parse(url));
-    var jsonData = json.decode(response.body);
-    setState(() {
-      BranchitemList = jsonData;
-    });
-    if (kDebugMode) {
-      print(BranchitemList);
-    }
-  }
-
+  String table = 'branch';
 
   @override
   void initState() {
-    getdata();
     error = false;
     sending = false;
     success = false;
@@ -49,13 +29,11 @@ class _Add_CourseState extends State<Add_Course> {
   }
 
   Future<void> sendData() async {
-    var res = await http.post(Uri.parse(phpurl), body: {
+    var url = "http://103.141.241.97/test/insert_data.php";
+    var res = await http.post(Uri.parse(url), body: {
       "table": table,
-      "sem": semValue,
-      "branch": selectedBranch,
-      "id": idcontroller.text,
-      "name": namecontroller.text,
-      "year": yearcontroller.text,
+      "branch_code": idcontroller.text,
+      "branch_name": namecontroller.text,
     }); //sending post request with header data
 
     if (res.statusCode == 200) {
@@ -71,7 +49,6 @@ class _Add_CourseState extends State<Add_Course> {
       } else {
         idcontroller.text = '';
         namecontroller.text = '';
-        yearcontroller.text = '';
         //after write success, make fields empty
 
         setState(() {
@@ -102,7 +79,7 @@ class _Add_CourseState extends State<Add_Course> {
             children: <Widget>[
               Container(
                 child: Text(
-                  error ? msg : "Enter Course Information",
+                  error ? msg : "Enter Branch Information",
                   style: TextStyle(
                     fontSize: 20,
                   ),
@@ -110,81 +87,21 @@ class _Add_CourseState extends State<Add_Course> {
                 //if there is error then sho msg, other wise show text message
               ),
               Container(
-                child:DropdownButton(
-                    isExpanded: true,
-                    hint: const Text('Select Branch'),
-                    value: selectedBranch,
-                    items: BranchitemList?.map((branch) {
-                      return DropdownMenuItem(
-                          value: branch['branch_name'],
-                          child: Text(branch['branch_name']));
-                    }).toList(),
-                    onChanged: (branch) {
-                      setState(() {
-                        selectedBranch = branch.toString();
-                        print(selectedBranch);
-                      });
-                    }),
-              ),
-              Container(
                   child: TextField(
                 controller: idcontroller,
                 decoration: InputDecoration(
-                  labelText: "Course Id:",
-                  hintText: "Enter Course id.",
+                  labelText: "Branch Id:",
+                  hintText: "Enter Branch id.",
                 ),
               )),
               Container(
                   child: TextField(
                 controller: namecontroller,
                 decoration: InputDecoration(
-                  labelText: "Course Name:",
-                  hintText: "Enter Course Name",
+                  labelText: "Branch Name:",
+                  hintText: "Enter Branch Name",
                 ),
               )),
-              Container(
-                  child: TextField(
-                    controller: yearcontroller,
-                    decoration: InputDecoration(
-                      labelText: "year:",
-                      hintText: "Like:- 2018-19",
-                    ),
-                  ),
-              ),
-              Container(
-                child: DropdownButton<String>(
-                  hint: Text('Select Sem'),
-                  value: semValue,
-                  isExpanded: true,
-                  icon: const Icon(Icons.arrow_drop_down_circle_outlined),
-                  elevation: 16,
-                  // style: const TextStyle(color: Colors.deepPurple),
-                  underline: Container(
-                    height: 0.1,
-                    // color: Colors.deepPurpleAccent,
-                  ),
-                  onChanged: (String? newValue) {
-                    setState(() {
-                      semValue = newValue!;
-                    });
-                  },
-                  items: <String>[
-                    '1',
-                    '2',
-                    '3',
-                    '4',
-                    '5',
-                    '6',
-                    '7',
-                    '8'
-                  ].map<DropdownMenuItem<String>>((String value) {
-                    return DropdownMenuItem<String>(
-                      value: value,
-                      child: Text(value),
-                    );
-                  }).toList(),
-                ),
-              ),
               Container(
                 margin: EdgeInsets.only(top: 20),
                 child: SizedBox(
