@@ -9,6 +9,7 @@ class HMenuItems {
   static const HomePage = HMenuItem('Home', Icons.home);
   static const HOD_Add_Data = HMenuItem('Add', Icons.person_add_outlined);
   static const Notice = HMenuItem('Notice', Icons.mark_email_unread_outlined);
+  static const Material = HMenuItem('Material', Icons.sticky_note_2_outlined);
   static const BranchPage = HMenuItem('Branch', Icons.celebration);
   static const FacilitiesPage = HMenuItem('Facilities', Icons.view_comfortable);
   static const ContactUsPage = HMenuItem('Contact_Us', Icons.phone);
@@ -20,6 +21,7 @@ class HMenuItems {
     HomePage,
     HOD_Add_Data,
     Notice,
+    Material,
     BranchPage,
     FacilitiesPage,
     ContactUsPage,

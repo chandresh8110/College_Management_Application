@@ -281,9 +281,11 @@ class _Add_NoticeState extends State<Add_Notice> {
                             label: const Text("UPLOAD FILE"),
                             color: Colors.redAccent,
                             colorBrightness: Brightness.dark,
-                        ))
+                        ),
+                  ),
                 ],
-              )),
+              ),
+          ),
         ),
       ),
     );

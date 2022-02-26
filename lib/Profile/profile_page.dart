@@ -24,6 +24,7 @@ class _Profile_pageState extends State<Profile_page> {
     return json.decode(response.body);
   }
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

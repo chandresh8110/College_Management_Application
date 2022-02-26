@@ -1,20 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
-class PdfViewPage extends StatefulWidget {
-  const PdfViewPage({Key? key, required this.name, required this.title})
+class Material_View extends StatefulWidget {
+  const Material_View({Key? key, required this.name, required this.title})
       : super(key: key);
 
   final String name;
   final String title;
 
   @override
-  _PdfViewPageState createState() => _PdfViewPageState();
+  _Material_ViewState createState() => _Material_ViewState();
 }
 
-class _PdfViewPageState extends State<PdfViewPage> {
+class _Material_ViewState extends State<Material_View> {
   PdfViewerController? _pdfViewerController;
-
   @override
   void initState() {
     super.initState();
@@ -26,9 +25,10 @@ class _PdfViewPageState extends State<PdfViewPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
+        backgroundColor: Colors.blue,
       ),
       body: SfPdfViewer.network(
-          "http://103.141.241.97/test/uploads/Notice/" + widget.name,
+          "http://103.141.241.97/test/uploads/Material/" + widget.name,
           controller: _pdfViewerController),
     );
   }

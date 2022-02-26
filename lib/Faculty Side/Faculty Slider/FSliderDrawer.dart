@@ -1,4 +1,4 @@
-import 'package:final_app/Notice/Add_Notice.dart';
+import 'package:final_app/Material/Faculty_View_Material.dart';
 import 'package:final_app/Faculty%20Side/DoNotTouch/FBottomNaviPage.dart';
 import 'package:final_app/Faculty%20Side/Faculty_Dart/Faculty_Add_Data.dart';
 import 'package:final_app/Notice/Faculty_Notice.dart';
@@ -10,12 +10,6 @@ import '../../General Side/Developed_By.dart';
 import '../../General Side/FacilitiesPage.dart';
 import 'FMenuItem.dart';
 import 'FMenuPage.dart';
-
-
-
-
-
-
 
 class FSliderDrawer extends StatefulWidget {
   const FSliderDrawer({Key? key, required this.username}) : super(key: key);
@@ -37,28 +31,24 @@ class _FSliderDrawerState extends State<FSliderDrawer> {
           style: DrawerStyle.Style1,
           borderRadius: 40,
           angle: -10,
-          slideWidth: MediaQuery
-              .of(context)
-              .size
-              .width * 0.8,
+          slideWidth: MediaQuery.of(context).size.width * 0.8,
           showShadow: true,
           backgroundColor: Colors.orangeAccent,
           menuScreen: Builder(
-            builder: (context) =>
-                FMenuPage(
-                  currentItem: currentItem,
-                  onSelectedItem: (item) {
-                    setState(() => currentItem = item);
-                    ZoomDrawer.of(context)!.close();
-                  }, username: widget.username,
-                ),
+            builder: (context) => FMenuPage(
+              currentItem: currentItem,
+              onSelectedItem: (item) {
+                setState(() => currentItem = item);
+                ZoomDrawer.of(context)!.close();
+              },
+              username: widget.username,
+            ),
           ),
           mainScreen: getScreen(),
         ),
       ),
     );
   }
-
 
   getScreen() {
     switch (currentItem) {
@@ -68,6 +58,10 @@ class _FSliderDrawerState extends State<FSliderDrawer> {
         return Faculty_Add_Data();
       case FMenuItems.Notice:
         return Faculty_Notice();
+      case FMenuItems.Material:
+        return Faculty_View_Material(
+          username: widget.username,
+        );
       case FMenuItems.BranchPage:
         return BranchPage();
       case FMenuItems.FacilitiesPage:
