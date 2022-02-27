@@ -1,3 +1,5 @@
+// ignore_for_file: camel_case_types, non_constant_identifier_names
+
 import 'dart:async';
 import 'dart:convert';
 import 'package:final_app/Student%20Side/Student_Slider/SMenuWidget.dart';
@@ -37,8 +39,9 @@ class _Notice_View_StudentState extends State<Notice_View_Student> {
   @override
   void initState() {
     super.initState();
+    fetchAllPdf();
     timer =
-        Timer.periodic(const Duration(seconds: 1), (Timer t) => fetchAllPdf());
+        Timer.periodic(const Duration(seconds: 55), (Timer t) => fetchAllPdf());
   }
 
   @override

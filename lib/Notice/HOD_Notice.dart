@@ -1,3 +1,5 @@
+// ignore_for_file: camel_case_types, non_constant_identifier_names
+
 import 'dart:async';
 import 'dart:convert';
 import 'package:final_app/HOD_Side/HOD_Slider/HMenuWidget.dart';
@@ -38,8 +40,9 @@ class _HOD_NoticeState extends State<HOD_Notice> {
   @override
   void initState() {
     super.initState();
+    fetchAllPdf();
     timer =
-        Timer.periodic(const Duration(seconds: 1), (Timer t) => fetchAllPdf());
+        Timer.periodic(const Duration(seconds: 55), (Timer t) => fetchAllPdf());
   }
 
   @override

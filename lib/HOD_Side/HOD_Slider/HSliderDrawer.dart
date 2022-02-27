@@ -1,5 +1,6 @@
 import 'package:final_app/HOD_Side/DoNotTouch/HBottomNaviPage.dart';
-import 'package:final_app/HOD_Side/HOD%20Dart/HOD_Add_Data.dart';
+import 'package:final_app/HOD_Side/HOD%20Dart/HOD_Add_Members.dart';
+import 'package:final_app/HOD_Side/HOD%20Dart/HOD_Add_Things.dart';
 import 'package:final_app/Material/HOD_View_Material.dart';
 import 'package:final_app/Notice/HOD_Notice.dart';
 import 'package:flutter/material.dart';
@@ -52,8 +53,10 @@ class _HSliderDrawerState extends State<HSliderDrawer> {
     switch (currentItem) {
       case HMenuItems.HomePage:
         return HBottomNaviPage();
-      case HMenuItems.HOD_Add_Data:
-        return HOD_Add_Data();
+      case HMenuItems.HOD_Add_Members:
+        return HOD_Add_Members();
+      case HMenuItems.HOD_Add_Things:
+        return HOD_Add_Things();
       case HMenuItems.Notice:
         return HOD_Notice();
       case HMenuItems.Material:

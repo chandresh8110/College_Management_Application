@@ -72,7 +72,7 @@ class _FHomePageState extends State<FHomePage> {
             ),
             SliverToBoxAdapter(
               child: Container(
-                height: 500,
+                // height: 500,
                 padding: const EdgeInsets.only(left: 10, right: 10),
                 //color: Colors.redAccent,
                 child: Text('       Apollo Institute of Engineering and Technology is one of the premier institutes for imparting quality technical education and keeping pace with the ever-changing world of Technology. The institute is established under the aegis of Divaba Education trust.'
@@ -101,7 +101,7 @@ class _FHomePageState extends State<FHomePage> {
             ),
             SliverToBoxAdapter(
               child: Container(
-                height: 250,
+                // height: 250,
                 padding: const EdgeInsets.only(left: 10, right: 10),
                 //color: Colors.greenAccent,
                 child: Text('👉 Disciplined Environment'

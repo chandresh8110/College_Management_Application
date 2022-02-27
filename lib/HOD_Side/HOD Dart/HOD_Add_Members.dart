@@ -1,24 +1,26 @@
-// ignore_for_file: camel_case_types, non_constant_identifier_names
-
-import 'package:final_app/Add_Data/Add_Course.dart';
 import 'package:final_app/Add_Data/Add_Faculty.dart';
 import 'package:final_app/Add_Data/Add_Student.dart';
-import 'package:final_app/Developer_Team/Developer_slider/DMenuWidget.dart';
+import 'package:final_app/HOD_Side/HOD_Slider/HMenuWidget.dart';
 import 'package:flutter/material.dart';
 
-class Developer_Add_Data extends StatefulWidget {
-  const Developer_Add_Data({Key? key}) : super(key: key);
+
+
+
+
+
+class HOD_Add_Members extends StatefulWidget {
+  const HOD_Add_Members({Key? key}) : super(key: key);
 
   @override
-  _Developer_Add_DataState createState() => _Developer_Add_DataState();
+  _HOD_Add_MembersState createState() => _HOD_Add_MembersState();
 }
 
-class _Developer_Add_DataState extends State<Developer_Add_Data> {
+class _HOD_Add_MembersState extends State<HOD_Add_Members> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: DefaultTabController(
-        length: 3,
+        length: 2,
         child: NestedScrollView(
           headerSliverBuilder: (context, value) {
             return [
@@ -27,14 +29,11 @@ class _Developer_Add_DataState extends State<Developer_Add_Data> {
                 floating: true,
                 pinned: true,
                 title: Text('Add_Data'),
-                leading: DMenuWidget(),
+                leading: HMenuWidget(),
                 bottom: TabBar(
                   tabs: [
                     Tab(text: 'Add_Student'),
                     Tab(text: 'Add_Faculty'),
-                    Tab(
-                      text: 'Add_Course',
-                    ),
                   ],
                 ),
               ),
@@ -44,8 +43,7 @@ class _Developer_Add_DataState extends State<Developer_Add_Data> {
             children: [
               Add_Student(),
               Add_Faculty(),
-              Add_Course(),
-            ],
+              ],
           ),
         ),
       ),

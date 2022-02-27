@@ -1,7 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-//import 'package:photo_view/photo_view.dart';
 import '../slider/MenuWidget.dart';
 
 
@@ -81,7 +80,7 @@ class _MainPageState extends State<MainPage> {
             ),
             SliverToBoxAdapter(
               child: Container(
-                height: 500,
+                // height: 500,
                 padding: const EdgeInsets.only(left: 10, right: 10),
                 //color: Colors.redAccent,
                 child: Text('       Apollo Institute of Engineering and Technology is one of the premier institutes for imparting quality technical education and keeping pace with the ever-changing world of Technology. The institute is established under the aegis of Divaba Education trust.'
@@ -110,7 +109,7 @@ class _MainPageState extends State<MainPage> {
             ),
             SliverToBoxAdapter(
               child: Container(
-                height: 250,
+                // height: 250,
                 padding: const EdgeInsets.only(left: 10, right: 10),
                 //color: Colors.greenAccent,
                 child: Text('👉 Disciplined Environment'
@@ -237,53 +236,6 @@ class _MainPageState extends State<MainPage> {
   );
 }
 
-//   Widget buildDataTable() {
-//     final columns = ['Branch', 'Seats'];
-//
-//     return DataTable(
-//         columns: getColumns(columns),
-//         rows: getRows(users),
-//     );
-//   }
-//
-//
-//   List<DataColumn>getColumns(List<String> columns) => columns
-//       .map((String column) => DataColumn(
-//       label: Text(column),
-//     ))
-//       .toList();
-//
-//   List<DataRow> getRows(List<User> users) => users.map((User user){
-//     final cells = [user.Branch, user.Seats];
-//
-//     return DataRow(cells:getCells(cells));
-//   }).toList();
-//
-//   List<DataCell> getCells(List <dynamic> cells) =>
-//       cells.map((data) => DataCell(Text('$data'))).toList();
-//
-// }
-//
-// class User {
-//   final String Branch;
-//   final String Seats;
-//
-//   const User({
-//    required this.Branch,
-//    required this.Seats,
-// });
-// }
-//
-
-//
-//
-// final allUsers = <User>[
-//   User(Branch: 'Information Technology', Seats: '120'),
-//   User(Branch: 'Computer Engineering', Seats: '60'),
-//   User(Branch: 'Mechanical Engineering', Seats: '60'),
-//   User(Branch: 'Artificial Intelligence and Data Science', Seats: '60'),
-//
-// ];
 
 
 

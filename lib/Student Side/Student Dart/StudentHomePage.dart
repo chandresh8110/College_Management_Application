@@ -66,7 +66,7 @@ class _SHomePageState extends State<SHomePage> {
         ),
         SliverToBoxAdapter(
           child: Container(
-            height: 500,
+            // height: 500,
             padding: const EdgeInsets.only(left: 10, right: 10),
             //color: Colors.redAccent,
             child: Text(
@@ -97,7 +97,7 @@ class _SHomePageState extends State<SHomePage> {
         ),
         SliverToBoxAdapter(
           child: Container(
-            height: 250,
+            // height: 250,
             padding: const EdgeInsets.only(left: 10, right: 10),
             //color: Colors.greenAccent,
             child: Text(

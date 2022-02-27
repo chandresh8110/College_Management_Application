@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'HMenuItem.dart';
 
 
@@ -7,7 +6,8 @@ import 'HMenuItem.dart';
 
 class HMenuItems {
   static const HomePage = HMenuItem('Home', Icons.home);
-  static const HOD_Add_Data = HMenuItem('Add', Icons.person_add_outlined);
+  static const HOD_Add_Members = HMenuItem('Add_Members', Icons.person_add_outlined);
+  static const HOD_Add_Things = HMenuItem('Add_Things', Icons.add_circle_outline_rounded);
   static const Notice = HMenuItem('Notice', Icons.mark_email_unread_outlined);
   static const Material = HMenuItem('Material', Icons.sticky_note_2_outlined);
   static const BranchPage = HMenuItem('Branch', Icons.celebration);
@@ -19,7 +19,8 @@ class HMenuItems {
 
   static const all = <HMenuItem>[
     HomePage,
-    HOD_Add_Data,
+    HOD_Add_Members,
+    HOD_Add_Things,
     Notice,
     Material,
     BranchPage,

@@ -1,27 +1,24 @@
+import 'package:final_app/Add_Data/Add_Branch.dart';
 import 'package:final_app/Add_Data/Add_Course.dart';
-import 'package:final_app/Add_Data/Add_Faculty.dart';
-import 'package:final_app/Add_Data/Add_Student.dart';
 import 'package:final_app/HOD_Side/HOD_Slider/HMenuWidget.dart';
 import 'package:flutter/material.dart';
 
 
 
 
-
-
-class HOD_Add_Data extends StatefulWidget {
-  const HOD_Add_Data({Key? key}) : super(key: key);
+class HOD_Add_Things extends StatefulWidget {
+  const HOD_Add_Things({Key? key}) : super(key: key);
 
   @override
-  _HOD_Add_DataState createState() => _HOD_Add_DataState();
+  _HOD_Add_ThingsState createState() => _HOD_Add_ThingsState();
 }
 
-class _HOD_Add_DataState extends State<HOD_Add_Data> {
+class _HOD_Add_ThingsState extends State<HOD_Add_Things> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: DefaultTabController(
-        length: 3,
+        length: 2,
         child: NestedScrollView(
           headerSliverBuilder: (context, value) {
             return [
@@ -33,9 +30,8 @@ class _HOD_Add_DataState extends State<HOD_Add_Data> {
                 leading: HMenuWidget(),
                 bottom: TabBar(
                   tabs: [
-                    Tab(text: 'Add_Student'),
-                    Tab(text: 'Add_Faculty'),
-                    Tab(text: 'Add_Course',)
+                    Tab(text: 'Add_Course',),
+                    Tab(text: 'Add_Branch',),
                   ],
                 ),
               ),
@@ -43,9 +39,8 @@ class _HOD_Add_DataState extends State<HOD_Add_Data> {
           },
           body: TabBarView(
             children: [
-              Add_Student(),
-              Add_Faculty(),
               Add_Course(),
+              Add_Branch(),
             ],
           ),
         ),

@@ -49,7 +49,7 @@ class _PlacementPageState extends State<PlacementPage> {
             SliverToBoxAdapter(
               child: Container(
                 //color:Colors.yellow,
-                height: 145,
+                // height: 145,
                 padding: const EdgeInsets.only(left: 10, right: 10),
                 child: Text('        Apollo Institute of Engineering And Technology has an excellent track record of placements, most of the alumni have been placed across the state in various sectors, functions & levels.',
                 textAlign: TextAlign.justify,
@@ -112,7 +112,7 @@ class _PlacementPageState extends State<PlacementPage> {
             SliverToBoxAdapter(
               child: Container(
                 //color:Colors.amber,
-                height: 565,
+                // height: 565,
                 padding: const EdgeInsets.only(left: 10, right: 10),
                 child: Text('👉Tours to culturally & social Diverse companies.'
                     '\n👉Exchange of ideas & interactions with industry leaders.'
