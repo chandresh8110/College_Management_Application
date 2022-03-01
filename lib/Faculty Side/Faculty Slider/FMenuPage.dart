@@ -1,4 +1,5 @@
 import 'package:final_app/Add_Data/Add_Student.dart';
+import 'package:final_app/Search/Student_Search.dart';
 import 'package:flutter/material.dart';
 import 'FMenuItem.dart';
 
@@ -7,7 +8,7 @@ class FMenuItems {
   static const Add = FMenuItem('Add', Icons.person_add_outlined);
   static const Notice = FMenuItem('Notice', Icons.mark_email_unread_outlined);
   static const Material = FMenuItem('Material', Icons.sticky_note_2_outlined);
-  static const BranchPage = FMenuItem('Branch', Icons.celebration);
+  static const Student_Search = FMenuItem('Search_Student', Icons.person_search_outlined);
   static const FacilitiesPage = FMenuItem('Facilities', Icons.view_comfortable);
   static const ContactUsPage = FMenuItem('Contact_Us', Icons.phone);
   static const DeveloperPage =
@@ -18,7 +19,7 @@ class FMenuItems {
     Add,
     Notice,
     Material,
-    BranchPage,
+    Student_Search,
     FacilitiesPage,
     ContactUsPage,
     DeveloperPage,

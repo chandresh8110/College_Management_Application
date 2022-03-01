@@ -1,3 +1,5 @@
+// ignore_for_file: camel_case_types, non_constant_identifier_names
+
 import 'dart:convert';
 import 'package:final_app/Student%20Side/Student_Slider/SSliderDrawer.dart';
 import 'package:flutter/material.dart';
@@ -31,6 +33,7 @@ class _AccountPageState extends State<AccountPage> {
 
     var data = json.decode(response.body);
     if (data == "Student") {
+
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(

@@ -1,4 +1,4 @@
-import 'package:final_app/Profile/profile_page.dart';
+import 'package:final_app/Profile/Setting_page.dart';
 import 'package:final_app/Student%20Side/Student_Slider/SMenuItem.dart';
 import 'package:flutter/material.dart';
 

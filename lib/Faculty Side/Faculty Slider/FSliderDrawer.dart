@@ -2,9 +2,9 @@ import 'package:final_app/Material/Faculty_View_Material.dart';
 import 'package:final_app/Faculty%20Side/DoNotTouch/FBottomNaviPage.dart';
 import 'package:final_app/Faculty%20Side/Faculty_Dart/Faculty_Add_Data.dart';
 import 'package:final_app/Notice/Faculty_Notice.dart';
+import 'package:final_app/Search/Student_Search.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
-import '../../Branch/BranchPage.dart';
 import '../../General Side/Contact_us.dart';
 import '../../General Side/Developed_By.dart';
 import '../../General Side/FacilitiesPage.dart';
@@ -62,8 +62,8 @@ class _FSliderDrawerState extends State<FSliderDrawer> {
         return Faculty_View_Material(
           username: widget.username,
         );
-      case FMenuItems.BranchPage:
-        return BranchPage();
+      case FMenuItems.Student_Search:
+        return Student_Search();
       case FMenuItems.FacilitiesPage:
         return FacilitiesPage();
       case FMenuItems.ContactUsPage:

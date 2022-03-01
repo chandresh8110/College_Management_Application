@@ -168,7 +168,8 @@ class _Student_Material_ViewState extends State<Student_Material_View> {
                   } else {
                     return const CircularProgressIndicator();
                   }
-                })
+                },
+            ),
           ],
         ),
       ),
