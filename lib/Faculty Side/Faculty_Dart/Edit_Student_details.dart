@@ -51,9 +51,8 @@ class _Edit_Student_detailsState extends State<Edit_Student_details> {
   }
 
   void editData() async {
-    var url = '';
-    final response = await http.post(Uri.parse(url), body: {
-      "id": widget.list[widget.index]['id'],
+    var response = await http.post(Uri.parse("http://103.141.241.97/test/editstu.php"), body: {
+      "id": idcontroller!.text,
       "fname": fnamecontroller!.text,
       "mname": mnamecontroller!.text,
       "lname": lnamecontroller!.text,
@@ -68,6 +67,7 @@ class _Edit_Student_detailsState extends State<Edit_Student_details> {
       "gmno": gmnocontroller!.text,
       "gemail": gemailcontroller!.text,
       "status": status,
+      // "editby": widget.username,
     });
     if (response.statusCode == 200) {
       print(response.body);
@@ -77,7 +77,8 @@ class _Edit_Student_detailsState extends State<Edit_Student_details> {
 
   @override
   void initState() {
-    idcontroller = TextEditingController(text: widget.list[widget.index]['stu_id']);
+    idcontroller =
+        TextEditingController(text: widget.list[widget.index]['stu_id']);
     fnamecontroller =
         TextEditingController(text: widget.list[widget.index]['stu_fname']);
     mnamecontroller =
@@ -110,7 +111,9 @@ class _Edit_Student_detailsState extends State<Edit_Student_details> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Edit" + " ${widget.list[widget.index]['stu_fname']}'s" +" Detail"),
+        title: Text("Edit" +
+            " ${widget.list[widget.index]['stu_fname']}'s" +
+            " Detail"),
         backgroundColor: Colors.blue,
       ),
       body: Form(
@@ -190,8 +193,7 @@ class _Edit_Student_detailsState extends State<Edit_Student_details> {
                   ),
                   Container(
                     child: TextFormField(
-                      keyboardType:
-                          TextInputType.numberWithOptions(signed: true),
+                      keyboardType: TextInputType.number,
                       controller: joiningcontroller,
                       decoration: InputDecoration(
                         labelText: "Joining Year:",
@@ -247,16 +249,8 @@ class _Edit_Student_detailsState extends State<Edit_Student_details> {
                           semValue = newValue!;
                         });
                       },
-                      items: <String>[
-                        '1',
-                        '2',
-                        '3',
-                        '4',
-                        '5',
-                        '6',
-                        '7',
-                        '8'
-                      ].map<DropdownMenuItem<String>>((String value) {
+                      items: <String>['1', '2', '3', '4', '5', '6', '7', '8']
+                          .map<DropdownMenuItem<String>>((String value) {
                         return DropdownMenuItem<String>(
                           value: value,
                           child: Text(value),
@@ -425,14 +419,12 @@ class _Edit_Student_detailsState extends State<Edit_Student_details> {
                       }).toList(),
                     ),
                   ),
-                  Container(
-                    child: ElevatedButton(
-                      onPressed: () {
-                        editData();
-                        Navigator.of(context).pop();
-                      },
-                      child: Text('Edit Data'),
-                    ),
+                  ElevatedButton(
+                    onPressed: () {
+                      editData();
+                      Navigator.of(context).pop();
+                    },
+                    child: Text('Edit Data'),
                   ),
                 ],
               ),

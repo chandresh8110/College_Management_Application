@@ -1,8 +1,13 @@
+// ignore_for_file: camel_case_types, non_constant_identifier_names
+
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
 class Material_View extends StatefulWidget {
-  const Material_View({Key? key, required this.name, required this.title})
+  const Material_View(
+      {Key? key,
+      required this.name,
+      required this.title})
       : super(key: key);
 
   final String name;

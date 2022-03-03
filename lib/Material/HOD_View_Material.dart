@@ -17,7 +17,6 @@ class HOD_View_Material extends StatefulWidget {
 }
 
 class _HOD_View_MaterialState extends State<HOD_View_Material> {
-
   String? selectedBranch;
   List? BranchitemList;
   String? selectedSem;
@@ -182,7 +181,9 @@ class _HOD_View_MaterialState extends State<HOD_View_Material> {
           onPressed: () {
             setState(() {
               Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => HOD_Add_Material(username: widget.username)),
+                MaterialPageRoute(
+                    builder: (context) =>
+                        HOD_Add_Material(username: widget.username)),
               );
             });
           },
@@ -193,10 +194,10 @@ class _HOD_View_MaterialState extends State<HOD_View_Material> {
 class CourseList extends StatefulWidget {
   const CourseList(
       {Key? key,
-        required this.list,
-        required this.sem,
-        required this.branch,
-        required this.year})
+      required this.list,
+      required this.sem,
+      required this.branch,
+      required this.year})
       : super(key: key);
 
   final List list;
@@ -242,16 +243,17 @@ class _CourseListState extends State<CourseList> {
             onPressed: () {
               Navigator.of(context)
                   .push(
-                MaterialPageRoute(
-                    builder: (context) => Material_list(
-                      branch: widget.branch,
-                      course: '$selectedCourse',
-                      sem: widget.sem,
-                    )),
-              )
+                    MaterialPageRoute(
+                        builder: (context) => Material_list(
+                              branch: widget.branch,
+                              course: '$selectedCourse',
+                              sem: widget.sem,
+                              year: widget.year,
+                            )),
+                  )
                   .then((value) => setState(() {
-                selectedCourse = value;
-              }));
+                        selectedCourse = value;
+                      }));
             },
             child: const Text('Ok'),
           ),

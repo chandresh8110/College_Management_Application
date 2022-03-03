@@ -44,7 +44,7 @@ class _HomePageState extends State<BottomNaviPage> {
               // ),
               body: screen[index],
               bottomNavigationBar: CurvedNavigationBar(
-                color: Colors.blue,
+                color: Colors.lightBlueAccent,
                 height: 60,
                 animationCurve: Curves.easeInOut,
                 animationDuration: Duration(milliseconds: 300),

@@ -8,8 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class HOD_Add_Material extends StatefulWidget {
-  const HOD_Add_Material({Key? key, required this.username})
-      : super(key: key);
+  const HOD_Add_Material({Key? key, required this.username}) : super(key: key);
 
   final String username;
 
@@ -153,7 +152,6 @@ class _HOD_Add_MaterialState extends State<HOD_Add_Material> {
                 },
               ),
             ),
-            Container(),
             FutureBuilder<List>(
                 future: post(),
                 builder: (context, snapshot) {
@@ -184,11 +182,11 @@ class _HOD_Add_MaterialState extends State<HOD_Add_Material> {
 class CourseList extends StatefulWidget {
   const CourseList(
       {Key? key,
-        required this.list,
-        required this.sem,
-        required this.branch,
-        required this.year,
-        required this.username})
+      required this.list,
+      required this.sem,
+      required this.branch,
+      required this.year,
+      required this.username})
       : super(key: key);
 
   final List list;
@@ -236,8 +234,8 @@ class _CourseListState extends State<CourseList> {
       'uploadedby': widget.username,
       "file": await MultipartFile.fromFile(selectedfile!.path,
           filename: selectedfile!.path
-        //show only filename from path
-      ),
+          //show only filename from path
+          ),
     });
 
     response = await dio.post(
@@ -312,10 +310,10 @@ class _CourseListState extends State<CourseList> {
             child: progress == null
                 ? const Text("Progress: 0%")
                 : Text(
-              "Progress: $progress",
-              textAlign: TextAlign.center,
-              style: const TextStyle(fontSize: 18),
-            ),
+                    "Progress: $progress",
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(fontSize: 18),
+                  ),
             //show progress status here
           ),
 
@@ -330,32 +328,31 @@ class _CourseListState extends State<CourseList> {
           ),
 
           Container(
-              child: RaisedButton.icon(
-                onPressed: () {
-                  selectFile();
-                },
-                icon: const Icon(Icons.folder_open),
-                label: const Text("CHOOSE FILE"),
-                color: Colors.redAccent,
-                colorBrightness: Brightness.dark,
-              )),
+              child: ElevatedButton.icon(
+            style: ElevatedButton.styleFrom(primary: Colors.orangeAccent),
+            onPressed: () {
+              selectFile();
+            },
+            icon: const Icon(Icons.folder_open),
+            label: const Text("CHOOSE FILE"),
+          )),
 
           //if selectedfile is null then show empty container
           //if file is selected then show upload button
           selectedfile == null
               ? Container()
               : Container(
-            child: RaisedButton.icon(
-              onPressed: () {
-                uploadFile();
-                // Navigator.of(context).pop();
-              },
-              icon: const Icon(Icons.folder_open),
-              label: const Text("UPLOAD FILE"),
-              color: Colors.redAccent,
-              colorBrightness: Brightness.dark,
-            ),
-          ),
+                  child: ElevatedButton.icon(
+                    style:
+                        ElevatedButton.styleFrom(primary: Colors.orangeAccent),
+                    onPressed: () {
+                      uploadFile();
+                      // Navigator.of(context).pop();
+                    },
+                    icon: const Icon(Icons.folder_open),
+                    label: const Text("UPLOAD FILE"),
+                  ),
+                ),
         ],
       ),
     );

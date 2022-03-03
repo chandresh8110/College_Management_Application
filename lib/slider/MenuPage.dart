@@ -38,33 +38,49 @@ class MenuPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-      //backgroundColor: Colors.grey[400],
+      // backgroundColor: Colors.,
       body: SafeArea(
-       child: Column(
-         crossAxisAlignment: CrossAxisAlignment.start,
-         children:[
+       child: Container(
+         decoration: BoxDecoration(
+           gradient: LinearGradient(
+             begin: Alignment.topRight,
+             end: Alignment.bottomLeft,
+             colors: [
+               // Colors.yellow,
+               Colors.red,
+               // Colors.indigo,
+               Colors.teal,
+               // Colors.purpleAccent,
+               // Colors.deepOrange,
+             ],
+           )
+         ),
+         child: Column(
+           crossAxisAlignment: CrossAxisAlignment.start,
+           children:[
+             Padding(
+               padding: const EdgeInsets.only(top: 15, left: 10),
+               child: CircleAvatar(
+                 radius: 50.0,
+                 backgroundImage: NetworkImage('https://image3.mouthshut.com/images/imagesp/925888452s.jpg'),
+               ),
+             ),
            Padding(
              padding: const EdgeInsets.only(top: 15, left: 10),
-             child: CircleAvatar(
-               radius: 50.0,
-               backgroundImage: NetworkImage('https://image3.mouthshut.com/images/imagesp/925888452s.jpg'),
+             child: Text('Hello Users!',
+             style: TextStyle(
+               fontSize: 30,
+               ),
              ),
            ),
-         Padding(
-           padding: const EdgeInsets.only(top: 15, left: 10),
-           child: Text('Hello Users!',
-           style: TextStyle(
-             fontSize: 30,
+           //Spacer(),
+             Padding(
+                 padding: EdgeInsets.only(top: 50)
              ),
-           ),
+             ...MenuItems.all.map(buildMenuItem).toList(),
+           Spacer(flex: 2),
+           ],
          ),
-         //Spacer(),
-           Padding(
-               padding: EdgeInsets.only(top: 50)
-           ),
-           ...MenuItems.all.map(buildMenuItem).toList(),
-         Spacer(flex: 2),
-         ],
        ),
       ),
     );
@@ -72,7 +88,8 @@ class MenuPage extends StatelessWidget {
   Widget buildMenuItem(MenuItem item) => ListTileTheme(
     //selectedColor: Colors.white,
     child: ListTile(
-      //selectedTileColor: Colors.black26,
+      // selectedTileColor: Colors.black26,
+      // selectedColor: Colors.red,
       selected:  currentItem == item,
       minLeadingWidth: 20,
       leading: Icon(item.icon),

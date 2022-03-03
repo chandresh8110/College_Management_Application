@@ -22,6 +22,7 @@ class _Add_FacultyState extends State<Add_Faculty> {
   TextEditingController fnamecontroller = TextEditingController();
   TextEditingController mnamecontroller = TextEditingController();
   TextEditingController lnamecontroller = TextEditingController();
+  TextEditingController joiningcontroller = TextEditingController();
   TextEditingController mnocontroller = TextEditingController();
   TextEditingController addresscontroller = TextEditingController();
   TextEditingController emailcontroller = TextEditingController();
@@ -83,6 +84,7 @@ class _Add_FacultyState extends State<Add_Faculty> {
     request.fields['fname'] = fnamecontroller.text;
     request.fields['mname'] = mnamecontroller.text;
     request.fields['lname'] = lnamecontroller.text;
+    request.fields['jyear'] = joiningcontroller.text;
     request.fields['mno'] = mnocontroller.text;
     request.fields['email'] = emailcontroller.text;
     request.fields['addr'] = addresscontroller.text;
@@ -117,6 +119,7 @@ class _Add_FacultyState extends State<Add_Faculty> {
         gnamecontroller.text = '';
         gmnocontroller.text = '';
         gemailcontroller.text = '';
+        joiningcontroller.text = '';
 
         //after write success, make fields empty
 
@@ -225,6 +228,27 @@ class _Add_FacultyState extends State<Add_Faculty> {
                       if (value!.isEmpty) {
                         return 'required';
                       } else if (value.isNotEmpty) {
+                        return null;
+                      }
+                    },
+                  ),
+                ),
+                Container(
+                  child: TextFormField(
+                    keyboardType: TextInputType.number,
+                    controller: joiningcontroller,
+                    decoration: InputDecoration(
+                      labelText: "Joining Year:",
+                      hintText: "Ex: 2018-19",
+                    ),
+                    validator: (value) {
+                      if (value!.isNotEmpty && value.length > 7) {
+                        return 'Just 7 Number';
+                      } else if (value.length < 7 && value.isNotEmpty) {
+                        return 'Just 7 Number';
+                      } else if (value.isEmpty) {
+                        return 'required';
+                      } else {
                         return null;
                       }
                     },

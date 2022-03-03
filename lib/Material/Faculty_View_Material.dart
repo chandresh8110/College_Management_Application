@@ -1,3 +1,5 @@
+// ignore_for_file: camel_case_types, non_constant_identifier_names
+
 import 'dart:async';
 import 'dart:convert';
 import 'package:final_app/Faculty%20Side/Faculty%20Slider/FMenuWidget.dart';
@@ -72,123 +74,124 @@ class _Faculty_View_MaterialState extends State<Faculty_View_Material> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: const Text('Materials'),
-          backgroundColor: Colors.blue,
-          leading: FMenuWidget(),
-        ),
-        body: SingleChildScrollView(
-          child: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: DropdownButton(
-                    isExpanded: true,
-                    hint: const Text('Select Year'),
-                    value: selectedyear,
-                    items: YearList?.map((course) {
-                      return DropdownMenuItem(
-                          value: course['year'], child: Text(course['year']));
-                    }).toList(),
-                    onChanged: (year) {
-                      setState(() {
-                        selectedyear = year.toString();
-                        print(selectedyear);
-                      });
-                    }),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: DropdownButton(
-                    isExpanded: true,
-                    hint: const Text('Select Branch'),
-                    value: selectedBranch,
-                    items: BranchitemList?.map((branch) {
-                      return DropdownMenuItem(
-                          value: branch['branch_name'],
-                          child: Text(branch['branch_name']));
-                    }).toList(),
-                    onChanged: (branch) {
-                      setState(() {
-                        selectedBranch = branch.toString();
-                        print(selectedBranch);
-                      });
-                    }),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: DropdownButton(
+      appBar: AppBar(
+        title: const Text('Materials'),
+        backgroundColor: Colors.blue,
+        leading: FMenuWidget(),
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: DropdownButton(
                   isExpanded: true,
-                  hint: const Text('Select Sem'),
-                  // Initial Value
-                  value: selectedSem,
-
-                  // Down Arrow Icon
-                  icon: const Icon(Icons.arrow_drop_down),
-                  // Array list of items
-                  items: <String>[
-                    '1',
-                    '2',
-                    '3',
-                    '4',
-                    '5',
-                    '6',
-                    '7',
-                    '8',
-                  ].map((String items) {
+                  hint: const Text('Select Year'),
+                  value: selectedyear,
+                  items: YearList?.map((course) {
                     return DropdownMenuItem(
-                      value: items,
-                      child: Text(items),
-                    );
+                        value: course['year'], child: Text(course['year']));
                   }).toList(),
-                  // After selecting the desired option,it will
-                  // change button value to selected value
-                  onChanged: (sem) {
+                  onChanged: (year) {
                     setState(() {
-                      selectedSem = sem.toString();
-                      if (kDebugMode) {
-                        print(selectedSem);
-                      }
+                      selectedyear = year.toString();
+                      print(selectedyear);
                     });
-                  },
-                ),
+                  }),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: DropdownButton(
+                  isExpanded: true,
+                  hint: const Text('Select Branch'),
+                  value: selectedBranch,
+                  items: BranchitemList?.map((branch) {
+                    return DropdownMenuItem(
+                        value: branch['branch_name'],
+                        child: Text(branch['branch_name']));
+                  }).toList(),
+                  onChanged: (branch) {
+                    setState(() {
+                      selectedBranch = branch.toString();
+                      print(selectedBranch);
+                    });
+                  }),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: DropdownButton(
+                isExpanded: true,
+                hint: const Text('Select Sem'),
+                // Initial Value
+                value: selectedSem,
+
+                // Down Arrow Icon
+                icon: const Icon(Icons.arrow_drop_down),
+                // Array list of items
+                items: <String>[
+                  '1',
+                  '2',
+                  '3',
+                  '4',
+                  '5',
+                  '6',
+                  '7',
+                  '8',
+                ].map((String items) {
+                  return DropdownMenuItem(
+                    value: items,
+                    child: Text(items),
+                  );
+                }).toList(),
+                // After selecting the desired option,it will
+                // change button value to selected value
+                onChanged: (sem) {
+                  setState(() {
+                    selectedSem = sem.toString();
+                    if (kDebugMode) {
+                      print(selectedSem);
+                    }
+                  });
+                },
               ),
-              FutureBuilder<List>(
-                  future: post(),
-                  builder: (context, snapshot) {
-                    if (snapshot.hasError) {
-                      if (kDebugMode) {
-                        print(snapshot.error);
-                      }
+            ),
+            FutureBuilder<List>(
+                future: post(),
+                builder: (context, snapshot) {
+                  if (snapshot.hasError) {
+                    if (kDebugMode) {
+                      print(snapshot.error);
                     }
-                    if (snapshot.hasData) {
-                      return CourseList(
-                        list: snapshot.data!,
-                        sem: '$selectedSem',
-                        branch: '$selectedBranch',
-                        year: '$selectedyear',
-                      );
-                    } else {
-                      return const CircularProgressIndicator();
-                    }
-                  })
-            ],
-          ),
+                  }
+                  if (snapshot.hasData) {
+                    return CourseList(
+                      list: snapshot.data!,
+                      sem: '$selectedSem',
+                      branch: '$selectedBranch',
+                      year: '$selectedyear',
+                    );
+                  } else {
+                    return const CircularProgressIndicator();
+                  }
+                })
+          ],
         ),
-        floatingActionButton: FloatingActionButton(
-          child: Icon(Icons.add),
-          backgroundColor: Colors.blue,
-          onPressed: () {
-            setState(() {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                    builder: (context) => Faculty_Add_Material(
-                          username: widget.username,
-                        )),
-              );
-            });
-          },
-        ));
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        backgroundColor: Colors.blue,
+        onPressed: () {
+          setState(() {
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                  builder: (context) => Faculty_Add_Material(
+                        username: widget.username,
+                      )),
+            );
+          });
+        },
+      ),
+    );
   }
 }
 
@@ -228,8 +231,8 @@ class _CourseListState extends State<CourseList> {
                 value: selectedCourse,
                 items: widget.list.map((course) {
                   return DropdownMenuItem(
-                      value: course['course_id'],
-                      child: Text(course['course_id']));
+                      value: course['course_name'],
+                      child: Text(course['course_name']));
                 }).toList(),
                 onChanged: (course) {
                   setState(() {
@@ -249,6 +252,7 @@ class _CourseListState extends State<CourseList> {
                               branch: widget.branch,
                               course: '$selectedCourse',
                               sem: widget.sem,
+                              year: widget.year,
                             )),
                   )
                   .then((value) => setState(() {

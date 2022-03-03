@@ -1,3 +1,5 @@
+// ignore_for_file: camel_case_types, non_constant_identifier_names
+
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
@@ -87,7 +89,9 @@ class _Faculty_Add_MaterialState extends State<Faculty_Add_Material> {
                   value: selectedyear,
                   items: YearList?.map((course) {
                     return DropdownMenuItem(
-                        value: course['year'], child: Text(course['year']));
+                      value: course['year'],
+                      child: Text(course['year']),
+                    );
                   }).toList(),
                   onChanged: (year) {
                     setState(() {
@@ -104,8 +108,9 @@ class _Faculty_Add_MaterialState extends State<Faculty_Add_Material> {
                   value: selectedBranch,
                   items: BranchitemList?.map((branch) {
                     return DropdownMenuItem(
-                        value: branch['branch_name'],
-                        child: Text(branch['branch_name']));
+                      value: branch['branch_name'],
+                      child: Text(branch['branch_name']),
+                    );
                   }).toList(),
                   onChanged: (branch) {
                     setState(() {
@@ -153,7 +158,6 @@ class _Faculty_Add_MaterialState extends State<Faculty_Add_Material> {
                 },
               ),
             ),
-            Container(),
             FutureBuilder<List>(
                 future: post(),
                 builder: (context, snapshot) {
@@ -229,9 +233,10 @@ class _CourseListState extends State<CourseList> {
   uploadFile() async {
     String uploadurl = "http://103.141.241.97/test/mat_upload.php";
     FormData formdata = FormData.fromMap({
+      "year" : widget.year,
       "sem": widget.sem,
       "branch": widget.branch,
-      "c_id": selectedCourse,
+      "c_name": selectedCourse,
       "c_no": chapternocontroller.text,
       'uploadedby': widget.username,
       "file": await MultipartFile.fromFile(selectedfile!.path,
@@ -277,8 +282,8 @@ class _CourseListState extends State<CourseList> {
               value: selectedCourse,
               items: widget.list.map((course) {
                 return DropdownMenuItem(
-                    value: course['course_id'],
-                    child: Text(course['course_id']));
+                    value: course['course_name'],
+                    child: Text(course['course_name']));
               }).toList(),
               onChanged: (course) {
                 setState(() {
@@ -290,20 +295,23 @@ class _CourseListState extends State<CourseList> {
               },
             ),
           ),
-          Container(
-            child: TextFormField(
-              controller: chapternocontroller,
-              decoration: const InputDecoration(
-                labelText: "Chapter No.",
-                hintText: "Short Form like :- ch-1 , ch-2",
+          Padding(
+            padding: const EdgeInsets.all(10),
+            child: Container(
+              child: TextFormField(
+                controller: chapternocontroller,
+                decoration: const InputDecoration(
+                  labelText: "Chapter No.",
+                  hintText: "Short Form like :- ch-1 , ch-2",
+                ),
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return 'required';
+                  } else if (value.isNotEmpty) {
+                    return null;
+                  }
+                },
               ),
-              validator: (value) {
-                if (value!.isEmpty) {
-                  return 'required';
-                } else if (value.isNotEmpty) {
-                  return null;
-                }
-              },
             ),
           ),
           Container(
@@ -330,14 +338,13 @@ class _CourseListState extends State<CourseList> {
           ),
 
           Container(
-              child: RaisedButton.icon(
+              child: ElevatedButton.icon(
+            style: ElevatedButton.styleFrom(primary: Colors.orangeAccent),
             onPressed: () {
               selectFile();
             },
             icon: const Icon(Icons.folder_open),
             label: const Text("CHOOSE FILE"),
-            color: Colors.redAccent,
-            colorBrightness: Brightness.dark,
           )),
 
           //if selectedfile is null then show empty container
@@ -345,15 +352,15 @@ class _CourseListState extends State<CourseList> {
           selectedfile == null
               ? Container()
               : Container(
-                  child: RaisedButton.icon(
+                  child: ElevatedButton.icon(
+                    style:
+                        ElevatedButton.styleFrom(primary: Colors.orangeAccent),
                     onPressed: () {
                       uploadFile();
-                      // Navigator.of(context).pop();
+                      Navigator.of(context).pop();
                     },
                     icon: const Icon(Icons.folder_open),
                     label: const Text("UPLOAD FILE"),
-                    color: Colors.redAccent,
-                    colorBrightness: Brightness.dark,
                   ),
                 ),
         ],

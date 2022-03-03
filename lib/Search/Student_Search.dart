@@ -27,6 +27,7 @@ class _Student_SearchState extends State<Student_Search> {
     return json.decode(response.body);
   }
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -53,7 +54,7 @@ class _Student_SearchState extends State<Student_Search> {
           Padding(
             padding: const EdgeInsets.only(top: 50),
             child: Container(
-              height: 100,
+              height: 200,
               child: FutureBuilder<List>(
                 future: getData(),
                 builder: (context, snapshot) {
@@ -86,7 +87,6 @@ class ItemList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        // color: Colors.orange,
         child: ListView.builder(
           itemCount: list == null ? 0 : list.length,
           itemBuilder: (context, i) {

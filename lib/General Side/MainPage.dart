@@ -25,14 +25,6 @@ class _MainPageState extends State<MainPage> {
     'http://103.141.241.97/Images/Campus7.svg',
   ];
 
-  // late List<User> users;
-  // @override
-  // void initState() {
-  //   super.initState();
-  //
-  //   this.users = List.of(allUsers);
-  // }
-
 
   @override
   Widget build(BuildContext context) {
@@ -40,29 +32,49 @@ class _MainPageState extends State<MainPage> {
       body: CustomScrollView(
           slivers: [
             SliverAppBar(
-              backgroundColor: Colors.blue,
+              // backgroundColor: Colors.blue,
               floating: true,
               //pinned: true,
               title: Text('HomePage'),
               leading: MenuWidget(),
-            ),
-            SliverToBoxAdapter(
-              child: Container(
-                //color: Colors.greenAccent,
-                height: 10,
+              flexibleSpace: Container(
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topRight,
+                    end: Alignment.bottomLeft,
+                    colors: [
+                      Colors.cyanAccent,
+                      Colors.blue,
+                    ]
+                  ),
+                ),
               ),
             ),
             SliverToBoxAdapter(
               child: Container(
-                height: 300,
+                decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      begin: Alignment.topRight,
+                      end: Alignment.bottomLeft,
+                      colors: [
+                        // Colors.yellow,
+                        Colors.red,
+                        // Colors.indigo,
+                        Colors.teal,
+                        // Colors.purpleAccent,
+                        // Colors.deepOrange,
+                      ],
+                    )
+                ),
+                height: 420,
                 //color: Colors.amber,
                 child: CarouselSlider.builder(
                   options: CarouselOptions(
                     height: 400,
                     autoPlay: true,
                     // autoPlayAnimationDuration: Duration(milliseconds: 50),
-                    //viewportFraction: 1,
-                    enlargeCenterPage: true,
+                    viewportFraction: 1,
+                    // enlargeCenterPage: true,
                   ),
                   itemCount: urlImages1.length,
                   itemBuilder: (context, index, realIndex) {
@@ -74,18 +86,10 @@ class _MainPageState extends State<MainPage> {
             ),
             SliverToBoxAdapter(
               child: Container(
-                height: 10,
-                //color: Colors.amber,
-              ),
-            ),
-            SliverToBoxAdapter(
-              child: Container(
-                // height: 500,
-                padding: const EdgeInsets.only(left: 10, right: 10),
-                //color: Colors.redAccent,
+                padding: const EdgeInsets.only(left: 10, right: 10,bottom: 10),
+                // color: Colors.redAccent,
                 child: Text('       Apollo Institute of Engineering and Technology is one of the premier institutes for imparting quality technical education and keeping pace with the ever-changing world of Technology. The institute is established under the aegis of Divaba Education trust.'
                     '\n       The college started its academic term in the year 2014 and offers Bachelor of Engineering in various disciplines like Civil Engineering, Computer Engineering, Electrical Engineering, Information Technology, Mechanical Engineering.'
-                    '\n       We also offer Diploma Engineering in different streams like Civil Engineering, Computer Engineering and Mechanical Engineering.'
                     '\n       The College is approved by AICTE and affiliated with GTU (Gujarat Technological University).',
                   textAlign: TextAlign.justify,
                   style: TextStyle(
@@ -110,8 +114,8 @@ class _MainPageState extends State<MainPage> {
             SliverToBoxAdapter(
               child: Container(
                 // height: 250,
-                padding: const EdgeInsets.only(left: 10, right: 10),
-                //color: Colors.greenAccent,
+                padding: const EdgeInsets.only(left: 10, right: 10, bottom: 10),
+                // color: Colors.greenAccent,
                 child: Text('👉 Disciplined Environment'
                     '\n👉 Skill Development Activities'
                     '\n👉 Industry Interaction & Consultancy Work'

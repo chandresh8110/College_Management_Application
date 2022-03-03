@@ -151,24 +151,24 @@ class _Student_Material_ViewState extends State<Student_Material_View> {
               ),
             ),
             FutureBuilder<List>(
-                future: post(),
-                builder: (context, snapshot) {
-                  if (snapshot.hasError) {
-                    if (kDebugMode) {
-                      print(snapshot.error);
-                    }
+              future: post(),
+              builder: (context, snapshot) {
+                if (snapshot.hasError) {
+                  if (kDebugMode) {
+                    print(snapshot.error);
                   }
-                  if (snapshot.hasData) {
-                    return CourseList(
-                      list: snapshot.data!,
-                      sem: '$selectedSem',
-                      branch: '$selectedBranch',
-                      year: '$selectedyear',
-                    );
-                  } else {
-                    return const CircularProgressIndicator();
-                  }
-                },
+                }
+                if (snapshot.hasData) {
+                  return CourseList(
+                    list: snapshot.data!,
+                    sem: '$selectedSem',
+                    branch: '$selectedBranch',
+                    year: '$selectedyear',
+                  );
+                } else {
+                  return const CircularProgressIndicator();
+                }
+              },
             ),
           ],
         ),
@@ -213,8 +213,8 @@ class _CourseListState extends State<CourseList> {
                 value: selectedCourse,
                 items: widget.list.map((course) {
                   return DropdownMenuItem(
-                      value: course['course_id'],
-                      child: Text(course['course_id']));
+                      value: course['course_name'],
+                      child: Text(course['course_name']));
                 }).toList(),
                 onChanged: (course) {
                   setState(() {
@@ -234,6 +234,7 @@ class _CourseListState extends State<CourseList> {
                               branch: widget.branch,
                               course: '$selectedCourse',
                               sem: widget.sem,
+                              year: widget.year,
                             )),
                   )
                   .then((value) => setState(() {
