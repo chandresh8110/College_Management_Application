@@ -7,7 +7,6 @@ class MenuItems {
   static const FacilitiesPage = MenuItem('Facilities', Icons.view_comfortable);
   static const ContactUsPage = MenuItem('Contact_Us', Icons.phone);
   static const DeveloperPage = MenuItem('App_Developer', Icons.developer_board_outlined);
-  static const AccountPage = MenuItem('Login', Icons.login_outlined);
 
 
   static const all = <MenuItem>[
@@ -16,7 +15,6 @@ class MenuItems {
     FacilitiesPage,
     ContactUsPage,
     DeveloperPage,
-    AccountPage,
   ];
 
 }

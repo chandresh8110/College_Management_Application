@@ -56,8 +56,6 @@ class _SliderState extends State<SliderDrawer> {
        return ContactUsPage();
      case MenuItems.DeveloperPage:
        return DeveloperPage();
-     case MenuItems.AccountPage:
-       return AccountPage();
    }
  }
 

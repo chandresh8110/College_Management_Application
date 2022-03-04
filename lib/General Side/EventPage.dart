@@ -172,6 +172,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 //import 'package:cloud_firestore/cloud_firestore.dart';
 //import 'package:transparent_image/transparent_image.dart';
+import '../slider/SliderDrawer.dart';
 import 'GallaryPage.dart';
 import '../slider/MenuWidget.dart';
 //import 'package:cached_network_image/cached_network_image.dart';
@@ -345,60 +346,57 @@ class EventPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: CustomScrollView(
-        slivers: [
-          SliverAppBar(
-            backgroundColor: Colors.blue,
-            floating: true,
-            //pinned: true,
-            title: Text('Photo_Gallery_Page'),
-            leading: MenuWidget(),
-          ),
-          SliverGrid(
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
-              //maxCrossAxisExtent: 100.0,
-              mainAxisSpacing: 10,
-              crossAxisSpacing: 0,
-              //childAspectRatio: 0.75,
+    return WillPopScope(
+      child: Scaffold(
+        body: CustomScrollView(
+          slivers: [
+            SliverAppBar(
+              backgroundColor: Colors.blue,
+              floating: true,
+              //pinned: true,
+              title: Text('Photo_Gallery_Page'),
+              leading: MenuWidget(),
             ),
-            delegate: SliverChildBuilderDelegate(
-              (BuildContext context, int index) {
-                return RawMaterialButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) =>
-                            PhotoDetails(imagePath: networkNames[index]),
+            SliverGrid(
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                //maxCrossAxisExtent: 100.0,
+                mainAxisSpacing: 10,
+                crossAxisSpacing: 0,
+                //childAspectRatio: 0.75,
+              ),
+              delegate: SliverChildBuilderDelegate(
+                (BuildContext context, int index) {
+                  return RawMaterialButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              PhotoDetails(imagePath: networkNames[index]),
+                        ),
+                      );
+                    },
+                    child: Container(
+                      alignment: Alignment.center,
+                      padding: _edgeInsertsForIndex(index),
+                      child: SvgPicture.network(
+                        networkNames[index % networkNames.length],
+                        fit: BoxFit.cover,
                       ),
-                    );
-                  },
-//                   //   // child: Container(
-//                   //   //   decoration: BoxDecoration(
-//                   //   //     borderRadius: BorderRadius.circular(15),
-//                   //   //     image: DecorationImage(
-//                   //   //       image: NetworkImage(_images[index].imagePath),
-//                   //   //       fit: BoxFit.cover,
-//                   //   //     ),
-//                   //   //   ),
-//                   //   // ),
-                  child: Container(
-                    alignment: Alignment.center,
-                    padding: _edgeInsertsForIndex(index),
-                    child: SvgPicture.network(
-                      networkNames[index % networkNames.length],
-                      fit: BoxFit.cover,
                     ),
-                  ),
-                );
-              },
-              childCount: networkNames.length,
+                  );
+                },
+                childCount: networkNames.length,
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
+      onWillPop: () async {
+        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> SliderDrawer(),),);
+        return false;
+      },
     );
   }
 }
