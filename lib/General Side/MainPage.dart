@@ -52,27 +52,26 @@ class _MainPageState extends State<MainPage> {
             ),
             SliverToBoxAdapter(
               child: Container(
-                decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      begin: Alignment.topRight,
-                      end: Alignment.bottomLeft,
-                      colors: [
-                        // Colors.yellow,
-                        Colors.red,
-                        // Colors.indigo,
-                        Colors.teal,
-                        // Colors.purpleAccent,
-                        // Colors.deepOrange,
-                      ],
-                    )
-                ),
+                // decoration: BoxDecoration(
+                //     gradient: LinearGradient(
+                //       begin: Alignment.topRight,
+                //       end: Alignment.bottomLeft,
+                //       colors: [
+                //         // Colors.yellow,
+                //         Colors.red,
+                //         // Colors.indigo,
+                //         Colors.teal,
+                //         // Colors.purpleAccent,
+                //         // Colors.deepOrange,
+                //       ],
+                //     )
+                // ),
                 height: 420,
-                //color: Colors.amber,
                 child: CarouselSlider.builder(
                   options: CarouselOptions(
                     height: 400,
                     autoPlay: true,
-                    // autoPlayAnimationDuration: Duration(milliseconds: 50),
+                    autoPlayAnimationDuration: Duration(seconds: 1),
                     viewportFraction: 1,
                     // enlargeCenterPage: true,
                   ),
@@ -219,10 +218,13 @@ class _MainPageState extends State<MainPage> {
   Widget buildImage(String urlImage, int index) =>
       Container(
         margin: EdgeInsets.symmetric(horizontal: 5),
-        color: Colors.grey,
-        child: SvgPicture.network(
-          urlImage,
-          fit: BoxFit.cover,
+        color: Colors.transparent,
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(10),
+          child: SvgPicture.network(
+            urlImage,
+            fit: BoxFit.cover,
+          ),
         ),
       );
 

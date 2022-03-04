@@ -1,9 +1,10 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
-import 'package:final_app/General%20Side/ChatRoom.dart';
+import 'package:final_app/General%20Side/AccountPage.dart';
 import 'package:final_app/General%20Side/EventPage.dart';
 import 'package:final_app/General%20Side/MainPage.dart';
 import 'package:final_app/General%20Side/PlacementPage.dart';
 import 'package:flutter/material.dart';
+import 'package:hexcolor/hexcolor.dart';
 
 class BottomNaviPage extends StatefulWidget {
   const BottomNaviPage({Key? key}) : super(key: key);
@@ -18,7 +19,7 @@ class _HomePageState extends State<BottomNaviPage> {
     MainPage(),
     EventPage(),
     PlacementPage(),
-    ChatRoom(),
+    AccountPage(),
   ];
 
   @override
@@ -27,11 +28,11 @@ class _HomePageState extends State<BottomNaviPage> {
       Icon(Icons.home, size: 30),
       Icon(Icons.event, size: 30),
       Icon(Icons.wallet_travel_outlined, size: 30),
-      Icon(Icons.chat, size: 30),
+      Icon(Icons.login, size: 30),
     ];
     return Theme(
       data: Theme.of(context)
-          .copyWith(iconTheme: IconThemeData(color: Colors.white)),
+          .copyWith(iconTheme: IconThemeData(color: Colors.black)),
       child: Container(
         color: Colors.blue,
         child: SafeArea(
@@ -39,12 +40,9 @@ class _HomePageState extends State<BottomNaviPage> {
           child: ClipRRect(
             child: Scaffold(
               extendBody: true,
-              // appBar: AppBar(
-              //   leading: MenuWidget(),
-              // ),
               body: screen[index],
               bottomNavigationBar: CurvedNavigationBar(
-                color: Colors.lightBlueAccent,
+                color: HexColor("#CCCCCC"),
                 height: 60,
                 animationCurve: Curves.easeInOut,
                 animationDuration: Duration(milliseconds: 300),

@@ -41,6 +41,8 @@ dependencies:
   syncfusion_flutter_pdfviewer: ^19.4.53-beta
   path_provider: ^2.0.9
   new_gradient_app_bar: ^0.2.0
+  hexcolor: ^2.0.6
+
 
 
 

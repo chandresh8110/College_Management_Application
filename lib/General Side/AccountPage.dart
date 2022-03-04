@@ -7,7 +7,8 @@ import 'package:http/http.dart' as http;
 import '../Developer_Team/Developer_slider/DSliderDrawer.dart';
 import '../Faculty Side/Faculty Slider/FSliderDrawer.dart';
 import '../HOD_Side/HOD_Slider/HSliderDrawer.dart';
-import '../slider/MenuWidget.dart';
+import 'header_widget.dart';
+import 'theme_helper.dart';
 
 class AccountPage extends StatefulWidget {
   const AccountPage({Key? key}) : super(key: key);
@@ -23,6 +24,9 @@ class _AccountPageState extends State<AccountPage> {
   String? dropdownValue;
   String? table;
 
+  double _headerHeight = 250;
+  Key _formKey = GlobalKey<FormState>();
+
   Future login() async {
     var url = "http://103.141.241.97/test/login_w_role.php";
     var response = await http.post(Uri.parse(url), body: {
@@ -33,7 +37,6 @@ class _AccountPageState extends State<AccountPage> {
 
     var data = json.decode(response.body);
     if (data == "Student") {
-
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
@@ -75,110 +78,127 @@ class _AccountPageState extends State<AccountPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: CustomScrollView(
-          slivers: [
-            SliverAppBar(
-              backgroundColor: Colors.blue,
-              title: Text('LoginPage'),
-              leading: MenuWidget(),
+      backgroundColor: Colors.white,
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Container(
+              height: _headerHeight,
+              child: HeaderWidget(
+                _headerHeight,
+                true,
+              ), //let's create a common header widget
             ),
-            SliverToBoxAdapter(
-              child: Padding(
-                padding: const EdgeInsets.only(top: 30),
-                child: CircleAvatar(
-                  radius: 80,
-                  backgroundImage: NetworkImage(
-                      'https://image3.mouthshut.com/images/imagesp/925888452s.jpg'),
-                ),
-              ),
-            ),
-            SliverToBoxAdapter(
-              child: Padding(
-                padding: const EdgeInsets.only(
-                    top: 10, right: 20, left: 60, bottom: 10),
-                child: Container(
-                  padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(12),
-                    border: Border.all(color: Colors.blueGrey, width: 2),
-                  ),
-                  child: DropdownButton<String>(
-                    value: dropdownValue,
-                    hint: Text("Select Role"),
-                    icon: const Icon(Icons.arrow_drop_down_circle_outlined),
-                    elevation: 20,
-                    isExpanded: true,
-                    // style: const TextStyle(color: Colors.deepPurple),
-                    underline: Container(
-                      height: 0,
-                      color: Colors.deepPurpleAccent,
+            SafeArea(
+              child: Container(
+                padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
+                margin: const EdgeInsets.fromLTRB(
+                    20, 10, 20, 10), // This will be the login form
+                child: Column(
+                  children: [
+                    const Text(
+                      'Hello!',
+                      style:
+                          TextStyle(fontSize: 60, fontWeight: FontWeight.bold),
                     ),
-                    onChanged: (String? newValue) {
-                      setState(() {
-                        dropdownValue = newValue!;
-                      });
-                    },
-                    items: <String>['Student', 'Faculty', 'HOD', 'Developer']
-                        .map<DropdownMenuItem<String>>((String value) {
-                      return DropdownMenuItem<String>(
-                        value: value,
-                        child: Text(value),
-                      );
-                    }).toList(),
-                  ),
-                ),
-              ),
-            ),
-            SliverToBoxAdapter(
-              child: Padding(
-                padding: const EdgeInsets.only(
-                    top: 0, bottom: 0, right: 10, left: 10),
-                child: Container(
-                  padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                  child: TextField(
-                    // obscureText: true,
-                    controller: usernamecontroller,
-                    decoration: const InputDecoration(
-                      border: const OutlineInputBorder(),
-                      icon: Icon(Icons.account_circle_outlined),
-                      labelText: 'Enrollment No./ Faculty No.',
-                      hintText: 'Enrollment No./ Faculty No.',
+                    const Text(
+                      'Sign in into your account',
+                      style: TextStyle(color: Colors.grey),
                     ),
-                  ),
-                ),
-              ),
-            ),
-            SliverToBoxAdapter(
-              child: Padding(
-                padding: const EdgeInsets.only(
-                    top: 0, bottom: 0, right: 10, left: 10),
-                child: Container(
-                  padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                  child: TextFormField(
-                    obscureText: true,
-                    controller: passwordcontroller,
-                    decoration: const InputDecoration(
-                      border: OutlineInputBorder(),
-                      icon: Icon(Icons.vpn_key_outlined),
-                      labelText: 'Password',
-                      hintText: 'Enter Password',
+                    const SizedBox(height: 30.0),
+                    Form(
+                      key: _formKey,
+                      child: Column(
+                        children: [
+                          Container(
+                            child: Padding(
+                              padding:
+                                  const EdgeInsets.only(top: 10, bottom: 30),
+                              child: Container(
+                                padding: EdgeInsets.symmetric(horizontal: 10),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(100),
+                                  border: Border.all(color: Colors.grey),
+                                  color: Colors.white,
+                                ),
+                                child: DropdownButton<String>(
+                                  value: dropdownValue,
+                                  hint: Text("Select Role"),
+                                  icon: const Icon(Icons.arrow_drop_down),
+                                  elevation: 20,
+                                  isExpanded: true,
+                                  // style: const TextStyle(color: Colors.deepPurple),
+                                  underline: Container(
+                                    height: 0,
+                                    color: Colors.deepPurpleAccent,
+                                  ),
+                                  onChanged: (String? newValue) {
+                                    setState(() {
+                                      dropdownValue = newValue!;
+                                    });
+                                  },
+                                  items: <String>[
+                                    'Student',
+                                    'Faculty',
+                                    'HOD',
+                                    'Developer'
+                                  ].map<DropdownMenuItem<String>>(
+                                      (String value) {
+                                    return DropdownMenuItem<String>(
+                                      value: value,
+                                      child: Text(value),
+                                    );
+                                  }).toList(),
+                                ),
+                              ),
+                            ),
+                          ),
+                          Container(
+                            child: TextField(
+                              controller: usernamecontroller,
+                              decoration: ThemeHelper().textInputDecoration(
+                                  'User Name', 'Enter your user name'),
+                            ),
+                            decoration:
+                                ThemeHelper().inputBoxDecorationShaddow(),
+                          ),
+                          const SizedBox(height: 30.0),
+                          Container(
+                            child: TextField(
+                              controller: passwordcontroller,
+                              obscureText: true,
+                              decoration: ThemeHelper().textInputDecoration(
+                                  'Password', 'Enter your password'),
+                            ),
+                            decoration:
+                                ThemeHelper().inputBoxDecorationShaddow(),
+                          ),
+                          const SizedBox(height: 30.0),
+                          Container(
+                            decoration:
+                                ThemeHelper().buttonBoxDecoration(context),
+                            child: ElevatedButton(
+                              style: ThemeHelper().buttonStyle(),
+                              onPressed: () {
+                                login();
+                              },
+                              child: Padding(
+                                padding:
+                                    const EdgeInsets.fromLTRB(40, 10, 40, 10),
+                                child: Text(
+                                  'Login'.toUpperCase(),
+                                  style: const TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                ),
-              ),
-            ),
-            SliverToBoxAdapter(
-              child: Padding(
-                padding: const EdgeInsets.only(
-                    top: 10, bottom: 10, right: 20, left: 20),
-                child: Container(
-                  color: Colors.blue,
-                  child: MaterialButton(
-                      child: const Text('Login'),
-                      onPressed: () {
-                        login();
-                      }),
+                  ],
                 ),
               ),
             ),

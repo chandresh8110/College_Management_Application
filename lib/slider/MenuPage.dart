@@ -1,8 +1,5 @@
-import 'package:final_app/Student%20Side/Student%20Dart/StudentHomePage.dart';
 import 'package:flutter/material.dart';
-//import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'MenuItem.dart';
-//import 'MenuWidget.dart';
 
 class MenuItems {
   static const HomePage = MenuItem('Home', Icons.home);
@@ -11,7 +8,6 @@ class MenuItems {
   static const ContactUsPage = MenuItem('Contact_Us', Icons.phone);
   static const DeveloperPage = MenuItem('App_Developer', Icons.developer_board_outlined);
   static const AccountPage = MenuItem('Login', Icons.login_outlined);
-  //static const SHomePage = MenuItem('Student Home Page', Icons.home_work);
 
 
   static const all = <MenuItem>[
@@ -21,7 +17,6 @@ class MenuItems {
     ContactUsPage,
     DeveloperPage,
     AccountPage,
-   //SHomePage,
   ];
 
 }
@@ -47,9 +42,9 @@ class MenuPage extends StatelessWidget {
              end: Alignment.bottomLeft,
              colors: [
                // Colors.yellow,
-               Colors.red,
+               Colors.cyan,
+               Colors.lime,
                // Colors.indigo,
-               Colors.teal,
                // Colors.purpleAccent,
                // Colors.deepOrange,
              ],
@@ -88,8 +83,9 @@ class MenuPage extends StatelessWidget {
   Widget buildMenuItem(MenuItem item) => ListTileTheme(
     //selectedColor: Colors.white,
     child: ListTile(
-      // selectedTileColor: Colors.black26,
-      // selectedColor: Colors.red,
+      // selectedTileColor: Colors.black,
+      selectedColor: Colors.purple,
+      iconColor: Colors.white,
       selected:  currentItem == item,
       minLeadingWidth: 20,
       leading: Icon(item.icon),

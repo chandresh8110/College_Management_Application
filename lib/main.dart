@@ -1,28 +1,26 @@
 import 'package:final_app/General%20Side/SplashScreen.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'General Side/MyThemes.dart';
+import 'package:hexcolor/hexcolor.dart';
+// import 'General Side/MyThemes.dart';
 
-Future main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-    await Firebase.initializeApp();
-
+void main() {
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  Color _primaryColor = HexColor('#FF00BCD4');
+  Color _accentColor = HexColor('#FFCDDC39');
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) => MaterialApp(
-      //title: 'Flutter Demo',
-      themeMode: ThemeMode.system,
-      theme: MyThemes.lightTheme,
-      darkTheme:MyThemes.darkTheme,
-      home: SplashScreen(),
-
-      debugShowCheckedModeBanner: false,
-    );
-
+        //title: 'Flutter Demo',
+        theme: ThemeData(
+          primaryColor: _primaryColor,
+          scaffoldBackgroundColor: Colors.grey.shade100,
+          colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.grey)
+              .copyWith(secondary: _accentColor),
+        ),
+        home: SplashScreen(),
+        debugShowCheckedModeBanner: false,
+      );
 }
-
-
