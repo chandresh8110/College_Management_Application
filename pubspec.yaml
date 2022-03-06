@@ -81,6 +81,8 @@ flutter:
     - images/Faculty/IT/
     - images/Faculty/Mech/
     - images/Faculty/Civil/
+    - images/Placement/
+    - images/Students/
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

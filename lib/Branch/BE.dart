@@ -18,8 +18,8 @@ class BE extends StatelessWidget {
         slivers: [
           SliverToBoxAdapter(
             child: Container(
-              height: 110,
-              padding: const EdgeInsets.only(left: 10, right: 10, top: 10),
+              // height: 110,
+              padding: const EdgeInsets.only(left: 10, right: 10, top: 10, bottom: 10),
               //color: Colors.yellow,
               child: Text('      Here in AIET, We have 6 main branch in Bachelor of Engineering.',
                 textAlign: TextAlign.justify,
@@ -43,13 +43,16 @@ class BE extends StatelessWidget {
                      ),
                  );
                },
-               child: Container(
-                 height: 250,
-                 width: 250,
-                 //color: Colors.greenAccent,
-                 decoration: BoxDecoration(
-                   image: DecorationImage(
-                     image: AssetImage('images/Branch/CE.png'),
+               child: ClipRRect(
+                 borderRadius: BorderRadius.circular(10),
+                 child: Container(
+                   height: 250,
+                   width: 250,
+                   //color: Colors.greenAccent,
+                   decoration: BoxDecoration(
+                     image: DecorationImage(
+                       image: AssetImage('images/Branch/CE.png'),
+                     ),
                    ),
                  ),
                ),
@@ -62,13 +65,16 @@ class BE extends StatelessWidget {
                    ),
                  );
                },
-               child: Container(
-                 height: 250,
-                 width: 250,
-                 //color: Colors.greenAccent,
-                 decoration: BoxDecoration(
-                   image: DecorationImage(
-                     image: AssetImage('images/Branch/IT.png'),
+               child: ClipRRect(
+                 borderRadius: BorderRadius.circular(10),
+                 child: Container(
+                   height: 250,
+                   width: 250,
+                   //color: Colors.greenAccent,
+                   decoration: BoxDecoration(
+                     image: DecorationImage(
+                       image: AssetImage('images/Branch/IT.png'),
+                     ),
                    ),
                  ),
                ),
@@ -81,13 +87,16 @@ class BE extends StatelessWidget {
                    ),
                  );
                },
-               child: Container(
-                 height: 250,
-                 width: 250,
-                 //color: Colors.greenAccent,
-                 decoration: BoxDecoration(
-                   image: DecorationImage(
-                     image: AssetImage('images/Branch/CIE.png'),
+               child: ClipRRect(
+                 borderRadius: BorderRadius.circular(10),
+                 child: Container(
+                   height: 250,
+                   width: 250,
+                   //color: Colors.greenAccent,
+                   decoration: BoxDecoration(
+                     image: DecorationImage(
+                       image: AssetImage('images/Branch/CIE.png'),
+                     ),
                    ),
                  ),
                ),
@@ -100,13 +109,16 @@ class BE extends StatelessWidget {
                    ),
                  );
                },
-               child: Container(
-                 height: 250,
-                 width: 250,
-                 //color: Colors.greenAccent,
-                 decoration: BoxDecoration(
-                   image: DecorationImage(
-                     image: AssetImage('images/Branch/ME.png'),
+               child: ClipRRect(
+                 borderRadius: BorderRadius.circular(10),
+                 child: Container(
+                   height: 250,
+                   width: 250,
+                   //color: Colors.greenAccent,
+                   decoration: BoxDecoration(
+                     image: DecorationImage(
+                       image: AssetImage('images/Branch/ME.png'),
+                     ),
                    ),
                  ),
                ),
@@ -119,13 +131,16 @@ class BE extends StatelessWidget {
                    ),
                  );
                },
-               child: Container(
-                 height: 250,
-                 width: 250,
-                 //color: Colors.greenAccent,
-                 decoration: BoxDecoration(
-                   image: DecorationImage(
-                     image: AssetImage('images/Branch/EE.png'),
+               child: ClipRRect(
+                 borderRadius: BorderRadius.circular(10),
+                 child: Container(
+                   height: 250,
+                   width: 250,
+                   //color: Colors.greenAccent,
+                   decoration: BoxDecoration(
+                     image: DecorationImage(
+                       image: AssetImage('images/Branch/EE.png'),
+                     ),
                    ),
                  ),
                ),
@@ -138,13 +153,16 @@ class BE extends StatelessWidget {
                    ),
                  );
                },
-               child: Container(
-                 height: 250,
-                 width: 250,
-                 //color: Colors.greenAccent,
-                 decoration: BoxDecoration(
-                   image: DecorationImage(
-                     image: AssetImage('images/Branch/AI_DS.png'),
+               child: ClipRRect(
+                 borderRadius: BorderRadius.circular(10),
+                 child: Container(
+                   height: 250,
+                   width: 250,
+                   //color: Colors.greenAccent,
+                   decoration: BoxDecoration(
+                     image: DecorationImage(
+                       image: AssetImage('images/Branch/AI_DS.png'),
+                     ),
                    ),
                  ),
                ),

@@ -45,32 +45,48 @@ class SMenuPage extends StatelessWidget {
   Widget build(BuildContext context) => Scaffold(
         //backgroundColor: Colors.grey[400],
         body: SafeArea(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(top: 15, left: 10),
-                child: CircleAvatar(
-                  radius: 50.0,
-                  backgroundImage:
-                      NetworkImage('http://103.141.241.97/images/Logo_.png'),
-                  backgroundColor: Colors.transparent,
-                ),
+          child: Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topRight,
+                end: Alignment.bottomLeft,
+                colors: [
+                  // Colors.yellow,
+                  Colors.cyan,
+                  Colors.lime,
+                  // Colors.indigo,
+                  // Colors.purpleAccent,
+                  // Colors.deepOrange,
+                ],
               ),
-              Padding(
-                padding: const EdgeInsets.only(top: 15, left: 10),
-                child: Text(
-                  'Hello ' + username + ' !',
-                  style: TextStyle(
-                    fontSize: 25,
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(top: 15, left: 10),
+                  child: CircleAvatar(
+                    radius: 50.0,
+                    backgroundImage:
+                        NetworkImage('http://103.141.241.97/images/Logo_.png'),
+                    backgroundColor: Colors.transparent,
                   ),
                 ),
-              ),
-              // Spacer(),
-              Padding(padding: EdgeInsets.only(top: 50)),
-              ...SMenuItems.all.map(buildMenuItem).toList(),
-              Spacer(flex: 2),
-            ],
+                Padding(
+                  padding: const EdgeInsets.only(top: 15, left: 10),
+                  child: Text(
+                    'Hello ' + username + ' !',
+                    style: TextStyle(
+                      fontSize: 25,
+                    ),
+                  ),
+                ),
+                // Spacer(),
+                Padding(padding: EdgeInsets.only(top: 50)),
+                ...SMenuItems.all.map(buildMenuItem).toList(),
+                Spacer(flex: 2),
+              ],
+            ),
           ),
         ),
       );

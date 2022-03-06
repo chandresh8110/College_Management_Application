@@ -15,9 +15,21 @@ class Electrical extends StatelessWidget {
         child: CustomScrollView(
           slivers: [
             SliverAppBar(
-              backgroundColor: Colors.blue,
+              // backgroundColor: Colors.blue,
+              flexibleSpace: Container(
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topRight,
+                    end: Alignment.bottomLeft,
+                    colors: [
+                      Colors.cyanAccent,
+                      Colors.blue,
+                    ],
+                  ),
+                ),
+              ),
               title: Text(
-                  'ElectricalBranch'
+                  'Electrical Branch'
               ),
               floating: true,
             ),
@@ -26,7 +38,7 @@ class Electrical extends StatelessWidget {
                 //color: Colors.red,
                 child: Padding(
                   padding: const EdgeInsets.only(left: 10, right: 10, top: 10),
-                  child: Text('         Computer Engineering is a branch of engineering that integrates several fields of computer science and electronic engineering, required to develop computer hardware & software.',
+                  child: Text('         The branch of Electrical Engineering is very lively & electrifying as it provides exceptional career opportunities in all sectors of society. The electrical engineering improvements reform our contemporary world in all facets such as fitness, trade, learning & amusement.',
                     textAlign: TextAlign.justify,
                     style: TextStyle(
                       // color: Colors.red,
@@ -59,7 +71,7 @@ class Electrical extends StatelessWidget {
               child: Container(
                 child: Padding(
                   padding: const EdgeInsets.only(left: 10, right: 10,top: 10),
-                  child: Text('         To study and innovate in the emerging era of computer science to engage broadly with the evolving needs of the society we live in by providing value-based education.',
+                  child: Text('         To become the centre of excellence in the Electrical Field for graduating engineers who serve as a valuable resource to the nation, and are instilled with human values & professional ethics.',
                     textAlign: TextAlign.justify,
                     style: TextStyle(
                       fontSize: 20,
@@ -92,7 +104,9 @@ class Electrical extends StatelessWidget {
                 //height: MediaQuery.of(context).size.height * 25/100,
                 child: Padding(
                   padding: const EdgeInsets.only(left: 10, right: 10),
-                  child: Text('         The program’s key mission is to contribute to nation & society by advancing the fields of computer engineering through teaching & research advances, thus enhancing student awareness through immersive training, national & international participation, and experiential learning.',
+                  child: Text('         To impart strong technical foundation through high quality teaching & practical skills, conforming to National & International Standards.'
+                    '\n         To groom the graduating engineers for Industry, Research & Entrepreneurship.'
+                    '\n         To inculcate ethical & moral values by providing an amiable environment.',
                     textAlign: TextAlign.justify,
                     style: TextStyle(
                       fontSize: 20,
@@ -142,9 +156,12 @@ class Electrical extends StatelessWidget {
                   return Container(
                     alignment: Alignment.center,
                     padding: _edgeInsertsForIndex(index),
-                    child: Image.asset(
-                      assetNames[index % assetNames.length],
-                      fit: BoxFit.cover,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(10),
+                      child: Image.asset(
+                        assetNames[index % assetNames.length],
+                        fit: BoxFit.cover,
+                      ),
                     ),
                   );
                   //);
@@ -169,11 +186,12 @@ EdgeInsets _edgeInsertsForIndex(int index) {
 }
 
 final List<String> assetNames =[
-  // 'images/SVG/Annual1.svg',
-  // 'images/SVG/Annual2.svg',
-  // 'images/SVG/Annual3.svg',
-  'images/Faculty/CE/Aa.png',
-  'images/Faculty/CE/Ab.png',
+
+  'images/Faculty/EE/Aa.png',
+  'images/Faculty/EE/Ab.png',
+  'images/Faculty/EE/Ac.png',
+  'images/Faculty/EE/Ad.png',
+  'images/Faculty/EE/Ae.png',
 
 ];
 

@@ -423,7 +423,7 @@ class _Add_FacultyState extends State<Add_Faculty> {
                           password = newValue!;
                         });
                       },
-                      items: <String>['123456789', '123456789']
+                      items: <String>['123456789', '1234567890']
                           .map<DropdownMenuItem<String>>((String value) {
                         return DropdownMenuItem<String>(
                           value: value,

@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import '../General Side/GallaryPage.dart';
 
 
 
@@ -15,9 +13,21 @@ class Computer extends StatelessWidget {
         child: CustomScrollView(
           slivers: [
             SliverAppBar(
-              backgroundColor: Colors.blue,
+              // backgroundColor: Colors.blue,
+              flexibleSpace: Container(
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topRight,
+                    end: Alignment.bottomLeft,
+                    colors: [
+                      Colors.cyanAccent,
+                      Colors.blue,
+                    ],
+                  ),
+                ),
+              ),
               title: Text(
-                  'ComputerBranch'
+                  'Computer Branch'
               ),
               floating: true,
             ),
@@ -129,22 +139,15 @@ class Computer extends StatelessWidget {
               ),
               delegate: SliverChildBuilderDelegate(
                     (BuildContext context,int index){
-                  // return RawMaterialButton(
-                  //   onPressed: (){
-                  //     Navigator.push(context, MaterialPageRoute(
-                  //       builder: (context) => PhotoDetails(
-                  //           imagePath: assetNames[index]
-                  //       ),
-                  //     ),
-                  //     );
-                  //   },
-
                      return Container(
                       alignment: Alignment.center,
                       padding: _edgeInsertsForIndex(index),
-                      child: Image.asset(
-                        assetNames[index % assetNames.length],
-                        fit: BoxFit.cover,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(10),
+                        child: Image.asset(
+                          assetNames[index % assetNames.length],
+                          fit: BoxFit.cover,
+                        ),
                       ),
                      );
                     //);
@@ -169,11 +172,14 @@ EdgeInsets _edgeInsertsForIndex(int index) {
 }
 
 final List<String> assetNames =[
-  // 'images/SVG/Annual1.svg',
-  // 'images/SVG/Annual2.svg',
-  // 'images/SVG/Annual3.svg',
   'images/Faculty/CE/Aa.png',
   'images/Faculty/CE/Ab.png',
-
+  'images/Faculty/CE/Ac.png',
+  'images/Faculty/CE/Ad.png',
+  'images/Faculty/CE/Ae.png',
+  'images/Faculty/CE/Af.png',
+  'images/Faculty/CE/Ag.png',
+  'images/Faculty/CE/Ah.png',
+  'images/Faculty/CE/Ai.png',
   ];
 

@@ -26,7 +26,7 @@ class AI_DS extends StatelessWidget {
                 //color: Colors.red,
                 child: Padding(
                   padding: const EdgeInsets.only(left: 10, right: 10, top: 10),
-                  child: Text('         Computer Engineering is a branch of engineering that integrates several fields of computer science and electronic engineering, required to develop computer hardware & software.',
+                  child: Text('         Building human-level thought processes through the creation of artificial intelligence (AI) is the state-of-the-art in Computer Science. Intelligent machines are influenced by emerging technologies, smart devices & sensors, computing power, faster data processing, huge storage and human-machine interaction capabilities. Data Science is an interdisciplinary field with the ability to extract knowledge/insights from data – be it structured, unstructured, or semi-structured data. Twinned with Artificial Intelligence, more efficient solutions to find meaningful information from huge pools of data are possible today, with data from multiple sources – sensors, images, streaming video, satellite, medical imagery and the cloud.',
                     textAlign: TextAlign.justify,
                     style: TextStyle(
                       // color: Colors.red,
@@ -43,7 +43,7 @@ class AI_DS extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.only(left: 10, right: 10, top: 10),
                   child: Center(
-                    child: Text('OUR VISION',
+                    child: Text('PROGRAM OUTCOME',
                       style: TextStyle(
                         color: Colors.red,
                         fontSize: 20,
@@ -59,96 +59,16 @@ class AI_DS extends StatelessWidget {
               child: Container(
                 child: Padding(
                   padding: const EdgeInsets.only(left: 10, right: 10,top: 10),
-                  child: Text('         To study and innovate in the emerging era of computer science to engage broadly with the evolving needs of the society we live in by providing value-based education.',
+                  child: Text('         Ability to apply and develop AI algorithms to transform large amount of data into intelligent decisions and/or behavior.'
+                    '\n         Enable graduates to design and harness the power of AI in broad application fields from vision to advanced autonomous systems.'
+                    '\n         Examine large amounts of data to uncover hidden patterns, correlations, insights, and help organizations harness their data to identify new opportunities.'
+                    '\n         Obtain expertise to turn actionable insights and cutting-edge technology into innovative products towards solving real-world problems.',
                     textAlign: TextAlign.justify,
                     style: TextStyle(
                       fontSize: 20,
                     ),
                   ),
                 ),
-              ),
-            ),
-            SliverToBoxAdapter(
-              child: Container(
-                height: 40,
-                //color: Colors.blue,
-                padding: const EdgeInsets.only(left: 10, right: 10),
-                //color: Colors.redAccent,
-                child: Center(
-                  child: Text('OUR MISSION',
-                    textAlign: TextAlign.justify,
-                    style: TextStyle(
-                      color: Colors.red,
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      decoration: TextDecoration.underline,
-                    ),
-                  ),
-                ),
-              ),
-            ),
-            SliverToBoxAdapter(
-              child: Container(
-                //height: MediaQuery.of(context).size.height * 25/100,
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 10, right: 10),
-                  child: Text('         The program’s key mission is to contribute to nation & society by advancing the fields of computer engineering through teaching & research advances, thus enhancing student awareness through immersive training, national & international participation, and experiential learning.',
-                    textAlign: TextAlign.justify,
-                    style: TextStyle(
-                      fontSize: 20,
-                    ),
-                  ),
-                ),
-              ),
-            ),
-            SliverToBoxAdapter(
-              child: Container(
-                height: 40,
-                //color: Colors.blue,
-                padding: const EdgeInsets.only(left: 10, right: 10, bottom: 10),
-                //color: Colors.redAccent,
-                child: Center(
-                  child: Text('Meet Our Faculties',
-                    textAlign: TextAlign.justify,
-                    style: TextStyle(
-                      color: Colors.red,
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      decoration: TextDecoration.underline,
-                    ),
-                  ),
-                ),
-              ),
-            ),
-            SliverGrid(
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                mainAxisSpacing: 15,
-                crossAxisSpacing: 0,
-                //childAspectRatio: 0.99,
-              ),
-              delegate: SliverChildBuilderDelegate(
-                    (BuildContext context,int index){
-                  // return RawMaterialButton(
-                  //   onPressed: (){
-                  //     Navigator.push(context, MaterialPageRoute(
-                  //       builder: (context) => PhotoDetails(
-                  //           imagePath: assetNames[index]
-                  //       ),
-                  //     ),
-                  //     );
-                  //   },
-
-                  return Container(
-                    alignment: Alignment.center,
-                    padding: _edgeInsertsForIndex(index),
-                    child: Image.asset(
-                      assetNames[index % assetNames.length],
-                      fit: BoxFit.cover,
-                    ),
-                  );
-                  //);
-                },childCount: assetNames.length,
               ),
             ),
           ],
@@ -159,21 +79,4 @@ class AI_DS extends StatelessWidget {
 }
 
 
-EdgeInsets _edgeInsertsForIndex(int index) {
-  if (index % 2 == 0) {
-    return EdgeInsets.only(top: 0.0, left: 0.0, right: 0.0, bottom: 0.0);
-  } else
-  {
-    return EdgeInsets.only(top: 0.0, left: 0.0, right: 0.0, bottom: 0.0);
-  }
-}
-
-final List<String> assetNames =[
-  // 'images/SVG/Annual1.svg',
-  // 'images/SVG/Annual2.svg',
-  // 'images/SVG/Annual3.svg',
-  'images/Faculty/CE/Aa.png',
-  'images/Faculty/CE/Ab.png',
-
-];
 

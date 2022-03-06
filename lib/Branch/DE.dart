@@ -14,8 +14,8 @@ class DE extends StatelessWidget {
         slivers: [
           SliverToBoxAdapter(
             child: Container(
-              height: 110,
-              padding: const EdgeInsets.only(left: 10, right: 10, top: 10),
+              // height: 110,
+              padding: const EdgeInsets.only(left: 10, right: 10, top: 10, bottom: 10),
               //color: Colors.yellow,
               child: Text('      Here in AIET, We have 3 main branch in Diploma Engineering.',
                 textAlign: TextAlign.justify,
@@ -39,13 +39,16 @@ class DE extends StatelessWidget {
                     ),
                   );
                 },
-                child: Container(
-                  height: 250,
-                  width: 250,
-                  //color: Colors.greenAccent,
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage('images/Branch/CE.png'),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(10),
+                  child: Container(
+                    height: 250,
+                    width: 250,
+                    //color: Colors.greenAccent,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage('images/Branch/CE.png'),
+                      ),
                     ),
                   ),
                 ),
@@ -58,13 +61,16 @@ class DE extends StatelessWidget {
                     ),
                   );
                 },
-                child: Container(
-                  height: 250,
-                  width: 250,
-                  //color: Colors.greenAccent,
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage('images/Branch/CIE.png'),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(10),
+                  child: Container(
+                    height: 250,
+                    width: 250,
+                    //color: Colors.greenAccent,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage('images/Branch/CIE.png'),
+                      ),
                     ),
                   ),
                 ),
@@ -77,13 +83,16 @@ class DE extends StatelessWidget {
                     ),
                   );
                 },
-                child: Container(
-                  height: 250,
-                  width: 250,
-                  //color: Colors.greenAccent,
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage('images/Branch/ME.png'),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(10),
+                  child: Container(
+                    height: 250,
+                    width: 250,
+                    //color: Colors.greenAccent,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage('images/Branch/ME.png'),
+                      ),
                     ),
                   ),
                 ),

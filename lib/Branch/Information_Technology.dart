@@ -15,9 +15,21 @@ class Information_Technology extends StatelessWidget {
         child: CustomScrollView(
           slivers: [
             SliverAppBar(
-              backgroundColor: Colors.blue,
+              // backgroundColor: Colors.blue,
+              flexibleSpace: Container(
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topRight,
+                    end: Alignment.bottomLeft,
+                    colors: [
+                      Colors.cyanAccent,
+                      Colors.blue,
+                    ],
+                  ),
+                ),
+              ),
               title: Text(
-                  'Information_TechnologyBranch'
+                  'Information_Technology Branch'
               ),
               floating: true,
             ),
@@ -26,7 +38,8 @@ class Information_Technology extends StatelessWidget {
                 //color: Colors.red,
                 child: Padding(
                   padding: const EdgeInsets.only(left: 10, right: 10, top: 10),
-                  child: Text('         Computer Engineering is a branch of engineering that integrates several fields of computer science and electronic engineering, required to develop computer hardware & software.',
+                  child: Text('         Bachelor of Information Technology concentrates on the study of utilizing computers & telecommunications in order to control, gather, store & circulate information. Both hardware & software are parts of IT.'
+                    '\n        More emphasis will be made on the students to instill skills to resolve challenging real-world problems. The department is also well equipped with the latest tools & technology to handle technological changes.',
                     textAlign: TextAlign.justify,
                     style: TextStyle(
                       // color: Colors.red,
@@ -59,7 +72,7 @@ class Information_Technology extends StatelessWidget {
               child: Container(
                 child: Padding(
                   padding: const EdgeInsets.only(left: 10, right: 10,top: 10),
-                  child: Text('         To study and innovate in the emerging era of computer science to engage broadly with the evolving needs of the society we live in by providing value-based education.',
+                  child: Text('         To become an eminent department in the domain of Information Technology & to produce proficient IT engineers with dynamic technical skills to tackle the challenges with great enthusiasm & to be recognized for excellence, innovation & cognitive thinking.',
                     textAlign: TextAlign.justify,
                     style: TextStyle(
                       fontSize: 20,
@@ -92,7 +105,11 @@ class Information_Technology extends StatelessWidget {
                 //height: MediaQuery.of(context).size.height * 25/100,
                 child: Padding(
                   padding: const EdgeInsets.only(left: 10, right: 10),
-                  child: Text('         The program’s key mission is to contribute to nation & society by advancing the fields of computer engineering through teaching & research advances, thus enhancing student awareness through immersive training, national & international participation, and experiential learning.',
+                  child: Text('         To inculcate skills of Information Technology in students & faculties to resolve challenging real-world problems.'
+                    '\n         To encourage students to contribute to the overall development of society & become leaders in their profession.'
+                    '\n         To provide students an intellectually stimulating environment for research, higher studies, and instill entrepreneurial attitude & values.'
+                    '\n         To build an alliance with industries & other institutions to reinforce mutually beneficial correlation.'
+                    '\n         To encourage students to get involved in extracurricular & co-curricular activities for physical, moral & social development.',
                     textAlign: TextAlign.justify,
                     style: TextStyle(
                       fontSize: 20,
@@ -142,9 +159,12 @@ class Information_Technology extends StatelessWidget {
                   return Container(
                     alignment: Alignment.center,
                     padding: _edgeInsertsForIndex(index),
-                    child: Image.asset(
-                      assetNames[index % assetNames.length],
-                      fit: BoxFit.cover,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(10),
+                      child: Image.asset(
+                        assetNames[index % assetNames.length],
+                        fit: BoxFit.cover,
+                      ),
                     ),
                   );
                   //);
@@ -169,11 +189,9 @@ EdgeInsets _edgeInsertsForIndex(int index) {
 }
 
 final List<String> assetNames =[
-  // 'images/SVG/Annual1.svg',
-  // 'images/SVG/Annual2.svg',
-  // 'images/SVG/Annual3.svg',
-  'images/Faculty/CE/Aa.png',
-  'images/Faculty/CE/Ab.png',
-
+  'images/Faculty/IT/Aa.png',
+  'images/Faculty/IT/Ab.png',
+  'images/Faculty/IT/Ac.png',
+  'images/Faculty/IT/Ad.png',
 ];
 

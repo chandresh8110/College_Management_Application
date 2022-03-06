@@ -15,9 +15,21 @@ class Mechanical extends StatelessWidget {
         child: CustomScrollView(
           slivers: [
             SliverAppBar(
-              backgroundColor: Colors.blue,
+              // backgroundColor: Colors.blue,
+              flexibleSpace: Container(
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topRight,
+                    end: Alignment.bottomLeft,
+                    colors: [
+                      Colors.cyanAccent,
+                      Colors.blue,
+                    ],
+                  ),
+                ),
+              ),
               title: Text(
-                  'MechanicalBranch'
+                  'Mechanical Branch'
               ),
               floating: true,
             ),
@@ -26,7 +38,7 @@ class Mechanical extends StatelessWidget {
                 //color: Colors.red,
                 child: Padding(
                   padding: const EdgeInsets.only(left: 10, right: 10, top: 10),
-                  child: Text('         Computer Engineering is a branch of engineering that integrates several fields of computer science and electronic engineering, required to develop computer hardware & software.',
+                  child: Text('         Department has an excellent Placement Record with the students getting placed in core industries as well as IT sectors. Our students have won awards at various technical events, conferences & symposiums held at prestigious institutions. The Department has a dedicated & an experienced faculty team driving the department towards excellence in academics as well as in R&D activities.',
                     textAlign: TextAlign.justify,
                     style: TextStyle(
                       // color: Colors.red,
@@ -59,7 +71,7 @@ class Mechanical extends StatelessWidget {
               child: Container(
                 child: Padding(
                   padding: const EdgeInsets.only(left: 10, right: 10,top: 10),
-                  child: Text('         To study and innovate in the emerging era of computer science to engage broadly with the evolving needs of the society we live in by providing value-based education.',
+                  child: Text('         To deliver total quality education in mechanical engineering through proper channels & research in cutting edge technologies & human values. This helps in forming a culture having trust & continuous learning to meet expectations of students, industries & society at large.',
                     textAlign: TextAlign.justify,
                     style: TextStyle(
                       fontSize: 20,
@@ -92,7 +104,9 @@ class Mechanical extends StatelessWidget {
                 //height: MediaQuery.of(context).size.height * 25/100,
                 child: Padding(
                   padding: const EdgeInsets.only(left: 10, right: 10),
-                  child: Text('         The program’s key mission is to contribute to nation & society by advancing the fields of computer engineering through teaching & research advances, thus enhancing student awareness through immersive training, national & international participation, and experiential learning.',
+                  child: Text('         To impart highest quality education to the students to build their capacity & enhance their skills to make them globally competitive mechanical engineers.'
+                    '\n       To provide the students with an academic environment of excellence, leadership, ethical guidelines & lifelong learning needed for a long productive career.'
+                    '\n       To engage the students in academic as well as scholarly activities, which strengthen the department reputation in the global market.',
                     textAlign: TextAlign.justify,
                     style: TextStyle(
                       fontSize: 20,
@@ -142,9 +156,12 @@ class Mechanical extends StatelessWidget {
                   return Container(
                     alignment: Alignment.center,
                     padding: _edgeInsertsForIndex(index),
-                    child: Image.asset(
-                      assetNames[index % assetNames.length],
-                      fit: BoxFit.cover,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(10),
+                      child: Image.asset(
+                        assetNames[index % assetNames.length],
+                        fit: BoxFit.cover,
+                      ),
                     ),
                   );
                   //);
@@ -169,11 +186,11 @@ EdgeInsets _edgeInsertsForIndex(int index) {
 }
 
 final List<String> assetNames =[
-  // 'images/SVG/Annual1.svg',
-  // 'images/SVG/Annual2.svg',
-  // 'images/SVG/Annual3.svg',
-  'images/Faculty/CE/Aa.png',
-  'images/Faculty/CE/Ab.png',
-
+  'images/Faculty/Mech/Aa.png',
+  'images/Faculty/Mech/Ab.png',
+  'images/Faculty/Mech/Ac.png',
+  'images/Faculty/Mech/Ad.png',
+  'images/Faculty/Mech/Ae.png',
+  'images/Faculty/Mech/Af.png',
 ];
 

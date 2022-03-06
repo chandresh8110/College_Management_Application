@@ -258,8 +258,8 @@ class _CourseListState extends State<CourseList> {
                 value: selectedCourse,
                 items: widget.list.map((course) {
                   return DropdownMenuItem(
-                      value: course['course_id'],
-                      child: Text(course['course_id']));
+                      value: course['cname'],
+                      child: Text(course['cname']));
                 }).toList(),
                 onChanged: (course) {
                   setState(() {

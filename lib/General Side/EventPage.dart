@@ -61,13 +61,16 @@ class EventPage extends StatelessWidget {
                           builder: (context) => Independance_Day()),
                     );
                   },
-                  child: Container(
-                    height: 250,
-                    width: 250,
-                    //color: Colors.greenAccent,
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage('images/Independence day.png'),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(10),
+                    child: Container(
+                      height: 250,
+                      width: 250,
+                      //color: Colors.greenAccent,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage('images/Independence day.png'),
+                        ),
                       ),
                     ),
                   ),
@@ -79,13 +82,16 @@ class EventPage extends StatelessWidget {
                       MaterialPageRoute(builder: (context) => Engineers_Day()),
                     );
                   },
-                  child: Container(
-                    height: 250,
-                    width: 250,
-                    //color: Colors.greenAccent,
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage('images/engineersday.png'),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(10),
+                    child: Container(
+                      height: 250,
+                      width: 250,
+                      //color: Colors.greenAccent,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage('images/engineersday.png'),
+                        ),
                       ),
                     ),
                   ),
@@ -97,13 +103,16 @@ class EventPage extends StatelessWidget {
                       MaterialPageRoute(builder: (context) => Sports()),
                     );
                   },
-                  child: Container(
-                    height: 250,
-                    width: 250,
-                    //color: Colors.greenAccent,
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage('images/sports.png'),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(10),
+                    child: Container(
+                      height: 250,
+                      width: 250,
+                      //color: Colors.greenAccent,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage('images/sports.png'),
+                        ),
                       ),
                     ),
                   ),
@@ -115,13 +124,16 @@ class EventPage extends StatelessWidget {
                       MaterialPageRoute(builder: (context) => TechFest()),
                     );
                   },
-                  child: Container(
-                    height: 250,
-                    width: 250,
-                    //color: Colors.greenAccent,
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage('images/techfest.png'),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(10),
+                    child: Container(
+                      height: 250,
+                      width: 250,
+                      //color: Colors.greenAccent,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage('images/techfest.png'),
+                        ),
                       ),
                     ),
                   ),
@@ -133,13 +145,16 @@ class EventPage extends StatelessWidget {
                       MaterialPageRoute(builder: (context) => Visits()),
                     );
                   },
-                  child: Container(
-                    height: 250,
-                    width: 250,
-                    //color: Colors.greenAccent,
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage('images/Visit.png'),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(10),
+                    child: Container(
+                      height: 250,
+                      width: 250,
+                      //color: Colors.greenAccent,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage('images/Visit.png'),
+                        ),
                       ),
                     ),
                   ),
@@ -151,13 +166,16 @@ class EventPage extends StatelessWidget {
                       MaterialPageRoute(builder: (context) => Teachers_Day()),
                     );
                   },
-                  child: Container(
-                    height: 250,
-                    width: 250,
-                    //color: Colors.greenAccent,
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage('images/Teacher day.png'),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(10),
+                    child: Container(
+                      height: 250,
+                      width: 250,
+                      //color: Colors.greenAccent,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage('images/Teacher day.png'),
+                        ),
                       ),
                     ),
                   ),
@@ -169,13 +187,16 @@ class EventPage extends StatelessWidget {
                       MaterialPageRoute(builder: (context) => Canteen()),
                     );
                   },
-                  child: Container(
-                    height: 250,
-                    width: 250,
-                    //color: Colors.greenAccent,
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage('images/canteen.png'),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(10),
+                    child: Container(
+                      height: 250,
+                      width: 250,
+                      //color: Colors.greenAccent,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage('images/canteen.png'),
+                        ),
                       ),
                     ),
                   ),
@@ -188,13 +209,16 @@ class EventPage extends StatelessWidget {
                           builder: (context) => Annual_Function()),
                     );
                   },
-                  child: Container(
-                    height: 250,
-                    width: 250,
-                    //color: Colors.greenAccent,
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage('images/AnnualFunction.png'),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(10),
+                    child: Container(
+                      height: 250,
+                      width: 250,
+                      //color: Colors.greenAccent,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage('images/AnnualFunction.png'),
+                        ),
                       ),
                     ),
                   ),
@@ -206,13 +230,16 @@ class EventPage extends StatelessWidget {
                       MaterialPageRoute(builder: (context) => Celeb()),
                     );
                   },
-                  child: Container(
-                    height: 250,
-                    width: 250,
-                    //color: Colors.greenAccent,
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage('images/Celebrity.png'),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(10),
+                    child: Container(
+                      height: 250,
+                      width: 250,
+                      //color: Colors.greenAccent,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage('images/Celebrity.png'),
+                        ),
                       ),
                     ),
                   ),
@@ -225,13 +252,16 @@ class EventPage extends StatelessWidget {
                           builder: (context) => Day_Celebration()),
                     );
                   },
-                  child: Container(
-                    height: 250,
-                    width: 250,
-                    //color: Colors.greenAccent,
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage('images/Daycele.png'),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(10),
+                    child: Container(
+                      height: 250,
+                      width: 250,
+                      //color: Colors.greenAccent,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage('images/Daycele.png'),
+                        ),
                       ),
                     ),
                   ),
@@ -244,13 +274,16 @@ class EventPage extends StatelessWidget {
                           builder: (context) => Computer_photos()),
                     );
                   },
-                  child: Container(
-                    height: 250,
-                    width: 250,
-                    //color: Colors.greenAccent,
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage('images/Branch/CE.png'),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(10),
+                    child: Container(
+                      height: 250,
+                      width: 250,
+                      //color: Colors.greenAccent,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage('images/Branch/CE.png'),
+                        ),
                       ),
                     ),
                   ),
@@ -263,13 +296,16 @@ class EventPage extends StatelessWidget {
                           builder: (context) => Electrical_photos()),
                     );
                   },
-                  child: Container(
-                    height: 250,
-                    width: 250,
-                    //color: Colors.greenAccent,
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage('images/Branch/EE.png'),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(10),
+                    child: Container(
+                      height: 250,
+                      width: 250,
+                      //color: Colors.greenAccent,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage('images/Branch/EE.png'),
+                        ),
                       ),
                     ),
                   ),
@@ -281,13 +317,16 @@ class EventPage extends StatelessWidget {
                       MaterialPageRoute(builder: (context) => Mech_photos()),
                     );
                   },
-                  child: Container(
-                    height: 250,
-                    width: 250,
-                    //color: Colors.greenAccent,
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage('images/Branch/ME.png'),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(10),
+                    child: Container(
+                      height: 250,
+                      width: 250,
+                      //color: Colors.greenAccent,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage('images/Branch/ME.png'),
+                        ),
                       ),
                     ),
                   ),
@@ -299,13 +338,16 @@ class EventPage extends StatelessWidget {
                       MaterialPageRoute(builder: (context) => Civil_photos()),
                     );
                   },
-                  child: Container(
-                    height: 250,
-                    width: 250,
-                    //color: Colors.greenAccent,
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage('images/Branch/CIE.png'),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(10),
+                    child: Container(
+                      height: 250,
+                      width: 250,
+                      //color: Colors.greenAccent,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage('images/Branch/CIE.png'),
+                        ),
                       ),
                     ),
                   ),

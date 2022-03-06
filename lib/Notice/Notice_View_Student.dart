@@ -55,7 +55,19 @@ class _Notice_View_StudentState extends State<Notice_View_Student> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Notice'),
-        backgroundColor: Colors.blue,
+        // backgroundColor: Colors.blue,
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topRight,
+              end: Alignment.bottomLeft,
+              colors: [
+                Colors.cyanAccent,
+                Colors.blue,
+              ],
+            ),
+          ),
+        ),
         leading: SMenuWidget(username: widget.username,),
       ),
       body: loading

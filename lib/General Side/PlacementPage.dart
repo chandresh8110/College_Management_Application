@@ -14,16 +14,34 @@ class PlacementPage extends StatefulWidget {
 
 class _PlacementPageState extends State<PlacementPage> {
   final urlImages1 = [
-    'https://picsum.photos/seed/image005/3216/2144',
-    'https://picsum.photos/seed/image006/3216/2144',
-    'https://picsum.photos/seed/image007/3216/2144',
-    'https://picsum.photos/seed/image008/3216/2144',
+    'images/Students/P1.png',
+    'images/Students/P2.png',
+    'images/Students/P3.png',
+    'images/Students/P4.png',
+    'images/Students/P5.png',
+    'images/Students/P6.png',
+    'images/Students/P7.png',
+    'images/Students/P8.png',
+    'images/Students/P9.png',
+    'images/Students/P10.png',
+    'images/Students/P11.png',
+    'images/Students/P12.png',
+    'images/Students/P13.png',
+    'images/Students/P14.png',
+    'images/Students/P15.png',
   ];
+
   final urlImages2 = [
-    'https://picsum.photos/seed/image005/3216/2144',
-    'https://picsum.photos/seed/image006/3216/2144',
-    'https://picsum.photos/seed/image007/3216/2144',
-    'https://picsum.photos/seed/image008/3216/2144',
+    'images/Placement/accenture.png',
+    'images/Placement/adani.png',
+    'images/Placement/cess.png',
+    'images/Placement/einfochips.png',
+    'images/Placement/ford.png',
+    'images/Placement/ibm.png',
+    'images/Placement/mahindra.png',
+    'images/Placement/md.png',
+    'images/Placement/tcs.png',
+    'images/Placement/zydus.png',
   ];
 
   @override
@@ -79,44 +97,52 @@ class _PlacementPageState extends State<PlacementPage> {
                 child: Text(
                   'Recent Placements',
                   style: TextStyle(
-                    fontSize: 20,
+                    fontSize: 30,
                     fontWeight: FontWeight.bold,
+                    color: Colors.red,
+                    decoration: TextDecoration.underline,
                   ),
                 ),
               ),
             ),
           ),
           SliverToBoxAdapter(
-            child: Container(
-              height: 430,
-              //color: Colors.yellow,
-              child: CarouselSlider.builder(
-                options: CarouselOptions(
-                  height: 400,
-                  autoPlay: true,
-                  //viewportFraction: 1,
-                  enlargeCenterPage: true,
+            child: Padding(
+              padding: const EdgeInsets.only(left: 10, right: 10),
+              child: Container(
+                // height: 430,
+                //color: Colors.yellow,
+                child: CarouselSlider.builder(
+                  options: CarouselOptions(
+                    // height: 400,
+                    autoPlay: true,
+                    viewportFraction: 1,
+                    // enlargeCenterPage: true,
+                  ),
+                  itemCount: urlImages1.length,
+                  itemBuilder: (context, index, realIndex) {
+                    final urlImage = urlImages1[index];
+                    return buildImage(urlImage, index);
+                  },
                 ),
-                itemCount: urlImages1.length,
-                itemBuilder: (context, index, realIndex) {
-                  final urlImage = urlImages1[index];
-                  return buildImage(urlImage, index);
-                },
               ),
             ),
           ),
           SliverToBoxAdapter(
-            child: Container(
-              //color:Colors.amber,
-              height: 40,
-              padding: const EdgeInsets.only(left: 10, right: 10),
-              child: Text(
-                'Some of our initiatives include :- ',
-                style: TextStyle(
-                  fontSize: 20,
-                  letterSpacing: 0.9,
-                  fontWeight: FontWeight.bold,
-                  decoration: TextDecoration.underline,
+            child: Padding(
+              padding: const EdgeInsets.only(top: 20),
+              child: Container(
+                //color:Colors.amber,
+                height: 40,
+                padding: const EdgeInsets.only(left: 10, right: 10),
+                child: Text(
+                  'Some of our initiatives include :- ',
+                  style: TextStyle(
+                    fontSize: 20,
+                    letterSpacing: 0.9,
+                    fontWeight: FontWeight.bold,
+                    decoration: TextDecoration.underline,
+                  ),
                 ),
               ),
             ),
@@ -154,8 +180,10 @@ class _PlacementPageState extends State<PlacementPage> {
                 child: Text(
                   'Collaborators',
                   style: TextStyle(
-                    fontSize: 20,
+                    fontSize: 30,
                     fontWeight: FontWeight.bold,
+                    color: Colors.red,
+                    decoration: TextDecoration.underline
                   ),
                 ),
               ),
@@ -163,14 +191,14 @@ class _PlacementPageState extends State<PlacementPage> {
           ),
           SliverToBoxAdapter(
             child: Container(
-              height: 430,
+              // height: 430,
               //color: Colors.amber,
               child: CarouselSlider.builder(
                 options: CarouselOptions(
-                  height: 400,
+                  // height: 400,
                   autoPlay: true,
-                  //viewportFraction: 1,
-                  enlargeCenterPage: true,
+                  viewportFraction: 1,
+                  // enlargeCenterPage: true,
                 ),
                 itemCount: urlImages2.length,
                 itemBuilder: (context, index, realIndex) {
@@ -202,10 +230,13 @@ class _PlacementPageState extends State<PlacementPage> {
 
   Widget buildImage(String urlImage, int index) => Container(
         margin: EdgeInsets.symmetric(horizontal: 5),
-        color: Colors.grey,
-        child: Image.network(
-          urlImage,
-          fit: BoxFit.cover,
+        color: Colors.transparent,
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(10),
+          child: Image.asset(
+            urlImage,
+            fit: BoxFit.cover,
+          ),
         ),
       );
 }

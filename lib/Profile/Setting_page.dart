@@ -6,7 +6,7 @@ import 'package:final_app/slider/SliderDrawer.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import '../Student Side/Student_Slider/SSliderDrawer.dart';
+import '../General Side/theme_helper.dart';
 import 'Details_Page.dart';
 
 class Profile_page extends StatefulWidget {
@@ -35,7 +35,19 @@ class _Profile_pageState extends State<Profile_page> {
         leading: SMenuWidget(
           username: widget.username,
         ),
-        backgroundColor: Colors.blue,
+        // backgroundColor: Colors.blue,
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topRight,
+              end: Alignment.bottomLeft,
+              colors: [
+                Colors.cyanAccent,
+                Colors.blue,
+              ],
+            ),
+          ),
+        ),
       ),
       body: FutureBuilder<List>(
         future: getData(),
@@ -109,19 +121,25 @@ class ItemList extends StatelessWidget {
                 },
               ),
             ),
-            Container(
-              child: ElevatedButton(
-                onPressed: () {
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => SSliderDrawer(
-                        username: '$username',
-                      ),
-                    ),
-                  );
-                },
-                child: Text("Logout"),
+            Padding(
+              padding: const EdgeInsets.all(20),
+              child: Container(
+                decoration: ThemeHelper().buttonBoxDecoration(context),
+                child: SizedBox(
+                  width: double.infinity,
+                  child: ElevatedButton(
+                    style: ThemeHelper().buttonStyle(),
+                    onPressed: () {
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => SliderDrawer(),
+                        ),
+                      );
+                    },
+                    child: Text("Logout"),
+                  ),
+                ),
               ),
             )
           ],

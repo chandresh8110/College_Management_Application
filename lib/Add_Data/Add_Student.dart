@@ -254,10 +254,10 @@ class _Add_StudentState extends State<Add_Student> {
                       decoration: ThemeHelper()
                           .textInputDecoration('Joining Year', "Ex.: 2018-19"),
                       validator: (value) {
-                        if (value!.isNotEmpty && value.length > 4) {
-                          return 'Just 4 Number';
-                        } else if (value.length < 4 && value.isNotEmpty) {
-                          return 'Just 4 Number';
+                        if (value!.isNotEmpty && value.length > 7) {
+                          return 'Just 7 Number';
+                        } else if (value.length < 7 && value.isNotEmpty) {
+                          return 'Just  Number';
                         } else if (value.isEmpty) {
                           return 'required';
                         } else {
@@ -502,7 +502,7 @@ class _Add_StudentState extends State<Add_Student> {
                           password = newValue!;
                         });
                       },
-                      items: <String>['123456789', '123456789']
+                      items: <String>['123456789', '1234567890']
                           .map<DropdownMenuItem<String>>((String value) {
                         return DropdownMenuItem<String>(
                           value: value,

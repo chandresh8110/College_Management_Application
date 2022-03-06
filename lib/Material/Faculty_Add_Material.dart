@@ -76,7 +76,19 @@ class _Faculty_Add_MaterialState extends State<Faculty_Add_Material> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Add Material'),
-        backgroundColor: Colors.blue,
+        // backgroundColor: Colors.blue,
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topRight,
+              end: Alignment.bottomLeft,
+              colors: [
+                Colors.cyanAccent,
+                Colors.blue,
+              ],
+            ),
+          ),
+        ),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -233,7 +245,7 @@ class _CourseListState extends State<CourseList> {
   uploadFile() async {
     String uploadurl = "http://103.141.241.97/test/mat_upload.php";
     FormData formdata = FormData.fromMap({
-      "year" : widget.year,
+      "year": widget.year,
       "sem": widget.sem,
       "branch": widget.branch,
       "c_name": selectedCourse,
@@ -282,8 +294,7 @@ class _CourseListState extends State<CourseList> {
               value: selectedCourse,
               items: widget.list.map((course) {
                 return DropdownMenuItem(
-                    value: course['course_name'],
-                    child: Text(course['course_name']));
+                    value: course['cname'], child: Text(course['cname']));
               }).toList(),
               onChanged: (course) {
                 setState(() {
@@ -358,6 +369,9 @@ class _CourseListState extends State<CourseList> {
                     onPressed: () {
                       uploadFile();
                       Navigator.of(context).pop();
+                      // setState(() {
+                      //   Navigator.pop(context);
+                      // });
                     },
                     icon: const Icon(Icons.folder_open),
                     label: const Text("UPLOAD FILE"),

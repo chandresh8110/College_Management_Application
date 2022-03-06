@@ -6,6 +6,7 @@ import 'package:final_app/Student%20Side/Student_Slider/SMenuWidget.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import '../General Side/theme_helper.dart';
 import '../Student Side/Student_Slider/SSliderDrawer.dart';
 import 'Material_List.dart';
 
@@ -245,8 +246,8 @@ class _CourseListState extends State<CourseList> {
                 value: selectedCourse,
                 items: widget.list.map((course) {
                   return DropdownMenuItem(
-                      value: course['course_name'],
-                      child: Text(course['course_name']));
+                      value: course['cname'],
+                      child: Text(course['cname']));
                 }).toList(),
                 onChanged: (course) {
                   setState(() {
@@ -257,23 +258,33 @@ class _CourseListState extends State<CourseList> {
                   });
                 }),
           ),
-          ElevatedButton(
-            onPressed: () {
-              Navigator.of(context)
-                  .push(
-                    MaterialPageRoute(
-                        builder: (context) => Material_list(
-                              branch: widget.branch,
-                              course: '$selectedCourse',
-                              sem: widget.sem,
-                              year: widget.year,
-                            )),
-                  )
-                  .then((value) => setState(() {
-                        selectedCourse = value;
-                      }));
-            },
-            child: const Text('Ok'),
+          Padding(
+            padding: const EdgeInsets.all(20),
+            child: Container(
+              decoration: ThemeHelper().buttonBoxDecoration(context),
+              child: SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                  style: ThemeHelper().buttonStyle(),
+                  onPressed: () {
+                    Navigator.of(context)
+                        .push(
+                          MaterialPageRoute(
+                              builder: (context) => Material_list(
+                                    branch: widget.branch,
+                                    course: '$selectedCourse',
+                                    sem: widget.sem,
+                                    year: widget.year,
+                                  )),
+                        )
+                        .then((value) => setState(() {
+                              selectedCourse = value;
+                            }));
+                  },
+                  child: const Text('Ok'),
+                ),
+              ),
+            ),
           ),
         ],
       ),

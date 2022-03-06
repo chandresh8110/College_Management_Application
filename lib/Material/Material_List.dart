@@ -6,6 +6,7 @@ import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 
+import '../General Side/theme_helper.dart';
 import 'Material_View.dart';
 
 class Material_list extends StatefulWidget {
@@ -92,12 +93,15 @@ class _Material_listState extends State<Material_list> {
               itemBuilder: (context, index) {
                 return ListTile(
                   leading: TextButton.icon(
+                    style: TextButton.styleFrom(
+                      primary: Theme.of(context).primaryColor,
+                    ),
                     onPressed: () {
                       Navigator.of(context).push(
                         MaterialPageRoute(
                           builder: (context) => Material_View(
                             name: pdfList![index]["mat_name"],
-                            title: pdfList![index]["course_name"],
+                            title: pdfList![index]["cname"],
                           ),
                         ),
                       );

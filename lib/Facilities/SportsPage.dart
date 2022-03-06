@@ -43,36 +43,36 @@ class SportPage extends StatelessWidget {
                 ),
               ),
             ),
-            SliverGrid(
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                mainAxisSpacing: 0,
-                crossAxisSpacing: 0,
-                childAspectRatio: 0.99,
-              ),
-              delegate: SliverChildBuilderDelegate(
-                    (BuildContext context,int index){
-                  return RawMaterialButton(
-                    onPressed: (){
-                      Navigator.push(context, MaterialPageRoute(
-                        builder: (context) => PhotoDetails(
-                            imagePath: networkNames[index]
-                        ),
-                      ),
-                      );
-                    },
-                    child: Container(
-                      alignment: Alignment.center,
-                      padding: _edgeInsertsForIndex(index),
-                      child: Image.network(
-                        networkNames[index % networkNames.length],
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  );
-                },childCount: networkNames.length,
-              ),
-            ),
+            // SliverGrid(
+            //   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            //     crossAxisCount: 2,
+            //     mainAxisSpacing: 0,
+            //     crossAxisSpacing: 0,
+            //     childAspectRatio: 0.99,
+            //   ),
+            //   delegate: SliverChildBuilderDelegate(
+            //         (BuildContext context,int index){
+            //       return RawMaterialButton(
+            //         onPressed: (){
+            //           Navigator.push(context, MaterialPageRoute(
+            //             builder: (context) => PhotoDetails(
+            //                 imagePath: networkNames[index]
+            //             ),
+            //           ),
+            //           );
+            //         },
+            //         child: Container(
+            //           alignment: Alignment.center,
+            //           padding: _edgeInsertsForIndex(index),
+            //           child: Image.network(
+            //             networkNames[index % networkNames.length],
+            //             fit: BoxFit.cover,
+            //           ),
+            //         ),
+            //       );
+            //     },childCount: networkNames.length,
+            //   ),
+            // ),
           ]
       ),
     );

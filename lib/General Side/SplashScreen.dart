@@ -20,7 +20,7 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   _navigatetohome() async {
-    await Future.delayed(Duration(milliseconds: 1000), () {});
+    await Future.delayed(Duration(milliseconds: 1500), () {});
     Navigator.pushReplacement(
         context, MaterialPageRoute(builder: (context) => SliderDrawer()));
   }
@@ -47,7 +47,7 @@ class _SplashScreenState extends State<SplashScreen> {
           child: Container(
             child: Image(
               image: AssetImage(
-                'images/White_logo.png',
+                'images/ss.png',
               ),
             ),
           ),

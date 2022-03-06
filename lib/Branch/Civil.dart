@@ -15,9 +15,21 @@ class Civil extends StatelessWidget {
         child: CustomScrollView(
           slivers: [
             SliverAppBar(
-              backgroundColor: Colors.blue,
+              // backgroundColor: Colors.blue,
+              flexibleSpace: Container(
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topRight,
+                    end: Alignment.bottomLeft,
+                    colors: [
+                      Colors.cyanAccent,
+                      Colors.blue,
+                    ],
+                  ),
+                ),
+              ),
               title: Text(
-                  'CivilBranch'
+                  'Civil Branch'
               ),
               floating: true,
             ),
@@ -26,8 +38,8 @@ class Civil extends StatelessWidget {
                 //color: Colors.red,
                 child: Padding(
                   padding: const EdgeInsets.only(left: 10, right: 10, top: 10),
-                  child: Text('         Computer Engineering is a branch of engineering that integrates several fields of computer science and electronic engineering, required to develop computer hardware & software.',
-                    textAlign: TextAlign.justify,
+                  child: Text("         Our department is equipped with State-of-the-Art Laboratories such as basics of Civil Engineering, Mechanics of Solids, Surveying, Concrete Technology, Soil Mechanics, Highway Engineering, Fluid Mechanics, Environmental Engineering, Water Resources Engineering, Geology Model Lab, Building & Town Planning Lab & Computer Lab.",
+                  textAlign: TextAlign.justify,
                     style: TextStyle(
                       // color: Colors.red,
                       fontSize: 20,
@@ -59,7 +71,7 @@ class Civil extends StatelessWidget {
               child: Container(
                 child: Padding(
                   padding: const EdgeInsets.only(left: 10, right: 10,top: 10),
-                  child: Text('         To study and innovate in the emerging era of computer science to engage broadly with the evolving needs of the society we live in by providing value-based education.',
+                  child: Text('         To be an outstanding department for enhancing sustainability in development of society.',
                     textAlign: TextAlign.justify,
                     style: TextStyle(
                       fontSize: 20,
@@ -92,7 +104,8 @@ class Civil extends StatelessWidget {
                 //height: MediaQuery.of(context).size.height * 25/100,
                 child: Padding(
                   padding: const EdgeInsets.only(left: 10, right: 10),
-                  child: Text('         The program’s key mission is to contribute to nation & society by advancing the fields of computer engineering through teaching & research advances, thus enhancing student awareness through immersive training, national & international participation, and experiential learning.',
+                  child: Text('         To provide the best possible educational facilities for training bright students for careers in the field of civil engineering.'
+                      '\n         To deal with the contemporary issues and to cater to the societal needs.',
                     textAlign: TextAlign.justify,
                     style: TextStyle(
                       fontSize: 20,
@@ -142,9 +155,12 @@ class Civil extends StatelessWidget {
                   return Container(
                     alignment: Alignment.center,
                     padding: _edgeInsertsForIndex(index),
-                    child: Image.asset(
-                      assetNames[index % assetNames.length],
-                      fit: BoxFit.cover,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(10),
+                      child: Image.asset(
+                        assetNames[index % assetNames.length],
+                        fit: BoxFit.cover,
+                      ),
                     ),
                   );
                   //);
@@ -169,11 +185,11 @@ EdgeInsets _edgeInsertsForIndex(int index) {
 }
 
 final List<String> assetNames =[
-  // 'images/SVG/Annual1.svg',
-  // 'images/SVG/Annual2.svg',
-  // 'images/SVG/Annual3.svg',
-  'images/Faculty/CE/Aa.png',
-  'images/Faculty/CE/Ab.png',
+  'images/Faculty/Civil/Aa.png',
+  'images/Faculty/Civil/Ab.png',
+  'images/Faculty/Civil/Ac.png',
+  'images/Faculty/Civil/Ad.png',
+  'images/Faculty/Civil/Ae.png',
 
 ];
 

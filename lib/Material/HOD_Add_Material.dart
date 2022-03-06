@@ -179,14 +179,193 @@ class _HOD_Add_MaterialState extends State<HOD_Add_Material> {
   }
 }
 
+// class CourseList extends StatefulWidget {
+//   const CourseList(
+//       {Key? key,
+//       required this.list,
+//       required this.sem,
+//       required this.branch,
+//       required this.year,
+//       required this.username})
+//       : super(key: key);
+//
+//   final List list;
+//   final String sem;
+//   final String branch;
+//   final String year;
+//   final String username;
+//
+//   @override
+//   State<CourseList> createState() => _CourseListState();
+// }
+//
+// class _CourseListState extends State<CourseList> {
+//   TextEditingController chapternocontroller = TextEditingController();
+//
+//   File? selectedfile;
+//   Response? response;
+//   String? progress;
+//   Dio dio = new Dio();
+//   String? selectedCourse;
+//   Timer? timer;
+//
+//   selectFile() async {
+//     FilePickerResult? result = await FilePicker.platform.pickFiles(
+//       type: FileType.custom,
+//       allowedExtensions: ['pdf'],
+//       //allowed extension to choose
+//     );
+//
+//     if (result != null) {
+//       //if there is selected file
+//       selectedfile = File(result.files.single.path!);
+//     }
+//
+//     setState(() {}); //update the UI so that file name is shown
+//   }
+//
+//   uploadFile() async {
+//     String uploadurl = "http://103.141.241.97/test/mat_upload.php";
+//     FormData formdata = FormData.fromMap({
+//       "sem": widget.sem,
+//       "branch": widget.branch,
+//       "c_id": selectedCourse,
+//       "c_no": chapternocontroller.text,
+//       'uploadedby': widget.username,
+//       "file": await MultipartFile.fromFile(selectedfile!.path,
+//           filename: selectedfile!.path
+//           //show only filename from path
+//           ),
+//     });
+//
+//     response = await dio.post(
+//       uploadurl,
+//       data: formdata,
+//       onSendProgress: (int sent, int total) {
+//         String percentage = (sent / total * 100).toStringAsFixed(2);
+//         setState(() {
+//           progress = "$sent" +
+//               " Bytes of " "$total Bytes - " +
+//               percentage +
+//               " % uploaded";
+//           //update the progress
+//         });
+//       },
+//     );
+//
+//     if (response!.statusCode == 200) {
+//       print(response.toString());
+//       //print response from server
+//     } else {
+//       print("Error during connection to server.");
+//     }
+//   }
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return SingleChildScrollView(
+//       child: Column(
+//         children: [
+//           Padding(
+//             padding: const EdgeInsets.all(10.0),
+//             child: DropdownButton(
+//               menuMaxHeight: 5000,
+//               isExpanded: true,
+//               hint: const Text('Select Course'),
+//               value: selectedCourse,
+//               items: widget.list.map((course) {
+//                 return DropdownMenuItem(
+//                     value: course['cname'],
+//                     child: Text(course['cname']));
+//               }).toList(),
+//               onChanged: (course) {
+//                 setState(() {
+//                   selectedCourse = course.toString();
+//                   if (kDebugMode) {
+//                     print(selectedCourse);
+//                   }
+//                 });
+//               },
+//             ),
+//           ),
+//           Container(
+//             child: TextFormField(
+//               controller: chapternocontroller,
+//               decoration: const InputDecoration(
+//                 labelText: "Chapter No.",
+//                 hintText: "Short Form like :- ch-1 , ch-2",
+//               ),
+//               validator: (value) {
+//                 if (value!.isEmpty) {
+//                   return 'required';
+//                 } else if (value.isNotEmpty) {
+//                   return null;
+//                 }
+//               },
+//             ),
+//           ),
+//           Container(
+//             margin: const EdgeInsets.all(10),
+//             //show file name here
+//             child: progress == null
+//                 ? const Text("Progress: 0%")
+//                 : Text(
+//                     "Progress: $progress",
+//                     textAlign: TextAlign.center,
+//                     style: const TextStyle(fontSize: 18),
+//                   ),
+//             //show progress status here
+//           ),
+//
+//           Container(
+//             margin: const EdgeInsets.all(10),
+//             //show file name here
+//             child: selectedfile == null
+//                 ? const Text("Choose File")
+//                 : Text(selectedfile!.path),
+//             //basename is from path package, to get filename from path
+//             //check if file is selected, if yes then show file name
+//           ),
+//
+//           Container(
+//               child: ElevatedButton.icon(
+//             style: ElevatedButton.styleFrom(primary: Colors.orangeAccent),
+//             onPressed: () {
+//               selectFile();
+//             },
+//             icon: const Icon(Icons.folder_open),
+//             label: const Text("CHOOSE FILE"),
+//           )),
+//
+//           //if selectedfile is null then show empty container
+//           //if file is selected then show upload button
+//           selectedfile == null
+//               ? Container()
+//               : Container(
+//                   child: ElevatedButton.icon(
+//                     style:
+//                         ElevatedButton.styleFrom(primary: Colors.orangeAccent),
+//                     onPressed: () {
+//                       uploadFile();
+//                       // Navigator.of(context).pop();
+//                     },
+//                     icon: const Icon(Icons.folder_open),
+//                     label: const Text("UPLOAD FILE"),
+//                   ),
+//                 ),
+//         ],
+//       ),
+//     );
+//   }
+// }
 class CourseList extends StatefulWidget {
   const CourseList(
       {Key? key,
-      required this.list,
-      required this.sem,
-      required this.branch,
-      required this.year,
-      required this.username})
+        required this.list,
+        required this.sem,
+        required this.branch,
+        required this.year,
+        required this.username})
       : super(key: key);
 
   final List list;
@@ -227,15 +406,16 @@ class _CourseListState extends State<CourseList> {
   uploadFile() async {
     String uploadurl = "http://103.141.241.97/test/mat_upload.php";
     FormData formdata = FormData.fromMap({
+      "year": widget.year,
       "sem": widget.sem,
       "branch": widget.branch,
-      "c_id": selectedCourse,
+      "c_name": selectedCourse,
       "c_no": chapternocontroller.text,
       'uploadedby': widget.username,
       "file": await MultipartFile.fromFile(selectedfile!.path,
           filename: selectedfile!.path
-          //show only filename from path
-          ),
+        //show only filename from path
+      ),
     });
 
     response = await dio.post(
@@ -275,8 +455,7 @@ class _CourseListState extends State<CourseList> {
               value: selectedCourse,
               items: widget.list.map((course) {
                 return DropdownMenuItem(
-                    value: course['course_id'],
-                    child: Text(course['course_id']));
+                    value: course['cname'], child: Text(course['cname']));
               }).toList(),
               onChanged: (course) {
                 setState(() {
@@ -288,20 +467,23 @@ class _CourseListState extends State<CourseList> {
               },
             ),
           ),
-          Container(
-            child: TextFormField(
-              controller: chapternocontroller,
-              decoration: const InputDecoration(
-                labelText: "Chapter No.",
-                hintText: "Short Form like :- ch-1 , ch-2",
+          Padding(
+            padding: const EdgeInsets.all(10),
+            child: Container(
+              child: TextFormField(
+                controller: chapternocontroller,
+                decoration: const InputDecoration(
+                  labelText: "Chapter No.",
+                  hintText: "Short Form like :- ch-1 , ch-2",
+                ),
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return 'required';
+                  } else if (value.isNotEmpty) {
+                    return null;
+                  }
+                },
               ),
-              validator: (value) {
-                if (value!.isEmpty) {
-                  return 'required';
-                } else if (value.isNotEmpty) {
-                  return null;
-                }
-              },
             ),
           ),
           Container(
@@ -310,10 +492,10 @@ class _CourseListState extends State<CourseList> {
             child: progress == null
                 ? const Text("Progress: 0%")
                 : Text(
-                    "Progress: $progress",
-                    textAlign: TextAlign.center,
-                    style: const TextStyle(fontSize: 18),
-                  ),
+              "Progress: $progress",
+              textAlign: TextAlign.center,
+              style: const TextStyle(fontSize: 18),
+            ),
             //show progress status here
           ),
 
@@ -329,30 +511,33 @@ class _CourseListState extends State<CourseList> {
 
           Container(
               child: ElevatedButton.icon(
-            style: ElevatedButton.styleFrom(primary: Colors.orangeAccent),
-            onPressed: () {
-              selectFile();
-            },
-            icon: const Icon(Icons.folder_open),
-            label: const Text("CHOOSE FILE"),
-          )),
+                style: ElevatedButton.styleFrom(primary: Colors.orangeAccent),
+                onPressed: () {
+                  selectFile();
+                },
+                icon: const Icon(Icons.folder_open),
+                label: const Text("CHOOSE FILE"),
+              )),
 
           //if selectedfile is null then show empty container
           //if file is selected then show upload button
           selectedfile == null
               ? Container()
               : Container(
-                  child: ElevatedButton.icon(
-                    style:
-                        ElevatedButton.styleFrom(primary: Colors.orangeAccent),
-                    onPressed: () {
-                      uploadFile();
-                      // Navigator.of(context).pop();
-                    },
-                    icon: const Icon(Icons.folder_open),
-                    label: const Text("UPLOAD FILE"),
-                  ),
-                ),
+            child: ElevatedButton.icon(
+              style:
+              ElevatedButton.styleFrom(primary: Colors.orangeAccent),
+              onPressed: () {
+                uploadFile();
+                Navigator.of(context).pop();
+                // setState(() {
+                //   Navigator.pop(context);
+                // });
+              },
+              icon: const Icon(Icons.folder_open),
+              label: const Text("UPLOAD FILE"),
+            ),
+          ),
         ],
       ),
     );

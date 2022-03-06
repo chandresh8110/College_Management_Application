@@ -169,6 +169,7 @@ class _Add_CourseState extends State<Add_Course> {
                 child: Container(
                   child: TextField(
                     controller: yearcontroller,
+                    keyboardType: TextInputType.number,
                     decoration: ThemeHelper()
                         .textInputDecoration("Year", "Ex.: 2018-19"),
                   ),
