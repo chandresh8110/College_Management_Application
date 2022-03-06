@@ -7,6 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
 
+import '../General Side/theme_helper.dart';
+
 class Add_Student extends StatefulWidget {
   const Add_Student({Key? key}) : super(key: key);
 
@@ -154,14 +156,7 @@ class _Add_StudentState extends State<Add_Student> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //     title:Text("Add_Student"),
-      //     backgroundColor:Colors.blue,
-      // ), //appbar
-
       body: SingleChildScrollView(
-        //enable scrolling, when keyboard appears,
-        // hight becomes small, so prevent overflow
         child: Form(
           key: _formKey,
           child: Container(
@@ -177,332 +172,379 @@ class _Add_StudentState extends State<Add_Student> {
                   ),
                   //if there is error then sho msg, other wise show text message
                 ),
-                Container(
-                  child: TextFormField(
-                    keyboardType: TextInputType.number,
-                    controller: idcontroller,
-                    decoration: InputDecoration(
-                      labelText: "Enrollment No:",
-                      hintText: "Enter Student's Enrollment No.",
+                Padding(
+                  padding: const EdgeInsets.all(8),
+                  child: Container(
+                    child: TextFormField(
+                      keyboardType: TextInputType.number,
+                      controller: idcontroller,
+                      decoration: ThemeHelper().textInputDecoration(
+                          'Enrollment No', 'Enter Enrollment No.'),
+                      validator: (value) {
+                        if (value!.isNotEmpty && value.length > 12) {
+                          return 'Big as compare to enrollment No';
+                        } else if (value.length < 12 && value.isNotEmpty) {
+                          return 'Short as compare to Enrollment No';
+                        } else if (value.isEmpty) {
+                          return 'required';
+                        } else {
+                          return null;
+                        }
+                      },
                     ),
-                    validator: (value) {
-                      if (value!.isNotEmpty && value.length > 12) {
-                        return 'Big as compare to enrollment No';
-                      } else if (value.length < 12 && value.isNotEmpty) {
-                        return 'Short as compare to Enrollment No';
-                      } else if (value.isEmpty) {
-                        return 'required';
-                      } else {
-                        return null;
-                      }
-                    },
                   ),
                 ),
-                Container(
-                  child: TextFormField(
-                    controller: fnamecontroller,
-                    decoration: InputDecoration(
-                      labelText: "First Name:",
-                      hintText: "Enter Student's First Name",
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Container(
+                    child: TextFormField(
+                      controller: fnamecontroller,
+                      decoration: ThemeHelper().textInputDecoration(
+                          'First Name', "Enter Student's First name"),
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return 'required';
+                        } else if (value.isNotEmpty) {
+                          return null;
+                        }
+                      },
                     ),
-                    validator: (value) {
-                      if (value!.isEmpty) {
-                        return 'required';
-                      } else if (value.isNotEmpty) {
-                        return null;
-                      }
-                    },
                   ),
                 ),
-                Container(
-                  child: TextFormField(
-                    controller: mnamecontroller,
-                    decoration: InputDecoration(
-                      labelText: "Middle Name:",
-                      hintText: "Enter Student's Middle Name",
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Container(
+                    child: TextFormField(
+                      controller: mnamecontroller,
+                      decoration: ThemeHelper().textInputDecoration(
+                          'Middle Name', "Enter Student's Middle name"),
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return 'required';
+                        } else if (value.isNotEmpty) {
+                          return null;
+                        }
+                      },
                     ),
-                    validator: (value) {
-                      if (value!.isEmpty) {
-                        return 'required';
-                      } else if (value.isNotEmpty) {
-                        return null;
-                      }
-                    },
                   ),
                 ),
-                Container(
-                  child: TextFormField(
-                    controller: lnamecontroller,
-                    decoration: InputDecoration(
-                      labelText: "Last Name:",
-                      hintText: "Enter Student's Last Name",
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Container(
+                    child: TextFormField(
+                      controller: lnamecontroller,
+                      decoration: ThemeHelper().textInputDecoration(
+                          'Last Name', "Enter Student's Last name"),
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return 'required';
+                        } else if (value.isNotEmpty) {
+                          return null;
+                        }
+                      },
                     ),
-                    validator: (value) {
-                      if (value!.isEmpty) {
-                        return 'required';
-                      } else if (value.isNotEmpty) {
-                        return null;
-                      }
-                    },
                   ),
                 ),
-                Container(
-                  child: TextFormField(
-                    keyboardType: TextInputType.number,
-                    controller: joiningcontroller,
-                    decoration: InputDecoration(
-                      labelText: "Joining Year:",
-                      hintText: "Ex: 2018",
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Container(
+                    child: TextFormField(
+                      keyboardType: TextInputType.number,
+                      controller: joiningcontroller,
+                      decoration: ThemeHelper()
+                          .textInputDecoration('Joining Year', "Ex.: 2018-19"),
+                      validator: (value) {
+                        if (value!.isNotEmpty && value.length > 4) {
+                          return 'Just 4 Number';
+                        } else if (value.length < 4 && value.isNotEmpty) {
+                          return 'Just 4 Number';
+                        } else if (value.isEmpty) {
+                          return 'required';
+                        } else {
+                          return null;
+                        }
+                      },
                     ),
-                    validator: (value) {
-                      if (value!.isNotEmpty && value.length > 4) {
-                        return 'Just 4 Number';
-                      } else if (value.length < 4 && value.isNotEmpty) {
-                        return 'Just 4 Number';
-                      } else if (value.isEmpty) {
-                        return 'required';
-                      } else {
-                        return null;
-                      }
-                    },
                   ),
                 ),
-                Container(
-                  child: DropdownButton(
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Container(
+                    padding: EdgeInsets.symmetric(horizontal: 10),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(100),
+                      border: Border.all(color: Colors.grey),
+                      color: Colors.white,
+                    ),
+                    child: DropdownButton(
+                        isExpanded: true,
+                        hint: const Text('Select Branch'),
+                        value: selectedBranch,
+                        items: BranchitemList?.map((branch) {
+                          return DropdownMenuItem(
+                              value: branch['branch_name'],
+                              child: Text(branch['branch_name']));
+                        }).toList(),
+                        onChanged: (branch) {
+                          setState(() {
+                            selectedBranch = branch.toString();
+                            print(selectedBranch);
+                          });
+                        }),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Container(
+                    padding: EdgeInsets.symmetric(horizontal: 10),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(100),
+                      border: Border.all(color: Colors.grey),
+                      color: Colors.white,
+                    ),
+                    child: DropdownButton<String>(
+                      hint: Text('Select Sem'),
+                      value: semValue,
                       isExpanded: true,
-                      hint: const Text('Select Branch'),
-                      value: selectedBranch,
-                      items: BranchitemList?.map((branch) {
-                        return DropdownMenuItem(
-                            value: branch['branch_name'],
-                            child: Text(branch['branch_name']));
-                      }).toList(),
-                      onChanged: (branch) {
+                      icon: const Icon(Icons.arrow_drop_down),
+                      elevation: 16,
+                      // style: const TextStyle(color: Colors.deepPurple),
+                      underline: Container(
+                        height: 0.1,
+                        // color: Colors.deepPurpleAccent,
+                      ),
+                      onChanged: (String? newValue) {
                         setState(() {
-                          selectedBranch = branch.toString();
-                          print(selectedBranch);
+                          semValue = newValue!;
                         });
-                      }),
-                ),
-                Container(
-                  child: DropdownButton<String>(
-                    hint: Text('Select Sem'),
-                    value: semValue,
-                    isExpanded: true,
-                    icon: const Icon(Icons.arrow_drop_down),
-                    elevation: 16,
-                    // style: const TextStyle(color: Colors.deepPurple),
-                    underline: Container(
-                      height: 0.1,
-                      // color: Colors.deepPurpleAccent,
+                      },
+                      items: <String>['1', '2', '3', '4', '5', '6', '7', '8']
+                          .map<DropdownMenuItem<String>>((String value) {
+                        return DropdownMenuItem<String>(
+                          value: value,
+                          child: Text(value),
+                        );
+                      }).toList(),
                     ),
-                    onChanged: (String? newValue) {
-                      setState(() {
-                        semValue = newValue!;
-                      });
-                    },
-                    items: <String>[
-                      'Sem 1',
-                      'Sem 2',
-                      'Sem 3',
-                      'Sem 4',
-                      'Sem 5',
-                      'Sem 6',
-                      'Sem 7',
-                      'Sem 8'
-                    ].map<DropdownMenuItem<String>>((String value) {
-                      return DropdownMenuItem<String>(
-                        value: value,
-                        child: Text(value),
-                      );
-                    }).toList(),
                   ),
                 ),
-                Container(
-                  child: DropdownButton<String>(
-                    hint: Text('Select Batch'),
-                    value: labValue,
-                    isExpanded: true,
-                    icon: const Icon(Icons.arrow_drop_down),
-                    elevation: 16,
-                    // style: const TextStyle(color: Colors.deepPurple),
-                    underline: Container(
-                      height: 0.1,
-                      // color: Colors.deepPurpleAccent,
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Container(
+                    padding: EdgeInsets.symmetric(horizontal: 10),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(100),
+                      border: Border.all(color: Colors.grey),
+                      color: Colors.white,
                     ),
-                    onChanged: (String? newValue) {
-                      setState(() {
-                        labValue = newValue!;
-                      });
-                    },
-                    items: <String>['A Batch', 'B Batch', 'C Batch']
-                        .map<DropdownMenuItem<String>>((String value) {
-                      return DropdownMenuItem<String>(
-                        value: value,
-                        child: Text(value),
-                      );
-                    }).toList(),
+                    child: DropdownButton<String>(
+                      hint: Text('Select Batch'),
+                      value: labValue,
+                      isExpanded: true,
+                      icon: const Icon(Icons.arrow_drop_down),
+                      elevation: 16,
+                      // style: const TextStyle(color: Colors.deepPurple),
+                      underline: Container(
+                        height: 0.1,
+                        // color: Colors.deepPurpleAccent,
+                      ),
+                      onChanged: (String? newValue) {
+                        setState(() {
+                          labValue = newValue!;
+                        });
+                      },
+                      items: <String>['A', 'B', 'C']
+                          .map<DropdownMenuItem<String>>((String value) {
+                        return DropdownMenuItem<String>(
+                          value: value,
+                          child: Text(value),
+                        );
+                      }).toList(),
+                    ),
                   ),
                 ),
-                Container(
-                  child: TextFormField(
-                    keyboardType: TextInputType.number,
-                    controller: mnocontroller,
-                    decoration: InputDecoration(
-                      labelText: "Mobile No:",
-                      hintText: "Enter Student's Mobile No.",
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Container(
+                    child: TextFormField(
+                      keyboardType: TextInputType.number,
+                      controller: mnocontroller,
+                      decoration: ThemeHelper().textInputDecoration(
+                          'Mobile No', "Enter Student's Mobile No"),
+                      validator: (value) {
+                        if (value!.isNotEmpty && value.length > 10) {
+                          return 'Bigger then Mobile No';
+                        } else if (value.length < 10 && value.isNotEmpty) {
+                          return 'Shorter then Mobile No';
+                        } else if (value.isEmpty) {
+                          return 'required';
+                        } else {
+                          return null;
+                        }
+                      },
                     ),
-                    validator: (value) {
-                      if (value!.isNotEmpty && value.length > 10) {
-                        return 'Bigger then Mobile No';
-                      } else if (value.length < 10 && value.isNotEmpty) {
-                        return 'Shorter then Mobile No';
-                      } else if (value.isEmpty) {
-                        return 'required';
-                      } else {
-                        return null;
-                      }
-                    },
                   ),
                 ), //text input for class
-                Container(
-                  child: TextFormField(
-                    controller: emailcontroller,
-                    decoration: InputDecoration(
-                      labelText: "Email Id:",
-                      hintText: "Enter Student's Email Id",
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Container(
+                    child: TextFormField(
+                      controller: emailcontroller,
+                      decoration: ThemeHelper().textInputDecoration(
+                          'Email', "Enter Student's Email"),
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return 'required';
+                        } else if (value.isNotEmpty) {
+                          return null;
+                        }
+                      },
                     ),
-                    validator: (value) {
-                      if (value!.isEmpty) {
-                        return 'required';
-                      } else if (value.isNotEmpty) {
-                        return null;
-                      }
-                    },
                   ),
                 ),
-                Container(
-                  child: TextFormField(
-                    // expands: true,
-                    // minLines: 2,
-                    maxLines: 4,
-                    controller: addresscontroller,
-                    decoration: InputDecoration(
-                      labelText: "Address:",
-                      hintText: "Enter Student's Address",
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Container(
+                    child: TextFormField(
+                      maxLines: 4,
+                      controller: addresscontroller,
+                      decoration: ThemeHelper().textInputDecoration(
+                          'Address', "Enter Student's Address"),
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return 'required';
+                        } else if (value.isNotEmpty) {
+                          return null;
+                        }
+                      },
                     ),
-                    validator: (value) {
-                      if (value!.isEmpty) {
-                        return 'required';
-                      } else if (value.isNotEmpty) {
-                        return null;
-                      }
-                    },
                   ),
                 ),
-                Container(
-                  child: TextFormField(
-                    controller: gnamecontroller,
-                    decoration: InputDecoration(
-                      labelText: "Parents/Guardian's Name:",
-                      hintText: "Enter Parents/Guardian's Name",
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Container(
+                    child: TextFormField(
+                      controller: gnamecontroller,
+                      decoration: ThemeHelper().textInputDecoration(
+                          "Parent's Name", "Enter Parents/Guardian's Name"),
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return 'required';
+                        } else if (value.isNotEmpty) {
+                          return null;
+                        }
+                      },
                     ),
-                    validator: (value) {
-                      if (value!.isEmpty) {
-                        return 'required';
-                      } else if (value.isNotEmpty) {
-                        return null;
-                      }
-                    },
                   ),
                 ),
-                Container(
-                  child: TextFormField(
-                    keyboardType: TextInputType.number,
-                    controller: gmnocontroller,
-                    decoration: InputDecoration(
-                      labelText: "Parents/Guardian's Mobile No:",
-                      hintText: "Enter Parents/Guardian's Mobile No",
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Container(
+                    child: TextFormField(
+                      keyboardType: TextInputType.number,
+                      controller: gmnocontroller,
+                      decoration: ThemeHelper().textInputDecoration(
+                          "Parent's Mobile No.",
+                          "Enter Parents/Guardian's Mobile No."),
+                      validator: (value) {
+                        if (value!.isNotEmpty && value.length > 10) {
+                          return 'Bigger then Mobile No';
+                        } else if (value.length < 10 && value.isNotEmpty) {
+                          return 'Shorter then Mobile No';
+                        } else if (value.isEmpty) {
+                          return 'required';
+                        } else {
+                          return null;
+                        }
+                      },
                     ),
-                    validator: (value) {
-                      if (value!.isNotEmpty && value.length > 10) {
-                        return 'Bigger then Mobile No';
-                      } else if (value.length < 10 && value.isNotEmpty) {
-                        return 'Shorter then Mobile No';
-                      } else if (value.isEmpty) {
-                        return 'required';
-                      } else {
-                        return null;
-                      }
-                    },
                   ),
                 ),
-                Container(
-                  child: TextFormField(
-                    controller: gemailcontroller,
-                    decoration: InputDecoration(
-                      labelText: "Parents/Guardian's Email Id:",
-                      hintText: "Enter Parents/Guardian's Email Id",
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Container(
+                    child: TextFormField(
+                      controller: gemailcontroller,
+                      decoration: ThemeHelper().textInputDecoration(
+                          "Parent's Email Id", "Parent's Email"),
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return 'required';
+                        } else if (value.isNotEmpty) {
+                          return null;
+                        }
+                      },
                     ),
-                    validator: (value) {
-                      if (value!.isEmpty) {
-                        return 'required';
-                      } else if (value.isNotEmpty) {
-                        return null;
-                      }
-                    },
                   ),
                 ),
-                Container(
-                  child: DropdownButton<String>(
-                    hint: Text('Select Password'),
-                    value: password,
-                    isExpanded: true,
-                    icon: const Icon(Icons.arrow_drop_down),
-                    elevation: 16,
-                    // style: const TextStyle(color: Colors.deepPurple),
-                    underline: Container(
-                      height: 0.1,
-                      // color: Colors.deepPurpleAccent,
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Container(
+                    padding: EdgeInsets.symmetric(horizontal: 10),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(100),
+                      border: Border.all(color: Colors.grey),
+                      color: Colors.white,
                     ),
-                    onChanged: (String? newValue) {
-                      setState(() {
-                        password = newValue!;
-                      });
-                    },
-                    items: <String>['123456789', '123456789']
-                        .map<DropdownMenuItem<String>>((String value) {
-                      return DropdownMenuItem<String>(
-                        value: value,
-                        child: Text(value),
-                      );
-                    }).toList(),
+                    child: DropdownButton<String>(
+                      hint: Text('Select Password'),
+                      value: password,
+                      isExpanded: true,
+                      icon: const Icon(Icons.arrow_drop_down),
+                      elevation: 16,
+                      // style: const TextStyle(color: Colors.deepPurple),
+                      underline: Container(
+                        height: 0.1,
+                        // color: Colors.deepPurpleAccent,
+                      ),
+                      onChanged: (String? newValue) {
+                        setState(() {
+                          password = newValue!;
+                        });
+                      },
+                      items: <String>['123456789', '123456789']
+                          .map<DropdownMenuItem<String>>((String value) {
+                        return DropdownMenuItem<String>(
+                          value: value,
+                          child: Text(value),
+                        );
+                      }).toList(),
+                    ),
                   ),
                 ),
-                Container(
-                  child: DropdownButton<String>(
-                    hint: Text('Select Status'),
-                    value: status,
-                    isExpanded: true,
-                    icon: const Icon(Icons.arrow_drop_down),
-                    elevation: 16,
-                    // style: const TextStyle(color: Colors.deepPurple),
-                    underline: Container(
-                      height: 0.1,
-                      // color: Colors.deepPurpleAccent,
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Container(
+                    padding: EdgeInsets.symmetric(horizontal: 10),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(100),
+                      border: Border.all(color: Colors.grey),
+                      color: Colors.white,
                     ),
-                    onChanged: (String? newValue) {
-                      setState(() {
-                        status = newValue!;
-                      });
-                    },
-                    items: <String>["Pursuing", "Drop", "Left"]
-                        .map<DropdownMenuItem<String>>((String value) {
-                      return DropdownMenuItem<String>(
-                        value: value,
-                        child: Text(value),
-                      );
-                    }).toList(),
+                    child: DropdownButton<String>(
+                      hint: Text('Select Status'),
+                      value: status,
+                      isExpanded: true,
+                      icon: const Icon(Icons.arrow_drop_down),
+                      elevation: 16,
+                      // style: const TextStyle(color: Colors.deepPurple),
+                      underline: Container(
+                        height: 0.1,
+                        // color: Colors.deepPurpleAccent,
+                      ),
+                      onChanged: (String? newValue) {
+                        setState(() {
+                          status = newValue!;
+                        });
+                      },
+                      items: <String>["Pursuing", "Drop", "Left"]
+                          .map<DropdownMenuItem<String>>((String value) {
+                        return DropdownMenuItem<String>(
+                          value: value,
+                          child: Text(value),
+                        );
+                      }).toList(),
+                    ),
                   ),
                 ),
                 SizedBox(
@@ -510,21 +552,24 @@ class _Add_StudentState extends State<Add_Student> {
                 ),
                 Row(
                   children: [
-                    Container(
-                      child: Text(
-                        "Image:",
-                        style: TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.w600,
+                    Padding(
+                      padding: const EdgeInsets.only(right: 10),
+                      child: Container(
+                        child: Text(
+                          "Image:",
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.w600,
+                          ),
                         ),
                       ),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(left: 5),
                       child: Container(
+                        decoration: ThemeHelper().buttonBoxDecoration(context),
                         child: ElevatedButton.icon(
-                          style: ElevatedButton.styleFrom(
-                              primary: Colors.orangeAccent),
+                          style: ThemeHelper().buttonStyle(),
                           onPressed: () {
                             choiceImage();
                           },
@@ -536,9 +581,9 @@ class _Add_StudentState extends State<Add_Student> {
                     Padding(
                       padding: const EdgeInsets.only(left: 10),
                       child: Container(
+                        decoration: ThemeHelper().buttonBoxDecoration(context),
                         child: ElevatedButton.icon(
-                          style: ElevatedButton.styleFrom(
-                              primary: Colors.orangeAccent),
+                          style: ThemeHelper().buttonStyle(),
                           onPressed: () {
                             pickImage();
                           },
@@ -549,38 +594,46 @@ class _Add_StudentState extends State<Add_Student> {
                     ),
                   ],
                 ),
+                SizedBox(
+                  height: 20,
+                ),
                 Container(
                   // height: 200,
                   child: _image == null
                       ? Text('No image Selected')
                       : Image.file(_image!),
                 ),
+                // SizedBox(
+                //   height: 10,
+                // ),
+                Container(
+                  margin: EdgeInsets.only(top: 20),
+                  decoration: ThemeHelper().buttonBoxDecoration(context),
+                  child: SizedBox(
+                    width: double.infinity,
+                    child: ElevatedButton(
+                      style: ThemeHelper().buttonStyle(),
+                      onPressed: () {
+                        //if button is pressed, setstate sending = true, so that we can show "sending..."
+                        if (!_formKey.currentState!.validate()) {
+                          return;
+                        }
+                        setState(() {
+                          sending = true;
+                        });
+                        sendData();
+                      },
+                      child: Text(
+                        sending ? "Sending..." : "SEND DATA",
+                        //if sending == true then show "Sending" else show "SEND DATA";
+                      ),
+                      //background of button is darker color, so set brightness to dark
+                    ),
+                  ),
+                ),
                 SizedBox(
                   height: 10,
                 ),
-                Container(
-                    margin: EdgeInsets.only(top: 20),
-                    child: SizedBox(
-                        width: double.infinity,
-                        child: MaterialButton(
-                          onPressed: () {
-                            //if button is pressed, setstate sending = true, so that we can show "sending..."
-                            if (!_formKey.currentState!.validate()) {
-                              return;
-                            }
-                            setState(() {
-                              sending = true;
-                            });
-                            sendData();
-                          },
-                          child: Text(
-                            sending ? "Sending..." : "SEND DATA",
-                            //if sending == true then show "Sending" else show "SEND DATA";
-                          ),
-                          color: Colors.blue,
-                          colorBrightness: Brightness.dark,
-                          //background of button is darker color, so set brightness to dark
-                        ))),
                 Container(
                   child: Text(success ? "Write Success" : "send data"),
                   //is there is success then show "Write Success" else show "send data"

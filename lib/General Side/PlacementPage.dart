@@ -37,6 +37,17 @@ class _PlacementPageState extends State<PlacementPage> {
             //pinned: true,
             title: Text('PlacementPage'),
             leading: MenuWidget(),
+            flexibleSpace: Container(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                    begin: Alignment.topRight,
+                    end: Alignment.bottomLeft,
+                    colors: [
+                      Colors.cyanAccent,
+                      Colors.blue,
+                    ]),
+              ),
+            ),
           ),
           SliverToBoxAdapter(
             child: Container(

@@ -1,14 +1,18 @@
 import 'package:final_app/HOD_Side/DoNotTouch/HBottomNaviPage.dart';
+import 'package:final_app/HOD_Side/HOD%20Dart/HODHomePage.dart';
 import 'package:final_app/HOD_Side/HOD%20Dart/HOD_Add_Members.dart';
 import 'package:final_app/HOD_Side/HOD%20Dart/HOD_Add_Things.dart';
 import 'package:final_app/Material/HOD_View_Material.dart';
 import 'package:final_app/Notice/HOD_Notice.dart';
+import 'package:final_app/Profile/HOD_Setting_Page.dart';
+import 'package:final_app/Search/Student_HOD_Search.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import '../../Branch/BranchPage.dart';
 import '../../General Side/Contact_us.dart';
 import '../../General Side/Developed_By.dart';
 import '../../General Side/FacilitiesPage.dart';
+import '../HOD Dart/HOD_Edit_Details.dart';
 import 'HMenuItem.dart';
 import 'HMenuPage.dart';
 
@@ -52,23 +56,37 @@ class _HSliderDrawerState extends State<HSliderDrawer> {
   getScreen() {
     switch (currentItem) {
       case HMenuItems.HomePage:
-        return HBottomNaviPage();
+        return HHomePage(
+          username: widget.username,
+        );
       case HMenuItems.HOD_Add_Members:
-        return HOD_Add_Members();
+        return HOD_Add_Members(
+          username: widget.username,
+        );
       case HMenuItems.HOD_Add_Things:
-        return HOD_Add_Things();
+        return HOD_Add_Things(
+          username: widget.username,
+        );
       case HMenuItems.Notice:
-        return HOD_Notice();
+        return HOD_Notice(
+          username: widget.username,
+        );
       case HMenuItems.Material:
-        return HOD_View_Material(username: widget.username);
-      case HMenuItems.BranchPage:
-        return BranchPage();
-      case HMenuItems.FacilitiesPage:
-        return FacilitiesPage();
-      case HMenuItems.ContactUsPage:
-        return ContactUsPage();
-      case HMenuItems.DeveloperPage:
-        return DeveloperPage();
+        return HOD_View_Material(
+          username: widget.username,
+        );
+      case HMenuItems.HOD_Edit_Details:
+        return HOD_Edit_Details(
+          username: widget.username,
+        );
+      case HMenuItems.HOD_Setting_page:
+        return HOD_Setting_page(
+          username: widget.username,
+        );
+      // case HMenuItems.ContactUsPage:
+      //   return ContactUsPage();
+      // case HMenuItems.DeveloperPage:
+      //   return DeveloperPage();
     }
   }
 }

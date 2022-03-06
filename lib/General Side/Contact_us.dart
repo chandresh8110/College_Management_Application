@@ -12,10 +12,22 @@ class ContactUsPage extends StatelessWidget {
         child: Scaffold(
           body: CustomScrollView(slivers: [
             SliverAppBar(
-              backgroundColor: Colors.blue,
+              // backgroundColor: Colors.blue,
               floating: true,
               //pinned: true,
               title: Text('ContactUsPage'),
+              flexibleSpace: Container(
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topRight,
+                    end: Alignment.bottomLeft,
+                    colors: [
+                      Colors.cyanAccent,
+                      Colors.blue,
+                    ],
+                  ),
+                ),
+              ),
               leading: MenuWidget(),
             ),
             SliverToBoxAdapter(

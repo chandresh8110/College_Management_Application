@@ -3,6 +3,8 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
+import '../General Side/theme_helper.dart';
+
 class Add_Branch extends StatefulWidget {
   const Add_Branch({Key? key}) : super(key: key);
 
@@ -103,10 +105,13 @@ class _Add_BranchState extends State<Add_Branch> {
                 ),
               )),
               Container(
+                decoration:
+                ThemeHelper().buttonBoxDecoration(context),
                 margin: EdgeInsets.only(top: 20),
                 child: SizedBox(
                   width: double.infinity,
-                  child: MaterialButton(
+                  child: ElevatedButton(
+                    style: ThemeHelper().buttonStyle(),
                     onPressed: () {
                       //if button is pressed, setstate sending = true, so that we can show "sending..."
                       setState(() {
@@ -118,8 +123,6 @@ class _Add_BranchState extends State<Add_Branch> {
                       sending ? "Sending..." : "SEND DATA",
                       //if sending == true then show "Sending" else show "SEND DATA";
                     ),
-                    color: Colors.blue,
-                    colorBrightness: Brightness.dark,
                     //background of button is darker color, so set brightness to dark
                   ),
                 ),

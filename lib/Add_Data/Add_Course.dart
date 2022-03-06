@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import '../General Side/theme_helper.dart';
 
 class Add_Course extends StatefulWidget {
   const Add_Course({Key? key}) : super(key: key);
@@ -37,7 +38,6 @@ class _Add_CourseState extends State<Add_Course> {
     }
   }
 
-
   @override
   void initState() {
     getdata();
@@ -49,14 +49,17 @@ class _Add_CourseState extends State<Add_Course> {
   }
 
   Future<void> sendData() async {
-    var res = await http.post(Uri.parse(phpurl), body: {
-      "table": table,
-      "sem": semValue,
-      "branch": selectedBranch,
-      "id": idcontroller.text,
-      "name": namecontroller.text,
-      "year": yearcontroller.text,
-    }); //sending post request with header data
+    var res = await http.post(
+      Uri.parse(phpurl),
+      body: {
+        "table": table,
+        "sem": semValue,
+        "branch": selectedBranch,
+        "id": idcontroller.text,
+        "name": namecontroller.text,
+        "year": yearcontroller.text,
+      },
+    ); //sending post request with header data
 
     if (res.statusCode == 200) {
       print(res.body); //print raw response on console
@@ -109,107 +112,137 @@ class _Add_CourseState extends State<Add_Course> {
                 ),
                 //if there is error then sho msg, other wise show text message
               ),
-              Container(
-                child:DropdownButton(
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Container(
+                  padding: EdgeInsets.symmetric(horizontal: 10),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(100),
+                    border: Border.all(color: Colors.grey),
+                    color: Colors.white,
+                  ),
+                  child: DropdownButton(
                     isExpanded: true,
                     hint: const Text('Select Branch'),
                     value: selectedBranch,
                     items: BranchitemList?.map((branch) {
                       return DropdownMenuItem(
-                          value: branch['branch_name'],
-                          child: Text(branch['branch_name']));
+                        value: branch['branch_name'],
+                        child: Text(
+                          branch['branch_name'],
+                        ),
+                      );
                     }).toList(),
                     onChanged: (branch) {
-                      setState(() {
-                        selectedBranch = branch.toString();
-                        print(selectedBranch);
-                      });
-                    }),
+                      setState(
+                        () {
+                          selectedBranch = branch.toString();
+                          print(selectedBranch);
+                        },
+                      );
+                    },
+                  ),
+                ),
               ),
-              Container(
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Container(
                   child: TextField(
-                controller: idcontroller,
-                decoration: InputDecoration(
-                  labelText: "Course Id:",
-                  hintText: "Enter Course id.",
+                    controller: idcontroller,
+                    decoration: ThemeHelper()
+                        .textInputDecoration("Course Id", "Enter Course Id"),
+                  ),
                 ),
-              )),
-              Container(
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Container(
                   child: TextField(
-                controller: namecontroller,
-                decoration: InputDecoration(
-                  labelText: "Course Name:",
-                  hintText: "Enter Course Name",
+                    controller: namecontroller,
+                    decoration: ThemeHelper().textInputDecoration(
+                        "Course's Name", "Enter Course's Name"),
+                  ),
                 ),
-              )),
-              Container(
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Container(
                   child: TextField(
                     controller: yearcontroller,
-                    decoration: InputDecoration(
-                      labelText: "year:",
-                      hintText: "Like:- 2018-19",
-                    ),
+                    decoration: ThemeHelper()
+                        .textInputDecoration("Year", "Ex.: 2018-19"),
                   ),
+                ),
               ),
-              Container(
-                child: DropdownButton<String>(
-                  hint: Text('Select Sem'),
-                  value: semValue,
-                  isExpanded: true,
-                  icon: const Icon(Icons.arrow_drop_down_circle_outlined),
-                  elevation: 16,
-                  // style: const TextStyle(color: Colors.deepPurple),
-                  underline: Container(
-                    height: 0.1,
-                    // color: Colors.deepPurpleAccent,
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Container(
+                  padding: EdgeInsets.symmetric(horizontal: 10),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(100),
+                    border: Border.all(color: Colors.grey),
+                    color: Colors.white,
                   ),
-                  onChanged: (String? newValue) {
-                    setState(() {
-                      semValue = newValue!;
-                    });
-                  },
-                  items: <String>[
-                    '1',
-                    '2',
-                    '3',
-                    '4',
-                    '5',
-                    '6',
-                    '7',
-                    '8'
-                  ].map<DropdownMenuItem<String>>((String value) {
-                    return DropdownMenuItem<String>(
-                      value: value,
-                      child: Text(value),
-                    );
-                  }).toList(),
+                  child: DropdownButton<String>(
+                    hint: Text('Select Sem'),
+                    value: semValue,
+                    isExpanded: true,
+                    icon: const Icon(Icons.arrow_drop_down_circle_outlined),
+                    elevation: 16,
+                    // style: const TextStyle(color: Colors.deepPurple),
+                    underline: Container(
+                      height: 0.1,
+                      // color: Colors.deepPurpleAccent,
+                    ),
+                    onChanged: (String? newValue) {
+                      setState(
+                        () {
+                          semValue = newValue!;
+                        },
+                      );
+                    },
+                    items: <String>['1', '2', '3', '4', '5', '6', '7', '8']
+                        .map<DropdownMenuItem<String>>(
+                      (String value) {
+                        return DropdownMenuItem<String>(
+                          value: value,
+                          child: Text(value),
+                        );
+                      },
+                    ).toList(),
+                  ),
                 ),
               ),
               Container(
+                decoration: ThemeHelper().buttonBoxDecoration(context),
                 margin: EdgeInsets.only(top: 20),
                 child: SizedBox(
                   width: double.infinity,
-                  child: MaterialButton(
+                  child: ElevatedButton(
+                    style: ThemeHelper().buttonStyle(),
                     onPressed: () {
                       //if button is pressed, setstate sending = true, so that we can show "sending..."
-                      setState(() {
-                        sending = true;
-                      });
+                      setState(
+                        () {
+                          sending = true;
+                        },
+                      );
                       sendData();
                     },
                     child: Text(
                       sending ? "Sending..." : "SEND DATA",
                       //if sending == true then show "Sending" else show "SEND DATA";
                     ),
-                    color: Colors.blue,
-                    colorBrightness: Brightness.dark,
                     //background of button is darker color, so set brightness to dark
                   ),
                 ),
               ),
-              Container(
-                child: Text(success ? "Write Success" : "send data"),
-                //is there is success then show "Write Success" else show "send data"
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Container(
+                  child: Text(success ? "Write Success" : "send data"),
+                  //is there is success then show "Write Success" else show "send data"
+                ),
               ),
             ],
           ),

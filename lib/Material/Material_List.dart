@@ -37,7 +37,7 @@ class _Material_listState extends State<Material_list> {
       "branch": widget.branch,
       "sem": widget.sem,
       "course_name": widget.course,
-      "year" : widget.year,
+      "year": widget.year,
     });
     if (response.statusCode == 200) {
       setState(() {
@@ -69,7 +69,19 @@ class _Material_listState extends State<Material_list> {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.course),
-        backgroundColor: Colors.blue,
+        // backgroundColor: Colors.blue,
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topRight,
+              end: Alignment.bottomLeft,
+              colors: [
+                Colors.cyanAccent,
+                Colors.blue,
+              ],
+            ),
+          ),
+        ),
       ),
       body: loading
           ? const Center(

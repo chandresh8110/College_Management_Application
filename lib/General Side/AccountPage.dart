@@ -209,7 +209,12 @@ class _AccountPageState extends State<AccountPage> {
         ),
       ),
       onWillPop: () async {
-        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> SliderDrawer(),),);
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) => SliderDrawer(),
+          ),
+        );
         return false;
       },
     );

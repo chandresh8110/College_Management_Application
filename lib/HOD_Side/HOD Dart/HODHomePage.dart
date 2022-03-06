@@ -9,7 +9,9 @@ import 'package:flutter_svg/svg.dart';
 
 
 class HHomePage extends StatefulWidget {
-  const HHomePage({Key? key}) : super(key: key);
+  const HHomePage({Key? key, required this.username}) : super(key: key);
+
+  final String username;
 
   @override
   _HHomePageState createState() => _HHomePageState();
@@ -33,11 +35,23 @@ class _HHomePageState extends State<HHomePage> {
       body: CustomScrollView(
           slivers: [
             SliverAppBar(
-              backgroundColor: Colors.blue,
+              // backgroundColor: Colors.blue,
               floating: true,
               //pinned: true,
               title: Text('HODHomePage'),
-              leading: HMenuWidget(),
+              flexibleSpace: Container(
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topRight,
+                    end: Alignment.bottomLeft,
+                    colors: [
+                      Colors.cyanAccent,
+                      Colors.blue,
+                    ],
+                  ),
+                ),
+              ),
+              leading: HMenuWidget(username: widget.username,),
             ),
             SliverToBoxAdapter(
               child: Container(
@@ -54,8 +68,8 @@ class _HHomePageState extends State<HHomePage> {
                     height: 400,
                     autoPlay: true,
                     // autoPlayAnimationDuration: Duration(milliseconds: 50),
-                    //viewportFraction: 1,
-                    enlargeCenterPage: true,
+                    viewportFraction: 1,
+                    // enlargeCenterPage: true,
                   ),
                   itemCount: urlImages1.length,
                   itemBuilder: (context, index, realIndex) {
@@ -77,8 +91,6 @@ class _HHomePageState extends State<HHomePage> {
                 padding: const EdgeInsets.only(left: 10, right: 10),
                 //color: Colors.redAccent,
                 child: Text('       Apollo Institute of Engineering and Technology is one of the premier institutes for imparting quality technical education and keeping pace with the ever-changing world of Technology. The institute is established under the aegis of Divaba Education trust.'
-                    '\n       The college started its academic term in the year 2014 and offers Bachelor of Engineering in various disciplines like Civil Engineering, Computer Engineering, Electrical Engineering, Information Technology, Mechanical Engineering.'
-                    '\n       We also offer Diploma Engineering in different streams like Civil Engineering, Computer Engineering and Mechanical Engineering.'
                     '\n       The College is approved by AICTE and affiliated with GTU (Gujarat Technological University).',
                   textAlign: TextAlign.justify,
                   style: TextStyle(
@@ -89,8 +101,8 @@ class _HHomePageState extends State<HHomePage> {
             ),
             SliverToBoxAdapter(
               child: Container(
-                height: 40,
-                padding: const EdgeInsets.only(left: 10, right: 10),
+                height: 60,
+                padding: const EdgeInsets.only(left: 10, right: 10, top: 10),
                 //color: Colors.greenAccent,
                 child: Text('Major Assets of AIET :- ',
                   style: TextStyle(
@@ -123,9 +135,9 @@ class _HHomePageState extends State<HHomePage> {
             ),
             SliverToBoxAdapter(
               child: Container(
-                height: 40,
+                height: 60,
                 //color: Colors.amber,
-                padding: const EdgeInsets.only(left: 10, right: 10),
+                padding: const EdgeInsets.only(left: 10, right: 10, top: 10),
                 child: Text('Seats & Intake :-',
                   style: TextStyle(
                     fontSize: 25,
@@ -208,10 +220,13 @@ class _HHomePageState extends State<HHomePage> {
   Widget buildImage(String urlImage, int index) =>
       Container(
         margin: EdgeInsets.symmetric(horizontal: 5),
-        color: Colors.grey,
-        child: SvgPicture.network(
-          urlImage,
-          fit: BoxFit.cover,
+        color: Colors.transparent,
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(10),
+          child: SvgPicture.network(
+            urlImage,
+            fit: BoxFit.cover,
+          ),
         ),
       );
 

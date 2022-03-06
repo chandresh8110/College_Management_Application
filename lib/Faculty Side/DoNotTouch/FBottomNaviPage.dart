@@ -7,7 +7,9 @@ import 'package:final_app/General%20Side/EventPage.dart';
 import 'package:final_app/General%20Side/PlacementPage.dart';
 
 class FBottomNaviPage extends StatefulWidget {
-  const FBottomNaviPage({Key? key}) : super(key: key);
+  const FBottomNaviPage({Key? key, required this.username}) : super(key: key);
+
+  final String username;
 
   @override
   _FBottomNaviPageState createState() => _FBottomNaviPageState();
@@ -16,7 +18,7 @@ class FBottomNaviPage extends StatefulWidget {
 class _FBottomNaviPageState extends State<FBottomNaviPage> {
   int index = 0;
   final screen = [
-    FHomePage(),
+    FHomePage(username: ''),
     EventPage(),
     BranchPage(),
     PlacementPage(),

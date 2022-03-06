@@ -11,7 +11,9 @@ import '../../General Side/PlacementPage.dart';
 
 
 class HBottomNaviPage extends StatefulWidget {
-  const HBottomNaviPage({Key? key}) : super(key: key);
+  const HBottomNaviPage({Key? key, required this.username}) : super(key: key);
+
+  final String username;
 
   @override
   _HBottomNaviPageState createState() => _HBottomNaviPageState();
@@ -21,7 +23,7 @@ class _HBottomNaviPageState extends State<HBottomNaviPage> {
 
   int index = 0;
   final screen = [
-    HHomePage(),
+    HHomePage(username: ''),
     EventPage(),
     BranchPage(),
     PlacementPage(),

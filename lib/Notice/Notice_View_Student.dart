@@ -9,7 +9,9 @@ import 'package:http/http.dart' as http;
 import 'pdfview.dart';
 
 class Notice_View_Student extends StatefulWidget {
-  const Notice_View_Student({Key? key}) : super(key: key);
+  const Notice_View_Student({Key? key, required this.username}) : super(key: key);
+
+  final String username;
 
   @override
   _Notice_View_StudentState createState() => _Notice_View_StudentState();
@@ -22,16 +24,14 @@ class _Notice_View_StudentState extends State<Notice_View_Student> {
 
   Future fetchAllPdf() async {
     final response =
-        await http.get(Uri.parse("http://103.141.241.97/test/Fetch.php"));
+        await http.get(Uri.parse("http://103.141.241.97/test/notice_fetch.php"));
     if (response.statusCode == 200) {
       setState(() {
         pdfList = jsonDecode(response.body);
         loading = false;
       });
       if (kDebugMode) {
-        if (kDebugMode) {
           print(pdfList);
-        }
       }
     }
   }
@@ -53,36 +53,41 @@ class _Notice_View_StudentState extends State<Notice_View_Student> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: const Text('Notice'),
-          backgroundColor: Colors.blue,
-          leading: SMenuWidget(),
-        ),
-        body: loading
-            ? const Center(
-                child: CircularProgressIndicator(),
-              )
-            : ListView.builder(
-                itemCount: pdfList!.length,
-                itemBuilder: (context, index) {
-                  return ListTile(
-                    leading: TextButton.icon(
-                      icon: const Icon(Icons.picture_as_pdf),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => PdfViewPage(
-                              name: pdfList![index]["file"],
-                              title: pdfList![index]["notice_sub"],
-                            ),
-                          ),
-                        );
-                      },
-                      // icon: const Icon(Icons.picture_as_pdf),
-                      label: Text(pdfList![index]["notice_sub"]),
+      appBar: AppBar(
+        title: const Text('Notice'),
+        backgroundColor: Colors.blue,
+        leading: SMenuWidget(username: widget.username,),
+      ),
+      body: loading
+          ? const Center(
+              child: CircularProgressIndicator(),
+            )
+          : ListView.builder(
+              itemCount: pdfList!.length,
+              itemBuilder: (context, index) {
+                return ListTile(
+                  leading: TextButton.icon(
+                    icon: const Icon(Icons.picture_as_pdf),
+                    style: TextButton.styleFrom(
+                      primary: Theme.of(context).primaryColor,
                     ),
-                  );
-                }));
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => PdfViewPage(
+                            name: pdfList![index]["file"],
+                            title: pdfList![index]["notice_sub"],
+                          ),
+                        ),
+                      );
+                    },
+                    // icon: const Icon(Icons.picture_as_pdf),
+                    label: Text(pdfList![index]["notice_sub"]),
+                  ),
+                );
+              },
+            ),
+    );
   }
 }

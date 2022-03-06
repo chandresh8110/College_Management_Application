@@ -1,185 +1,342 @@
-// import 'package:final_app/Photo_Gallery/Engineers_day.dart';
-// import 'package:final_app/Photo_Gallery/Independence_day.dart';
-// import 'package:final_app/Photo_Gallery/Sports.dart';
-// import 'package:final_app/Photo_Gallery/Teachers_day.dart';
-// import 'package:final_app/Photo_Gallery/Techfest.dart';
-// import 'package:final_app/Photo_Gallery/Visits.dart';
-// import 'package:flutter/material.dart';
-//
-//
-// class EventPage extends StatelessWidget {
-//   const EventPage({Key? key}) : super(key: key);
-//
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       body: CustomScrollView(
-//         slivers: [
-//           SliverAppBar(
-//             backgroundColor: Colors.blue,
-//             title: Text(
-//               'Photo_Gallery'
-//             ),
-//           ),
-//           SliverToBoxAdapter(
-//             child: Padding(
-//               padding: const EdgeInsets.only(top: 5),
-//               child: Container(),
-//             ),
-//           ),
-//           SliverGrid.count(
-//             crossAxisCount: 2,
-//             mainAxisSpacing: 5,
-//             crossAxisSpacing: 5,
-//             children: [
-//               InkWell(
-//                 onTap: (){
-//                   Navigator.push(context,
-//                     MaterialPageRoute(
-//                         builder:(context)=> Independance_Day()
-//                     ),
-//                   );
-//                 },
-//                 child: Container(
-//                   height: 250,
-//                   width: 250,
-//                   //color: Colors.greenAccent,
-//                   decoration: BoxDecoration(
-//                     image: DecorationImage(
-//                       image: AssetImage('images/Independence day.png'),
-//                     ),
-//                   ),
-//                 ),
-//               ),
-//               InkWell(
-//                 onTap: (){
-//                   Navigator.push(context,
-//                     MaterialPageRoute(
-//                         builder:(context)=> Engineers_Day()
-//                     ),
-//                   );
-//                 },
-//                 child: Container(
-//                   height: 250,
-//                   width: 250,
-//                   //color: Colors.greenAccent,
-//                   decoration: BoxDecoration(
-//                     image: DecorationImage(
-//                       image: AssetImage('images/engineersday.png'),
-//                     ),
-//                   ),
-//                 ),
-//               ),
-//               InkWell(
-//                 onTap: (){
-//                   Navigator.push(context,
-//                     MaterialPageRoute(
-//                         builder:(context)=> Sports()
-//                     ),
-//                   );
-//                 },
-//                 child: Container(
-//                   height: 250,
-//                   width: 250,
-//                   //color: Colors.greenAccent,
-//                   decoration: BoxDecoration(
-//                     image: DecorationImage(
-//                       image: AssetImage('images/sports.png'),
-//                     ),
-//                   ),
-//                 ),
-//               ),
-//               InkWell(
-//                 onTap: (){
-//                   Navigator.push(context,
-//                     MaterialPageRoute(
-//                         builder:(context)=> TechFest()
-//                     ),
-//                   );
-//                 },
-//                 child: Container(
-//                   height: 250,
-//                   width: 250,
-//                   //color: Colors.greenAccent,
-//                   decoration: BoxDecoration(
-//                     image: DecorationImage(
-//                       image: AssetImage('images/techfest.png'),
-//                     ),
-//                   ),
-//                 ),
-//               ),
-//               InkWell(
-//                 onTap: (){
-//                   Navigator.push(context,
-//                     MaterialPageRoute(
-//                         builder:(context)=> Visits()
-//                     ),
-//                   );
-//                 },
-//                 child: Container(
-//                   height: 250,
-//                   width: 250,
-//                   //color: Colors.greenAccent,
-//                   decoration: BoxDecoration(
-//                     image: DecorationImage(
-//                       image: AssetImage('images/Visit.png'),
-//                     ),
-//                   ),
-//                 ),
-//               ),
-//               InkWell(
-//                 onTap: (){
-//                   Navigator.push(context,
-//                     MaterialPageRoute(
-//                         builder:(context)=> Teachers_Day()
-//                     ),
-//                   );
-//                 },
-//                 child: Container(
-//                   height: 250,
-//                   width: 250,
-//                   //color: Colors.greenAccent,
-//                   decoration: BoxDecoration(
-//                     image: DecorationImage(
-//                       image: AssetImage('images/Teacher day.png'),
-//                     ),
-//                   ),
-//                 ),
-//               ),
-//             ],
-//           ),
-//         ],
-//       ),
-//     );
-//   }
-// }
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+import 'package:final_app/Photo_Gallery/Annual_Function.dart';
+import 'package:final_app/Photo_Gallery/Canteen.dart';
+import 'package:final_app/Photo_Gallery/Celeb.dart';
+import 'package:final_app/Photo_Gallery/Civil_Photos.dart';
+import 'package:final_app/Photo_Gallery/Computer_Photos.dart';
+import 'package:final_app/Photo_Gallery/Day_Celebration.dart';
+import 'package:final_app/Photo_Gallery/Electrical_Photos.dart';
+import 'package:final_app/Photo_Gallery/Engineers_day.dart';
+import 'package:final_app/Photo_Gallery/Independence_day.dart';
+import 'package:final_app/Photo_Gallery/Mech_Photos.dart';
+import 'package:final_app/Photo_Gallery/Sports.dart';
+import 'package:final_app/Photo_Gallery/Teachers_day.dart';
+import 'package:final_app/Photo_Gallery/Techfest.dart';
+import 'package:final_app/Photo_Gallery/Visits.dart';
 import 'package:flutter/material.dart';
-// import 'package:flutter_layout_grid/flutter_layout_grid.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-//import 'package:cloud_firestore/cloud_firestore.dart';
-//import 'package:transparent_image/transparent_image.dart';
-import '../slider/SliderDrawer.dart';
-import 'GallaryPage.dart';
 import '../slider/MenuWidget.dart';
-//import 'package:cached_network_image/cached_network_image.dart';
+import '../slider/SliderDrawer.dart';
 
+class EventPage extends StatelessWidget {
+  const EventPage({Key? key}) : super(key: key);
 
+  @override
+  Widget build(BuildContext context) {
+    return WillPopScope(
+      child: Scaffold(
+        body: CustomScrollView(
+          slivers: [
+            SliverAppBar(
+              // backgroundColor: Colors.blue,
+              title: Text('Photo Gallery'),
+              floating: true,
+              leading: MenuWidget(),
+              flexibleSpace: Container(
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                      begin: Alignment.topRight,
+                      end: Alignment.bottomLeft,
+                      colors: [
+                        Colors.cyanAccent,
+                        Colors.blue,
+                      ]),
+                ),
+              ),
+            ),
+            SliverToBoxAdapter(
+              child: Padding(
+                padding: const EdgeInsets.only(top: 5),
+                child: Container(),
+              ),
+            ),
+            SliverGrid.count(
+              crossAxisCount: 2,
+              mainAxisSpacing: 5,
+              crossAxisSpacing: 5,
+              children: [
+                InkWell(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => Independance_Day()),
+                    );
+                  },
+                  child: Container(
+                    height: 250,
+                    width: 250,
+                    //color: Colors.greenAccent,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage('images/Independence day.png'),
+                      ),
+                    ),
+                  ),
+                ),
+                InkWell(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Engineers_Day()),
+                    );
+                  },
+                  child: Container(
+                    height: 250,
+                    width: 250,
+                    //color: Colors.greenAccent,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage('images/engineersday.png'),
+                      ),
+                    ),
+                  ),
+                ),
+                InkWell(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Sports()),
+                    );
+                  },
+                  child: Container(
+                    height: 250,
+                    width: 250,
+                    //color: Colors.greenAccent,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage('images/sports.png'),
+                      ),
+                    ),
+                  ),
+                ),
+                InkWell(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => TechFest()),
+                    );
+                  },
+                  child: Container(
+                    height: 250,
+                    width: 250,
+                    //color: Colors.greenAccent,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage('images/techfest.png'),
+                      ),
+                    ),
+                  ),
+                ),
+                InkWell(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Visits()),
+                    );
+                  },
+                  child: Container(
+                    height: 250,
+                    width: 250,
+                    //color: Colors.greenAccent,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage('images/Visit.png'),
+                      ),
+                    ),
+                  ),
+                ),
+                InkWell(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Teachers_Day()),
+                    );
+                  },
+                  child: Container(
+                    height: 250,
+                    width: 250,
+                    //color: Colors.greenAccent,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage('images/Teacher day.png'),
+                      ),
+                    ),
+                  ),
+                ),
+                InkWell(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Canteen()),
+                    );
+                  },
+                  child: Container(
+                    height: 250,
+                    width: 250,
+                    //color: Colors.greenAccent,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage('images/canteen.png'),
+                      ),
+                    ),
+                  ),
+                ),
+                InkWell(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => Annual_Function()),
+                    );
+                  },
+                  child: Container(
+                    height: 250,
+                    width: 250,
+                    //color: Colors.greenAccent,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage('images/AnnualFunction.png'),
+                      ),
+                    ),
+                  ),
+                ),
+                InkWell(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Celeb()),
+                    );
+                  },
+                  child: Container(
+                    height: 250,
+                    width: 250,
+                    //color: Colors.greenAccent,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage('images/Celebrity.png'),
+                      ),
+                    ),
+                  ),
+                ),
+                InkWell(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => Day_Celebration()),
+                    );
+                  },
+                  child: Container(
+                    height: 250,
+                    width: 250,
+                    //color: Colors.greenAccent,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage('images/Daycele.png'),
+                      ),
+                    ),
+                  ),
+                ),
+                InkWell(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => Computer_photos()),
+                    );
+                  },
+                  child: Container(
+                    height: 250,
+                    width: 250,
+                    //color: Colors.greenAccent,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage('images/Branch/CE.png'),
+                      ),
+                    ),
+                  ),
+                ),
+                InkWell(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => Electrical_photos()),
+                    );
+                  },
+                  child: Container(
+                    height: 250,
+                    width: 250,
+                    //color: Colors.greenAccent,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage('images/Branch/EE.png'),
+                      ),
+                    ),
+                  ),
+                ),
+                InkWell(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Mech_photos()),
+                    );
+                  },
+                  child: Container(
+                    height: 250,
+                    width: 250,
+                    //color: Colors.greenAccent,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage('images/Branch/ME.png'),
+                      ),
+                    ),
+                  ),
+                ),
+                InkWell(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Civil_photos()),
+                    );
+                  },
+                  child: Container(
+                    height: 250,
+                    width: 250,
+                    //color: Colors.greenAccent,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage('images/Branch/CIE.png'),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+      onWillPop: () async {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) => SliderDrawer(),
+          ),
+        );
+        return false;
+      },
+    );
+  }
+}
 
-
+// import 'package:flutter/material.dart';
+// // import 'package:flutter_layout_grid/flutter_layout_grid.dart';
+// import 'package:flutter_svg/flutter_svg.dart';
+// //import 'package:cloud_firestore/cloud_firestore.dart';
+// //import 'package:transparent_image/transparent_image.dart';
+// import '../slider/SliderDrawer.dart';
+// import 'GallaryPage.dart';
+// import '../slider/MenuWidget.dart';
+// //import 'package:cached_network_image/cached_network_image.dart';
 
 // class EventPage extends StatelessWidget {
 //   const EventPage({Key? key,required this.crossAxisCount,required this.items})
@@ -341,73 +498,73 @@ import '../slider/MenuWidget.dart';
 //   );
 // }
 
-class EventPage extends StatelessWidget {
-  const EventPage({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return WillPopScope(
-      child: Scaffold(
-        body: CustomScrollView(
-          slivers: [
-            SliverAppBar(
-              backgroundColor: Colors.blue,
-              floating: true,
-              //pinned: true,
-              title: Text('Photo_Gallery_Page'),
-              leading: MenuWidget(),
-            ),
-            SliverGrid(
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                //maxCrossAxisExtent: 100.0,
-                mainAxisSpacing: 10,
-                crossAxisSpacing: 0,
-                //childAspectRatio: 0.75,
-              ),
-              delegate: SliverChildBuilderDelegate(
-                (BuildContext context, int index) {
-                  return RawMaterialButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) =>
-                              PhotoDetails(imagePath: networkNames[index]),
-                        ),
-                      );
-                    },
-                    child: Container(
-                      alignment: Alignment.center,
-                      padding: _edgeInsertsForIndex(index),
-                      child: SvgPicture.network(
-                        networkNames[index % networkNames.length],
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  );
-                },
-                childCount: networkNames.length,
-              ),
-            ),
-          ],
-        ),
-      ),
-      onWillPop: () async {
-        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> SliderDrawer(),),);
-        return false;
-      },
-    );
-  }
-}
-
-EdgeInsets _edgeInsertsForIndex(int index) {
-  if (index % 2 == 0) {
-    return EdgeInsets.only(top: 0.0, left: 5.0, right: 5.0, bottom: 0.0);
-  } else {
-    return EdgeInsets.only(top: 0.0, left: 5.0, right: 5.0, bottom: 0.0);
-  }
-}
+// class EventPage extends StatelessWidget {
+//   const EventPage({Key? key}) : super(key: key);
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return WillPopScope(
+//       child: Scaffold(
+//         body: CustomScrollView(
+//           slivers: [
+//             SliverAppBar(
+//               backgroundColor: Colors.blue,
+//               floating: true,
+//               //pinned: true,
+//               title: Text('Photo_Gallery_Page'),
+//               leading: MenuWidget(),
+//             ),
+//             SliverGrid(
+//               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+//                 crossAxisCount: 2,
+//                 //maxCrossAxisExtent: 100.0,
+//                 mainAxisSpacing: 10,
+//                 crossAxisSpacing: 0,
+//                 //childAspectRatio: 0.75,
+//               ),
+//               delegate: SliverChildBuilderDelegate(
+//                 (BuildContext context, int index) {
+//                   return RawMaterialButton(
+//                     onPressed: () {
+//                       Navigator.push(
+//                         context,
+//                         MaterialPageRoute(
+//                           builder: (context) =>
+//                               PhotoDetails(imagePath: networkNames[index]),
+//                         ),
+//                       );
+//                     },
+//                     child: Container(
+//                       alignment: Alignment.center,
+//                       padding: _edgeInsertsForIndex(index),
+//                       child: SvgPicture.network(
+//                         networkNames[index % networkNames.length],
+//                         fit: BoxFit.cover,
+//                       ),
+//                     ),
+//                   );
+//                 },
+//                 childCount: networkNames.length,
+//               ),
+//             ),
+//           ],
+//         ),
+//       ),
+//       onWillPop: () async {
+//         Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> SliderDrawer(),),);
+//         return false;
+//       },
+//     );
+//   }
+// }
+//
+// EdgeInsets _edgeInsertsForIndex(int index) {
+//   if (index % 2 == 0) {
+//     return EdgeInsets.only(top: 0.0, left: 5.0, right: 5.0, bottom: 0.0);
+//   } else {
+//     return EdgeInsets.only(top: 0.0, left: 5.0, right: 5.0, bottom: 0.0);
+//   }
+// }
 
 //
 // // class ImageDetails{
@@ -420,63 +577,7 @@ EdgeInsets _edgeInsertsForIndex(int index) {
 // //   });
 // // }
 //
-final List<String> networkNames = [
-  'http://103.141.241.97/Images/Annual1.svg',
-  'http://103.141.241.97/Images/Annual2.svg',
-  'http://103.141.241.97/Images/Annual3.svg',
-  'http://103.141.241.97/Images/Annual4.svg',
-  'http://103.141.241.97/Images/Annual5.svg',
-  'http://103.141.241.97/Images/Annual6.svg',
-  'http://103.141.241.97/Images/Annual7.svg',
-  'http://103.141.241.97/Images/Annual8.svg',
-  'http://103.141.241.97/Images/Annual9.svg',
-  'http://103.141.241.97/Images/Annual10.svg',
-  'http://103.141.241.97/Images/Annual11.svg',
-  'http://103.141.241.97/Images/Annual12.svg',
-  'http://103.141.241.97/Images/Canteen1.svg',
-  'http://103.141.241.97/Images/Canteen2.svg',
-  'http://103.141.241.97/Images/Canteen3.svg',
-  'http://103.141.241.97/Images/Canteen4.svg',
-  'http://103.141.241.97/Images/Canteen5.svg',
-  'http://103.141.241.97/Images/Canteen6.svg',
-  'http://103.141.241.97/Images/Canteen7.svg',
-  'http://103.141.241.97/Images/Canteen8.svg',
-  'http://103.141.241.97/Images/Canteen9.svg',
-  'http://103.141.241.97/Images/Cele1.svg',
-  'http://103.141.241.97/Images/Cele2.svg',
-  'http://103.141.241.97/Images/Cele3.svg',
-  'http://103.141.241.97/Images/Cele4.svg',
-  'http://103.141.241.97/Images/Civil1.svg',
-  'http://103.141.241.97/Images/Civil2.svg',
-  'http://103.141.241.97/Images/Civil3.svg',
-  'http://103.141.241.97/Images/Civil4.svg',
-  'http://103.141.241.97/Images/Civil5.svg',
-  'http://103.141.241.97/Images/Civil6.svg',
-  'http://103.141.241.97/Images/Civil7.svg',
-  'http://103.141.241.97/Images/Civil8.svg',
-  'http://103.141.241.97/Images/Civil9.svg',
-  'http://103.141.241.97/Images/Civil10.svg',
-  'http://103.141.241.97/Images/Civil11.svg',
-  'http://103.141.241.97/Images/Civil12.svg',
-  'http://103.141.241.97/Images/Comp1.svg',
-  'http://103.141.241.97/Images/Comp2.svg',
-  'http://103.141.241.97/Images/Comp3.svg',
-  'http://103.141.241.97/Images/Comp4.svg',
-  'http://103.141.241.97/Images/Comp5.svg',
-  'http://103.141.241.97/Images/Comp6.svg',
-  'http://103.141.241.97/Images/Comp7.svg',
-  'http://103.141.241.97/Images/Comp8.svg',
-  'http://103.141.241.97/Images/Day1.svg',
-  'http://103.141.241.97/Images/Day2.svg',
-  'http://103.141.241.97/Images/Day3.svg',
-  'http://103.141.241.97/Images/Day4.svg',
-  'http://103.141.241.97/Images/Day5.svg',
-  'http://103.141.241.97/Images/Day6.svg',
-
-
-
-];
-
+// final List<String> networkNames = [];
 
 // // List<ImageDetails> _images = [
 // //   ImageDetails(
@@ -494,5 +595,3 @@ final List<String> networkNames = [
 // //     imagePath:'https://th.bing.com/th/id/OIP.l7S3JibgRoTvVXQCsfWBCgHaLJ?pid=ImgDet&rs=1',
 // //   ),
 // // ];
-
-

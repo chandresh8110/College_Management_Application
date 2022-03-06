@@ -32,12 +32,13 @@ class _MainPageState extends State<MainPage> {
           flexibleSpace: Container(
             decoration: BoxDecoration(
               gradient: LinearGradient(
-                  begin: Alignment.topRight,
-                  end: Alignment.bottomLeft,
-                  colors: [
-                    Colors.cyanAccent,
-                    Colors.blue,
-                  ]),
+                begin: Alignment.topRight,
+                end: Alignment.bottomLeft,
+                colors: [
+                  Colors.cyanAccent,
+                  Colors.blue,
+                ],
+              ),
             ),
           ),
         ),
@@ -66,7 +67,6 @@ class _MainPageState extends State<MainPage> {
             // color: Colors.redAccent,
             child: Text(
               '       Apollo Institute of Engineering and Technology is one of the premier institutes for imparting quality technical education and keeping pace with the ever-changing world of Technology. The institute is established under the aegis of Divaba Education trust.'
-              '\n       The college started its academic term in the year 2014 and offers Bachelor of Engineering in various disciplines like Civil Engineering, Computer Engineering, Electrical Engineering, Information Technology, Mechanical Engineering.'
               '\n       The College is approved by AICTE and affiliated with GTU (Gujarat Technological University).',
               textAlign: TextAlign.justify,
               style: TextStyle(

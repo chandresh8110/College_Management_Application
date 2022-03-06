@@ -103,8 +103,8 @@ class _HeaderWidgetState extends State<HeaderWidget> {
                 ),
                 decoration: const BoxDecoration(
                   image: DecorationImage(
-                    image: NetworkImage(
-                      "http://103.141.241.97/images/LogoWhite.png",
+                    image: AssetImage(
+                      "images/White_logo.png",
                     ),
                   ),
                 ),

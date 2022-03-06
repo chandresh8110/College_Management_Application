@@ -10,7 +10,9 @@ import 'Add_Notice.dart';
 import 'pdfview.dart';
 
 class Faculty_Notice extends StatefulWidget {
-  const Faculty_Notice({Key? key}) : super(key: key);
+  const Faculty_Notice({Key? key, required this.username}) : super(key: key);
+
+  final String username;
 
   @override
   _Faculty_NoticeState createState() => _Faculty_NoticeState();
@@ -23,7 +25,7 @@ class _Faculty_NoticeState extends State<Faculty_Notice> {
 
   Future fetchAllPdf() async {
     final response =
-        await http.get(Uri.parse("http://103.141.241.97/test/Fetch.php"));
+        await http.get(Uri.parse("http://103.141.241.97/test/notice_fetch.php"));
     if (response.statusCode == 200) {
       setState(() {
         pdfList = jsonDecode(response.body);
@@ -56,8 +58,22 @@ class _Faculty_NoticeState extends State<Faculty_Notice> {
     return Scaffold(
         appBar: AppBar(
           title: const Text('Notice'),
-          backgroundColor: Colors.blue,
-          leading: FMenuWidget(),
+          // backgroundColor: Colors.blue,
+          flexibleSpace: Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topRight,
+                end: Alignment.bottomLeft,
+                colors: [
+                  Colors.cyanAccent,
+                  Colors.blue,
+                ],
+              ),
+            ),
+          ),
+          leading: FMenuWidget(
+            username: widget.username,
+          ),
         ),
         body: loading
             ? const Center(
@@ -69,6 +85,9 @@ class _Faculty_NoticeState extends State<Faculty_Notice> {
                   return ListTile(
                     leading: TextButton.icon(
                       icon: const Icon(Icons.picture_as_pdf),
+                      style: TextButton.styleFrom(
+                        primary: Theme.of(context).primaryColor,
+                      ),
                       onPressed: () {
                         Navigator.push(
                           context,
@@ -87,7 +106,7 @@ class _Faculty_NoticeState extends State<Faculty_Notice> {
                 }),
         floatingActionButton: FloatingActionButton(
           child: Icon(Icons.add),
-          backgroundColor: Colors.blue,
+          backgroundColor: Theme.of(context).colorScheme.secondary,
           onPressed: () {
             setState(() {
               Navigator.of(context).push(

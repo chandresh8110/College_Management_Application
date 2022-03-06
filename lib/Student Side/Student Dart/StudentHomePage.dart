@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class SHomePage extends StatefulWidget {
-  const SHomePage({Key? key}) : super(key: key);
+  const SHomePage({Key? key, required this.username}) : super(key: key);
+
+  final String username;
 
   @override
   _SHomePageState createState() => _SHomePageState();
@@ -30,7 +32,7 @@ class _SHomePageState extends State<SHomePage> {
           floating: true,
           //pinned: true,
           title: Text('StudentHomePage'),
-          leading: SMenuWidget(),
+          leading: SMenuWidget(username: widget.username,),
         ),
         SliverToBoxAdapter(
           child: Container(
@@ -191,12 +193,6 @@ class _SHomePageState extends State<SHomePage> {
               buildRow(['Computer Engineering', '120']),
               buildRow(['Mechanical Engineering', '60']),
             ],
-          ),
-        ),
-        SliverToBoxAdapter(
-          child: Container(
-            height: 70,
-            //color: Colors.greenAccent,
           ),
         ),
       ]),

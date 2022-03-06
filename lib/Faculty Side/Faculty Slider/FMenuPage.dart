@@ -1,5 +1,3 @@
-import 'package:final_app/Add_Data/Add_Student.dart';
-import 'package:final_app/Search/Student_Search.dart';
 import 'package:flutter/material.dart';
 import 'FMenuItem.dart';
 
@@ -8,21 +6,22 @@ class FMenuItems {
   static const Add = FMenuItem('Add', Icons.person_add_outlined);
   static const Notice = FMenuItem('Notice', Icons.mark_email_unread_outlined);
   static const Material = FMenuItem('Material', Icons.sticky_note_2_outlined);
-  static const Student_Search = FMenuItem('Search_Student', Icons.person_search_outlined);
-  static const FacilitiesPage = FMenuItem('Facilities', Icons.view_comfortable);
-  static const ContactUsPage = FMenuItem('Contact_Us', Icons.phone);
-  static const DeveloperPage =
-      FMenuItem('App_Developer', Icons.developer_board_outlined);
+  static const Student_Faculty_Search =
+      FMenuItem('Search_Student', Icons.person_search_outlined);
+  static const Faculty_Setting_page = FMenuItem('Setting', Icons.settings);
+  // static const ContactUsPage = FMenuItem('Contact_Us', Icons.phone);
+  // static const DeveloperPage =
+  //     FMenuItem('App_Developer', Icons.developer_board_outlined);
 
   static const all = <FMenuItem>[
     HomePage,
     Add,
     Notice,
     Material,
-    Student_Search,
-    FacilitiesPage,
-    ContactUsPage,
-    DeveloperPage,
+    Student_Faculty_Search,
+    Faculty_Setting_page,
+    // ContactUsPage,
+    // DeveloperPage,
   ];
 }
 
@@ -41,31 +40,48 @@ class FMenuPage extends StatelessWidget {
   Widget build(BuildContext context) => Scaffold(
         //backgroundColor: Colors.grey[400],
         body: SafeArea(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(top: 15, left: 10),
-                child: CircleAvatar(
-                  radius: 50.0,
-                  backgroundImage: NetworkImage(
-                      'https://image3.mouthshut.com/images/imagesp/925888452s.jpg'),
-                ),
+          child: Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topRight,
+                end: Alignment.bottomLeft,
+                colors: [
+                  // Colors.yellow,
+                  Colors.cyan,
+                  Colors.lime,
+                  // Colors.indigo,
+                  // Colors.purpleAccent,
+                  // Colors.deepOrange,
+                ],
               ),
-              Padding(
-                padding: const EdgeInsets.only(top: 15, left: 10),
-                child: Text(
-                  'Hello ' + username + ' !',
-                  style: TextStyle(
-                    fontSize: 30,
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(top: 15, left: 10),
+                  child: CircleAvatar(
+                    radius: 50.0,
+                    backgroundImage:
+                        NetworkImage('http://103.141.241.97/images/Logo_.png'),
+                    backgroundColor: Colors.transparent,
                   ),
                 ),
-              ),
-              //Spacer(),
-              Padding(padding: EdgeInsets.only(top: 50)),
-              ...FMenuItems.all.map(buildMenuItem).toList(),
-              Spacer(flex: 2),
-            ],
+                Padding(
+                  padding: const EdgeInsets.only(top: 15, left: 10),
+                  child: Text(
+                    'Hello ' + username + ' !',
+                    style: TextStyle(
+                      fontSize: 30,
+                    ),
+                  ),
+                ),
+                //Spacer(),
+                Padding(padding: EdgeInsets.only(top: 50)),
+                ...FMenuItems.all.map(buildMenuItem).toList(),
+                Spacer(flex: 2),
+              ],
+            ),
           ),
         ),
       );
@@ -73,7 +89,8 @@ class FMenuPage extends StatelessWidget {
   Widget buildMenuItem(FMenuItem item) => ListTileTheme(
         //selectedColor: Colors.white,
         child: ListTile(
-          //selectedTileColor: Colors.black26,
+          selectedColor: Colors.purple,
+          iconColor: Colors.black,
           selected: currentItem == item,
           minLeadingWidth: 20,
           leading: Icon(item.icon),

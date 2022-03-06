@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 
 import '../slider/SliderDrawer.dart';
 
-
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
 
@@ -20,17 +19,38 @@ class _SplashScreenState extends State<SplashScreen> {
     _navigatetohome();
   }
 
-  _navigatetohome()async{
-    await Future.delayed(Duration(milliseconds: 600),() {});
-    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> SliderDrawer()));
+  _navigatetohome() async {
+    await Future.delayed(Duration(milliseconds: 1000), () {});
+    Navigator.pushReplacement(
+        context, MaterialPageRoute(builder: (context) => SliderDrawer()));
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body:Center(
-        child:Container(
-          child: Image(image: AssetImage('images/ss.png'),),
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topRight,
+            end: Alignment.bottomLeft,
+            colors: [
+              // Colors.yellow,
+              Colors.lime,
+              Colors.cyan,
+              // Colors.indigo,
+              // Colors.purpleAccent,
+              // Colors.deepOrange,
+            ],
+          ),
+        ),
+        child: Center(
+          child: Container(
+            child: Image(
+              image: AssetImage(
+                'images/White_logo.png',
+              ),
+            ),
+          ),
         ),
       ),
     );

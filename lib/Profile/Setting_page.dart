@@ -6,6 +6,7 @@ import 'package:final_app/slider/SliderDrawer.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import '../Student Side/Student_Slider/SSliderDrawer.dart';
 import 'Details_Page.dart';
 
 class Profile_page extends StatefulWidget {
@@ -31,7 +32,9 @@ class _Profile_pageState extends State<Profile_page> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Profile'),
-        leading: SMenuWidget(),
+        leading: SMenuWidget(
+          username: widget.username,
+        ),
         backgroundColor: Colors.blue,
       ),
       body: FutureBuilder<List>(
@@ -45,7 +48,10 @@ class _Profile_pageState extends State<Profile_page> {
             }
           }
           if (snapshot.hasData) {
-            return ItemList(list: snapshot.data!);
+            return ItemList(
+              list: snapshot.data!,
+              username: widget.username,
+            );
           } else {
             return CircularProgressIndicator();
           }
@@ -56,9 +62,11 @@ class _Profile_pageState extends State<Profile_page> {
 }
 
 class ItemList extends StatelessWidget {
-  const ItemList({Key? key, required this.list}) : super(key: key);
+  const ItemList({Key? key, required this.list, required this.username})
+      : super(key: key);
 
   final List list;
+  final String username;
 
   @override
   Widget build(BuildContext context) {
@@ -107,7 +115,9 @@ class ItemList extends StatelessWidget {
                   Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => SliderDrawer(),
+                      builder: (context) => SSliderDrawer(
+                        username: '$username',
+                      ),
                     ),
                   );
                 },

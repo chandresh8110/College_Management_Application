@@ -7,7 +7,9 @@ import 'package:flutter/material.dart';
 
 
 class HOD_Add_Things extends StatefulWidget {
-  const HOD_Add_Things({Key? key}) : super(key: key);
+  const HOD_Add_Things({Key? key, required this.username}) : super(key: key);
+
+  final String username;
 
   @override
   _HOD_Add_ThingsState createState() => _HOD_Add_ThingsState();
@@ -27,7 +29,19 @@ class _HOD_Add_ThingsState extends State<HOD_Add_Things> {
                 floating: true,
                 pinned: true,
                 title: Text('Add_Data'),
-                leading: HMenuWidget(),
+                leading: HMenuWidget(username: widget.username,),
+                flexibleSpace: Container(
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      begin: Alignment.topRight,
+                      end: Alignment.bottomLeft,
+                      colors: [
+                        Colors.lime,
+                        Colors.cyan,
+                      ],
+                    ),
+                  ),
+                ),
                 bottom: TabBar(
                   tabs: [
                     Tab(text: 'Add_Course',),

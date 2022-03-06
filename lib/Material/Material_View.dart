@@ -30,7 +30,19 @@ class _Material_ViewState extends State<Material_View> {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
-        backgroundColor: Colors.blue,
+        // backgroundColor: Colors.blue,
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topRight,
+              end: Alignment.bottomLeft,
+              colors: [
+                Colors.cyanAccent,
+                Colors.blue,
+              ],
+            ),
+          ),
+        ),
       ),
       body: SfPdfViewer.network(
           "http://103.141.241.97/test/uploads/Material/" + widget.name,

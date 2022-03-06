@@ -9,7 +9,9 @@ import 'package:flutter/material.dart';
 
 
 class HOD_Add_Members extends StatefulWidget {
-  const HOD_Add_Members({Key? key}) : super(key: key);
+  const HOD_Add_Members({Key? key, required this.username}) : super(key: key);
+
+  final String username;
 
   @override
   _HOD_Add_MembersState createState() => _HOD_Add_MembersState();
@@ -29,7 +31,19 @@ class _HOD_Add_MembersState extends State<HOD_Add_Members> {
                 floating: true,
                 pinned: true,
                 title: Text('Add_Data'),
-                leading: HMenuWidget(),
+                leading: HMenuWidget(username: widget.username,),
+                flexibleSpace: Container(
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      begin: Alignment.topRight,
+                      end: Alignment.bottomLeft,
+                      colors: [
+                        Colors.lime,
+                        Colors.cyan,
+                      ],
+                    ),
+                  ),
+                ),
                 bottom: TabBar(
                   tabs: [
                     Tab(text: 'Add_Student'),

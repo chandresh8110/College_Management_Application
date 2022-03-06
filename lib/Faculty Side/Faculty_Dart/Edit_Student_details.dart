@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:new_gradient_app_bar/new_gradient_app_bar.dart';
 
 class Edit_Student_details extends StatefulWidget {
   const Edit_Student_details(
@@ -51,7 +52,8 @@ class _Edit_Student_detailsState extends State<Edit_Student_details> {
   }
 
   void editData() async {
-    var response = await http.post(Uri.parse("http://103.141.241.97/test/editstu.php"), body: {
+    var response = await http
+        .post(Uri.parse("http://103.141.241.97/test/editstu.php"), body: {
       "id": idcontroller!.text,
       "fname": fnamecontroller!.text,
       "mname": mnamecontroller!.text,
@@ -110,11 +112,17 @@ class _Edit_Student_detailsState extends State<Edit_Student_details> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
+      appBar: NewGradientAppBar(
         title: Text("Edit" +
             " ${widget.list[widget.index]['stu_fname']}'s" +
             " Detail"),
-        backgroundColor: Colors.blue,
+        // backgroundColor: Colors.blue,
+        gradient: LinearGradient(
+          colors: [
+            Colors.lime,
+            Colors.cyan,
+          ],
+        ),
       ),
       body: Form(
         key: _formKey,

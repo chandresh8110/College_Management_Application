@@ -5,6 +5,7 @@ import 'package:final_app/Material/HOD_Add_Material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import '../HOD_Side/HOD_Slider/HSliderDrawer.dart';
 import 'Material_List.dart';
 
 class HOD_View_Material extends StatefulWidget {
@@ -70,11 +71,26 @@ class _HOD_View_MaterialState extends State<HOD_View_Material> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return WillPopScope(
+      child: Scaffold(
         appBar: AppBar(
           title: const Text('Material'),
-          backgroundColor: Colors.blue,
-          leading: HMenuWidget(),
+          // backgroundColor: Colors.blue,
+          leading: HMenuWidget(
+            username: widget.username,
+          ),
+          flexibleSpace: Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topRight,
+                end: Alignment.bottomLeft,
+                colors: [
+                  Colors.cyanAccent,
+                  Colors.blue,
+                ],
+              ),
+            ),
+          ),
         ),
         body: SingleChildScrollView(
           child: Column(
@@ -177,17 +193,32 @@ class _HOD_View_MaterialState extends State<HOD_View_Material> {
         ),
         floatingActionButton: FloatingActionButton(
           child: Icon(Icons.add),
-          backgroundColor: Colors.blue,
+          backgroundColor: Colors.cyan,
           onPressed: () {
             setState(() {
               Navigator.of(context).push(
                 MaterialPageRoute(
-                    builder: (context) =>
-                        HOD_Add_Material(username: widget.username)),
+                  builder: (context) => HOD_Add_Material(
+                    username: widget.username,
+                  ),
+                ),
               );
             });
           },
-        ));
+        ),
+      ),
+      onWillPop: () async {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) => HSliderDrawer(
+              username: widget.username,
+            ),
+          ),
+        );
+        return false;
+      },
+    );
   }
 }
 

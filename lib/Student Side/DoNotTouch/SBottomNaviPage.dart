@@ -16,7 +16,7 @@ class SBottomNaviPage extends StatefulWidget {
 class _SBottomNaviPageState extends State<SBottomNaviPage> {
   int index = 0;
   final screen = [
-    SHomePage(),
+    SHomePage(username: '',),
     EventPage(),
     BranchPage(),
     PlacementPage(),
