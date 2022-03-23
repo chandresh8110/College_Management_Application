@@ -200,9 +200,10 @@ class _Student_Material_ViewState extends State<Student_Material_View> {
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(
-              builder: (context) => SSliderDrawer(
-                    username: widget.username,
-                  )),
+            builder: (context) => SSliderDrawer(
+              username: widget.username,
+            ),
+          ),
         );
         return false;
       },
@@ -246,8 +247,7 @@ class _CourseListState extends State<CourseList> {
                 value: selectedCourse,
                 items: widget.list.map((course) {
                   return DropdownMenuItem(
-                      value: course['cname'],
-                      child: Text(course['cname']));
+                      value: course['cname'], child: Text(course['cname']));
                 }).toList(),
                 onChanged: (course) {
                   setState(() {
@@ -270,12 +270,13 @@ class _CourseListState extends State<CourseList> {
                     Navigator.of(context)
                         .push(
                           MaterialPageRoute(
-                              builder: (context) => Material_list(
-                                    branch: widget.branch,
-                                    course: '$selectedCourse',
-                                    sem: widget.sem,
-                                    year: widget.year,
-                                  )),
+                            builder: (context) => Material_list(
+                              branch: widget.branch,
+                              course: '$selectedCourse',
+                              sem: widget.sem,
+                              year: widget.year,
+                            ),
+                          ),
                         )
                         .then((value) => setState(() {
                               selectedCourse = value;

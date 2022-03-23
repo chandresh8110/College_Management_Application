@@ -13,11 +13,11 @@ class MenuWidget extends StatelessWidget {
         onPressed: () => ZoomDrawer.of(context)!.toggle(),
       ),
       onWillPop: () async {
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(builder: (context) => SliderDrawer()),
-        );
-        return false;
+        // Navigator.pushReplacement(
+        //   context,
+        //   MaterialPageRoute(builder: (context) => SliderDrawer()),
+        // );
+        return true;
       },
     );
   }

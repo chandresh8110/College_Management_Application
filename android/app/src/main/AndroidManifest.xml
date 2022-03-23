@@ -1,8 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.final_app">
    <application
-        android:label="final_app"
-        android:icon="@mipmap/ic_launcher">
+        android:label="AIET"
+        android:icon="@mipmap/launcher_logo">
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
