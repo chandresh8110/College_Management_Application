@@ -10,6 +10,8 @@ class DMenuItems {
   static const ContactUsPage = DMenuItem('Contact_Us', Icons.phone);
   static const DeveloperPage =
       DMenuItem('App_Developer', Icons.developer_board_outlined);
+  static const Create_Exam =
+      DMenuItem('Create Exam', Icons.developer_board_outlined);
 
   static const all = <DMenuItem>[
     HomePage,
@@ -19,12 +21,16 @@ class DMenuItems {
     FacilitiesPage,
     ContactUsPage,
     DeveloperPage,
+    Create_Exam,
   ];
 }
 
 class DMenuPage extends StatelessWidget {
   const DMenuPage(
-      {Key? key, required this.currentItem, required this.onSelectedItem, required this.username})
+      {Key? key,
+      required this.currentItem,
+      required this.onSelectedItem,
+      required this.username})
       : super(key: key);
   final DMenuItem currentItem;
   final ValueChanged<DMenuItem> onSelectedItem;
@@ -48,7 +54,7 @@ class DMenuPage extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(top: 15, left: 10),
                 child: Text(
-                  'Hello '+ username +' !',
+                  'Hello ' + username + ' !',
                   style: TextStyle(
                     fontSize: 25,
                   ),

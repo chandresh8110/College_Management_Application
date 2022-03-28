@@ -103,6 +103,7 @@ class ItemList extends StatelessWidget {
     return Scaffold(
       body: Container(
         child: ListView.builder(
+          shrinkWrap: true,
           itemCount: list == null ? 0 : list.length,
           itemBuilder: (context, i) {
             return Padding(

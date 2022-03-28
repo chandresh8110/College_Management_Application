@@ -1,3 +1,4 @@
+import 'package:final_app/Marks/Add_Marks_FPG.dart';
 import 'package:final_app/Profile/HOD_Details_Page.dart';
 import 'package:final_app/Profile/HOD_Setting_Page.dart';
 import 'package:final_app/Search/Student_HOD_Search.dart';
@@ -16,6 +17,10 @@ class HMenuItems {
   //     HMenuItem('Student Search', Icons.person_search_outlined);
   static const HOD_Edit_Details = HMenuItem('Search Members', Icons.person_search_outlined);
   static const HOD_Setting_page = HMenuItem('Setting', Icons.settings);
+  static const Select_Exam_Sub =
+  HMenuItem('Select_Exam_Sub', Icons.developer_board_outlined);
+  static const Add_Marks_FP =
+  HMenuItem('Add Marks', Icons.developer_board_outlined);
 
   // static const ContactUsPage = HMenuItem('Contact_Us', Icons.phone);
   // static const DeveloperPage =
@@ -29,6 +34,8 @@ class HMenuItems {
     Material,
     HOD_Edit_Details,
     HOD_Setting_page,
+    Select_Exam_Sub,
+    Add_Marks_FP,
     // FacilitiesPage,
     // ContactUsPage,
     // DeveloperPage,

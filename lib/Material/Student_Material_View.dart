@@ -145,16 +145,8 @@ class _Student_Material_ViewState extends State<Student_Material_View> {
                   icon: const Icon(Icons.arrow_drop_down),
 
                   // Array list of items
-                  items: <String>[
-                    '1',
-                    '2',
-                    '3',
-                    '4',
-                    '5',
-                    '6',
-                    '7',
-                    '8',
-                  ].map((String items) {
+                  items: <String>['1', '2', '3', '4', '5', '6', '7', '8']
+                      .map((String items) {
                     return DropdownMenuItem(
                       value: items,
                       child: Text(items),
@@ -231,7 +223,6 @@ class CourseList extends StatefulWidget {
 
 class _CourseListState extends State<CourseList> {
   String? selectedCourse;
-  Timer? timer;
 
   @override
   Widget build(BuildContext context) {
@@ -247,7 +238,9 @@ class _CourseListState extends State<CourseList> {
                 value: selectedCourse,
                 items: widget.list.map((course) {
                   return DropdownMenuItem(
-                      value: course['cname'], child: Text(course['cname']));
+                    value: course['cname'],
+                    child: Text(course['cname']),
+                  );
                 }).toList(),
                 onChanged: (course) {
                   setState(() {

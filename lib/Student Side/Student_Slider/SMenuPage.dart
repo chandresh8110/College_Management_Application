@@ -1,6 +1,7 @@
-import 'package:final_app/Material/Student_Material_View.dart';
-import 'package:final_app/Notice/Notice_View_Student.dart';
-import 'package:final_app/Profile/Setting_page.dart';
+// ignore_for_file: non_constant_identifier_names
+
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 import 'package:final_app/Student%20Side/Student_Slider/SMenuItem.dart';
 import 'package:flutter/material.dart';
 
@@ -41,6 +42,15 @@ class SMenuPage extends StatelessWidget {
   final ValueChanged<SMenuItem> onSelectedItem;
   final String username;
 
+  Future Getimage() async {
+    var url = "http://103.141.241.97/test/app_profile.php";
+    var response = await http.post(Uri.parse(url),body: {
+      "username" : username,
+    });
+    return json.decode(response.body);
+  }
+
+
   @override
   Widget build(BuildContext context) => Scaffold(
         //backgroundColor: Colors.grey[400],
@@ -63,6 +73,40 @@ class SMenuPage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                // Container(
+                //   height: 115,
+                //   child: FutureBuilder(
+                //     future: Getimage(),
+                //     builder: (context, snapshot) {
+                //       if (snapshot.hasError) print(snapshot.error);
+                //       return snapshot.hasData
+                //           ? ListView.builder(
+                //               // itemCount: snapshot.data,
+                //               itemBuilder: (context, index) {
+                //                 List? list = snapshot.data as List?;
+                //                 return Padding(
+                //                   padding: const EdgeInsets.only(right: 250),
+                //                   child: Padding(
+                //                     padding: const EdgeInsets.only(top: 10),
+                //                     child: ListTile(
+                //                       title: Center(
+                //                         child: CircleAvatar(
+                //                           radius: 50.0,
+                //                           backgroundImage: NetworkImage(
+                //                             "http://103.141.241.97/test/uploads/student/${list![index]['stu_pic']}",
+                //                           ),
+                //                           backgroundColor: Colors.transparent,
+                //                         ),
+                //                       ),
+                //                     ),
+                //                   ),
+                //                 );
+                //               },
+                //             )
+                //           : CircularProgressIndicator();
+                //     },
+                //   ),
+                // ),
                 Padding(
                   padding: const EdgeInsets.only(top: 15, left: 10),
                   child: CircleAvatar(
@@ -81,7 +125,7 @@ class SMenuPage extends StatelessWidget {
                     ),
                   ),
                 ),
-                // Spacer(),
+                // // Spacer(),
                 Padding(padding: EdgeInsets.only(top: 50)),
                 ...SMenuItems.all.map(buildMenuItem).toList(),
                 Spacer(flex: 2),

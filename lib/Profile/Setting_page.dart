@@ -53,11 +53,9 @@ class _Profile_pageState extends State<Profile_page> {
         future: getData(),
         builder: (context, snapshot) {
           if (snapshot.hasError) {
-            if (kDebugMode) {
               if (kDebugMode) {
                 print(snapshot.error);
               }
-            }
           }
           if (snapshot.hasData) {
             return ItemList(
