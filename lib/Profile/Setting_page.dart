@@ -144,8 +144,8 @@ class _ItemListState extends State<ItemList> {
                                 children: [
                                   CircleAvatar(
                                     radius: 25,
-                                    backgroundImage: NetworkImage(
-                                      'http://103.141.241.97/images/Logo_.png',
+                                    backgroundImage:AssetImage(
+                                        "images/Logo_.png"
                                     ),
                                     foregroundImage: NetworkImage(
                                       "http://103.141.241.97/test/uploads/Student/${widget.list[i]["stu_pic"]}",

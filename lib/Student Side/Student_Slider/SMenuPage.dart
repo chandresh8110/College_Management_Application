@@ -14,8 +14,8 @@ class SMenuItems {
   // static const BranchPage = SMenuItem('Branch', Icons.celebration);
   // static const FacilitiesPage = SMenuItem('Facilities', Icons.view_comfortable);
   // static const ContactUsPage = SMenuItem('Contact_Us', Icons.phone);
-  // static const DeveloperPage =
-  //     SMenuItem('App_Developer', Icons.developer_board_outlined);
+  static const Marksview =
+      SMenuItem('Marks View', Icons.developer_board_outlined);
   static const Profile_page = SMenuItem('Setting', Icons.settings);
 
   static const all = <SMenuItem>[
@@ -25,7 +25,7 @@ class SMenuItems {
     // BranchPage,
     // FacilitiesPage,
     // ContactUsPage,
-    // DeveloperPage,
+    Marksview,
     Profile_page,
   ];
 }

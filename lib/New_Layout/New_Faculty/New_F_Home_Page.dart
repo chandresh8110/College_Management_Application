@@ -1,3 +1,6 @@
+import 'package:final_app/Attedance/Faculty_Atten_View_FP.dart';
+import 'package:final_app/Marks/Faculty_Marks_view_FP.dart';
+import 'package:final_app/Profile/Faculty_Setting_Page.dart';
 import 'package:flutter/material.dart';
 import 'package:final_app/New_Layout/header_widget_homePages.dart';
 
@@ -23,7 +26,8 @@ class _New_F_HomepageState extends State<New_F_Homepage> {
             height: _headerHeight,
             child: HeaderWidget(
               _headerHeight,
-              true, username: widget.username,
+              true,
+              username: widget.username,
             ), //let's create a common header widget
           ),
           Expanded(
@@ -39,7 +43,7 @@ class _New_F_HomepageState extends State<New_F_Homepage> {
                       children: [
                         Image.network(
                           'https://cdn-icons-png.flaticon.com/512/3135/3135755.png',
-                          height: 160,
+                          height: 140,
                         ),
                         Text(
                           "Student",
@@ -57,17 +61,27 @@ class _New_F_HomepageState extends State<New_F_Homepage> {
                       children: [
                         Image.network(
                           'https://cdn-icons-png.flaticon.com/512/3135/3135755.png',
-                          height: 160,
+                          height: 140,
                         ),
                         Text(
                           "Attendance",
                           style: TextStyle(
-                              fontSize: 15, fontWeight: FontWeight.bold),
+                            fontSize: 15,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ],
                     ),
                   ),
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => Faculty_Atten_View_FP(
+                          username: widget.username,
+                        ),
+                      ),
+                    );
+                  },
                 ),
                 InkWell(
                   child: Card(
@@ -75,7 +89,7 @@ class _New_F_HomepageState extends State<New_F_Homepage> {
                       children: [
                         Image.network(
                           'https://cdn-icons-png.flaticon.com/512/3135/3135755.png',
-                          height: 160,
+                          height: 140,
                         ),
                         Text(
                           "Course",
@@ -93,17 +107,26 @@ class _New_F_HomepageState extends State<New_F_Homepage> {
                       children: [
                         Image.network(
                           'https://cdn-icons-png.flaticon.com/512/3135/3135755.png',
-                          height: 160,
+                          height: 140,
                         ),
                         Text(
                           "Publish",
                           style: TextStyle(
-                              fontSize: 15, fontWeight: FontWeight.bold),
+                            fontSize: 15,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ],
                     ),
                   ),
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            Faculty_Marks_view_FP(username: widget.username),
+                      ),
+                    );
+                  },
                 ),
                 InkWell(
                   child: Card(
@@ -111,17 +134,27 @@ class _New_F_HomepageState extends State<New_F_Homepage> {
                       children: [
                         Image.network(
                           'https://cdn-icons-png.flaticon.com/512/3135/3135755.png',
-                          height: 160,
+                          height: 140,
                         ),
                         Text(
                           "Exam",
                           style: TextStyle(
-                              fontSize: 15, fontWeight: FontWeight.bold),
+                            fontSize: 15,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ],
                     ),
                   ),
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => Faculty_Marks_view_FP(
+                          username: widget.username,
+                        ),
+                      ),
+                    );
+                  },
                 ),
                 InkWell(
                   child: Card(
@@ -129,17 +162,27 @@ class _New_F_HomepageState extends State<New_F_Homepage> {
                       children: [
                         Image.network(
                           'https://cdn-icons-png.flaticon.com/512/3135/3135755.png',
-                          height: 160,
+                          height: 140,
                         ),
                         Text(
                           "Profile",
                           style: TextStyle(
-                              fontSize: 15, fontWeight: FontWeight.bold),
+                            fontSize: 15,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ],
                     ),
                   ),
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => Faculty_Setting_page(
+                          username: widget.username,
+                        ),
+                      ),
+                    );
+                  },
                 ),
               ],
             ),

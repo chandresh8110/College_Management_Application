@@ -33,9 +33,9 @@ class _Faculty_Setting_pageState extends State<Faculty_Setting_page> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Setting'),
-        leading: FMenuWidget(
-          username: widget.username,
-        ),
+        // leading: FMenuWidget(
+        //   username: widget.username,
+        // ),
         // backgroundColor: Colors.blue,
         flexibleSpace: Container(
           decoration: BoxDecoration(
@@ -84,37 +84,53 @@ class ItemList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
-          children: <Widget>[
-            Container(
-              height: 250,
+      body: Column(
+        children: <Widget>[
+          Flexible(
+            child: Padding(
+              padding: const EdgeInsets.all(10),
               child: ListView.builder(
+                shrinkWrap: true,
                 itemCount: list == null ? 0 : list.length,
                 itemBuilder: (context, i) {
                   return Padding(
                     padding: const EdgeInsets.only(top: 10),
-                    child: ListTile(
-                      title: Padding(
-                        padding: const EdgeInsets.only(top: 5),
-                        child: Text(
-                          "${list[i]['fname']}" +
-                              "  ${list[i]['mname']}" +
-                              "  ${list[i]['lname']}",
-                          style: TextStyle(
-                            fontSize: 30,
+                    child: Container(
+                      decoration: ThemeHelper().buttonBoxDecoration(context),
+                      child: ListTile(
+                        title: Padding(
+                          padding: const EdgeInsets.only(top: 5),
+                          child: Text(
+                            "${list[i]['fname']}" +
+                                "  ${list[i]['mname']}" +
+                                "  ${list[i]['lname']}",
+                            style: TextStyle(
+                              fontSize: 20,
+                            ),
                           ),
                         ),
-                      ),
-                      subtitle: Text(list[i]['id']),
-                      leading: const Icon(
-                        Icons.account_circle_outlined,
-                        size: 60,
-                      ),
-                      onTap: () => Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (BuildContext context) =>
-                              Faculty_Details(list: list, index: i),
+                        subtitle: Text(list[i]['id']),
+                        leading: Container(
+                          child: Column(
+                            children: [
+                              CircleAvatar(
+                                radius: 25,
+                                backgroundImage: AssetImage(
+                                  "images/Logo_.png"
+                                ),
+                                foregroundImage: NetworkImage(
+                                  "http://103.141.241.97/test/uploads/Faculty/${list[i]["pic"]}",
+                                ),
+                                backgroundColor: Colors.transparent,
+                              ),
+                            ],
+                          ),
+                        ),
+                        onTap: () => Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (BuildContext context) =>
+                                Faculty_Details(list: list, index: i),
+                          ),
                         ),
                       ),
                     ),
@@ -122,7 +138,9 @@ class ItemList extends StatelessWidget {
                 },
               ),
             ),
-            Padding(
+          ),
+          Flexible(
+            child: Padding(
               padding: const EdgeInsets.all(20),
               child: Container(
                 decoration: ThemeHelper().buttonBoxDecoration(context),
@@ -143,8 +161,8 @@ class ItemList extends StatelessWidget {
                 ),
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

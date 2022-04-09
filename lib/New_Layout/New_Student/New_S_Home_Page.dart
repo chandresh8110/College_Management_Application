@@ -1,3 +1,4 @@
+import 'package:final_app/Marks/Student_Marks_view.dart';
 import 'package:final_app/Material/Student_Material_View.dart';
 import 'package:final_app/Notice/Notice_View_Student.dart';
 import 'package:final_app/Profile/Setting_page.dart';
@@ -105,25 +106,15 @@ class _New_S_HomepageState extends State<New_S_Homepage> {
                       ],
                     ),
                   ),
-                  onTap: () {},
-                ),
-                InkWell(
-                  child: Card(
-                    child: Column(
-                      children: [
-                        Image.network(
-                          'https://cdn-icons-png.flaticon.com/512/3135/3135755.png',
-                          height: 150,
+                  onTap: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => Student_Marks_view(
+                          username: widget.username,
                         ),
-                        Text(
-                          "Attendance",
-                          style: TextStyle(
-                              fontSize: 15, fontWeight: FontWeight.bold),
-                        ),
-                      ],
-                    ),
-                  ),
-                  onTap: () {},
+                      ),
+                    );
+                  },
                 ),
                 InkWell(
                   child: Card(

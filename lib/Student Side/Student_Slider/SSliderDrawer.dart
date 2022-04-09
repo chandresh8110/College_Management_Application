@@ -1,3 +1,4 @@
+import 'package:final_app/Marks/Student_Marks_view.dart';
 import 'package:final_app/Material/Student_Material_View.dart';
 import 'package:final_app/Notice/Notice_View_Student.dart';
 import 'package:final_app/Profile/Setting_page.dart';
@@ -69,8 +70,10 @@ class _SSliderDrawerState extends State<SSliderDrawer> {
       //   return FacilitiesPage();
       // case SMenuItems.ContactUsPage:
       //   return ContactUsPage();
-      // case SMenuItems.DeveloperPage:
-      //   return DeveloperPage();
+      case SMenuItems.Marksview:
+        return Student_Marks_view(
+          username: widget.username,
+        );
       case SMenuItems.Profile_page:
         return Profile_page(username: widget.username);
     }
