@@ -1,9 +1,15 @@
 // ignore_for_file: camel_case_types, non_constant_identifier_names
 
 import 'dart:convert';
+import 'dart:ui';
+import 'package:final_app/New_Layout/New_Admin/New_A_Home_Page.dart';
+import 'package:final_app/New_Layout/New_Faculty/New_F_Home_Page.dart';
+import 'package:final_app/New_Layout/New_HOD/New_H_Home_Page.dart';
+import 'package:final_app/New_Layout/New_Student/New_S_Home_Page.dart';
 import 'package:final_app/Student%20Side/Student_Slider/SSliderDrawer.dart';
 import 'package:final_app/slider/SliderDrawer.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 import '../Developer_Team/Developer_slider/DSliderDrawer.dart';
 import '../Faculty Side/Faculty Slider/FSliderDrawer.dart';
@@ -38,24 +44,36 @@ class _AccountPageState extends State<AccountPage> {
 
     var data = json.decode(response.body);
     if (data == "Student") {
+      Fluttertoast.showToast(
+          msg: "Student Login Successful",
+          backgroundColor: Colors.deepOrangeAccent,
+          toastLength: Toast.LENGTH_SHORT);
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: (context) => SSliderDrawer(
+          builder: (context) => New_S_Homepage(
             username: usernamecontroller.text,
           ),
         ),
       );
     } else if (data == "Faculty") {
+      Fluttertoast.showToast(
+          msg: "Faculty Login Successful",
+          backgroundColor: Colors.deepOrangeAccent,
+          toastLength: Toast.LENGTH_SHORT);
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: (context) => FSliderDrawer(
+          builder: (context) => New_F_Homepage(
             username: usernamecontroller.text,
           ),
         ),
       );
     } else if (data == "HOD") {
+      Fluttertoast.showToast(
+          msg: "HOD Login Successful",
+          backgroundColor: Colors.deepOrangeAccent,
+          toastLength: Toast.LENGTH_SHORT);
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
@@ -65,13 +83,23 @@ class _AccountPageState extends State<AccountPage> {
         ),
       );
     } else if (data == "Developer") {
+      Fluttertoast.showToast(
+          msg: "Admin Login Successful",
+          backgroundColor: Colors.deepOrangeAccent,
+          toastLength: Toast.LENGTH_SHORT);
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: (context) => DSliderDrawer(
+          builder: (context) => New_A_Homepage(
             username: usernamecontroller.text,
           ),
         ),
+      );
+    } else {
+      Fluttertoast.showToast(
+        msg: "Incorrect LoginID or Password",
+        toastLength: Toast.LENGTH_LONG,
+        backgroundColor: Colors.deepOrangeAccent,
       );
     }
   }

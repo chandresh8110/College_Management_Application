@@ -15,8 +15,7 @@ class MenuItems {
   static const Course_Search_List =
       MenuItem('Course List', Icons.developer_board_outlined);
 
-  static const Prde = MenuItem('Prde', Icons.developer_board_outlined);
-
+  static const term = MenuItem('term', Icons.developer_board_outlined);
 
   static const all = <MenuItem>[
     HomePage,
@@ -27,7 +26,7 @@ class MenuItems {
     Faculty_Search_List,
     Student_Search_List,
     Course_Search_List,
-    Prde,
+    term,
   ];
 }
 

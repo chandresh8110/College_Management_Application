@@ -21,6 +21,8 @@ class HMenuItems {
   HMenuItem('Select_Exam_Sub', Icons.developer_board_outlined);
   static const Add_Marks_FP =
   HMenuItem('Add Marks', Icons.developer_board_outlined);
+  static const Attedance =
+  HMenuItem('Attedance', Icons.developer_board_outlined);
 
   // static const ContactUsPage = HMenuItem('Contact_Us', Icons.phone);
   // static const DeveloperPage =
@@ -36,6 +38,7 @@ class HMenuItems {
     HOD_Setting_page,
     Select_Exam_Sub,
     Add_Marks_FP,
+    Attedance,
     // FacilitiesPage,
     // ContactUsPage,
     // DeveloperPage,

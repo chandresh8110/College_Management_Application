@@ -1,3 +1,4 @@
+import 'package:final_app/Attedance/Attedance_First_page.dart';
 import 'package:final_app/HOD_Side/DoNotTouch/HBottomNaviPage.dart';
 import 'package:final_app/HOD_Side/HOD%20Dart/HODHomePage.dart';
 import 'package:final_app/HOD_Side/HOD%20Dart/HOD_Add_Members.dart';
@@ -91,6 +92,10 @@ class _HSliderDrawerState extends State<HSliderDrawer> {
         );
       case HMenuItems.Add_Marks_FP:
         return Add_Marks_FP(
+          username: widget.username,
+        );
+      case HMenuItems.Attedance:
+        return attendence(
           username: widget.username,
         );
       // case HMenuItems.DeveloperPage:

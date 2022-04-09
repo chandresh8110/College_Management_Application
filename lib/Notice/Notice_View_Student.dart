@@ -68,7 +68,7 @@ class _Notice_View_StudentState extends State<Notice_View_Student> {
             ),
           ),
         ),
-        leading: SMenuWidget(username: widget.username,),
+        // leading: SMenuWidget(username: widget.username,),
       ),
       body: loading
           ? const Center(

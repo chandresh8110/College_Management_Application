@@ -7,12 +7,16 @@ import 'package:flutter/material.dart';
 import 'package:new_gradient_app_bar/new_gradient_app_bar.dart';
 
 class Edit_Student_details extends StatefulWidget {
-  const Edit_Student_details(
-      {Key? key, required this.list, required this.index})
-      : super(key: key);
+  const Edit_Student_details({
+    Key? key,
+    required this.list,
+    required this.index,
+    required this.username,
+  }) : super(key: key);
 
   final List list;
   final int index;
+  final String username;
 
   @override
   _Edit_Student_detailsState createState() => _Edit_Student_detailsState();
@@ -69,7 +73,7 @@ class _Edit_Student_detailsState extends State<Edit_Student_details> {
       "gmno": gmnocontroller!.text,
       "gemail": gemailcontroller!.text,
       "status": status,
-      // "editby": widget.username,
+      "editby": widget.username,
     });
     if (response.statusCode == 200) {
       print(response.body);

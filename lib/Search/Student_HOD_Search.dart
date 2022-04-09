@@ -10,7 +10,8 @@ import '../HOD_Side/HOD_Slider/HMenuWidget.dart';
 import 'Student_Details.dart';
 
 class Student_HOD_Search extends StatefulWidget {
-  const Student_HOD_Search({Key? key, required this.username}) : super(key: key);
+  const Student_HOD_Search({Key? key, required this.username})
+      : super(key: key);
 
   final String username;
 
@@ -74,7 +75,10 @@ class _Student_HOD_SearchState extends State<Student_HOD_Search> {
                     }
                   }
                   if (snapshot.hasData) {
-                    return ItemList(list: snapshot.data!);
+                    return ItemList(
+                      list: snapshot.data!,
+                      username: widget.username,
+                    );
                   } else {
                     return CircularProgressIndicator();
                   }
@@ -89,9 +93,11 @@ class _Student_HOD_SearchState extends State<Student_HOD_Search> {
 }
 
 class ItemList extends StatelessWidget {
-  const ItemList({Key? key, required this.list}) : super(key: key);
+  const ItemList({Key? key, required this.list, required this.username})
+      : super(key: key);
 
   final List list;
+  final String username;
 
   @override
   Widget build(BuildContext context) {
@@ -121,8 +127,11 @@ class ItemList extends StatelessWidget {
                 ),
                 onTap: () => Navigator.of(context).push(
                   MaterialPageRoute(
-                    builder: (BuildContext context) =>
-                        Student_Details(list: list, index: i),
+                    builder: (BuildContext context) => Student_Details(
+                      list: list,
+                      index: i,
+                      username: '$username',
+                    ),
                   ),
                 ),
               ),

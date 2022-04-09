@@ -1,3 +1,4 @@
+import 'package:final_app/Add_Data/Create_Term.dart';
 import 'package:final_app/Exam/Create_Exam.dart';
 import 'package:final_app/Exam/Select_Exam_Sub_First_Page.dart';
 import 'package:final_app/General%20Side/FacilitiesPage.dart';
@@ -67,9 +68,8 @@ class _SliderState extends State<SliderDrawer> {
         return Student_Search_List();
       case MenuItems.Course_Search_List:
         return Course_Search_List();
-      case MenuItems.Prde:
-        return Prde();
-
+      case MenuItems.term:
+        return Create_Term(username: "Alpha");
     }
   }
 }

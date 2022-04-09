@@ -74,131 +74,118 @@ class _Student_Material_ViewState extends State<Student_Material_View> {
 
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      child: Scaffold(
-        appBar: AppBar(
-          title: const Text('Materials'),
-          // backgroundColor: Colors.blue,
-          flexibleSpace: Container(
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topRight,
-                end: Alignment.bottomLeft,
-                colors: [
-                  Colors.cyanAccent,
-                  Colors.blue,
-                ],
-              ),
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Materials'),
+        // backgroundColor: Colors.blue,
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topRight,
+              end: Alignment.bottomLeft,
+              colors: [
+                Colors.cyanAccent,
+                Colors.blue,
+              ],
             ),
           ),
-          leading: SMenuWidget(
-            username: widget.username,
-          ),
         ),
-        body: SingleChildScrollView(
-          child: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: DropdownButton(
-                    isExpanded: true,
-                    hint: const Text('Select Year'),
-                    value: selectedyear,
-                    items: YearList?.map((course) {
-                      return DropdownMenuItem(
-                          value: course['year'], child: Text(course['year']));
-                    }).toList(),
-                    onChanged: (year) {
-                      setState(() {
-                        selectedyear = year.toString();
-                        print(selectedyear);
-                      });
-                    }),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: DropdownButton(
-                    isExpanded: true,
-                    hint: const Text('Select Branch'),
-                    value: selectedBranch,
-                    items: BranchitemList?.map((branch) {
-                      return DropdownMenuItem(
-                          value: branch['branch_name'],
-                          child: Text(branch['branch_name']));
-                    }).toList(),
-                    onChanged: (branch) {
-                      setState(() {
-                        selectedBranch = branch.toString();
-                        print(selectedBranch);
-                      });
-                    }),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: DropdownButton(
+        // leading: SMenuWidget(
+        //   username: widget.username,
+        // ),
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: DropdownButton(
                   isExpanded: true,
-                  hint: const Text('Select Sem'),
-                  // Initial Value
-                  value: selectedSem,
-
-                  // Down Arrow Icon
-                  icon: const Icon(Icons.arrow_drop_down),
-
-                  // Array list of items
-                  items: <String>['1', '2', '3', '4', '5', '6', '7', '8']
-                      .map((String items) {
+                  hint: const Text('Select Year'),
+                  value: selectedyear,
+                  items: YearList?.map((course) {
                     return DropdownMenuItem(
-                      value: items,
-                      child: Text(items),
-                    );
+                        value: course['year'], child: Text(course['year']));
                   }).toList(),
-                  // After selecting the desired option,it will
-                  // change button value to selected value
-                  onChanged: (sem) {
+                  onChanged: (year) {
                     setState(() {
-                      selectedSem = sem.toString();
-                      if (kDebugMode) {
-                        print(selectedSem);
-                      }
+                      selectedyear = year.toString();
+                      print(selectedyear);
                     });
-                  },
-                ),
-              ),
-              FutureBuilder<List>(
-                future: post(),
-                builder: (context, snapshot) {
-                  if (snapshot.hasError) {
+                  }),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: DropdownButton(
+                  isExpanded: true,
+                  hint: const Text('Select Branch'),
+                  value: selectedBranch,
+                  items: BranchitemList?.map((branch) {
+                    return DropdownMenuItem(
+                        value: branch['branch_name'],
+                        child: Text(branch['branch_name']));
+                  }).toList(),
+                  onChanged: (branch) {
+                    setState(() {
+                      selectedBranch = branch.toString();
+                      print(selectedBranch);
+                    });
+                  }),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: DropdownButton(
+                isExpanded: true,
+                hint: const Text('Select Sem'),
+                // Initial Value
+                value: selectedSem,
+
+                // Down Arrow Icon
+                icon: const Icon(Icons.arrow_drop_down),
+
+                // Array list of items
+                items: <String>['1', '2', '3', '4', '5', '6', '7', '8']
+                    .map((String items) {
+                  return DropdownMenuItem(
+                    value: items,
+                    child: Text(items),
+                  );
+                }).toList(),
+                // After selecting the desired option,it will
+                // change button value to selected value
+                onChanged: (sem) {
+                  setState(() {
+                    selectedSem = sem.toString();
                     if (kDebugMode) {
-                      print(snapshot.error);
+                      print(selectedSem);
                     }
-                  }
-                  if (snapshot.hasData) {
-                    return CourseList(
-                      list: snapshot.data!,
-                      sem: '$selectedSem',
-                      branch: '$selectedBranch',
-                      year: '$selectedyear',
-                    );
-                  } else {
-                    return const CircularProgressIndicator();
-                  }
+                  });
                 },
               ),
-            ],
-          ),
+            ),
+            FutureBuilder<List>(
+              future: post(),
+              builder: (context, snapshot) {
+                if (snapshot.hasError) {
+                  if (kDebugMode) {
+                    print(snapshot.error);
+                  }
+                }
+                if (snapshot.hasData) {
+                  return CourseList(
+                    list: snapshot.data!,
+                    sem: '$selectedSem',
+                    branch: '$selectedBranch',
+                    year: '$selectedyear',
+                  );
+                } else {
+                  return const CircularProgressIndicator();
+                }
+              },
+            ),
+          ],
         ),
       ),
-      onWillPop: () async {
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-            builder: (context) => SSliderDrawer(
-              username: widget.username,
-            ),
-          ),
-        );
-        return false;
-      },
     );
   }
 }

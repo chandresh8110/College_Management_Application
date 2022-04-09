@@ -31,6 +31,7 @@ class _Add_Marks_SPState extends State<Add_Marks_SP> {
   List? ListEr;
   String? stu_Er;
   bool loading = true;
+  // String? table = "add_marks";
 
   Future<List> fetchErno() async {
     var url = "http://103.141.241.97/test/stufetch.php";
@@ -52,22 +53,18 @@ class _Add_Marks_SPState extends State<Add_Marks_SP> {
   }
 
   var ser = [];
+  List<Map<String, dynamic>>? _values;
 
+  String? Ma;
+  var Marks = [];
+  String? _result;
   @override
   void initState() {
     fetchErno();
-    // markscontroller.addListener(_printLatestValue);
+    _values = [];
+    _result = '';
     super.initState();
   }
-
-  // @override
-  // void dispose() {
-  //   markscontroller.dispose();
-  //   super.dispose();
-  // }
-  // void _printLatestValue (){
-  //   print('Marks: ${markscontroller.text}');
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -81,66 +78,131 @@ class _Add_Marks_SPState extends State<Add_Marks_SP> {
             )
           : Column(
               children: [
-                ListView.builder(
-                  shrinkWrap: true,
-                  itemCount: ListEr?.length,
-                  itemBuilder: (context, index) {
-                    return ListTile(
-                      // checkColor: Colors.yellow,
-                      title: Row(
-                        children: [
-                          Text(ListEr![index]["stu_id"]),
-                          Expanded(
-                            child: Container(),
-                          ),
-                          Expanded(
-                            child: TextField(
-                              // controller: markscontroller,
-                              keyboardType: TextInputType.number,
-                              decoration: InputDecoration(
-                                // labelText: "Marks:",
-                                hintText: "Enter Marks",
+                Flexible(
+                  child: ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: ListEr?.length,
+                    itemBuilder: (context, index) {
+                      return _row(context, index);
+                    },
+                  ),
+                ),
+                // Flexible(child: Text(_result!)),
+                ElevatedButton(
+                  onPressed: () {
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return Expanded(
+                          child: AlertDialog(
+                            // backgroundColor: Colors.red,
+                            title: Text('Alert!!!'),
+                            content: Text(
+                              "Are you sure about submitting the marks?"
+                              "\n\n\n Once you submit marks you can't be change it",
+                              style: TextStyle(
+                                // color: Colors.white,
+                                fontWeight: FontWeight.w700,
+                                fontSize: 20,
                               ),
-                              onChanged: (value) {
-                                if (ser.contains('$value')) {
-                                  ser.remove('$value');
-                                } else {
-                                  ser.add('$value');
-                                }
-                                setState(() {
-                                  stu_Er = '$ser';
-                                  print(stu_Er);
-                                });
-                              },
                             ),
+                            actions: [
+                              TextButton(
+                                // textColor: Colors.white,
+                                onPressed: () {
+                                  Navigator.of(context).pop();
+                                },
+                                child: Text('CANCEL'),
+                              ),
+                              TextButton(
+                                // textColor: Colors.white,
+                                onPressed: () {
+                                  sendMarks();
+                                  Navigator.of(context).pop();
+                                },
+                                child: Text('Yes, Sure'),
+                              ),
+                            ],
                           ),
-                        ],
-                      ),
+                        );
+                      },
                     );
                   },
-                ),
-                Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Center(
-                        child: MaterialButton(
-                          color: Colors.grey,
-                          onPressed: () {
-                            setState(() {
-                              print(ser);
-                              // ser = markscontroller.text as List;
-                              // print(markscontroller);
-                            });
-                          },
-                          child: const Text("ADD MARKS"),
-                        ),
-                      ),
-                    ),
-                  ],
+                  child: Text('Submit'),
+                  style: ElevatedButton.styleFrom(primary: Colors.greenAccent),
                 ),
               ],
             ),
     );
+  }
+
+  _row(context, index) {
+    return Padding(
+      padding: const EdgeInsets.all(10.0),
+      child: Row(
+        children: [
+          Text(ListEr![index]["stu_id"]),
+          SizedBox(
+            width: 30,
+          ),
+          Expanded(
+            child: TextFormField(
+              keyboardType: TextInputType.number,
+              onChanged: (val) {
+                _onUpdate(index, val);
+              },
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  _onUpdate(int index, String val) async {
+    int foundKey = -1;
+    for (var map in _values!) {
+      if (map.containsKey("id")) {
+        if (map["id"] == index) {
+          foundKey = index;
+          break;
+        }
+      }
+    }
+    if (-1 != foundKey) {
+      _values!.removeWhere((map) {
+        return map["id"] == foundKey;
+      });
+    }
+    Map<String, dynamic> json = {
+      "id": index,
+      "value": val,
+    };
+    _values!.add(json);
+    setState(() {
+      _result = _prettyPrint(_values);
+    });
+  }
+
+  String _prettyPrint(jsonObject) {
+    var encoder = JsonEncoder.withIndent(" ");
+    return encoder.convert(jsonObject);
+  }
+
+  void sendMarks() async {
+    var url = "http://103.141.241.97/test/addexammarks.php";
+    final response = await http.post(Uri.parse(url), body: {
+      // 'tb': table,
+      'branch': widget.branch,
+      'sem': widget.sem,
+      'givenby': widget.username,
+      'cid': widget.cid,
+      'exam_code': widget.exam_id,
+      'marks': _result.toString(),
+    });
+    if (response.statusCode == 200) {
+      if (kDebugMode) {
+        print(response.body);
+      }
+    }
   }
 }

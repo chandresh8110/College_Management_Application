@@ -1,20 +1,43 @@
 // ignore_for_file: camel_case_types, non_constant_identifier_names
 
+import 'dart:convert';
+
 import 'package:final_app/Faculty%20Side/Faculty_Dart/Edit_Student_details.dart';
+import 'package:final_app/HOD_Side/HOD%20Dart/HOD_Edit_Details.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
 class Student_Details extends StatefulWidget {
-  const Student_Details({Key? key, required this.list, required this.index})
+  const Student_Details(
+      {Key? key,
+      required this.list,
+      required this.index,
+      required this.username})
       : super(key: key);
 
   final List list;
   final int index;
+  final String username;
 
   @override
   _Student_DetailsState createState() => _Student_DetailsState();
 }
 
 class _Student_DetailsState extends State<Student_Details> {
+  String? table = "student";
+
+  Future deletedata() async {
+    var url = "http://103.141.241.97/test/deletedata.php";
+    var response = await http.post(Uri.parse(url), body: {
+      "tb": table,
+      "id": widget.list[widget.index]['stu_id'],
+    });
+    if (response.statusCode == 200) {
+      print(response.body);
+      return json.decode(response.body);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -124,7 +147,8 @@ class _Student_DetailsState extends State<Student_Details> {
             ),
             ListTile(
               title: Text(
-                "Parent's Name : " + "${widget.list[widget.index]['stu_gname']}",
+                "Parent's Name : " +
+                    "${widget.list[widget.index]['stu_gname']}",
                 style: TextStyle(
                   fontSize: 20,
                 ),
@@ -153,7 +177,8 @@ class _Student_DetailsState extends State<Student_Details> {
             ),
             ListTile(
               title: Text(
-                "Student's Status : " + "${widget.list[widget.index]['status']}",
+                "Student's Status : " +
+                    "${widget.list[widget.index]['status']}",
                 style: TextStyle(
                   fontSize: 20,
                 ),
@@ -174,6 +199,7 @@ class _Student_DetailsState extends State<Student_Details> {
                               builder: (context) => Edit_Student_details(
                                 index: widget.index,
                                 list: widget.list,
+                                username: widget.username,
                               ),
                             ),
                           );
@@ -190,7 +216,44 @@ class _Student_DetailsState extends State<Student_Details> {
                     child: SizedBox(
                       width: 100,
                       child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return Expanded(
+                                child: AlertDialog(
+                                  // backgroundColor: Colors.red,
+                                  title: Text('Alert!!!'),
+                                  content: Text(
+                                    'Are you sure to delete data of ${widget.list[widget.index]['stu_id']}',
+                                    style: TextStyle(
+                                      // color: Colors.white,
+                                      fontWeight: FontWeight.w700,
+                                      fontSize: 20,
+                                    ),
+                                  ),
+                                  actions: [
+                                    TextButton(
+                                      // textColor: Colors.white,
+                                      onPressed: () {
+                                        Navigator.of(context).pop();
+                                      },
+                                      child: Text('CANCEL'),
+                                    ),
+                                    TextButton(
+                                      // textColor: Colors.white,
+                                      onPressed: () {
+                                        deletedata();
+                                        Navigator.of(context).pop();
+                                      },
+                                      child: Text('Yes, Sure'),
+                                    ),
+                                  ],
+                                ),
+                              );
+                            },
+                          );
+                        },
                         child: Text('Delete'),
                         style: ElevatedButton.styleFrom(primary: Colors.red),
                       ),

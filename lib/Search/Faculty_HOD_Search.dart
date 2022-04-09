@@ -64,7 +64,7 @@ class _Faculty_HOD_SearchState extends State<Faculty_HOD_Search> {
           Padding(
             padding: const EdgeInsets.only(top: 50),
             child: Container(
-              height: 200,
+              height: 200   ,
               child: FutureBuilder<List>(
                 future: getData(),
                 builder: (context, snapshot) {

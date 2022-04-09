@@ -5,26 +5,31 @@ import 'package:final_app/Developer_Team/Developer_slider/DMenuWidget.dart';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
-class Create_Exam extends StatefulWidget {
-  const Create_Exam({Key? key, required this.username}) : super(key: key);
+class Create_Term extends StatefulWidget {
+  const Create_Term({Key? key, required this.username}) : super(key: key);
 
   final String username;
 
   @override
-  State<Create_Exam> createState() => _Create_ExamState();
+  State<Create_Term> createState() => _Create_TermState();
 }
 
-class _Create_ExamState extends State<Create_Exam> {
+class _Create_TermState extends State<Create_Term> {
+  DateTimeRange dateRange = DateTimeRange(
+    start: DateTime(2022, 04, 08),
+    end: DateTime(2022, 04, 31),
+  );
+
   TextEditingController idcontroller = TextEditingController();
   TextEditingController desccontroller = TextEditingController();
 
-  String? selectedTerm;
-  List? TermList;
-
   late bool error, sending, success;
   late String msg;
-  String table = 'Exam';
+  // String? startdate;
+  // String? enddate;
+  // String table = 'term';
 
   @override
   void initState() {
@@ -32,30 +37,30 @@ class _Create_ExamState extends State<Create_Exam> {
     sending = false;
     success = false;
     msg = "";
-    getterm();
+    // getterm();
     super.initState();
   }
 
-  Future getterm() async {
-    var url = "http://103.141.241.97/test/getexamterm.php";
-    final response = await http.get(Uri.parse(url));
-    var jsonData = json.decode(response.body);
-    setState(() {
-      TermList = jsonData;
-    });
-    if (kDebugMode) {
-      print(TermList);
-    }
-  }
+  // Future getterm() async {
+  //   var url = "http://103.141.241.97/test/getexamterm.php";
+  //   final response = await http.get(Uri.parse(url));
+  //   var jsonData = json.decode(response.body);
+  //   setState(() {
+  //     TermList = jsonData;
+  //   });
+  //   if (kDebugMode) {
+  //     print(TermList);
+  //   }
+  // }
 
   Future<void> sendData() async {
-    var url = "http://103.141.241.97/test/createexam.php";
+    var url = "http://103.141.241.97/test/createterm.php";
     var res = await http.post(Uri.parse(url), body: {
-      "tb": table,
-      "term" : selectedTerm,
+      // "tb": table,
       "createdby": widget.username,
-      "exam_code": idcontroller.text,
-      "exam_desc": desccontroller.text,
+      "term_id": idcontroller.text,
+      "start": dateRange.start.toString(),
+      "end": dateRange.end.toString(),
     }); //sending post request with header data
 
     if (res.statusCode == 200) {
@@ -91,9 +96,13 @@ class _Create_ExamState extends State<Create_Exam> {
 
   @override
   Widget build(BuildContext context) {
+    final start = dateRange.start;
+    final end = dateRange.end;
+    final difference = dateRange.duration;
+
     return Scaffold(
       appBar: AppBar(
-        title: Text('Create Exam'),
+        title: Text('Create Term'),
         // leading: DMenuWidget(),
       ),
       body: SingleChildScrollView(
@@ -105,7 +114,7 @@ class _Create_ExamState extends State<Create_Exam> {
             children: <Widget>[
               Container(
                 child: Text(
-                  error ? msg : "Enter Exam Information",
+                  error ? msg : "Enter Term Information",
                   style: TextStyle(
                     fontSize: 20,
                   ),
@@ -116,36 +125,44 @@ class _Create_ExamState extends State<Create_Exam> {
                 child: TextField(
                   controller: idcontroller,
                   decoration: InputDecoration(
-                    labelText: "Exam Id:",
-                    hintText: "Enter Exam id.",
+                    labelText: "Term id:",
+                    hintText: "like Summer 2018, Winter 2019",
                   ),
                 ),
               ),
-              Container(
-                child: DropdownButton(
-                    isExpanded: true,
-                    hint: const Text('Select Term'),
-                    value: selectedTerm,
-                    items: TermList?.map((term) {
-                      return DropdownMenuItem(
-                          value: term['term'],
-                          child: Text(term['term']));
-                    }).toList(),
-                    onChanged: (term) {
-                      setState(() {
-                        selectedTerm = term.toString();
-                        print(selectedTerm);
-                      });
-                    }),
-              ),
-              Container(
-                child: TextField(
-                  controller: desccontroller,
-                  decoration: InputDecoration(
-                    labelText: "Exam Descirption:",
-                    hintText: "Enter Exam Descirption",
+              Padding(
+                padding: const EdgeInsets.only(top: 10),
+                child: Container(
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Text("Select Starting & Ending date: -"),
+                      ),
+                      Expanded(
+                        child: ElevatedButton(
+                          child: Text(DateFormat('dd-MM-yyyy').format(start)),
+                          onPressed: pickDateRange,
+                        ),
+                      ),
+                      SizedBox(
+                        width: 12,
+                      ),
+                      Expanded(
+                        child: ElevatedButton(
+                          child: Text(DateFormat('dd-MM-yyyy').format(end)),
+                          onPressed: pickDateRange,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Text(
+                'Term Duration: ${difference.inDays} days',
+                style: TextStyle(fontSize: 15),
               ),
               Container(
                 margin: EdgeInsets.only(top: 20),
@@ -153,6 +170,10 @@ class _Create_ExamState extends State<Create_Exam> {
                   width: double.infinity,
                   child: MaterialButton(
                     onPressed: () {
+                      print(idcontroller.text);
+                      print(dateRange.start);
+                      print(dateRange.end);
+                      print(widget.username);
                       //if button is pressed, setstate sending = true, so that we can show "sending..."
                       setState(() {
                         sending = true;
@@ -178,5 +199,18 @@ class _Create_ExamState extends State<Create_Exam> {
         ),
       ),
     );
+  }
+
+  Future pickDateRange() async {
+    DateTimeRange? newDateRange = await showDateRangePicker(
+      context: context,
+      initialDateRange: dateRange,
+      firstDate: DateTime(1900),
+      lastDate: DateTime(3100),
+    );
+
+    if (newDateRange == null) return;
+
+    setState(() => dateRange = newDateRange);
   }
 }

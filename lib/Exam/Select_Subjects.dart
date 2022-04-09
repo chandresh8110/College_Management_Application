@@ -9,14 +9,12 @@ import 'package:http/http.dart' as http;
 class Select_Subject extends StatefulWidget {
   const Select_Subject({
     Key? key,
-    required this.year,
     required this.branch,
     required this.sem,
     required this.username,
     required this.examcode,
   }) : super(key: key);
 
-  final String year;
   final String branch;
   final String sem;
   final String username;
@@ -33,11 +31,11 @@ class _Select_SubjectState extends State<Select_Subject> {
   bool loading = true;
 
   Future<List> fetchcid() async {
-    var url = "http://103.141.241.97/test/getcourse.php";
+    var url = "http://103.141.241.97/test/getexamcourse.php";
     final response = await http.post(Uri.parse(url), body: {
       'sem': widget.sem,
       'branch': widget.branch,
-      'year': widget.year,
+      'exam_code' : widget.examcode,
     });
     if (kDebugMode) {
       print(response.body);

@@ -41,18 +41,6 @@ class _PrdeListState extends State<PrdeList> {
     return json.decode(response.body);
   }
 
-  // void fetchErno() async {
-  //   var url = "http://103.141.241.97/test/stufetch.php";
-  //   final response = await http.get(Uri.parse(url));
-  //   var jsonData = json.decode(response.body);
-  //   if (kDebugMode) {
-  //     print(response.body);
-  //   }
-  //   setState(() {
-  //     ListEr = jsonData;
-  //   });
-  // }
-
   @override
   void initState() {
     fetchErno();
@@ -71,15 +59,12 @@ class _PrdeListState extends State<PrdeList> {
 
   void post() async {
     var url = "http://103.141.241.97/test/prde.php";
-    final response = await http.post(
-      Uri.parse(url),
-      body: {
-        'ser': stu_Er,
-        'tb': Action,
-        // 'branch': widget.branch,
-        'sem': widget.sem,
-      },
-    );
+    final response = await http.post(Uri.parse(url), body: {
+      'ser': stu_Er,
+      'tb': Action,
+      // 'branch': widget.branch,
+      'sem': widget.sem,
+    });
     if (response.statusCode == 200) {
       if (kDebugMode) {
         print(response.body);
@@ -114,62 +99,62 @@ class _PrdeListState extends State<PrdeList> {
                 child: CircularProgressIndicator(),
               )
             : Column(
-              children: [
-                ListView.builder(
-                  shrinkWrap: true,
-                  itemCount: ListEr?.length,
-                  itemBuilder: (context, index) {
-                    return CheckboxListTile(
-                      // checkColor: Colors.yellow,
-                      title: Text(ListEr![index]["stu_id"]),
-                      value: ser.contains(ListEr![index]["stu_id"]),
-                      onChanged: (value) {
-                        if (ser.contains(ListEr![index]["stu_id"])) {
-                          ser.remove(ListEr![index]["stu_id"]);
-                        } else {
-                          ser.add(ListEr![index]["stu_id"]);
-                        }
-                        setState(() {
-                          stu_Er = '$ser';
-                          if (kDebugMode) {
-                            print(stu_Er);
+                children: [
+                  ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: ListEr?.length,
+                    itemBuilder: (context, index) {
+                      return CheckboxListTile(
+                        // checkColor: Colors.yellow,
+                        title: Text(ListEr![index]["stu_id"]),
+                        value: ser.contains(ListEr![index]["stu_id"]),
+                        onChanged: (value) {
+                          if (ser.contains(ListEr![index]["stu_id"])) {
+                            ser.remove(ListEr![index]["stu_id"]);
+                          } else {
+                            ser.add(ListEr![index]["stu_id"]);
                           }
-                        });
-                      },
-                    );
-                  },
-                ),
-                Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Center(
+                          setState(() {
+                            stu_Er = '$ser';
+                            if (kDebugMode) {
+                              print(stu_Er);
+                            }
+                          });
+                        },
+                      );
+                    },
+                  ),
+                  Row(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Center(
+                          child: MaterialButton(
+                            color: Colors.grey,
+                            onPressed: () {
+                              Action = "promote";
+                              post();
+                              fetchErno();
+                            },
+                            child: const Text("Double tap to Promote"),
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
                         child: MaterialButton(
-                          color: Colors.grey,
+                          color: Colors.red,
                           onPressed: () {
-                            Action = "promote";
+                            Action = "demote";
                             post();
                             fetchErno();
                           },
-                          child: const Text("Double tap to Promote"),
+                          child: const Text("Double tap to Demote"),
                         ),
                       ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: MaterialButton(
-                        color: Colors.red,
-                        onPressed: () {
-                          Action = "demote";
-                          post();
-                          fetchErno();
-                        },
-                        child: const Text("Double tap to Demote"),
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
+                    ],
+                  ),
+                ],
+              ),
       );
 }

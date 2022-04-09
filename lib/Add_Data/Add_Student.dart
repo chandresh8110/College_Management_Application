@@ -37,8 +37,8 @@ class _Add_StudentState extends State<Add_Student> {
 
   String? semValue;
   String? selectedBranch;
-  String? labValue;
   List? BranchitemList;
+  String? labValue;
   String? status;
   String? password;
 

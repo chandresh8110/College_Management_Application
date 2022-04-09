@@ -6,19 +6,23 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:new_gradient_app_bar/new_gradient_app_bar.dart';
 
-class Edit_Student_details extends StatefulWidget {
-  const Edit_Student_details(
-      {Key? key, required this.list, required this.index})
-      : super(key: key);
+class HOD_Edit_Student_details extends StatefulWidget {
+  const HOD_Edit_Student_details({
+    Key? key,
+    required this.list,
+    required this.index,
+    required this.username,
+  }) : super(key: key);
 
   final List list;
   final int index;
+  final String username;
 
   @override
-  _Edit_Student_detailsState createState() => _Edit_Student_detailsState();
+  _HOD_Edit_Student_detailsState createState() => _HOD_Edit_Student_detailsState();
 }
 
-class _Edit_Student_detailsState extends State<Edit_Student_details> {
+class _HOD_Edit_Student_detailsState extends State<HOD_Edit_Student_details> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   TextEditingController? idcontroller;
@@ -51,7 +55,7 @@ class _Edit_Student_detailsState extends State<Edit_Student_details> {
     }
   }
 
-  void editData() async {
+  Future editData() async {
     var response = await http
         .post(Uri.parse("http://103.141.241.97/test/editstu.php"), body: {
       "id": idcontroller!.text,
@@ -227,12 +231,15 @@ class _Edit_Student_detailsState extends State<Edit_Student_details> {
                       value: selectedBranch,
                       items: BranchitemList?.map((branch) {
                         return DropdownMenuItem(
-                            value: branch['branch_name'],
-                            child: Text(branch['branch_name']));
+                          value: branch['branch_name'],
+                          child: Text(
+                            branch['branch_name'],
+                          ),
+                        );
                       }).toList(),
                       onChanged: (branch) {
                         setState(
-                              () {
+                          () {
                             selectedBranch = branch.toString();
                             print(selectedBranch);
                           },

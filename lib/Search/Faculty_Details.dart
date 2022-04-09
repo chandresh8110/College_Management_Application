@@ -1,8 +1,11 @@
 // ignore_for_file: camel_case_types, non_constant_identifier_names
 
-import 'package:final_app/Faculty%20Side/Faculty_Dart/Edit_Student_details.dart';
+import 'dart:convert';
 import 'package:final_app/HOD_Side/HOD%20Dart/HOD_Faculty_Detail_Edit.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+
+import '../HOD_Side/HOD Dart/HOD_Edit_Details.dart';
 
 class Faculty_Edit_Details extends StatefulWidget {
   const Faculty_Edit_Details(
@@ -21,6 +24,21 @@ class Faculty_Edit_Details extends StatefulWidget {
 }
 
 class _Faculty_Edit_DetailsState extends State<Faculty_Edit_Details> {
+
+  String? table = "Faculty";
+
+  Future deletedata() async {
+    var url = "http://103.141.241.97/test/deletedata.php";
+    var response = await http.post(Uri.parse(url), body: {
+      "tb": table,
+      "id": widget.list[widget.index]['id'],
+    });
+    if (response.statusCode == 200) {
+      print(response.body);
+      return json.decode(response.body);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -181,7 +199,43 @@ class _Faculty_Edit_DetailsState extends State<Faculty_Edit_Details> {
                     child: SizedBox(
                       width: 100,
                       child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return Expanded(
+                                  child: AlertDialog(
+                                    // backgroundColor: Colors.red,
+                                    title: Text('Alert!!!'),
+                                    content: Text(
+                                      'Are you sure to delete data of ${widget.list[widget.index]['id']}',
+                                      style: TextStyle(
+                                        // color: Colors.white,
+                                        fontWeight: FontWeight.w700,
+                                        fontSize: 20,
+                                      ),
+                                    ),
+                                    actions: [
+                                      TextButton(
+                                        // textColor: Colors.white,
+                                        onPressed: () {
+                                          Navigator.of(context).pop();
+                                        },
+                                        child: Text('CANCEL'),
+                                      ),
+                                      TextButton(
+                                        // textColor: Colors.white,
+                                        onPressed: () {
+                                          deletedata();
+                                         Navigator.of(context).pop();
+                                        },
+                                        child: Text('Yes, Sure'),
+                                      ),
+                                    ],
+                                  ),
+                                );
+                              });
+                        },
                         child: Text('Delete'),
                         style: ElevatedButton.styleFrom(primary: Colors.red),
                       ),

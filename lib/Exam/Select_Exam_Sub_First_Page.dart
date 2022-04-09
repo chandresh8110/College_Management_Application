@@ -23,8 +23,7 @@ class _Select_Exam_SubState extends State<Select_Exam_Sub> {
   List? BranchitemList;
   String? selectedExam;
   List? ExamList;
-  String? selectedyear;
-  List? YearList;
+
 
   Future getbrach() async {
     var url = "http://103.141.241.97/test/getbranch.php";
@@ -50,17 +49,7 @@ class _Select_Exam_SubState extends State<Select_Exam_Sub> {
     }
   }
 
-  Future getyear() async {
-    var url = "http://103.141.241.97/test/getyear.php";
-    final response = await http.get(Uri.parse(url));
-    var jsonData = json.decode(response.body);
-    setState(() {
-      YearList = jsonData;
-    });
-    if (kDebugMode) {
-      print(YearList);
-    }
-  }
+
 
   // void post() async {
   //   var url = "http://103.141.241.97/test/.php";
@@ -80,7 +69,6 @@ class _Select_Exam_SubState extends State<Select_Exam_Sub> {
 
   @override
   void initState() {
-    getyear();
     getbrach();
     getexam();
     super.initState();
@@ -117,31 +105,6 @@ class _Select_Exam_SubState extends State<Select_Exam_Sub> {
                     setState(() {
                       selectedExam = Exam.toString();
                       print(selectedExam);
-                    });
-                  }),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 10),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(100),
-                border: Border.all(color: Colors.grey),
-                color: Colors.white,
-              ),
-              child: DropdownButton(
-                  isExpanded: true,
-                  hint: const Text('Select Year'),
-                  value: selectedyear,
-                  items: YearList?.map((course) {
-                    return DropdownMenuItem(
-                        value: course['year'], child: Text(course['year']));
-                  }).toList(),
-                  onChanged: (year) {
-                    setState(() {
-                      selectedyear = year.toString();
-                      print(selectedyear);
                     });
                   }),
             ),
@@ -216,7 +179,6 @@ class _Select_Exam_SubState extends State<Select_Exam_Sub> {
                 Navigator.of(context).push(
                   MaterialPageRoute(
                     builder: (context) => Select_Subject(
-                      year: '$selectedyear',
                       branch: '$selectedBranch',
                       sem: '$semValue',
                       username: widget.username,
@@ -227,7 +189,6 @@ class _Select_Exam_SubState extends State<Select_Exam_Sub> {
                   selectedBranch = value;
                   semValue = value;
                   selectedExam = value;
-                  selectedyear = value;
                 }));
               },
               child: const Text("OKAY"),

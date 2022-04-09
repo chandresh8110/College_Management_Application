@@ -43,7 +43,7 @@ class _Add_Marks_FPState extends State<Add_Marks_FP> {
   Future<List> getbranch() async {
     var url = "http://103.141.241.97/test/exam.php";
     final response = await http.post(Uri.parse(url), body: {
-      'tb' : table,
+      'tb': table,
       'exam_code': '$selectedExam',
     });
     if (kDebugMode) {
@@ -89,7 +89,7 @@ class _Add_Marks_FPState extends State<Add_Marks_FP> {
                   }),
             ),
           ),
-          Expanded(
+          Flexible(
             child: FutureBuilder<List>(
               future: getbranch(),
               builder: (context, snapshot) {
@@ -139,7 +139,7 @@ class _GetBranchState extends State<GetBranch> {
   Future<List> getsem() async {
     var url = "http://103.141.241.97/test/exam.php";
     final response = await http.post(Uri.parse(url), body: {
-      'tb' : table,
+      'tb': table,
       'exam_code': widget.Exam_id,
       'branch': '$selectedBranch',
     });
@@ -181,7 +181,7 @@ class _GetBranchState extends State<GetBranch> {
                 }),
           ),
         ),
-        Expanded(
+        Flexible(
           child: FutureBuilder<List>(
             future: getsem(),
             builder: (context, snapshot) {
@@ -230,7 +230,6 @@ class _GetSemState extends State<GetSem> {
   String? selectedSem;
   String? table = "Marks";
 
-
   Future<List> getcourse() async {
     var url = "http://103.141.241.97/test/exam.php";
     final response = await http.post(Uri.parse(url), body: {
@@ -244,7 +243,6 @@ class _GetSemState extends State<GetSem> {
     }
     return json.decode(response.body);
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -277,7 +275,7 @@ class _GetSemState extends State<GetSem> {
                 }),
           ),
         ),
-        Expanded(
+        Flexible(
           child: FutureBuilder<List>(
             future: getcourse(),
             builder: (context, snapshot) {
@@ -332,7 +330,6 @@ class _GetcidState extends State<Getcid> {
   String? sem;
   String? branch;
 
-
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -352,7 +349,11 @@ class _GetcidState extends State<Getcid> {
                 value: selectedSubject,
                 items: widget.list.map((branch) {
                   return DropdownMenuItem(
-                      value: branch['cid'], child: Text(branch['cid']));
+                    value: branch['cid'],
+                    child: Text(
+                      branch['cid'],
+                    ),
+                  );
                 }).toList(),
                 onChanged: (branch) {
                   setState(() {
@@ -383,9 +384,13 @@ class _GetcidState extends State<Getcid> {
                           ),
                         ),
                       )
-                      .then((value) => setState(() {
+                      .then(
+                        (value) => setState(
+                          () {
                             selectedSubject = value;
-                          }));
+                          },
+                        ),
+                      );
                 },
                 child: const Text('Ok'),
               ),

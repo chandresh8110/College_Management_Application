@@ -74,7 +74,7 @@ class _Student_Faculty_SearchState extends State<Student_Faculty_Search> {
                     }
                   }
                   if (snapshot.hasData) {
-                    return ItemList(list: snapshot.data!);
+                    return ItemList(list: snapshot.data!, username: widget.username,);
                   } else {
                     return CircularProgressIndicator();
                   }
@@ -89,9 +89,10 @@ class _Student_Faculty_SearchState extends State<Student_Faculty_Search> {
 }
 
 class ItemList extends StatelessWidget {
-  const ItemList({Key? key, required this.list}) : super(key: key);
+  const ItemList({Key? key, required this.list, required this.username}) : super(key: key);
 
   final List list;
+  final String username;
 
   @override
   Widget build(BuildContext context) {
@@ -122,7 +123,7 @@ class ItemList extends StatelessWidget {
                 onTap: () => Navigator.of(context).push(
                   MaterialPageRoute(
                     builder: (BuildContext context) =>
-                        Student_Details(list: list, index: i),
+                        Student_Details(list: list, index: i, username: '$username',),
                   ),
                 ),
               ),
