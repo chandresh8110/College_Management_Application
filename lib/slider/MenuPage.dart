@@ -8,14 +8,14 @@ class MenuItems {
   static const ContactUsPage = MenuItem('Contact_Us', Icons.phone);
   static const DeveloperPage =
       MenuItem('App_Developer', Icons.developer_board_outlined);
-  static const Faculty_Search_List =
-      MenuItem('Faculty List', Icons.developer_board_outlined);
-  static const Student_Search_List =
-      MenuItem('Student List', Icons.developer_board_outlined);
-  static const Course_Search_List =
-      MenuItem('Course List', Icons.developer_board_outlined);
-
-  static const term = MenuItem('term', Icons.developer_board_outlined);
+  // static const Faculty_Search_List =
+  //     MenuItem('Faculty List', Icons.developer_board_outlined);
+  // static const Student_Search_List =
+  //     MenuItem('Student List', Icons.developer_board_outlined);
+  // static const Course_Search_List =
+  //     MenuItem('Course List', Icons.developer_board_outlined);
+  //
+  // static const term = MenuItem('term', Icons.developer_board_outlined);
 
   static const all = <MenuItem>[
     HomePage,
@@ -23,10 +23,10 @@ class MenuItems {
     FacilitiesPage,
     ContactUsPage,
     DeveloperPage,
-    Faculty_Search_List,
-    Student_Search_List,
-    Course_Search_List,
-    term,
+    // Faculty_Search_List,
+    // Student_Search_List,
+    // Course_Search_List,
+    // term,
   ];
 }
 

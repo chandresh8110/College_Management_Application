@@ -1,14 +1,6 @@
-import 'package:final_app/Add_Data/Create_Term.dart';
-import 'package:final_app/Exam/Create_Exam.dart';
-import 'package:final_app/Exam/Select_Exam_Sub_First_Page.dart';
 import 'package:final_app/General%20Side/FacilitiesPage.dart';
-import 'package:final_app/PRDE/Prde.dart';
-import 'package:final_app/Search/Course_Search_List.dart';
-import 'package:final_app/Search/Faculty_Search_List.dart';
-import 'package:final_app/Search/Student_Search_List.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
-import '../General Side/AccountPage.dart';
 import '../Branch/BranchPage.dart';
 import '../General Side/Contact_us.dart';
 import '../General Side/Developed_By.dart';
@@ -62,14 +54,14 @@ class _SliderState extends State<SliderDrawer> {
         return ContactUsPage();
       case MenuItems.DeveloperPage:
         return DeveloperPage();
-      case MenuItems.Faculty_Search_List:
-        return Faculty_Search_List();
-      case MenuItems.Student_Search_List:
-        return Student_Search_List();
-      case MenuItems.Course_Search_List:
-        return Course_Search_List();
-      case MenuItems.term:
-        return Create_Term(username: "Alpha");
+      // case MenuItems.Faculty_Search_List:
+      //   return Faculty_Search_List();
+      // case MenuItems.Student_Search_List:
+      //   return Student_Search_List();
+      // case MenuItems.Course_Search_List:
+      //   return Course_Search_List();
+      // case MenuItems.term:
+      //   return Create_Term(username: "Alpha");
     }
   }
 }
