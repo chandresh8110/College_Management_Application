@@ -55,6 +55,18 @@ class _Faculty_Atten_View_SPState extends State<Faculty_Atten_View_SP> {
     return Scaffold(
       appBar: AppBar(
         title: Text("All Sub. Atte. of " + widget.id),
+        flexibleSpace: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topRight,
+              end: Alignment.bottomLeft,
+              colors: [
+                Colors.lightGreenAccent,
+                Colors.lightBlueAccent,
+              ],
+            ),
+          ),
+        ),
       ),
       body: loading
           ? const Center(

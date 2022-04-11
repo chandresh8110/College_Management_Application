@@ -71,153 +71,137 @@ class _HOD_View_MaterialState extends State<HOD_View_Material> {
 
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      child: Scaffold(
-        appBar: AppBar(
-          title: const Text('Material'),
-          // backgroundColor: Colors.blue,
-          leading: HMenuWidget(
-            username: widget.username,
-          ),
-          flexibleSpace: Container(
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topRight,
-                end: Alignment.bottomLeft,
-                colors: [
-                  Colors.cyanAccent,
-                  Colors.blue,
-                ],
-              ),
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Material'),
+        // backgroundColor: Colors.blue,
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topRight,
+              end: Alignment.bottomLeft,
+              colors: [
+                Colors.cyanAccent,
+                Colors.blue,
+              ],
             ),
           ),
-        ),
-        body: SingleChildScrollView(
-          child: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: DropdownButton(
-                    isExpanded: true,
-                    hint: const Text('Select Year'),
-                    value: selectedyear,
-                    items: YearList?.map((course) {
-                      return DropdownMenuItem(
-                          value: course['year'], child: Text(course['year']));
-                    }).toList(),
-                    onChanged: (year) {
-                      setState(() {
-                        selectedyear = year.toString();
-                        print(selectedyear);
-                      });
-                    }),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: DropdownButton(
-                    isExpanded: true,
-                    hint: const Text('Select Branch'),
-                    value: selectedBranch,
-                    items: BranchitemList?.map((branch) {
-                      return DropdownMenuItem(
-                          value: branch['branch_name'],
-                          child: Text(branch['branch_name']));
-                    }).toList(),
-                    onChanged: (branch) {
-                      setState(() {
-                        selectedBranch = branch.toString();
-                        print(selectedBranch);
-                      });
-                    }),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: DropdownButton(
-                  isExpanded: true,
-                  hint: const Text('Select Sem'),
-                  // Initial Value
-                  value: selectedSem,
-
-                  // Down Arrow Icon
-                  icon: const Icon(Icons.arrow_drop_down),
-
-                  // Array list of items
-                  items: <String>[
-                    '1',
-                    '2',
-                    '3',
-                    '4',
-                    '5',
-                    '6',
-                    '7',
-                    '8',
-                  ].map((String items) {
-                    return DropdownMenuItem(
-                      value: items,
-                      child: Text(items),
-                    );
-                  }).toList(),
-                  // After selecting the desired option,it will
-                  // change button value to selected value
-                  onChanged: (sem) {
-                    setState(() {
-                      selectedSem = sem.toString();
-                      if (kDebugMode) {
-                        print(selectedSem);
-                      }
-                    });
-                  },
-                ),
-              ),
-              FutureBuilder<List>(
-                  future: post(),
-                  builder: (context, snapshot) {
-                    if (snapshot.hasError) {
-                      if (kDebugMode) {
-                        print(snapshot.error);
-                      }
-                    }
-                    if (snapshot.hasData) {
-                      return CourseList(
-                        list: snapshot.data!,
-                        sem: '$selectedSem',
-                        branch: '$selectedBranch',
-                        year: '$selectedyear',
-                      );
-                    } else {
-                      return const CircularProgressIndicator();
-                    }
-                  })
-            ],
-          ),
-        ),
-        floatingActionButton: FloatingActionButton(
-          child: Icon(Icons.add),
-          backgroundColor: Colors.cyan,
-          onPressed: () {
-            setState(() {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) => HOD_Add_Material(
-                    username: widget.username,
-                  ),
-                ),
-              );
-            });
-          },
         ),
       ),
-      onWillPop: () async {
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-            builder: (context) => HSliderDrawer(
-              username: widget.username,
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: DropdownButton(
+                  isExpanded: true,
+                  hint: const Text('Select Year'),
+                  value: selectedyear,
+                  items: YearList?.map((course) {
+                    return DropdownMenuItem(
+                        value: course['year'], child: Text(course['year']));
+                  }).toList(),
+                  onChanged: (year) {
+                    setState(() {
+                      selectedyear = year.toString();
+                      print(selectedyear);
+                    });
+                  }),
             ),
-          ),
-        );
-        return false;
-      },
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: DropdownButton(
+                  isExpanded: true,
+                  hint: const Text('Select Branch'),
+                  value: selectedBranch,
+                  items: BranchitemList?.map((branch) {
+                    return DropdownMenuItem(
+                        value: branch['branch_name'],
+                        child: Text(branch['branch_name']));
+                  }).toList(),
+                  onChanged: (branch) {
+                    setState(() {
+                      selectedBranch = branch.toString();
+                      print(selectedBranch);
+                    });
+                  }),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: DropdownButton(
+                isExpanded: true,
+                hint: const Text('Select Sem'),
+                // Initial Value
+                value: selectedSem,
+
+                // Down Arrow Icon
+                icon: const Icon(Icons.arrow_drop_down),
+
+                // Array list of items
+                items: <String>[
+                  '1',
+                  '2',
+                  '3',
+                  '4',
+                  '5',
+                  '6',
+                  '7',
+                  '8',
+                ].map((String items) {
+                  return DropdownMenuItem(
+                    value: items,
+                    child: Text(items),
+                  );
+                }).toList(),
+                // After selecting the desired option,it will
+                // change button value to selected value
+                onChanged: (sem) {
+                  setState(() {
+                    selectedSem = sem.toString();
+                    if (kDebugMode) {
+                      print(selectedSem);
+                    }
+                  });
+                },
+              ),
+            ),
+            FutureBuilder<List>(
+                future: post(),
+                builder: (context, snapshot) {
+                  if (snapshot.hasError) {
+                    if (kDebugMode) {
+                      print(snapshot.error);
+                    }
+                  }
+                  if (snapshot.hasData) {
+                    return CourseList(
+                      list: snapshot.data!,
+                      sem: '$selectedSem',
+                      branch: '$selectedBranch',
+                      year: '$selectedyear',
+                    );
+                  } else {
+                    return const CircularProgressIndicator();
+                  }
+                })
+          ],
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        backgroundColor: Colors.cyan,
+        onPressed: () {
+          setState(() {
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) => HOD_Add_Material(
+                  username: widget.username,
+                ),
+              ),
+            );
+          });
+        },
+      ),
     );
   }
 }

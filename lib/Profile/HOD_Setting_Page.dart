@@ -31,55 +31,43 @@ class _HOD_Setting_pageState extends State<HOD_Setting_page> {
 
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      child: Scaffold(
-        appBar: AppBar(
-          title: Text('Setting'),
-          leading: HMenuWidget(
-            username: widget.username,
-          ),
-          // backgroundColor: Colors.blue,
-          flexibleSpace: Container(
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topRight,
-                end: Alignment.bottomLeft,
-                colors: [
-                  Colors.cyanAccent,
-                  Colors.blue,
-                ],
-              ),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Setting'),
+        // leading: HMenuWidget(
+        //   username: widget.username,
+        // ),
+        // backgroundColor: Colors.blue,
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topRight,
+              end: Alignment.bottomLeft,
+              colors: [
+                Colors.lightGreenAccent,
+                Colors.lightBlueAccent,
+              ],
             ),
           ),
         ),
-        body: FutureBuilder<List>(
-          future: getData(),
-          builder: (context, snapshot) {
-            if (snapshot.hasError) {
+      ),
+      body: FutureBuilder<List>(
+        future: getData(),
+        builder: (context, snapshot) {
+          if (snapshot.hasError) {
+            if (kDebugMode) {
               if (kDebugMode) {
-                if (kDebugMode) {
-                  print(snapshot.error);
-                }
+                print(snapshot.error);
               }
             }
-            if (snapshot.hasData) {
-              return ItemList(list: snapshot.data!);
-            } else {
-              return CircularProgressIndicator();
-            }
-          },
-        ),
+          }
+          if (snapshot.hasData) {
+            return ItemList(list: snapshot.data!);
+          } else {
+            return CircularProgressIndicator();
+          }
+        },
       ),
-      onWillPop: () async {
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-              builder: (context) => HSliderDrawer(
-                    username: widget.username,
-                  )),
-        );
-        return false;
-      },
     );
   }
 }
@@ -92,17 +80,18 @@ class ItemList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
-          children: <Widget>[
-            Container(
-              height: 250,
-              child: ListView.builder(
-                itemCount: list == null ? 0 : list.length,
-                itemBuilder: (context, i) {
-                  return Padding(
-                    padding: const EdgeInsets.only(top: 10),
-                    child: ListTile(
+      body: Column(
+        children: <Widget>[
+          Flexible(
+            child: Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Container(
+                decoration: ThemeHelper().buttonBoxDecoration(context),
+                child: ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: list == null ? 0 : list.length,
+                  itemBuilder: (context, i) {
+                    return ListTile(
                       title: Padding(
                         padding: const EdgeInsets.only(top: 5),
                         child: Text(
@@ -115,9 +104,21 @@ class ItemList extends StatelessWidget {
                         ),
                       ),
                       subtitle: Text(list[i]['id']),
-                      leading: const Icon(
-                        Icons.account_circle_outlined,
-                        size: 60,
+                      leading: Container(
+                        child: Column(
+                          children: [
+                            CircleAvatar(
+                              radius: 25,
+                              backgroundImage:AssetImage(
+                                  "images/Logo_.png"
+                              ),
+                              foregroundImage: NetworkImage(
+                                "http://103.141.241.97/test/uploads/Faculty/${list[i]["pic"]}",
+                              ),
+                              backgroundColor: Colors.transparent,
+                            ),
+                          ],
+                        ),
                       ),
                       onTap: () => Navigator.of(context).push(
                         MaterialPageRoute(
@@ -125,34 +126,34 @@ class ItemList extends StatelessWidget {
                               HOD_Details(list: list, index: i),
                         ),
                       ),
-                    ),
-                  );
-                },
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(20),
-              child: Container(
-                decoration: ThemeHelper().buttonBoxDecoration(context),
-                child: SizedBox(
-                  width: double.infinity,
-                  child: ElevatedButton(
-                    style: ThemeHelper().buttonStyle(),
-                    onPressed: () {
-                      Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => SliderDrawer(),
-                        ),
-                      );
-                    },
-                    child: Text("Logout"),
-                  ),
+                    );
+                  },
                 ),
               ),
-            )
-          ],
-        ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(20),
+            child: Container(
+              decoration: ThemeHelper().buttonBoxDecoration(context),
+              child: SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                  style: ThemeHelper().buttonStyle(),
+                  onPressed: () {
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => SliderDrawer(),
+                      ),
+                    );
+                  },
+                  child: Text("Logout"),
+                ),
+              ),
+            ),
+          )
+        ],
       ),
     );
   }

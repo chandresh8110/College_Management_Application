@@ -1,12 +1,9 @@
-// ignore_for_file: camel_case_types, non_constant_identifier_names, unnecessary_null_comparison
-
+import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
-import 'package:new_gradient_app_bar/new_gradient_app_bar.dart';
-
-import '../HOD_Side/HOD_Slider/HMenuWidget.dart';
+import '../General Side/theme_helper.dart';
 import 'Student_Details.dart';
 
 class Student_HOD_Search extends StatefulWidget {
@@ -20,68 +17,68 @@ class Student_HOD_Search extends StatefulWidget {
 }
 
 class _Student_HOD_SearchState extends State<Student_HOD_Search> {
+  Timer? timer;
   TextEditingController idcontroller = TextEditingController();
 
-  Future<List> getData() async {
-    var url = "http://103.141.241.97/test/app_profile.php";
-    final response = await http.post(Uri.parse(url), body: {
-      "username": idcontroller.text,
-    });
-    print(response.body);
-    return json.decode(response.body);
-  }
+  // Future<List> getData() async {
+  //   var url = "http://103.141.241.97/test/app_profile.php";
+  //   final response = await http.post(Uri.parse(url), body: {
+  //     "username": idcontroller.text,
+  //   });
+  //   if (kDebugMode) {
+  //     print(response.body);
+  //   }
+  //   return json.decode(response.body);
+  // }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: NewGradientAppBar(
-      //   title: Text('Student Search'),
-      //   // backgroundColor: Colors.blue,
-      //   gradient: LinearGradient(
-      //     colors: [
-      //       Colors.cyanAccent,
-      //       Colors.blue,
-      //     ],
-      //   ),
-      //   leading: HMenuWidget(
-      //     username: widget.username,
-      //   ),
-      // ),
+      appBar: AppBar(
+        title: Text("Edit/Delete Student"),
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topRight,
+              end: Alignment.bottomLeft,
+              colors: [
+                Colors.lightGreenAccent,
+                Colors.lightBlueAccent,
+              ],
+            ),
+          ),
+        ),
+      ),
       body: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.only(top: 20, left: 10, right: 10),
             child: Container(
               child: TextFormField(
                 keyboardType: TextInputType.number,
                 controller: idcontroller,
-                decoration: InputDecoration(
-                  labelText: "Enrollment No:",
-                  hintText: "Enter Student's Enrollment No.",
-                ),
+                decoration: ThemeHelper().textInputDecoration(
+                    'Enrollment No', 'Enter Enrollment No.'),
               ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(top: 50),
-            child: Container(
-              height: 200,
-              child: FutureBuilder<List>(
-                future: getData(),
-                builder: (context, snapshot) {
-                  if (snapshot.hasError) {
-                    if (kDebugMode) {
-                      print(snapshot.error);
-                    }
-                  }
-                  if (snapshot.hasData) {
-                    return ItemList(
-                      list: snapshot.data!,
-                      username: widget.username,
-                    );
-                  } else {
-                    return CircularProgressIndicator();
-                  }
+          Container(
+            margin: EdgeInsets.all(15),
+            decoration: ThemeHelper().buttonBoxDecoration(context),
+            child: SizedBox(
+              width: double.infinity,
+              child: ElevatedButton(
+                style: ThemeHelper().buttonStyle(),
+                child: Text("Search"),
+                onPressed: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => Student_Details(
+                        username: widget.username,
+                        id: idcontroller.text,
+                      ),
+                    ),
+                  );
                 },
               ),
             ),
@@ -92,53 +89,3 @@ class _Student_HOD_SearchState extends State<Student_HOD_Search> {
   }
 }
 
-class ItemList extends StatelessWidget {
-  const ItemList({Key? key, required this.list, required this.username})
-      : super(key: key);
-
-  final List list;
-  final String username;
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        child: ListView.builder(
-          itemCount: list == null ? 0 : list.length,
-          itemBuilder: (context, i) {
-            return Padding(
-              padding: const EdgeInsets.only(top: 10),
-              child: ListTile(
-                title: Padding(
-                  padding: const EdgeInsets.only(top: 5),
-                  child: Text(
-                    "${list[i]['stu_fname']}" +
-                        "  ${list[i]['stu_mname']}" +
-                        "  ${list[i]['stu_lname']}",
-                    style: TextStyle(
-                      fontSize: 25,
-                    ),
-                  ),
-                ),
-                subtitle: Text(list[i]['stu_id']),
-                leading: const Icon(
-                  Icons.account_circle_outlined,
-                  size: 30,
-                ),
-                onTap: () => Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (BuildContext context) => Student_Details(
-                      list: list,
-                      index: i,
-                      username: '$username',
-                    ),
-                  ),
-                ),
-              ),
-            );
-          },
-        ),
-      ),
-    );
-  }
-}

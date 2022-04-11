@@ -6,6 +6,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
+import '../General Side/theme_helper.dart';
+
 class Attedance_second_page extends StatefulWidget {
   const Attedance_second_page({
     Key? key,
@@ -86,6 +88,18 @@ class _Attedance_second_pageState extends State<Attedance_second_page> {
   Widget build(BuildContext context) => Scaffold(
         appBar: AppBar(
           title: const Text('Student List'),
+          flexibleSpace: Container(
+            decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topRight,
+                end: Alignment.bottomLeft,
+                colors: [
+                  Colors.lightGreenAccent,
+                  Colors.lightBlueAccent,
+                ],
+              ),
+            ),
+          ),
         ),
         body: loading
             ? const Center(
@@ -101,6 +115,8 @@ class _Attedance_second_pageState extends State<Attedance_second_page> {
                         // checkColor: Colors.yellow,
                         title: Text(ListEr![index]["stu_id"]),
                         value: ser.contains(ListEr![index]["stu_id"]),
+                        activeColor: Colors.lightBlueAccent,
+                        checkColor: Colors.lightGreenAccent,
                         onChanged: (value) {
                           if (ser.contains(ListEr![index]["stu_id"])) {
                             ser.remove(ListEr![index]["stu_id"]);
@@ -118,23 +134,29 @@ class _Attedance_second_pageState extends State<Attedance_second_page> {
                     },
                   ),
                   Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.all(10.0),
                     child: Center(
-                      child: MaterialButton(
-                        color: Colors.grey,
-                        onPressed: () {
-                          post();
-                          print(widget.lec);
-                          print(widget.branch);
-                          print(widget.sem);
-                          print(widget.username);
-                          print(widget.term);
-                          print(widget.sub);
-                          print(widget.type);
-                          print(stu_Er);
-                          Navigator.of(context).pop();
-                        },
-                        child: const Text("Okay"),
+                      child: Container(
+                        decoration: ThemeHelper().buttonBoxDecoration(context),
+                        child: SizedBox(
+                          width: double.infinity,
+                          child: ElevatedButton(
+                            style: ThemeHelper().buttonStyle(),
+                            onPressed: () {
+                              post();
+                              print(widget.lec);
+                              print(widget.branch);
+                              print(widget.sem);
+                              print(widget.username);
+                              print(widget.term);
+                              print(widget.sub);
+                              print(widget.type);
+                              print(stu_Er);
+                              Navigator.of(context).pop();
+                            },
+                            child: const Text("Okay"),
+                          ),
+                        ),
                       ),
                     ),
                   ),

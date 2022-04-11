@@ -1,40 +1,32 @@
+// ignore_for_file: non_constant_identifier_names, camel_case_types
+
 import 'dart:convert';
-import 'package:final_app/Search/Faculty_List.dart';
-import 'package:final_app/slider/SliderDrawer.dart';
-import 'package:http/http.dart' as http;
+import 'package:final_app/Course/Course_Selection_SP.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-
+import 'package:http/http.dart' as http;
 import '../General Side/theme_helper.dart';
-import 'Course_List.dart';
 
-class Course_Search_List extends StatefulWidget {
-  const Course_Search_List({Key? key}) : super(key: key);
+class Course_Selection_FP extends StatefulWidget {
+  const Course_Selection_FP({Key? key, required this.username}) : super(key: key);
+
+  final String username;
 
   @override
-  State<Course_Search_List> createState() => _Course_Search_ListState();
+  State<Course_Selection_FP> createState() => _Course_Selection_FPState();
 }
 
-class _Course_Search_ListState extends State<Course_Search_List> {
+class _Course_Selection_FPState extends State<Course_Selection_FP> {
+  String? semValue;
   String? selectedBranch;
   List? BranchitemList;
+  String? selectedYear;
+  List? YearList;
   String? selectedTerm;
   List? TermList;
-  String? semValue;
 
-  Future getyear() async {
-    var url = "http://103.141.241.97/test/getallterm.php";
-    final response = await http.get(Uri.parse(url));
-    var jsonData = json.decode(response.body);
-    setState(() {
-      TermList = jsonData;
-    });
-    if (kDebugMode) {
-      print(TermList);
-    }
-  }
 
-  Future getdata() async {
+  Future getbrach() async {
     var url = "http://103.141.241.97/test/getbranch.php";
     final response = await http.get(Uri.parse(url));
     var jsonData = json.decode(response.body);
@@ -46,10 +38,53 @@ class _Course_Search_ListState extends State<Course_Search_List> {
     }
   }
 
+  Future getYear() async {
+    var url = "http://103.141.241.97/test/getyear.php";
+    final response = await http.get(Uri.parse(url));
+    var jsonData = json.decode(response.body);
+    setState(() {
+      YearList = jsonData;
+    });
+    if (kDebugMode) {
+      print(YearList);
+    }
+  }
+
+  Future getTerm() async {
+    var url = "http://103.141.241.97/test/getallterm.php";
+    final response = await http.get(Uri.parse(url));
+    var jsonData = json.decode(response.body);
+    setState(() {
+      TermList = jsonData;
+    });
+    if (kDebugMode) {
+      print(TermList);
+    }
+  }
+
+
+
+  // void post() async {
+  //   var url = "http://103.141.241.97/test/.php";
+  //   final response = await http.post(
+  //     Uri.parse(url),
+  //     body: {
+  //       "sem": semValue,
+  //       "branch": selectedBranch,
+  //     },
+  //   );
+  //   if (response.statusCode == 200) {
+  //     if (kDebugMode) {
+  //       print(response.body);
+  //     }
+  //   }
+  // }
+
   @override
   void initState() {
-    getyear();
-    getdata();
+    getbrach();
+    getYear();
+    getTerm();
     super.initState();
   }
 
@@ -57,8 +92,7 @@ class _Course_Search_ListState extends State<Course_Search_List> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Course'),
-        // backgroundColor: Colors.blue,
+        title: Text('Select Subject for Current Term'),
         flexibleSpace: Container(
           decoration: BoxDecoration(
             gradient: LinearGradient(
@@ -75,7 +109,37 @@ class _Course_Search_ListState extends State<Course_Search_List> {
       body: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.all(10.0),
+            padding: const EdgeInsets.all(8.0),
+            child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 10),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(100),
+                border: Border.all(color: Colors.grey),
+                color: Colors.white,
+              ),
+              child: DropdownButton(
+                  isExpanded: true,
+                  hint: const Text('Select Year'),
+                  value: selectedYear,
+                  items: YearList?.map((Year) {
+                    return DropdownMenuItem(
+                        value: Year['year'],
+                        child: Text(Year['year']));
+                  }).toList(),
+                  underline: Container(
+                    height: 0.1,
+                    // color: Colors.deepPurpleAccent,
+                  ),
+                  onChanged: (Year) {
+                    setState(() {
+                      selectedYear = Year.toString();
+                      print(selectedYear);
+                    });
+                  }),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
             child: Container(
               padding: EdgeInsets.symmetric(horizontal: 10),
               decoration: BoxDecoration(
@@ -87,28 +151,25 @@ class _Course_Search_ListState extends State<Course_Search_List> {
                   isExpanded: true,
                   hint: const Text('Select Term'),
                   value: selectedTerm,
-                  items: TermList?.map((course) {
+                  items: TermList?.map((Term) {
                     return DropdownMenuItem(
-                      value: course['term'],
-                      child: Text(
-                        course['term'],
-                      ),
-                    );
+                        value: Term['term'],
+                        child: Text(Term['term']));
                   }).toList(),
                   underline: Container(
                     height: 0.1,
                     // color: Colors.deepPurpleAccent,
                   ),
-                  onChanged: (year) {
+                  onChanged: (Term) {
                     setState(() {
-                      selectedTerm = year.toString();
+                      selectedTerm = Term.toString();
                       print(selectedTerm);
                     });
                   }),
             ),
           ),
           Padding(
-            padding: const EdgeInsets.all(10.0),
+            padding: const EdgeInsets.all(8.0),
             child: Container(
               padding: EdgeInsets.symmetric(horizontal: 10),
               decoration: BoxDecoration(
@@ -138,7 +199,7 @@ class _Course_Search_ListState extends State<Course_Search_List> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.all(10.0),
+            padding: const EdgeInsets.all(8.0),
             child: Container(
               padding: EdgeInsets.symmetric(horizontal: 10),
               decoration: BoxDecoration(
@@ -173,7 +234,7 @@ class _Course_Search_ListState extends State<Course_Search_List> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.all(10.0),
+            padding: const EdgeInsets.all(8.0),
             child: Container(
               decoration: ThemeHelper().buttonBoxDecoration(context),
               child: SizedBox(
@@ -181,23 +242,25 @@ class _Course_Search_ListState extends State<Course_Search_List> {
                 child: ElevatedButton(
                   style: ThemeHelper().buttonStyle(),
                   onPressed: () {
-                    Navigator.of(context)
-                        .push(
-                          MaterialPageRoute(
-                            builder: (context) => Course_List(
-                              branch: "$selectedBranch",
-                              sem: "$semValue",
-                              term: "$selectedTerm",
-                            ),
-                          ),
-                        )
-                        .then((value) => setState(() {
-                              selectedBranch = value;
-                              semValue = value;
-                              selectedTerm = value;
-                            }));
+                    // post();
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => Course_Selection_SP(
+                          branch: '$selectedBranch',
+                          term : '$selectedTerm',
+                          sem: '$semValue',
+                          username: widget.username,
+                          year: '$selectedYear',
+                        ),
+                      ),
+                    ).then((value) => setState(() {
+                      selectedBranch = value;
+                      semValue = value;
+                      selectedYear = value;
+                      selectedTerm = value;
+                    }));
                   },
-                  child: Text('OK'),
+                  child: const Text("OKAY"),
                 ),
               ),
             ),

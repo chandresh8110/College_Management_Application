@@ -4,13 +4,15 @@ import 'package:http/http.dart' as http;
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
+import '../General Side/theme_helper.dart';
+
 class Course_List extends StatefulWidget {
   const Course_List(
-      {Key? key, required this.branch, required this.year, required this.sem})
+      {Key? key, required this.branch, required this.term, required this.sem})
       : super(key: key);
 
   final String branch;
-  final String year;
+  final String term;
   final String sem;
 
   @override
@@ -29,7 +31,7 @@ class _Course_ListState extends State<Course_List> {
       "tb": table,
       "branch": widget.branch,
       "sem": widget.sem,
-      "year": widget.year,
+      "term": widget.term,
     });
     if (response.statusCode == 200) {
       setState(() {
@@ -68,8 +70,8 @@ class _Course_ListState extends State<Course_List> {
               begin: Alignment.topRight,
               end: Alignment.bottomLeft,
               colors: [
-                Colors.cyanAccent,
-                Colors.blue,
+                Colors.lightGreenAccent,
+                Colors.lightBlueAccent,
               ],
             ),
           ),
@@ -82,20 +84,26 @@ class _Course_ListState extends State<Course_List> {
           : ListView.builder(
               itemCount: courseList!.length,
               itemBuilder: (context, index) {
-                return ListTile(
-                  title: Padding(
-                    padding: const EdgeInsets.only(top: 5),
-                    child: Text(
-                      "${courseList![index]['cname']}",
-                      style: TextStyle(
-                        fontSize: 25,
+                return Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Container(
+                    decoration: ThemeHelper().buttonBoxDecoration(context),
+                    child: ListTile(
+                      title: Padding(
+                        padding: const EdgeInsets.only(top: 5),
+                        child: Text(
+                          "${courseList![index]['cname']}",
+                          style: TextStyle(
+                            fontSize: 25,
+                          ),
+                        ),
+                      ),
+                      subtitle: Text(courseList![index]['cid']),
+                      leading: const Icon(
+                        Icons.account_circle_outlined,
+                        size: 30,
                       ),
                     ),
-                  ),
-                  subtitle: Text(courseList![index]['cid']),
-                  leading: const Icon(
-                    Icons.account_circle_outlined,
-                    size: 30,
                   ),
                 );
               },

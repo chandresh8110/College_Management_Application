@@ -1,12 +1,11 @@
 // ignore_for_file: non_constant_identifier_names, camel_case_types
 
 import 'dart:convert';
-
 import 'package:final_app/Exam/Select_Subjects.dart';
-import 'package:final_app/slider/MenuWidget.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import '../General Side/theme_helper.dart';
 
 class Select_Exam_Sub extends StatefulWidget {
   const Select_Exam_Sub({Key? key, required this.username}) : super(key: key);
@@ -23,7 +22,6 @@ class _Select_Exam_SubState extends State<Select_Exam_Sub> {
   List? BranchitemList;
   String? selectedExam;
   List? ExamList;
-
 
   Future getbrach() async {
     var url = "http://103.141.241.97/test/getbranch.php";
@@ -48,8 +46,6 @@ class _Select_Exam_SubState extends State<Select_Exam_Sub> {
       print(ExamList);
     }
   }
-
-
 
   // void post() async {
   //   var url = "http://103.141.241.97/test/.php";
@@ -78,13 +74,25 @@ class _Select_Exam_SubState extends State<Select_Exam_Sub> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Add Subject for Exam'),
-        leading: MenuWidget(),
+        title: Text("ADD Subject for Exam"),
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topRight,
+              end: Alignment.bottomLeft,
+              colors: [
+                Colors.lightGreenAccent,
+                Colors.lightBlueAccent,
+              ],
+            ),
+          ),
+        ),
       ),
       body: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding:
+                const EdgeInsets.only(top: 20, left: 10, right: 10, bottom: 10),
             child: Container(
               padding: EdgeInsets.symmetric(horizontal: 10),
               decoration: BoxDecoration(
@@ -101,6 +109,10 @@ class _Select_Exam_SubState extends State<Select_Exam_Sub> {
                         value: Exam['exam_code'],
                         child: Text(Exam['exam_code']));
                   }).toList(),
+                  underline: Container(
+                    height: 0.1,
+                    // color: Colors.deepPurpleAccent,
+                  ),
                   onChanged: (Exam) {
                     setState(() {
                       selectedExam = Exam.toString();
@@ -127,6 +139,10 @@ class _Select_Exam_SubState extends State<Select_Exam_Sub> {
                         value: branch['branch_name'],
                         child: Text(branch['branch_name']));
                   }).toList(),
+                  underline: Container(
+                    height: 0.1,
+                    // color: Colors.deepPurpleAccent,
+                  ),
                   onChanged: (branch) {
                     setState(() {
                       selectedBranch = branch.toString();
@@ -172,26 +188,35 @@ class _Select_Exam_SubState extends State<Select_Exam_Sub> {
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: MaterialButton(
-              color: Colors.red,
-              onPressed: () {
-                // post();
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => Select_Subject(
-                      branch: '$selectedBranch',
-                      sem: '$semValue',
-                      username: widget.username,
-                      examcode: '$selectedExam',
-                    ),
-                  ),
-                ).then((value) => setState(() {
-                  selectedBranch = value;
-                  semValue = value;
-                  selectedExam = value;
-                }));
-              },
-              child: const Text("OKAY"),
+            child: Container(
+              margin: EdgeInsets.only(top: 20),
+              decoration: ThemeHelper().buttonBoxDecoration(context),
+              child: SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                  style: ThemeHelper().buttonStyle(),
+                  onPressed: () {
+                    // post();
+                    Navigator.of(context)
+                        .push(
+                          MaterialPageRoute(
+                            builder: (context) => Select_Subject(
+                              branch: '$selectedBranch',
+                              sem: '$semValue',
+                              username: widget.username,
+                              examcode: '$selectedExam',
+                            ),
+                          ),
+                        )
+                        .then((value) => setState(() {
+                              selectedBranch = value;
+                              semValue = value;
+                              selectedExam = value;
+                            }));
+                  },
+                  child: const Text("OKAY"),
+                ),
+              ),
             ),
           ),
         ],

@@ -4,6 +4,8 @@ import 'package:http/http.dart' as http;
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
+import '../General Side/theme_helper.dart';
+
 class Faculty_List extends StatefulWidget {
   const Faculty_List({Key? key, required this.branch}) : super(key: key);
 
@@ -62,8 +64,8 @@ class _Faculty_ListState extends State<Faculty_List> {
               begin: Alignment.topRight,
               end: Alignment.bottomLeft,
               colors: [
-                Colors.cyanAccent,
-                Colors.blue,
+                Colors.lightGreenAccent,
+                Colors.lightBlueAccent,
               ],
             ),
           ),
@@ -73,29 +75,50 @@ class _Faculty_ListState extends State<Faculty_List> {
           ? const Center(
               child: CircularProgressIndicator(),
             )
-          : ListView.builder(
-              itemCount: facultyList!.length,
-              itemBuilder: (context, index) {
-                return ListTile(
-                  title: Padding(
-                    padding: const EdgeInsets.only(top: 5),
-                    child: Text(
-                      "${facultyList![index]['fname']}" +
-                          "  ${facultyList![index]['mname']}" +
-                          "  ${facultyList![index]['lname']}",
-                      style: TextStyle(
-                        fontSize: 25,
-                      ),
-                    ),
+          : Column(
+            children: [
+              Flexible(
+                child: ListView.builder(
+                    itemCount: facultyList!.length,
+                    itemBuilder: (context, index) {
+                      return Padding(
+                        padding: const EdgeInsets.all(15.0),
+                        child: Container(
+                          decoration: ThemeHelper().buttonBoxDecoration(context),
+                          child: ListTile(
+                            title: Text(
+                              "${facultyList![index]['fname']}" +
+                                  "  ${facultyList![index]['mname']}" +
+                                  "  ${facultyList![index]['lname']}",
+                              style: TextStyle(
+                                fontSize: 25,
+                              ),
+                            ),
+                            subtitle: Text(facultyList![index]['id']),
+                            leading: Container(
+                              child: Column(
+                                children: [
+                                  CircleAvatar(
+                                    radius: 25,
+                                    backgroundImage:AssetImage(
+                                        "images/Logo_.png"
+                                    ),
+                                    foregroundImage: NetworkImage(
+                                      "http://103.141.241.97/test/uploads/Faculty/${facultyList![index]["pic"]}",
+                                    ),
+                                    backgroundColor: Colors.transparent,
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      );
+                    },
                   ),
-                  subtitle: Text(facultyList![index]['id']),
-                  leading: const Icon(
-                    Icons.account_circle_outlined,
-                    size: 30,
-                  ),
-                );
-              },
-            ),
+              ),
+            ],
+          ),
     );
   }
 }

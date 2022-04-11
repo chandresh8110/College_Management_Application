@@ -5,6 +5,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
+import '../General Side/theme_helper.dart';
+
 class PrdeList extends StatefulWidget {
   const PrdeList({Key? key, required this.branch, required this.sem})
       : super(key: key);
@@ -91,9 +93,21 @@ class _PrdeListState extends State<PrdeList> {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-        appBar: AppBar(
-          title: const Text('Student List By ErNo.'),
+    appBar: AppBar(
+      title: Text("Promotion/Demotion"),
+      flexibleSpace: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topRight,
+            end: Alignment.bottomLeft,
+            colors: [
+              Colors.lightGreenAccent,
+              Colors.lightBlueAccent,
+            ],
+          ),
         ),
+      ),
+    ),
         body: loading
             ? const Center(
                 child: CircularProgressIndicator(),
@@ -129,27 +143,35 @@ class _PrdeListState extends State<PrdeList> {
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Center(
-                          child: MaterialButton(
-                            color: Colors.grey,
-                            onPressed: () {
-                              Action = "promote";
-                              post();
-                              fetchErno();
-                            },
-                            child: const Text("Double tap to Promote"),
+                          child: Container(
+                            margin: EdgeInsets.only(top: 20),
+                            decoration: ThemeHelper().buttonBoxDecoration(context),
+                            child: ElevatedButton(
+                              style: ThemeHelper().buttonStyle(),
+                              onPressed: () {
+                                Action = "promote";
+                                post();
+                                fetchErno();
+                              },
+                              child: const Text("Double tap to Promote"),
+                            ),
                           ),
                         ),
                       ),
                       Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: MaterialButton(
-                          color: Colors.red,
-                          onPressed: () {
-                            Action = "demote";
-                            post();
-                            fetchErno();
-                          },
-                          child: const Text("Double tap to Demote"),
+                        child: Container(
+                          margin: EdgeInsets.only(top: 20),
+                          decoration: ThemeHelper().buttonBoxDecoration(context),
+                          child: ElevatedButton(
+                            style: ThemeHelper().buttonStyle(),
+                            onPressed: () {
+                              Action = "demote";
+                              post();
+                              fetchErno();
+                            },
+                            child: const Text("Double tap to Demote"),
+                          ),
                         ),
                       ),
                     ],

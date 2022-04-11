@@ -50,7 +50,20 @@ class _Student_Marks_view_SPState extends State<Student_Marks_view_SP> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("All Subject Marks "),
+        title: const Text('View Exam Marks'),
+        // backgroundColor: Colors.blue,
+        flexibleSpace: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topRight,
+              end: Alignment.bottomLeft,
+              colors: [
+                Colors.lightGreenAccent,
+                Colors.lightBlueAccent,
+              ],
+            ),
+          ),
+        ),
       ),
       body: loading
           ? const Center(

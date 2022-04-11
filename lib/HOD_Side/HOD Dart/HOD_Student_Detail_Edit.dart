@@ -73,7 +73,7 @@ class _HOD_Edit_Student_detailsState extends State<HOD_Edit_Student_details> {
       "gmno": gmnocontroller!.text,
       "gemail": gemailcontroller!.text,
       "status": status,
-      // "editby": widget.username,
+      "editby": widget.username,
     });
     if (response.statusCode == 200) {
       print(response.body);

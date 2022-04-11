@@ -42,9 +42,6 @@ class _Student_Faculty_SearchState extends State<Student_Faculty_Search> {
             Colors.blue,
           ],
         ),
-        leading: FMenuWidget(
-          username: widget.username,
-        ),
       ),
       body: Column(
         children: [
@@ -123,7 +120,7 @@ class ItemList extends StatelessWidget {
                 onTap: () => Navigator.of(context).push(
                   MaterialPageRoute(
                     builder: (BuildContext context) =>
-                        Student_Details(list: list, index: i, username: '$username',),
+                        Student_Details(username: '$username', id: '',),
                   ),
                 ),
               ),

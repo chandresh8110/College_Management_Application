@@ -25,8 +25,8 @@ class _HOD_NoticeState extends State<HOD_Notice> {
   List? pdfList;
 
   Future fetchAllPdf() async {
-    final response =
-        await http.get(Uri.parse("http://103.141.241.97/test/notice_fetch.php"));
+    final response = await http
+        .get(Uri.parse("http://103.141.241.97/test/notice_fetch.php"));
     if (response.statusCode == 200) {
       setState(() {
         pdfList = jsonDecode(response.body);
@@ -60,17 +60,17 @@ class _HOD_NoticeState extends State<HOD_Notice> {
         appBar: AppBar(
           title: const Text('Notice'),
           // backgroundColor: Colors.blue,
-          leading: HMenuWidget(
-            username: widget.username,
-          ),
+          // leading: HMenuWidget(
+          //   username: widget.username,
+          // ),
           flexibleSpace: Container(
             decoration: BoxDecoration(
               gradient: LinearGradient(
                 begin: Alignment.topRight,
                 end: Alignment.bottomLeft,
                 colors: [
-                  Colors.cyanAccent,
-                  Colors.blue,
+                  Colors.lightGreenAccent,
+                  Colors.lightBlueAccent,
                 ],
               ),
             ),
@@ -80,41 +80,57 @@ class _HOD_NoticeState extends State<HOD_Notice> {
             ? const Center(
                 child: CircularProgressIndicator(),
               )
-            : ListView.builder(
-                itemCount: pdfList!.length,
-                itemBuilder: (context, index) {
-                  return ListTile(
-                    leading: TextButton.icon(
-                      icon: const Icon(Icons.picture_as_pdf),
-                      style: TextButton.styleFrom(
-                        primary: Theme.of(context).primaryColor,
-                      ),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => PdfViewPage(
-                              name: pdfList![index]["file"],
-                              title: pdfList![index]["notice_sub"],
+            : Column(
+                children: [
+                  Flexible(
+                    child: ListView.builder(
+                      itemCount: pdfList!.length,
+                      itemBuilder: (context, index) {
+                        return Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: Container(
+                            decoration:
+                                ThemeHelper().buttonBoxDecoration(context),
+                            child: ListTile(
+                              leading: ElevatedButton.icon(
+                                icon: const Icon(Icons.picture_as_pdf),
+                                style: ThemeHelper().buttonStyle(),
+                                onPressed: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => PdfViewPage(
+                                        name: pdfList![index]["file"],
+                                        title: pdfList![index]["notice_sub"],
+                                      ),
+                                    ),
+                                  );
+                                },
+                                // icon: const Icon(Icons.picture_as_pdf),
+                                label: Text(pdfList![index]["notice_sub"]),
+                              ),
+                              // trailing: Icon(Icons.download,color: Colors.black,),
                             ),
                           ),
                         );
                       },
-                      // icon: const Icon(Icons.picture_as_pdf),
-                      label: Text(pdfList![index]["notice_sub"]),
                     ),
-                  );
-                }),
+                  ),
+                ],
+              ),
         floatingActionButton: FloatingActionButton(
-          child: Icon(Icons.add),
-          backgroundColor: Colors.blue,
+          child: Icon(
+            Icons.add,
+            color: Colors.lightBlueAccent,
+          ),
+          backgroundColor: Colors.lightGreenAccent,
           onPressed: () {
             setState(() {
               Navigator.of(context).push(
                 MaterialPageRoute(builder: (context) => Add_Notice()),
               );
-            });
+            },);
           },
-        ));
+        ),);
   }
 }

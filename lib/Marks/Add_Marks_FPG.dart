@@ -56,9 +56,18 @@ class _Add_Marks_FPState extends State<Add_Marks_FP> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Add_Marks_FP'),
-        leading: HMenuWidget(
-          username: widget.username,
+        title: Text("ADD Marks"),
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topRight,
+              end: Alignment.bottomLeft,
+              colors: [
+                Colors.lightGreenAccent,
+                Colors.lightBlueAccent,
+              ],
+            ),
+          ),
         ),
       ),
       body: Column(
@@ -81,6 +90,10 @@ class _Add_Marks_FPState extends State<Add_Marks_FP> {
                         value: Exam['exam_code'],
                         child: Text(Exam['exam_code']));
                   }).toList(),
+                  underline: Container(
+                    height: 0.1,
+                    // color: Colors.deepPurpleAccent,
+                  ),
                   onChanged: (Exam) {
                     setState(() {
                       selectedExam = Exam.toString();
@@ -173,6 +186,10 @@ class _GetBranchState extends State<GetBranch> {
                     child: Text(branch['branch']),
                   );
                 }).toList(),
+                underline: Container(
+                  height: 0.1,
+                  // color: Colors.deepPurpleAccent,
+                ),
                 onChanged: (branch) {
                   setState(() {
                     selectedBranch = branch.toString();
@@ -267,6 +284,10 @@ class _GetSemState extends State<GetSem> {
                     child: Text(sem['sem']),
                   );
                 }).toList(),
+                underline: Container(
+                  height: 0.1,
+                  // color: Colors.deepPurpleAccent,
+                ),
                 onChanged: (branch) {
                   setState(() {
                     selectedSem = branch.toString();
@@ -355,6 +376,10 @@ class _GetcidState extends State<Getcid> {
                     ),
                   );
                 }).toList(),
+                underline: Container(
+                  height: 0.1,
+                  // color: Colors.deepPurpleAccent,
+                ),
                 onChanged: (branch) {
                   setState(() {
                     selectedSubject = branch.toString();

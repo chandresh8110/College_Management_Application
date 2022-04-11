@@ -84,83 +84,116 @@ class _Student_Material_ViewState extends State<Student_Material_View> {
               begin: Alignment.topRight,
               end: Alignment.bottomLeft,
               colors: [
-                Colors.cyanAccent,
-                Colors.blue,
+                Colors.lightGreenAccent,
+                Colors.lightBlueAccent,
               ],
             ),
           ),
         ),
-        // leading: SMenuWidget(
-        //   username: widget.username,
-        // ),
       ),
       body: SingleChildScrollView(
         child: Column(
           children: [
             Padding(
               padding: const EdgeInsets.all(10.0),
-              child: DropdownButton(
-                  isExpanded: true,
-                  hint: const Text('Select Year'),
-                  value: selectedyear,
-                  items: YearList?.map((course) {
-                    return DropdownMenuItem(
-                        value: course['year'], child: Text(course['year']));
-                  }).toList(),
-                  onChanged: (year) {
-                    setState(() {
-                      selectedyear = year.toString();
-                      print(selectedyear);
-                    });
-                  }),
+              child: Container(
+                padding: EdgeInsets.symmetric(horizontal: 10),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(100),
+                  border: Border.all(color: Colors.grey),
+                  color: Colors.white,
+                ),
+                child: DropdownButton(
+                    isExpanded: true,
+                    hint: const Text('Select Year'),
+                    value: selectedyear,
+                    items: YearList?.map((course) {
+                      return DropdownMenuItem(
+                          value: course['year'], child: Text(course['year']));
+                    }).toList(),
+                    underline: Container(
+                      height: 0.1,
+                      // color: Colors.deepPurpleAccent,
+                    ),
+                    onChanged: (year) {
+                      setState(() {
+                        selectedyear = year.toString();
+                        print(selectedyear);
+                      });
+                    }),
+              ),
             ),
             Padding(
               padding: const EdgeInsets.all(10.0),
-              child: DropdownButton(
-                  isExpanded: true,
-                  hint: const Text('Select Branch'),
-                  value: selectedBranch,
-                  items: BranchitemList?.map((branch) {
-                    return DropdownMenuItem(
-                        value: branch['branch_name'],
-                        child: Text(branch['branch_name']));
-                  }).toList(),
-                  onChanged: (branch) {
-                    setState(() {
-                      selectedBranch = branch.toString();
-                      print(selectedBranch);
-                    });
-                  }),
+              child: Container(
+                padding: EdgeInsets.symmetric(horizontal: 10),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(100),
+                  border: Border.all(color: Colors.grey),
+                  color: Colors.white,
+                ),
+                child: DropdownButton(
+                    isExpanded: true,
+                    hint: const Text('Select Branch'),
+                    value: selectedBranch,
+                    items: BranchitemList?.map((branch) {
+                      return DropdownMenuItem(
+                          value: branch['branch_name'],
+                          child: Text(branch['branch_name']));
+                    }).toList(),
+                    underline: Container(
+                      height: 0.1,
+                      // color: Colors.deepPurpleAccent,
+                    ),
+                    onChanged: (branch) {
+                      setState(() {
+                        selectedBranch = branch.toString();
+                        print(selectedBranch);
+                      });
+                    }),
+              ),
             ),
             Padding(
               padding: const EdgeInsets.all(10.0),
-              child: DropdownButton(
-                isExpanded: true,
-                hint: const Text('Select Sem'),
-                // Initial Value
-                value: selectedSem,
+              child: Container(
+                padding: EdgeInsets.symmetric(horizontal: 10),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(100),
+                  border: Border.all(color: Colors.grey),
+                  color: Colors.white,
+                ),
+                child: DropdownButton(
+                  isExpanded: true,
+                  hint: const Text('Select Sem'),
+                  // Initial Value
+                  value: selectedSem,
 
-                // Down Arrow Icon
-                icon: const Icon(Icons.arrow_drop_down),
+                  // Down Arrow Icon
+                  icon: const Icon(Icons.arrow_drop_down),
 
-                // Array list of items
-                items: <String>['1', '2', '3', '4', '5', '6', '7', '8']
-                    .map((String items) {
-                  return DropdownMenuItem(
-                    value: items,
-                    child: Text(items),
-                  );
-                }).toList(),
-                // After selecting the desired option,it will
-                // change button value to selected value
-                onChanged: (sem) {
-                  setState(() {
-                    selectedSem = sem.toString();
-                    if (kDebugMode) {
-                      print(selectedSem);
-                    }
-                  });
-                },
+                  // Array list of items
+                  items: <String>['1', '2', '3', '4', '5', '6', '7', '8']
+                      .map((String items) {
+                    return DropdownMenuItem(
+                      value: items,
+                      child: Text(items),
+                    );
+                  }).toList(),
+                  underline: Container(
+                    height: 0.1,
+                    // color: Colors.deepPurpleAccent,
+                  ),
+                  // After selecting the desired option,it will
+                  // change button value to selected value
+                  onChanged: (sem) {
+                    setState(() {
+                      selectedSem = sem.toString();
+                      if (kDebugMode) {
+                        print(selectedSem);
+                      }
+                    });
+                  },
+                ),
               ),
             ),
             FutureBuilder<List>(
@@ -218,25 +251,37 @@ class _CourseListState extends State<CourseList> {
         children: [
           Padding(
             padding: const EdgeInsets.all(10.0),
-            child: DropdownButton(
-                menuMaxHeight: 5000,
-                isExpanded: true,
-                hint: const Text('Select Course'),
-                value: selectedCourse,
-                items: widget.list.map((course) {
-                  return DropdownMenuItem(
-                    value: course['cname'],
-                    child: Text(course['cname']),
-                  );
-                }).toList(),
-                onChanged: (course) {
-                  setState(() {
-                    selectedCourse = course.toString();
-                    if (kDebugMode) {
-                      print(selectedCourse);
-                    }
-                  });
-                }),
+            child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 10),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(100),
+                border: Border.all(color: Colors.grey),
+                color: Colors.white,
+              ),
+              child: DropdownButton(
+                  menuMaxHeight: 5000,
+                  isExpanded: true,
+                  hint: const Text('Select Course'),
+                  value: selectedCourse,
+                  items: widget.list.map((course) {
+                    return DropdownMenuItem(
+                      value: course['cname'],
+                      child: Text(course['cname']),
+                    );
+                  }).toList(),
+                  underline: Container(
+                    height: 0.1,
+                    // color: Colors.deepPurpleAccent,
+                  ),
+                  onChanged: (course) {
+                    setState(() {
+                      selectedCourse = course.toString();
+                      if (kDebugMode) {
+                        print(selectedCourse);
+                      }
+                    });
+                  }),
+            ),
           ),
           Padding(
             padding: const EdgeInsets.all(20),

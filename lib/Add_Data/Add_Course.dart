@@ -22,7 +22,7 @@ class _Add_CourseState extends State<Add_Course> {
 
   late bool error, sending, success;
   late String msg;
-  String table = 'course';
+  String table = 'course_master';
 
   String phpurl = "http://103.141.241.97/test/insert_data.php";
 
@@ -96,6 +96,21 @@ class _Add_CourseState extends State<Add_Course> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text("ADD Course"),
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topRight,
+              end: Alignment.bottomLeft,
+              colors: [
+                Colors.lightGreenAccent,
+                Colors.lightBlueAccent,
+              ],
+            ),
+          ),
+        ),
+      ),
       body: SingleChildScrollView(
         //enable scrolling, when keyboard appears,
         // hight becomes small, so prevent overflow
@@ -133,6 +148,10 @@ class _Add_CourseState extends State<Add_Course> {
                         ),
                       );
                     }).toList(),
+                    underline: Container(
+                      height: 0.1,
+                      // color: Colors.deepPurpleAccent,
+                    ),
                     onChanged: (branch) {
                       setState(
                         () {
@@ -188,7 +207,7 @@ class _Add_CourseState extends State<Add_Course> {
                     hint: Text('Select Sem'),
                     value: semValue,
                     isExpanded: true,
-                    icon: const Icon(Icons.arrow_drop_down_circle_outlined),
+                    icon: const Icon(Icons.arrow_drop_down),
                     elevation: 16,
                     // style: const TextStyle(color: Colors.deepPurple),
                     underline: Container(

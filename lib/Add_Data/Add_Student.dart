@@ -156,6 +156,21 @@ class _Add_StudentState extends State<Add_Student> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text("ADD Student"),
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topRight,
+              end: Alignment.bottomLeft,
+              colors: [
+                Colors.lightGreenAccent,
+                Colors.lightBlueAccent,
+              ],
+            ),
+          ),
+        ),
+      ),
       body: SingleChildScrollView(
         child: Form(
           key: _formKey,
@@ -285,6 +300,10 @@ class _Add_StudentState extends State<Add_Student> {
                               value: branch['branch_name'],
                               child: Text(branch['branch_name']));
                         }).toList(),
+                        underline: Container(
+                          height: 0.1,
+                          // color: Colors.deepPurpleAccent,
+                        ),
                         onChanged: (branch) {
                           setState(() {
                             selectedBranch = branch.toString();

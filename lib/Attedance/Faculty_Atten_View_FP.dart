@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-
 import '../General Side/theme_helper.dart';
 import 'Faculty_Atten_View_SP.dart';
 
@@ -72,7 +71,7 @@ class _Faculty_Atten_View_FPState extends State<Faculty_Atten_View_FP> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Attendance'),
+        title: const Text('View Attendance'),
         // backgroundColor: Colors.blue,
         flexibleSpace: Container(
           decoration: const BoxDecoration(
@@ -80,8 +79,8 @@ class _Faculty_Atten_View_FPState extends State<Faculty_Atten_View_FP> {
               begin: Alignment.topRight,
               end: Alignment.bottomLeft,
               colors: [
-                Colors.cyanAccent,
-                Colors.blue,
+                Colors.lightGreenAccent,
+                Colors.lightBlueAccent,
               ],
             ),
           ),
@@ -113,6 +112,10 @@ class _Faculty_Atten_View_FPState extends State<Faculty_Atten_View_FP> {
                       ),
                     );
                   }).toList(),
+                  underline: Container(
+                    height: 0.1,
+                    // color: Colors.deepPurpleAccent,
+                  ),
                   onChanged: (term) {
                     setState(
                       () {
@@ -141,6 +144,10 @@ class _Faculty_Atten_View_FPState extends State<Faculty_Atten_View_FP> {
                         value: branch['branch_name'],
                         child: Text(branch['branch_name']));
                   }).toList(),
+                  underline: Container(
+                    height: 0.1,
+                    // color: Colors.deepPurpleAccent,
+                  ),
                   onChanged: (branch) {
                     setState(() {
                       selectedBranch = branch.toString();
@@ -174,6 +181,10 @@ class _Faculty_Atten_View_FPState extends State<Faculty_Atten_View_FP> {
                     child: Text(items),
                   );
                 }).toList(),
+                underline: Container(
+                  height: 0.1,
+                  // color: Colors.deepPurpleAccent,
+                ),
                 // After selecting the desired option,it will
                 // change button value to selected value
                 onChanged: (sem) {
@@ -236,45 +247,45 @@ class _CourseListState extends State<CourseList> {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 505,
+    return Flexible(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          Expanded(
+          Flexible(
             child: Padding(
               padding: const EdgeInsets.all(10.0),
               child: ListView.builder(
-                  itemCount: widget.list!.length,
-                  itemBuilder: (context, i) {
-                    return Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Container(
-                        decoration: ThemeHelper().buttonBoxDecoration(context),
-                        child: ListTile(
-                          title: Text(widget.list![i]["stu_id"]),
-                          subtitle: Text("Attendance:- " +
-                              "${widget.list![i]["percentage"]}" +
-                              "%"),
-                          leading: const Icon(Icons.account_circle_outlined),
-                          onTap: () {
-                            // getdata();
-                            Navigator.of(context).push(
-                              MaterialPageRoute(
-                                builder: (BuildContext context) =>
-                                    Faculty_Atten_View_SP(
-                                  branch: widget.branch,
-                                  term: widget.term,
-                                  sem: widget.sem,
-                                  id: widget.list![i]["stu_id"],
-                                ),
+                itemCount: widget.list!.length,
+                itemBuilder: (context, i) {
+                  return Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      decoration: ThemeHelper().buttonBoxDecoration(context),
+                      child: ListTile(
+                        title: Text(widget.list![i]["stu_id"]),
+                        subtitle: Text("Attendance:- " +
+                            "${widget.list![i]["percentage"]}" +
+                            "%"),
+                        leading: const Icon(Icons.account_circle_outlined),
+                        onTap: () {
+                          // getdata();
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (BuildContext context) =>
+                                  Faculty_Atten_View_SP(
+                                branch: widget.branch,
+                                term: widget.term,
+                                sem: widget.sem,
+                                id: widget.list![i]["stu_id"],
                               ),
-                            );
-                          },
-                        ),
+                            ),
+                          );
+                        },
                       ),
-                    );
-                  }),
+                    ),
+                  );
+                },
+              ),
             ),
           ),
         ],

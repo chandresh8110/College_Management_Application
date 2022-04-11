@@ -2,6 +2,7 @@
 
 import 'package:final_app/General%20Side/SplashScreen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
 // import 'General Side/MyThemes.dart';
@@ -15,9 +16,14 @@ class MyApp extends StatelessWidget {
   Color _accentColor = HexColor('#FFCDDC39');
   // This widget is the root of your application.
   @override
-  Widget build(BuildContext context) => MaterialApp(
-        //title: 'Flutter Demo',
-        theme: ThemeData(
+  Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      // DeviceOrientation.portraitDown,
+    ]);
+    return MaterialApp(
+      //title: 'Flutter Demo',
+      theme: ThemeData(
           primaryColor: _primaryColor,
           scaffoldBackgroundColor: Colors.grey.shade100,
           colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.grey)
@@ -25,7 +31,8 @@ class MyApp extends StatelessWidget {
           textTheme: GoogleFonts.vollkornTextTheme(
             Theme.of(context).textTheme,
           )),
-        home: SplashScreen(),
-        debugShowCheckedModeBanner: false,
-      );
+      home: SplashScreen(),
+      debugShowCheckedModeBanner: false,
+    );
+  }
 }

@@ -129,7 +129,7 @@ class ItemList extends StatelessWidget {
                         onTap: () => Navigator.of(context).push(
                           MaterialPageRoute(
                             builder: (BuildContext context) =>
-                                Faculty_Details(list: list, index: i),
+                                Faculty_Details_Profile(list: list, index: i),
                           ),
                         ),
                       ),

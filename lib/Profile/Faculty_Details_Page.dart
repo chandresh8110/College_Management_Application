@@ -3,18 +3,18 @@
 import 'package:flutter/material.dart';
 import 'package:new_gradient_app_bar/new_gradient_app_bar.dart';
 
-class Faculty_Details extends StatefulWidget {
-  const Faculty_Details({Key? key, required this.list, required this.index})
+class Faculty_Details_Profile extends StatefulWidget {
+  const Faculty_Details_Profile({Key? key, required this.list, required this.index})
       : super(key: key);
 
   final List list;
   final int index;
 
   @override
-  _Faculty_DetailsState createState() => _Faculty_DetailsState();
+  _Faculty_Details_ProfileState createState() => _Faculty_Details_ProfileState();
 }
 
-class _Faculty_DetailsState extends State<Faculty_Details> {
+class _Faculty_Details_ProfileState extends State<Faculty_Details_Profile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

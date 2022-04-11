@@ -5,10 +5,11 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
+import '../General Side/theme_helper.dart';
 
 class Faculty_Marks_view_FP extends StatefulWidget {
-  const Faculty_Marks_view_FP({Key? key, required this.username}) : super(key: key);
-
+  const Faculty_Marks_view_FP({Key? key, required this.username})
+      : super(key: key);
 
   final String username;
 
@@ -80,8 +81,8 @@ class _Faculty_Marks_view_FPState extends State<Faculty_Marks_view_FP> {
               begin: Alignment.topRight,
               end: Alignment.bottomLeft,
               colors: [
-                Colors.cyanAccent,
-                Colors.blue,
+                Colors.lightGreenAccent,
+                Colors.lightBlueAccent,
               ],
             ),
           ),
@@ -113,13 +114,15 @@ class _Faculty_Marks_view_FPState extends State<Faculty_Marks_view_FP> {
                       ),
                     );
                   }).toList(),
+                  underline: Container(
+                    height: 0.1,
+                    // color: Colors.deepPurpleAccent,
+                  ),
                   onChanged: (exam_code) {
-                    setState(
-                          () {
-                        selectedexam_code = exam_code.toString();
-                        print(selectedexam_code);
-                      },
-                    );
+                    setState(() {
+                      selectedexam_code = exam_code.toString();
+                      print(selectedexam_code);
+                    });
                   },
                 ),
               )),
@@ -141,6 +144,10 @@ class _Faculty_Marks_view_FPState extends State<Faculty_Marks_view_FP> {
                         value: branch['branch_name'],
                         child: Text(branch['branch_name']));
                   }).toList(),
+                  underline: Container(
+                    height: 0.1,
+                    // color: Colors.deepPurpleAccent,
+                  ),
                   onChanged: (branch) {
                     setState(() {
                       selectedBranch = branch.toString();
@@ -174,6 +181,10 @@ class _Faculty_Marks_view_FPState extends State<Faculty_Marks_view_FP> {
                     child: Text(items),
                   );
                 }).toList(),
+                underline: Container(
+                  height: 0.1,
+                  // color: Colors.deepPurpleAccent,
+                ),
                 // After selecting the desired option,it will
                 // change button value to selected value
                 onChanged: (sem) {
@@ -216,10 +227,10 @@ class _Faculty_Marks_view_FPState extends State<Faculty_Marks_view_FP> {
 class CourseList extends StatefulWidget {
   const CourseList(
       {Key? key,
-        required this.list,
-        required this.sem,
-        required this.branch,
-        required this.term})
+      required this.list,
+      required this.sem,
+      required this.branch,
+      required this.term})
       : super(key: key);
 
   final List? list;
@@ -247,22 +258,29 @@ class _CourseListState extends State<CourseList> {
               child: ListView.builder(
                   itemCount: widget.list!.length,
                   itemBuilder: (context, i) {
-                    return ListTile(
-                      title: Text(widget.list![i]["stu_id"]),
-                      leading: const Icon(Icons.account_circle_outlined),
-                      onTap: () {
-                        // getdata();
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (BuildContext context) => Faculty_Marks_view_SP(
-                              branch: widget.branch,
-                              exam_code: widget.term,
-                              sem: widget.sem,
-                              id: widget.list![i]["stu_id"],
-                            ),
-                          ),
-                        );
-                      },
+                    return Padding(
+                      padding: const EdgeInsets.all(10),
+                      child: Container(
+                        decoration: ThemeHelper().buttonBoxDecoration(context),
+                        child: ListTile(
+                          title: Text(widget.list![i]["stu_id"]),
+                          leading: const Icon(Icons.account_circle_outlined),
+                          onTap: () {
+                            // getdata();
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (BuildContext context) =>
+                                    Faculty_Marks_view_SP(
+                                  branch: widget.branch,
+                                  exam_code: widget.term,
+                                  sem: widget.sem,
+                                  id: widget.list![i]["stu_id"],
+                                ),
+                              ),
+                            );
+                          },
+                        ),
+                      ),
                     );
                   }),
             ),

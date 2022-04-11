@@ -77,7 +77,7 @@ class _AccountPageState extends State<AccountPage> {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: (context) => HSliderDrawer(
+          builder: (context) => New_H_Homepage(
             username: usernamecontroller.text,
           ),
         ),

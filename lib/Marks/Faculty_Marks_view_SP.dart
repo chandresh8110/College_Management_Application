@@ -54,7 +54,19 @@ class _Faculty_Marks_view_SPState extends State<Faculty_Marks_view_SP> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("All Sub. Marks of " + widget.id),
+        title: Text("All Sub. Marks of ${widget.id}"),
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topRight,
+              end: Alignment.bottomLeft,
+              colors: [
+                Colors.lightGreenAccent,
+                Colors.lightBlueAccent,
+              ],
+            ),
+          ),
+        ),
       ),
       body: loading
           ? const Center(
@@ -63,23 +75,26 @@ class _Faculty_Marks_view_SPState extends State<Faculty_Marks_view_SP> {
           : Column(
               children: [
                 Expanded(
-                  child: ListView.builder(
-                      itemCount: Marks!.length,
-                      itemBuilder: (context, i) {
-                        return Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Container(
-                            decoration:
-                                ThemeHelper().buttonBoxDecoration(context),
-                            child: ListTile(
-                              title:
-                                  Text("Subject id:- " + "${Marks![i]["cid"]}"),
-                              subtitle:
-                                  Text("Marks:- " + "${Marks![i]["mark"]}"),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: ListView.builder(
+                        itemCount: Marks!.length,
+                        itemBuilder: (context, i) {
+                          return Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Container(
+                              decoration:
+                                  ThemeHelper().buttonBoxDecoration(context),
+                              child: ListTile(
+                                title:
+                                    Text("Subject id:- " + "${Marks![i]["cid"]}"),
+                                subtitle:
+                                    Text("Marks:- " + "${Marks![i]["mark"]}"),
+                              ),
                             ),
-                          ),
-                        );
-                      }),
+                          );
+                        }),
+                  ),
                 ),
               ],
             ),

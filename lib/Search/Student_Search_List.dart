@@ -3,6 +3,7 @@ import 'package:final_app/slider/SliderDrawer.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import '../General Side/theme_helper.dart';
 import 'Student_List.dart';
 
 class Student_Search_List extends StatefulWidget {
@@ -15,20 +16,20 @@ class Student_Search_List extends StatefulWidget {
 class _Student_Search_ListState extends State<Student_Search_List> {
   String? selectedBranch;
   List? BranchitemList;
-  String? selectedyear;
-  List? YearList;
+  String? semValue;
+  // List? YearList;
 
-  Future getyear() async {
-    var url = "http://103.141.241.97/test/getyear.php";
-    final response = await http.get(Uri.parse(url));
-    var jsonData = json.decode(response.body);
-    setState(() {
-      YearList = jsonData;
-    });
-    if (kDebugMode) {
-      print(YearList);
-    }
-  }
+  // Future getyear() async {
+  //   var url = "http://103.141.241.97/test/getyear.php";
+  //   final response = await http.get(Uri.parse(url));
+  //   var jsonData = json.decode(response.body);
+  //   setState(() {
+  //     YearList = jsonData;
+  //   });
+  //   if (kDebugMode) {
+  //     print(YearList);
+  //   }
+  // }
 
   Future getdata() async {
     var url = "http://103.141.241.97/test/getbranch.php";
@@ -44,56 +45,40 @@ class _Student_Search_ListState extends State<Student_Search_List> {
 
   @override
   void initState() {
-    getyear();
+    // getyear();
     getdata();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      child: Scaffold(
-        appBar: AppBar(
-          title: const Text('Student'),
-          // backgroundColor: Colors.blue,
-          flexibleSpace: Container(
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topRight,
-                end: Alignment.bottomLeft,
-                colors: [
-                  Colors.cyanAccent,
-                  Colors.blue,
-                ],
-              ),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Search Student"),
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topRight,
+              end: Alignment.bottomLeft,
+              colors: [
+                Colors.lightGreenAccent,
+                Colors.lightBlueAccent,
+              ],
             ),
           ),
         ),
-        body: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: DropdownButton(
-                  isExpanded: true,
-                  hint: const Text('Select Year'),
-                  value: selectedyear,
-                  items: YearList?.map((course) {
-                    return DropdownMenuItem(
-                      value: course['year'],
-                      child: Text(
-                        course['year'],
-                      ),
-                    );
-                  }).toList(),
-                  onChanged: (year) {
-                    setState(() {
-                      selectedyear = year.toString();
-                      print(selectedyear);
-                    });
-                  }),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(10.0),
+      ),
+      body: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 10),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(100),
+                border: Border.all(color: Colors.grey),
+                color: Colors.white,
+              ),
               child: DropdownButton(
                   isExpanded: true,
                   hint: const Text('Select Branch'),
@@ -103,6 +88,10 @@ class _Student_Search_ListState extends State<Student_Search_List> {
                         value: branch['branch_name'],
                         child: Text(branch['branch_name']));
                   }).toList(),
+                  underline: Container(
+                    height: 0.1,
+                    // color: Colors.deepPurpleAccent,
+                  ),
                   onChanged: (branch) {
                     setState(() {
                       selectedBranch = branch.toString();
@@ -110,36 +99,70 @@ class _Student_Search_ListState extends State<Student_Search_List> {
                     });
                   }),
             ),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.of(context)
-                    .push(
-                      MaterialPageRoute(
-                        builder: (context) => Student_List(
-                          branch: "$selectedBranch",
-                          year: '$selectedyear',
-                        ),
-                      ),
-                    )
-                    .then((value) => setState(() {
-                          selectedBranch = value;
-                          selectedyear = value;
-                        }));
-              },
-              child: Text('OK'),
-            ),
-          ],
-        ),
-      ),
-      onWillPop: () async {
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-            builder: (context) => SliderDrawer(),
           ),
-        );
-        return false;
-      },
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 10),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(100),
+                border: Border.all(color: Colors.grey),
+                color: Colors.white,
+              ),
+              child: DropdownButton<String>(
+                hint: Text('Select Sem'),
+                value: semValue,
+                isExpanded: true,
+                icon: const Icon(Icons.arrow_drop_down),
+                elevation: 16,
+                // style: const TextStyle(color: Colors.deepPurple),
+                underline: Container(
+                  height: 0.1,
+                  // color: Colors.deepPurpleAccent,
+                ),
+                onChanged: (String? newValue) {
+                  setState(() {
+                    semValue = newValue!;
+                  });
+                },
+                items: <String>['1', '2', '3', '4', '5', '6', '7', '8']
+                    .map<DropdownMenuItem<String>>((String value) {
+                  return DropdownMenuItem<String>(
+                    value: value,
+                    child: Text(value),
+                  );
+                }).toList(),
+              ),
+            ),
+          ),
+          Container(
+            margin: EdgeInsets.all(10),
+            decoration: ThemeHelper().buttonBoxDecoration(context),
+            child: SizedBox(
+              width: double.infinity,
+              child: ElevatedButton(
+                style: ThemeHelper().buttonStyle(),
+                onPressed: () {
+                  Navigator.of(context)
+                      .push(
+                        MaterialPageRoute(
+                          builder: (context) => Student_List(
+                            branch: "$selectedBranch",
+                            sem: '$semValue',
+                          ),
+                        ),
+                      )
+                      .then((value) => setState(() {
+                            selectedBranch = value;
+                            semValue = value;
+                          }));
+                },
+                child: Text('OK'),
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

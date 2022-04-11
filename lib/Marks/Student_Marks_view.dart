@@ -47,7 +47,20 @@ class _Student_Marks_viewState extends State<Student_Marks_view> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Exam Marks"),
+        title: const Text('View Marks'),
+        // backgroundColor: Colors.blue,
+        flexibleSpace: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topRight,
+              end: Alignment.bottomLeft,
+              colors: [
+                Colors.lightGreenAccent,
+                Colors.lightBlueAccent,
+              ],
+            ),
+          ),
+        ),
       ),
       body: loading
           ? const Center(
@@ -74,6 +87,10 @@ class _Student_Marks_viewState extends State<Student_Marks_view> {
                             child: Text(Exam['exam_code']),
                           );
                         }).toList(),
+                        underline: Container(
+                          height: 0.1,
+                          // color: Colors.deepPurpleAccent,
+                        ),
                         onChanged: (Exam) {
                           setState(() {
                             selectedExam = Exam.toString();

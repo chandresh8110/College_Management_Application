@@ -1,5 +1,6 @@
 // ignore_for_file: camel_case_types, non_constant_identifier_names, unnecessary_null_comparison
 
+import 'dart:async';
 import 'dart:convert';
 import 'package:final_app/Profile/Attendance_Student_sub.dart';
 import 'package:final_app/Student%20Side/Student_Slider/SMenuWidget.dart';
@@ -43,8 +44,8 @@ class _Profile_pageState extends State<Profile_page> {
               begin: Alignment.topRight,
               end: Alignment.bottomLeft,
               colors: [
-                Colors.cyanAccent,
-                Colors.blue,
+                Colors.lightGreenAccent,
+                Colors.lightBlueAccent,
               ],
             ),
           ),
@@ -85,6 +86,7 @@ class ItemList extends StatefulWidget {
 
 class _ItemListState extends State<ItemList> {
   bool loading = true;
+  Timer? timer;
   List? Atten;
 
   Future getoverall() async {
@@ -105,7 +107,17 @@ class _ItemListState extends State<ItemList> {
   @override
   void initState() {
     getoverall();
+    timer = Timer.periodic(
+      Duration(seconds: 5),
+      (Timer t) => getoverall(),
+    );
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    timer!.cancel();
+    super.dispose();
   }
 
   @override
@@ -144,9 +156,8 @@ class _ItemListState extends State<ItemList> {
                                 children: [
                                   CircleAvatar(
                                     radius: 25,
-                                    backgroundImage:AssetImage(
-                                        "images/Logo_.png"
-                                    ),
+                                    backgroundImage:
+                                        AssetImage("images/Logo_.png"),
                                     foregroundImage: NetworkImage(
                                       "http://103.141.241.97/test/uploads/Student/${widget.list[i]["stu_pic"]}",
                                     ),
@@ -157,8 +168,11 @@ class _ItemListState extends State<ItemList> {
                             ),
                             onTap: () => Navigator.of(context).push(
                               MaterialPageRoute(
-                                builder: (BuildContext context) =>
-                                    Details(list: widget.list, index: i),
+                                builder: (BuildContext context) => Details(
+                                  list: widget.list,
+                                  index: i,
+                                  username: widget.username,
+                                ),
                               ),
                             ),
                           );

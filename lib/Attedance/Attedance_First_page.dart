@@ -7,6 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 
+import '../General Side/theme_helper.dart';
+
 class attendence extends StatefulWidget {
   const attendence({Key? key, required this.username}) : super(key: key);
 
@@ -71,80 +73,125 @@ class _attendenceState extends State<attendence> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Attendence"),
-        leading: HMenuWidget(
-          username: widget.username,
+        title: const Text("Add Attendence"),
+        flexibleSpace: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topRight,
+              end: Alignment.bottomLeft,
+              colors: [
+                Colors.lightGreenAccent,
+                Colors.lightBlueAccent,
+              ],
+            ),
+          ),
         ),
       ),
       body: Column(
         children: [
           Padding(
             padding: const EdgeInsets.all(10.0),
-            child: DropdownButton(
-                isExpanded: true,
-                hint: const Text('Select term'),
-                value: selectedTerm,
-                items: TermList?.map((term) {
-                  return DropdownMenuItem(
-                    value: term['term'],
-                    child: Text(
-                      term['term'],
-                    ),
-                  );
-                }).toList(),
-                onChanged: (branch) {
-                  setState(() {
-                    selectedTerm = branch.toString();
-                    print(selectedTerm);
-                  });
-                }),
+            child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 10),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(100),
+                border: Border.all(color: Colors.grey),
+                color: Colors.white,
+              ),
+              child: DropdownButton(
+                  isExpanded: true,
+                  hint: const Text('Select term'),
+                  value: selectedTerm,
+                  items: TermList?.map((term) {
+                    return DropdownMenuItem(
+                      value: term['term'],
+                      child: Text(
+                        term['term'],
+                      ),
+                    );
+                  }).toList(),
+                  underline: Container(
+                    height: 0.1,
+                    // color: Colors.deepPurpleAccent,
+                  ),
+                  onChanged: (branch) {
+                    setState(() {
+                      selectedTerm = branch.toString();
+                      print(selectedTerm);
+                    });
+                  }),
+            ),
           ),
           Padding(
             padding: const EdgeInsets.all(10.0),
-            child: DropdownButton(
-                isExpanded: true,
-                hint: const Text('Select Branch'),
-                value: selectedBranch,
-                items: BranchitemList?.map((branch) {
-                  return DropdownMenuItem(
-                    value: branch['branch_name'],
-                    child: Text(
-                      branch['branch_name'],
-                    ),
-                  );
-                }).toList(),
-                onChanged: (branch) {
-                  setState(() {
-                    selectedBranch = branch.toString();
-                    print(selectedBranch);
-                  });
-                }),
+            child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 10),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(100),
+                border: Border.all(color: Colors.grey),
+                color: Colors.white,
+              ),
+              child: DropdownButton(
+                  isExpanded: true,
+                  hint: const Text('Select Branch'),
+                  value: selectedBranch,
+                  items: BranchitemList?.map((branch) {
+                    return DropdownMenuItem(
+                      value: branch['branch_name'],
+                      child: Text(
+                        branch['branch_name'],
+                      ),
+                    );
+                  }).toList(),
+                  underline: Container(
+                    height: 0.1,
+                    // color: Colors.deepPurpleAccent,
+                  ),
+                  onChanged: (branch) {
+                    setState(() {
+                      selectedBranch = branch.toString();
+                      print(selectedBranch);
+                    });
+                  }),
+            ),
           ),
           Padding(
             padding: const EdgeInsets.all(10.0),
-            child: DropdownButton(
-              isExpanded: true,
-              hint: const Text('Select Sem'),
-              // Initial Value
-              value: selectedSem,
-              // Down Arrow Icon
-              icon: const Icon(Icons.arrow_drop_down),
-              // Array list of items
-              items: <String>['1', '2', '3', '4', '5', '6', '7', '8']
-                  .map((String items) {
-                return DropdownMenuItem(
-                  value: items,
-                  child: Text(items),
-                );
-              }).toList(),
-              onChanged: (sem) {
-                setState(() {
-                  selectedSem = sem.toString();
-                  if (kDebugMode) {
-                    print(selectedSem);
-                  }
-                });
-              },
+            child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 10),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(100),
+                border: Border.all(color: Colors.grey),
+                color: Colors.white,
+              ),
+              child: DropdownButton(
+                isExpanded: true,
+                hint: const Text('Select Sem'),
+                // Initial Value
+                value: selectedSem,
+                // Down Arrow Icon
+                icon: const Icon(Icons.arrow_drop_down),
+                // Array list of items
+                items: <String>['1', '2', '3', '4', '5', '6', '7', '8']
+                    .map((String items) {
+                  return DropdownMenuItem(
+                    value: items,
+                    child: Text(items),
+                  );
+                }).toList(),
+                underline: Container(
+                  height: 0.1,
+                  // color: Colors.deepPurpleAccent,
+                ),
+                onChanged: (sem) {
+                  setState(() {
+                    selectedSem = sem.toString();
+                    if (kDebugMode) {
+                      print(selectedSem);
+                    }
+                  });
+                },
+              ),
             ),
           ),
           Flexible(
@@ -248,48 +295,75 @@ class _courseState extends State<course> {
     return SingleChildScrollView(
       child: Column(
         children: [
-          DropdownButton(
-              // menuMaxHeight: 5000,
-              isExpanded: true,
-              hint: const Text('Select Course'),
-              value: selectedCourse,
-              items: widget.list.map((branch) {
-                return DropdownMenuItem(
-                  value: branch['cname'],
-                  child: Text(branch['cname']),
-                );
-              }).toList(),
-              onChanged: (branch) {
-                setState(() {
-                  selectedCourse = branch.toString();
-                  print(selectedCourse);
-                });
-              }),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 10),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(100),
+                border: Border.all(color: Colors.grey),
+                color: Colors.white,
+              ),
+              child: DropdownButton(
+                  // menuMaxHeight: 5000,
+                  isExpanded: true,
+                  hint: const Text('Select Course'),
+                  value: selectedCourse,
+                  items: widget.list.map((branch) {
+                    return DropdownMenuItem(
+                      value: branch['cname'],
+                      child: Text(branch['cname']),
+                    );
+                  }).toList(),
+                  underline: Container(
+                    height: 0.1,
+                    // color: Colors.deepPurpleAccent,
+                  ),
+                  onChanged: (branch) {
+                    setState(() {
+                      selectedCourse = branch.toString();
+                      print(selectedCourse);
+                    });
+                  }),
+            ),
+          ),
           Padding(
             padding: const EdgeInsets.all(10.0),
-            child: DropdownButton(
-              isExpanded: true,
-              hint: const Text('Lecture Type'),
-              // Initial Value
-              value: selectedtype,
-              // Down Arrow Icon
-              icon: const Icon(Icons.arrow_drop_down),
-              // Array list of items
-              items: <String>['Lecture', 'Lab(A)', 'Lab(B)', 'Lab(C)']
-                  .map((String items) {
-                return DropdownMenuItem(
-                  value: items,
-                  child: Text(items),
-                );
-              }).toList(),
-              onChanged: (sem) {
-                setState(() {
-                  selectedtype = sem.toString();
-                  if (kDebugMode) {
-                    print(selectedtype);
-                  }
-                });
-              },
+            child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 10),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(100),
+                border: Border.all(color: Colors.grey),
+                color: Colors.white,
+              ),
+              child: DropdownButton(
+                isExpanded: true,
+                hint: const Text('Lecture Type'),
+                // Initial Value
+                value: selectedtype,
+                // Down Arrow Icon
+                icon: const Icon(Icons.arrow_drop_down),
+                // Array list of items
+                items: <String>['Lecture', 'Lab(A)', 'Lab(B)', 'Lab(C)']
+                    .map((String items) {
+                  return DropdownMenuItem(
+                    value: items,
+                    child: Text(items),
+                  );
+                }).toList(),
+                underline: Container(
+                  height: 0.1,
+                  // color: Colors.deepPurpleAccent,
+                ),
+                onChanged: (sem) {
+                  setState(() {
+                    selectedtype = sem.toString();
+                    if (kDebugMode) {
+                      print(selectedtype);
+                    }
+                  });
+                },
+              ),
             ),
           ),
           ListView(
@@ -300,8 +374,8 @@ class _courseState extends State<course> {
                 controlAffinity: ListTileControlAffinity.leading,
                 title: Text(key),
                 value: numbers[key],
-                activeColor: Colors.pink,
-                checkColor: Colors.white,
+                activeColor: Colors.lightBlueAccent,
+                checkColor: Colors.lightGreenAccent,
                 onChanged: (value) {
                   setState(() {
                     numbers[key] = value!;
@@ -311,36 +385,42 @@ class _courseState extends State<course> {
               );
             }).toList(),
           ),
-          MaterialButton(
-            child: Text(
-              " Get Student List ",
-              style: TextStyle(fontSize: 20),
+          Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: Container(
+              decoration: ThemeHelper().buttonBoxDecoration(context),
+              child: SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                  style: ThemeHelper().buttonStyle(),
+                  child: Text(
+                    " Get Student List ",
+                    style: TextStyle(fontSize: 20),
+                  ),
+                  onPressed: () {
+                    // print(getItems());
+                    // print(holder);
+                    print(lec);
+                    post();
+                    Navigator.of(context)
+                        .push(
+                          MaterialPageRoute(
+                            builder: (context) => Attedance_second_page(
+                              sem: widget.sem,
+                              branch: widget.branch,
+                              username: widget.username,
+                              term: widget.term,
+                              type: '$selectedtype',
+                              sub: '$selectedCourse',
+                              lec: '$lec',
+                            ),
+                          ),
+                        )
+                        .then((value) => setState(() {}));
+                  },
+                ),
+              ),
             ),
-            onPressed: () {
-              print(getItems());
-              print(holder);
-              // print(lec);
-              post();
-              Navigator.of(context)
-                  .push(
-                    MaterialPageRoute(
-                      builder: (context) => Attedance_second_page(
-                        sem: widget.sem,
-                        branch: widget.branch,
-                        username: widget.username,
-                        term: widget.term,
-                        type: '$selectedtype',
-                        sub: '$selectedCourse',
-                        lec: '$lec',
-                      ),
-                    ),
-                  )
-                  .then((value) => setState(() {}));
-            },
-            color: Colors.green,
-            textColor: Colors.white,
-            splashColor: Colors.grey,
-            padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
           ),
         ],
       ),

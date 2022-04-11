@@ -6,6 +6,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
+import '../General Side/theme_helper.dart';
+
 class Add_Marks_SP extends StatefulWidget {
   const Add_Marks_SP(
       {Key? key,
@@ -70,7 +72,19 @@ class _Add_Marks_SPState extends State<Add_Marks_SP> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Add_Marks"),
+        title: Text("ADD Marks"),
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topRight,
+              end: Alignment.bottomLeft,
+              colors: [
+                Colors.lightGreenAccent,
+                Colors.lightBlueAccent,
+              ],
+            ),
+          ),
+        ),
       ),
       body: loading
           ? const Center(
@@ -88,48 +102,58 @@ class _Add_Marks_SPState extends State<Add_Marks_SP> {
                   ),
                 ),
                 // Flexible(child: Text(_result!)),
-                ElevatedButton(
-                  onPressed: () {
-                    showDialog(
-                      context: context,
-                      builder: (BuildContext context) {
-                        return Expanded(
-                          child: AlertDialog(
-                            // backgroundColor: Colors.red,
-                            title: Text('Alert!!!'),
-                            content: Text(
-                              "Are you sure about submitting the marks?"
-                              "\n\n\n Once you submit marks you can't be change it",
-                              style: TextStyle(
-                                // color: Colors.white,
-                                fontWeight: FontWeight.w700,
-                                fontSize: 20,
-                              ),
-                            ),
-                            actions: [
-                              TextButton(
-                                // textColor: Colors.white,
-                                onPressed: () {
-                                  Navigator.of(context).pop();
-                                },
-                                child: Text('CANCEL'),
-                              ),
-                              TextButton(
-                                // textColor: Colors.white,
-                                onPressed: () {
-                                  sendMarks();
-                                  Navigator.of(context).pop();
-                                },
-                                child: Text('Yes, Sure'),
-                              ),
-                            ],
-                          ),
-                        );
-                      },
-                    );
-                  },
-                  child: Text('Submit'),
-                  style: ElevatedButton.styleFrom(primary: Colors.greenAccent),
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Container(
+                    margin: EdgeInsets.only(top: 20),
+                    decoration: ThemeHelper().buttonBoxDecoration(context),
+                    child: SizedBox(
+                      width: double.infinity,
+                      child: ElevatedButton(
+                        style: ThemeHelper().buttonStyle(),
+                        onPressed: () {
+                          showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return Expanded(
+                                child: AlertDialog(
+                                  // backgroundColor: Colors.red,
+                                  title: Text('Alert!!!'),
+                                  content: Text(
+                                    "Are you sure about submitting the marks?"
+                                    "\n\n\n Once you submit marks you can't be change it",
+                                    style: TextStyle(
+                                      // color: Colors.white,
+                                      fontWeight: FontWeight.w700,
+                                      fontSize: 20,
+                                    ),
+                                  ),
+                                  actions: [
+                                    TextButton(
+                                      // textColor: Colors.white,
+                                      onPressed: () {
+                                        Navigator.of(context).pop();
+                                      },
+                                      child: Text('CANCEL'),
+                                    ),
+                                    TextButton(
+                                      // textColor: Colors.white,
+                                      onPressed: () {
+                                        sendMarks();
+                                        Navigator.of(context).pop();
+                                      },
+                                      child: Text('Yes, Sure'),
+                                    ),
+                                  ],
+                                ),
+                              );
+                            },
+                          );
+                        },
+                        child: Text('Submit'),
+                      ),
+                    ),
+                  ),
                 ),
               ],
             ),
@@ -138,19 +162,34 @@ class _Add_Marks_SPState extends State<Add_Marks_SP> {
 
   _row(context, index) {
     return Padding(
-      padding: const EdgeInsets.all(10.0),
+      padding: const EdgeInsets.only(left: 10, right: 10),
       child: Row(
         children: [
-          Text(ListEr![index]["stu_id"]),
+          Padding(
+            padding: const EdgeInsets.only(left: 5),
+            child: Container(
+              child: Text(
+                ListEr![index]["stu_id"],
+              ),
+            ),
+          ),
           SizedBox(
-            width: 30,
+            width: 10,
           ),
           Expanded(
-            child: TextFormField(
-              keyboardType: TextInputType.number,
-              onChanged: (val) {
-                _onUpdate(index, val);
-              },
+            child: Padding(
+              padding: const EdgeInsets.only(
+                top: 10.0,
+                left: 20,
+              ),
+              child: TextFormField(
+                keyboardType: TextInputType.number,
+                decoration: ThemeHelper()
+                    .textInputDecoration("Assign Marks", "Enter Marks"),
+                onChanged: (val) {
+                  _onUpdate(index, val);
+                },
+              ),
             ),
           ),
         ],

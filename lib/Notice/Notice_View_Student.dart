@@ -6,6 +6,7 @@ import 'package:final_app/Student%20Side/Student_Slider/SMenuWidget.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import '../General Side/theme_helper.dart';
 import 'pdfview.dart';
 
 class Notice_View_Student extends StatefulWidget {
@@ -62,8 +63,8 @@ class _Notice_View_StudentState extends State<Notice_View_Student> {
               begin: Alignment.topRight,
               end: Alignment.bottomLeft,
               colors: [
-                Colors.cyanAccent,
-                Colors.blue,
+                Colors.lightGreenAccent,
+                Colors.lightBlueAccent,
               ],
             ),
           ),
@@ -77,25 +78,30 @@ class _Notice_View_StudentState extends State<Notice_View_Student> {
           : ListView.builder(
               itemCount: pdfList!.length,
               itemBuilder: (context, index) {
-                return ListTile(
-                  leading: TextButton.icon(
-                    icon: const Icon(Icons.picture_as_pdf),
-                    style: TextButton.styleFrom(
-                      primary: Theme.of(context).primaryColor,
+                return Padding(
+                  padding: const EdgeInsets.all(10),
+                  child: Container(
+                    decoration: ThemeHelper().buttonBoxDecoration(context),
+                    child: ListTile(
+                      leading: ElevatedButton.icon(
+                        icon: const Icon(Icons.picture_as_pdf),
+                        style: ThemeHelper().buttonStyle(),
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => PdfViewPage(
+                                name: pdfList![index]["file"],
+                                title: pdfList![index]["notice_sub"],
+                              ),
+                            ),
+                          );
+                        },
+                        // icon: const Icon(Icons.picture_as_pdf),
+                        label: Text(pdfList![index]["notice_sub"]),
+                      ),
+                      // trailing: Icon(Icons.download,color: Colors.black,),
                     ),
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => PdfViewPage(
-                            name: pdfList![index]["file"],
-                            title: pdfList![index]["notice_sub"],
-                          ),
-                        ),
-                      );
-                    },
-                    // icon: const Icon(Icons.picture_as_pdf),
-                    label: Text(pdfList![index]["notice_sub"]),
                   ),
                 );
               },
